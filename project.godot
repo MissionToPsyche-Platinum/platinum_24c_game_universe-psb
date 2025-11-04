@@ -11,6 +11,6 @@ config_version=5
 [application]
 
 config/name="PsycheAgainstTheUniverse"
-run/main_scene="res://node_2d.tscn"
+run/main_scene="res://Model/Scenes/node_2d.tscn"
 config/features=PackedStringArray("4.5", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://View/Assets/Sprites/icon.svg"
