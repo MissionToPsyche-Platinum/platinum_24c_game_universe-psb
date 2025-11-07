@@ -1,20 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://b5aneqr63kcay"]
+[gd_scene load_steps=4 format=3 uid="uid://b5aneqr63kcay"]
 
-[ext_resource type="Texture2D" uid="uid://bh1yvmsi01mvl" path="res://View/Assets/Sprites/icon.svg" id="1_n557b"]
+[ext_resource type="Texture2D" uid="uid://bnhxgu0f1ye4y" path="res://View/Assets/Sprites/dummyPsyche.jpg" id="1_fpj54"]
+[ext_resource type="PackedScene" uid="uid://7wpt2pr8jwaa" path="res://Model/CardData/BaseCardData/protocol_card_base.tscn" id="2_hcm31"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0e48y"]
 size = Vector2(122, 119)
 
-[node name="Node2D" type="Node2D"]
+[node name="Game" type="Node2D"]
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="DummyPsyche" type="Node2D" parent="."]
 position = Vector2(596, 277)
 
-[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
-texture = ExtResource("1_n557b")
+[node name="Sprite2D" type="Sprite2D" parent="DummyPsyche"]
+texture = ExtResource("1_fpj54")
 
-[node name="RigidBody2D" type="RigidBody2D" parent="Node2D"]
+[node name="RigidBody2D" type="RigidBody2D" parent="DummyPsyche"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/RigidBody2D"]
-position = Vector2(-10, 0)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DummyPsyche/RigidBody2D"]
 shape = SubResource("RectangleShape2D_0e48y")
+
+[node name="ProtocolCardBase" parent="." instance=ExtResource("2_hcm31")]
+position = Vector2(261, 317)
+scale = Vector2(0.5, 0.5)
+cardName = "Card 1"
+cardSprite = ExtResource("1_fpj54")
+cardDescription = "A Test Card!"
