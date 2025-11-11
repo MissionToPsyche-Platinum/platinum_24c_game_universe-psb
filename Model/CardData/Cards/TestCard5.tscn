@@ -1,0 +1,27 @@
+[gd_scene load_steps=7 format=3 uid="uid://bhhb73esfp2pe"]
+
+[ext_resource type="PackedScene" uid="uid://7wpt2pr8jwaa" path="res://Model/CardData/BaseCardData/protocol_card_base.tscn" id="1_32vy7"]
+[ext_resource type="Script" uid="uid://cda51huvrayd1" path="res://Model/CardData/CardBehaviorData/AttriubuteEffect.gd" id="2_avb41"]
+[ext_resource type="Script" uid="uid://jvo5d8np0a4x" path="res://Model/CardData/CardBehaviorData/AttributeBehavior.gd" id="3_ksr4c"]
+
+[sub_resource type="Resource" id="Resource_av5el"]
+script = ExtResource("2_avb41")
+affectedAttribute = 1
+amount = 10.0
+metadata/_custom_type_script = "uid://cda51huvrayd1"
+
+[sub_resource type="Resource" id="Resource_eimpa"]
+script = ExtResource("2_avb41")
+affectedAttribute = 2
+amount = 10.0
+metadata/_custom_type_script = "uid://cda51huvrayd1"
+
+[sub_resource type="Resource" id="Resource_4t5fm"]
+script = ExtResource("3_ksr4c")
+affectedAttributes = Array[ExtResource("2_avb41")]([SubResource("Resource_av5el"), SubResource("Resource_eimpa")])
+metadata/_custom_type_script = "uid://jvo5d8np0a4x"
+
+[node name="ProtocolCardBase" instance=ExtResource("1_32vy7")]
+cardName = "Test Card 5"
+cardDescription = "+10 power, + 10 velocity"
+cardBehavior = Array[Resource]([SubResource("Resource_4t5fm")])

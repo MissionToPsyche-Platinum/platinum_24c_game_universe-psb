@@ -1,9 +1,12 @@
 extends Node
+
+#card signal variable
+signal card_used(card) 
 #Settable card variables
 @export var cardName: String
 @export var cardSprite: Texture2D 
 @export var cardDescription: String
-@export var cardBehavior: Array[ICardBehavior]
+@export var cardBehavior: Array[Resource]
 
 #references to card nodes
 @onready var protocolCardName: Label = $CardBackground/ProtocolCardName
@@ -21,4 +24,23 @@ func _ready() -> void:
 #signals when the card is clicked
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		print("Card with name " + cardName + " Pressed!")
+		use();
+		
+func setupFromResource(resource: Resource) -> void:
+	cardName = resource.cardName
+	cardSprite = resource.cardSprite
+	cardDescription = resource.cardDescription
+	cardBehavior = resource.cardBehavior
+	
+		
+func use() -> void:
+	for behavior in cardBehavior:
+		#type checking like this is necessary in Godot because 
+		#declaring a variable of a specific type will only accept that type,
+		#not it's subclasses. 
+		if behavior is ICardBehavior:
+			behavior.use()
+		else:
+			push_error("Assigned behavior does not implement ICardBehavior!")
+	#emit the signal that the card has been used
+	emit_signal("card_used", self)

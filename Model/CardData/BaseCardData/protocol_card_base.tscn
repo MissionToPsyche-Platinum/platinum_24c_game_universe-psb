@@ -13,13 +13,13 @@ font_size = 32
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jce6x"]
-size = Vector2(544, 848)
+size = Vector2(546, 848)
 
 [node name="ProtocolCardBase" type="Node2D"]
+scale = Vector2(0.5, 0.5)
 script = ExtResource("1_jce6x")
 
 [node name="CardBackground" type="Sprite2D" parent="."]
-position = Vector2(37, 49)
 texture = ExtResource("2_lon5y")
 
 [node name="ProtocolCardName" type="Label" parent="CardBackground"]
@@ -41,6 +41,7 @@ text = "Protocol Card Description
 "
 label_settings = SubResource("LabelSettings_l00ld")
 horizontal_alignment = 1
+autowrap_mode = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="ProtocolCardSprite" type="Sprite2D" parent="CardBackground"]
@@ -50,7 +51,7 @@ texture = ExtResource("3_e7m50")
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(38, 50)
+z_index = 1
 shape = SubResource("RectangleShape2D_jce6x")
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

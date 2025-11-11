@@ -1,0 +1,34 @@
+[gd_scene load_steps=9 format=3 uid="uid://ck52rgyii648y"]
+
+[ext_resource type="PackedScene" uid="uid://7wpt2pr8jwaa" path="res://Model/CardData/BaseCardData/protocol_card_base.tscn" id="1_qkedv"]
+[ext_resource type="Texture2D" uid="uid://bnhxgu0f1ye4y" path="res://View/Assets/Sprites/dummyPsyche.jpg" id="2_l0c6e"]
+[ext_resource type="Script" uid="uid://cda51huvrayd1" path="res://Model/CardData/CardBehaviorData/AttriubuteEffect.gd" id="3_q0jjn"]
+[ext_resource type="Script" uid="uid://jvo5d8np0a4x" path="res://Model/CardData/CardBehaviorData/AttributeBehavior.gd" id="4_aytd6"]
+
+[sub_resource type="Resource" id="Resource_ykpn8"]
+script = ExtResource("3_q0jjn")
+affectedAttribute = 1
+amount = -10.0
+metadata/_custom_type_script = "uid://cda51huvrayd1"
+
+[sub_resource type="Resource" id="Resource_phwe3"]
+script = ExtResource("4_aytd6")
+affectedAttributes = Array[ExtResource("3_q0jjn")]([SubResource("Resource_ykpn8")])
+metadata/_custom_type_script = "uid://jvo5d8np0a4x"
+
+[sub_resource type="Resource" id="Resource_pf2t7"]
+script = ExtResource("3_q0jjn")
+affectedAttribute = 1
+amount = -10.0
+metadata/_custom_type_script = "uid://cda51huvrayd1"
+
+[sub_resource type="Resource" id="Resource_umqsf"]
+script = ExtResource("4_aytd6")
+affectedAttributes = Array[ExtResource("3_q0jjn")]([SubResource("Resource_pf2t7")])
+metadata/_custom_type_script = "uid://jvo5d8np0a4x"
+
+[node name="ProtocolCardBase" instance=ExtResource("1_qkedv")]
+cardName = "Test Card 7"
+cardSprite = ExtResource("2_l0c6e")
+cardDescription = "-10 Power, then -10 power again"
+cardBehavior = Array[Resource]([SubResource("Resource_phwe3"), SubResource("Resource_umqsf")])

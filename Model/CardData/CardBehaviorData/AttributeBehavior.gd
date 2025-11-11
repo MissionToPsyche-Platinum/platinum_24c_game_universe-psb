@@ -1,4 +1,5 @@
 extends ICardBehavior
+class_name AttributeBehavior
 
 enum attributeTypes {HULLINEGRITY, POWER, VELOCITY}
 
