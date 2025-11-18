@@ -14,3 +14,7 @@ config/name="PsycheAgainstTheUniverse"
 run/main_scene="res://Model/Scenes/TestScene.tscn"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://View/Assets/Sprites/icon.svg"
+
+[autoload]
+
+GameManager="*res://Controller/GameManager.gd"

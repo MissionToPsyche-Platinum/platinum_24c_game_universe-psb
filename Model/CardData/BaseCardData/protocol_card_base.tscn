@@ -16,7 +16,7 @@ font_color = Color(0, 0, 0, 1)
 size = Vector2(546, 848)
 
 [node name="ProtocolCardBase" type="Node2D"]
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.3, 0.3)
 script = ExtResource("1_jce6x")
 
 [node name="CardBackground" type="Sprite2D" parent="."]
