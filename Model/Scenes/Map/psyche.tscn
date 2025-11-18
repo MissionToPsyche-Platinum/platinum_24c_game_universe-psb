@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjy685rokwo4q"]
+
+[ext_resource type="Texture2D" uid="uid://6elb18o0hyou" path="res://View/Assets/Sprites/Map/little_psyche.png" id="1_hc76y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jsruw"]
+size = Vector2(402, 230)
+
+[node name="Psyche" type="Area2D"]
+
+[node name="Psyche" type="Sprite2D" parent="."]
+texture = ExtResource("1_hc76y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, 1)
+shape = SubResource("RectangleShape2D_jsruw")
+
+[node name="Psyche2" type="Node2D" parent="."]

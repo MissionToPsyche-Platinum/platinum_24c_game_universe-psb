@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://d27qiheuudmom"]
+
+[ext_resource type="Texture2D" uid="uid://culw2jxor2qje" path="res://View/Assets/Sprites/Map/earth.png" id="1_ew12j"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ew12j"]
+radius = 119.0
+
+[node name="Earth" type="Area2D"]
+
+[node name="Earth" type="Sprite2D" parent="."]
+texture = ExtResource("1_ew12j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ew12j")
