@@ -6,11 +6,30 @@ extends Node2D
 
 @export var hand: Control 
 
+#assign referenes to UI elements
+@export var hullIntegrityLabel: Label
+@export var powerLabel: Label
+@export var velocityLabel: Label
+
+@export var descriptionLabel: Label
+@export var effectLabel: Label
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#register all values with the GameManager
 	GameManager.player = player
-	GameManager.scenario = scenario
 	GameManager.card_manager = cardManager
 	GameManager.hand = hand
+	
+	#assign UI references
+	GameManager.hullIntegrityLabel = hullIntegrityLabel
+	GameManager.powerLabel = powerLabel
+	GameManager.veloctiyLabel = velocityLabel
+	GameManager.descriptionLabel = descriptionLabel
+	GameManager.effectLabel = effectLabel
+	
+	
+	#load the scenario
+	GameManager.loadScenario("res://Model/ScenarioData/Scenarios/Sc_DoubleDarkMatter.tscn")

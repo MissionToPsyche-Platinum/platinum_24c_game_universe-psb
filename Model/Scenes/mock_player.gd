@@ -49,7 +49,7 @@ func drawCard() -> void:
 	var parentNode = get_node(handBox) if handBox != NodePath("") else self
 	#wrap the node 2d in a Control node so HBOX renders it properly
 	var cardWrapper = Control.new()
-	cardWrapper.set_custom_minimum_size(Vector2(100,100))
+	cardWrapper.set_custom_minimum_size(Vector2(200,0))
 	parentNode.add_child(cardWrapper)
 	cardWrapper.add_child(drawnCardInstance)
 	hand.append(drawnCardInstance)
@@ -73,6 +73,7 @@ func onCardUsed(card: Node) -> void:
 		wrapper.remove_child(card)
 		wrapper.queue_free()
 		
+
 	#end the player turn
 	print("Player turn over")
 	GameManager.endPlayerTurn()
@@ -87,8 +88,8 @@ func resetDiscards() -> void:
 	discards.clear()
 
 
-func _on_empty_discard_pile_button_pressed() -> void:
-	resetDiscards()
+#TODO: i just realized the use of the word "set" here is confusing. These functions adjust the attributes, not set them. Rename.
+
 	
 func setHullIntegrity(amount: float) -> void:
 	#check for complete loss of attribute
@@ -98,9 +99,14 @@ func setHullIntegrity(amount: float) -> void:
 	#check if value goes over max
 	if hullIntegrity + amount >= HULL_INTEGRITY_MAX:
 		hullIntegrity = HULL_INTEGRITY_MAX
+		#update UI
+		GameManager.hullIntegrityLabel.text = ("Psyche Hull Integrity: " + str(hullIntegrity))
+		
 		return
 	
 	hullIntegrity += amount
+	GameManager.hullIntegrityLabel.text = ("Psyche Hull Integrity: " + str(hullIntegrity))
+	
 	
 func setVelocity(amount: float) -> void:
 	#check for complete loss of attribute
@@ -110,9 +116,13 @@ func setVelocity(amount: float) -> void:
 	#check if value goes over max
 	if velocity + amount >  VELOCITY_MAX:
 		velocity = VELOCITY_MAX
+		#update UI
+		GameManager.veloctiyLabel.text = ("Psyche Velocity: " + str(velocity))
 		return
 	
 	velocity += amount
+	GameManager.veloctiyLabel.text = ("Psyche Velocity: " + str(velocity))
+	
 
 func setPower(amount: float) -> void:
 	#check for complete loss of attribute
@@ -122,9 +132,13 @@ func setPower(amount: float) -> void:
 	#check if value goes over max
 	if power + amount >  POWER_MAX:
 		power = POWER_MAX
+		#update UI
+		GameManager.powerLabel.text = ("Psyche Power: " + str(power))
 		return
 	
 	power += amount
+	GameManager.powerLabel.text = ("Psyche Power: " + str(power))
+	
 	
 	
 	

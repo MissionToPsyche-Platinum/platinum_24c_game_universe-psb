@@ -1,0 +1,137 @@
+[gd_scene load_steps=15 format=3 uid="uid://b5aneqr63kcay"]
+
+[ext_resource type="Script" uid="uid://bryyckfysnh62" path="res://Model/Scenes/test_scene.gd" id="1_6pwi0"]
+[ext_resource type="Script" uid="uid://lp0itw18h7mo" path="res://Model/Scenes/card_manager.gd" id="2_qb6nl"]
+[ext_resource type="PackedScene" uid="uid://ba3anonls50oq" path="res://Model/CardData/Cards/TestCard1.tscn" id="3_d184y"]
+[ext_resource type="PackedScene" uid="uid://dpbrwrnhljytj" path="res://Model/CardData/Cards/TestCard2.tscn" id="4_wki3r"]
+[ext_resource type="PackedScene" uid="uid://17imtoq1ypop" path="res://Model/CardData/Cards/TestCard3.tscn" id="5_m84t2"]
+[ext_resource type="PackedScene" uid="uid://b2s4573m24uxf" path="res://Model/CardData/Cards/TestCard4.tscn" id="6_t7g2w"]
+[ext_resource type="PackedScene" uid="uid://bhhb73esfp2pe" path="res://Model/CardData/Cards/TestCard5.tscn" id="7_qatxi"]
+[ext_resource type="PackedScene" uid="uid://seg7h6mf4b4q" path="res://Model/CardData/Cards/TestCard6.tscn" id="8_k7non"]
+[ext_resource type="PackedScene" uid="uid://ck52rgyii648y" path="res://Model/CardData/Cards/TestCard7.tscn" id="9_v5pj8"]
+[ext_resource type="Script" uid="uid://2liaka0mg74s" path="res://Model/Scenes/mock_player.gd" id="10_xfpm0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6pwi0"]
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_qb6nl"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_d184y"]
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_wki3r"]
+font_size = 20
+
+[node name="MainScene" type="Node2D" node_paths=PackedStringArray("player", "scenario", "cardManager", "hand", "hullIntegrityLabel", "powerLabel", "velocityLabel", "descriptionLabel", "effectLabel")]
+script = ExtResource("1_6pwi0")
+player = NodePath("MockPlayer")
+scenario = NodePath("")
+cardManager = NodePath("CardManager")
+hand = NodePath("UI/Hand")
+hullIntegrityLabel = NodePath("UI/AttributeLabels/HullIntegrityLabel")
+powerLabel = NodePath("UI/AttributeLabels/Power Label")
+velocityLabel = NodePath("UI/AttributeLabels/Velocity Label")
+descriptionLabel = NodePath("UI/Description Label")
+effectLabel = NodePath("UI/Scenario Effect Labels/Scenario Effect Label")
+
+[node name="CardManager" type="Node" parent="."]
+script = ExtResource("2_qb6nl")
+cards = Array[PackedScene]([ExtResource("3_d184y"), ExtResource("4_wki3r"), ExtResource("5_m84t2"), ExtResource("6_t7g2w"), ExtResource("7_qatxi"), ExtResource("8_k7non"), ExtResource("9_v5pj8")])
+
+[node name="MockPlayer" type="Node" parent="." node_paths=PackedStringArray("cardManager")]
+script = ExtResource("10_xfpm0")
+cardManager = NodePath("../CardManager")
+handBox = NodePath("../UI/Hand")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Hand" type="HBoxContainer" parent="UI"]
+layout_mode = 0
+offset_left = 254.0
+offset_top = 482.0
+offset_right = 1132.0
+offset_bottom = 771.0
+alignment = 1
+
+[node name="AttributeLabels" type="Control" parent="UI"]
+anchors_preset = 0
+offset_left = 9.0
+offset_top = 177.0
+offset_right = 356.0
+offset_bottom = 378.0
+
+[node name="HullIntegrityLabel" type="Label" parent="UI/AttributeLabels"]
+layout_mode = 0
+offset_right = 351.0
+offset_bottom = 51.0
+text = "Psyche Hull Integrity: 100"
+label_settings = SubResource("LabelSettings_6pwi0")
+vertical_alignment = 1
+
+[node name="Power Label" type="Label" parent="UI/AttributeLabels"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 52.0
+offset_right = 349.0
+offset_bottom = 103.0
+text = "Psyche Power: 100"
+label_settings = SubResource("LabelSettings_6pwi0")
+vertical_alignment = 1
+
+[node name="Velocity Label" type="Label" parent="UI/AttributeLabels"]
+layout_mode = 0
+offset_left = -4.0
+offset_top = 104.0
+offset_right = 347.0
+offset_bottom = 155.0
+text = "Psyche Velocity: 100"
+label_settings = SubResource("LabelSettings_6pwi0")
+vertical_alignment = 1
+
+[node name="Description Label" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 17.0
+offset_right = 1124.0
+offset_bottom = 156.0
+text = "Description Label"
+label_settings = SubResource("LabelSettings_qb6nl")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Scenario Effect Labels" type="Control" parent="UI"]
+layout_mode = 1
+anchor_left = 21.25
+anchor_top = 5.85
+anchor_right = 26.375
+anchor_bottom = 8.3
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Scenario Effect Header" type="Label" parent="UI/Scenario Effect Labels"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.79183674
+anchor_bottom = 0.24637681
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Scenario Effects:"
+label_settings = SubResource("LabelSettings_d184y")
+metadata/_edit_use_anchors_ = true
+
+[node name="Scenario Effect Label" type="Label" parent="UI/Scenario Effect Labels"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 41.0
+offset_right = 268.0
+offset_bottom = 175.0
+label_settings = SubResource("LabelSettings_wki3r")
+autowrap_mode = 3

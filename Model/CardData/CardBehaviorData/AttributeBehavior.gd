@@ -10,17 +10,16 @@ func use()-> bool:
 	if(!isCardPlayable()):
 		print("Card cannot be used!")
 		return false
-		
+	
 	for effect in affectedAttributes:
 		if effect.affectedAttribute == 0:
-			print("Changing Hull Integrity by " + str(effect.amount))
+			GameManager.getPlayer().setHullIntegrity(effect.amount)
 		elif effect.affectedAttribute == 1:
-			print("Changing Power by " + str(effect.amount))
+			GameManager.getPlayer().setPower(effect.amount)
 		else:
-			print("Changing Velocity by " + str(effect.amount))
-			
+			GameManager.getPlayer().setVelocity(effect.amount)
 	return true;
 
 func isCardPlayable() -> bool:
-	#right now just disable every card
+	#right now just enable every card
 	return true
