@@ -7,7 +7,7 @@ func performScenarioEffect() -> void:
 	if(checkWinCondition()):
 		#win condition has been met, emit signal and return from function 
 		print("Scenario has been defeated!")
-		emit_signal("scenarioWon", self)
+		emit_signal("scenarioWon")
 		return 
 	
 	for effect in affectedAttributes:
@@ -26,7 +26,8 @@ func performScenarioEffect() -> void:
 				GameManager.getPlayer().setVelocity(effect.amount)
 	
 	await get_tree().create_timer(1).timeout
+	
 	print("Emmitting endScenarioTurn signal...")
 	#emit the end scenario turn signal 
-	emit_signal("endScenarioTurn", self)	
+	emit_signal("endScenarioTurn")	
 	

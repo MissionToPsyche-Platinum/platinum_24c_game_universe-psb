@@ -23,10 +23,9 @@ font_size = 20
 [sub_resource type="LabelSettings" id="LabelSettings_wki3r"]
 font_size = 20
 
-[node name="MainScene" type="Node2D" node_paths=PackedStringArray("player", "scenario", "cardManager", "hand", "hullIntegrityLabel", "powerLabel", "velocityLabel", "descriptionLabel", "effectLabel")]
+[node name="MainScene" type="Node2D" node_paths=PackedStringArray("player", "cardManager", "hand", "hullIntegrityLabel", "powerLabel", "velocityLabel", "descriptionLabel", "effectLabel")]
 script = ExtResource("1_6pwi0")
 player = NodePath("MockPlayer")
-scenario = NodePath("")
 cardManager = NodePath("CardManager")
 hand = NodePath("UI/Hand")
 hullIntegrityLabel = NodePath("UI/AttributeLabels/HullIntegrityLabel")
