@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwfm7sftg3ism"]
+
+[ext_resource type="Texture2D" uid="uid://dt1rmcvr41bkn" path="res://View/Assets/Title Screen/Title Screen.png" id="1_suq5w"]
+[ext_resource type="Script" uid="uid://bsct4v378103f" path="res://Model/ScreenData/TitleScreen.gd" id="2_5mnls"]
+
+[node name="Title Screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleScreen" type="Sprite2D" parent="."]
+position = Vector2(570, 323.00003)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_suq5w")
+
+[node name="StartGameButton" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.39600003
+anchor_top = 0.514
+anchor_right = 0.59400004
+anchor_bottom = 0.559
+offset_left = -0.1920166
+offset_top = -0.07199097
+offset_right = -0.2880249
+offset_bottom = -0.23199463
+script = ExtResource("2_5mnls")
+
+[connection signal="pressed" from="StartGameButton" to="StartGameButton" method="_on_pressed"]

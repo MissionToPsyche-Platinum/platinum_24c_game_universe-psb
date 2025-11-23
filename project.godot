@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="PsycheAgainstTheUniverse"
-run/main_scene="res://Model/Scenes/MainScene.tscn"
+run/main_scene="uid://bwfm7sftg3ism"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://View/Assets/Sprites/icon.svg"
 
