@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b5aneqr63kcay"]
+[gd_scene load_steps=19 format=3 uid="uid://b5aneqr63kcay"]
 
 [ext_resource type="Script" uid="uid://bryyckfysnh62" path="res://Model/Scenes/test_scene.gd" id="1_6pwi0"]
 [ext_resource type="Script" uid="uid://lp0itw18h7mo" path="res://Model/Scenes/card_manager.gd" id="2_qb6nl"]
@@ -10,22 +10,31 @@
 [ext_resource type="PackedScene" uid="uid://seg7h6mf4b4q" path="res://Model/CardData/Cards/TestCard6.tscn" id="8_k7non"]
 [ext_resource type="PackedScene" uid="uid://ck52rgyii648y" path="res://Model/CardData/Cards/TestCard7.tscn" id="9_v5pj8"]
 [ext_resource type="Script" uid="uid://2liaka0mg74s" path="res://Model/Scenes/mock_player.gd" id="10_xfpm0"]
+[ext_resource type="Texture2D" uid="uid://chv57617bldww" path="res://View/Assets/Sprites/Attribute Bars/attribute_bar_mask.png" id="11_d184y"]
+[ext_resource type="FontFile" uid="uid://cyuqcf4mpncuy" path="res://View/Assets/Themes/PixelOperator-Bold.ttf" id="11_wki3r"]
+[ext_resource type="Texture2D" uid="uid://86il4rq4uylj" path="res://View/Assets/Sprites/Attribute Bars/attribute_bar_transparent-filled.png" id="12_wki3r"]
+
+[sub_resource type="Theme" id="Theme_d184y"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6pwi0"]
+font = ExtResource("11_wki3r")
 font_size = 20
 
 [sub_resource type="LabelSettings" id="LabelSettings_qb6nl"]
+font = ExtResource("11_wki3r")
 font_size = 32
 
 [sub_resource type="LabelSettings" id="LabelSettings_d184y"]
+font = ExtResource("11_wki3r")
 font_size = 20
 
 [sub_resource type="LabelSettings" id="LabelSettings_wki3r"]
+font = ExtResource("11_wki3r")
 font_size = 20
 
-[node name="MainScene" type="Node2D" node_paths=PackedStringArray("player", "cardManager", "hand", "hullIntegrityLabel", "powerLabel", "velocityLabel", "descriptionLabel", "effectLabel")]
+[node name="MainScene" type="Node2D" node_paths=PackedStringArray("player", "cardManager", "hand", "hullIntegrityLabel", "powerLabel", "velocityLabel", "descriptionLabel", "effectLabel", "hullIntegrityBar", "powerBar", "velocityBar")]
 script = ExtResource("1_6pwi0")
-player = NodePath("MockPlayer")
+player = NodePath("Player")
 cardManager = NodePath("CardManager")
 hand = NodePath("UI/Hand")
 hullIntegrityLabel = NodePath("UI/AttributeLabels/HullIntegrityLabel")
@@ -33,12 +42,15 @@ powerLabel = NodePath("UI/AttributeLabels/Power Label")
 velocityLabel = NodePath("UI/AttributeLabels/Velocity Label")
 descriptionLabel = NodePath("UI/Description Label")
 effectLabel = NodePath("UI/Scenario Effect Labels/Scenario Effect Label")
+hullIntegrityBar = NodePath("UI/Player Attribute Bars/Hull Inegrity Bar")
+powerBar = NodePath("UI/Player Attribute Bars/Power Bar")
+velocityBar = NodePath("UI/Player Attribute Bars/Velocity Bar")
 
 [node name="CardManager" type="Node" parent="."]
 script = ExtResource("2_qb6nl")
 cards = Array[PackedScene]([ExtResource("3_d184y"), ExtResource("4_wki3r"), ExtResource("5_m84t2"), ExtResource("6_t7g2w"), ExtResource("7_qatxi"), ExtResource("8_k7non"), ExtResource("9_v5pj8")])
 
-[node name="MockPlayer" type="Node" parent="." node_paths=PackedStringArray("cardManager")]
+[node name="Player" type="Node" parent="." node_paths=PackedStringArray("cardManager")]
 script = ExtResource("10_xfpm0")
 cardManager = NodePath("../CardManager")
 handBox = NodePath("../UI/Hand")
@@ -48,6 +60,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+theme = SubResource("Theme_d184y")
 metadata/_edit_use_anchors_ = true
 
 [node name="Hand" type="HBoxContainer" parent="UI"]
@@ -67,28 +80,29 @@ offset_bottom = 378.0
 
 [node name="HullIntegrityLabel" type="Label" parent="UI/AttributeLabels"]
 layout_mode = 0
+offset_top = -10.0
 offset_right = 351.0
-offset_bottom = 51.0
+offset_bottom = 41.0
 text = "Psyche Hull Integrity: 100"
 label_settings = SubResource("LabelSettings_6pwi0")
 vertical_alignment = 1
 
 [node name="Power Label" type="Label" parent="UI/AttributeLabels"]
 layout_mode = 0
-offset_left = -2.0
-offset_top = 52.0
-offset_right = 349.0
-offset_bottom = 103.0
+offset_left = -3.0
+offset_top = 70.0
+offset_right = 348.0
+offset_bottom = 121.0
 text = "Psyche Power: 100"
 label_settings = SubResource("LabelSettings_6pwi0")
 vertical_alignment = 1
 
 [node name="Velocity Label" type="Label" parent="UI/AttributeLabels"]
 layout_mode = 0
-offset_left = -4.0
-offset_top = 104.0
-offset_right = 347.0
-offset_bottom = 155.0
+offset_left = -2.0
+offset_top = 145.0
+offset_right = 349.0
+offset_bottom = 196.0
 text = "Psyche Velocity: 100"
 label_settings = SubResource("LabelSettings_6pwi0")
 vertical_alignment = 1
@@ -134,3 +148,44 @@ offset_right = 268.0
 offset_bottom = 175.0
 label_settings = SubResource("LabelSettings_wki3r")
 autowrap_mode = 3
+
+[node name="Player Attribute Bars" type="Control" parent="UI"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Hull Inegrity Bar" type="TextureProgressBar" parent="UI/Player Attribute Bars"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 211.0
+offset_right = 318.0
+offset_bottom = 254.0
+max_value = 200.0
+value = 100.0
+texture_over = ExtResource("11_d184y")
+texture_progress = ExtResource("12_wki3r")
+tint_progress = Color(0.6873869, 0.24107623, 0.2179296, 1)
+
+[node name="Power Bar" type="TextureProgressBar" parent="UI/Player Attribute Bars"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 288.0
+offset_right = 319.0
+offset_bottom = 331.0
+max_value = 200.0
+value = 100.0
+texture_over = ExtResource("11_d184y")
+texture_progress = ExtResource("12_wki3r")
+tint_progress = Color(1.0947927, 0.8660366, 0.079880975, 1)
+
+[node name="Velocity Bar" type="TextureProgressBar" parent="UI/Player Attribute Bars"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 361.0
+offset_right = 321.0
+offset_bottom = 404.0
+max_value = 200.0
+value = 100.0
+texture_over = ExtResource("11_d184y")
+texture_progress = ExtResource("12_wki3r")
+tint_progress = Color(0.30377904, 0.38810593, 0.69365966, 1)

@@ -92,52 +92,57 @@ func resetDiscards() -> void:
 
 	
 func setHullIntegrity(amount: float) -> void:
+	#temporary variable to hold amount
+	var inegrityToAdd
 	#check for complete loss of attribute
 	if hullIntegrity + amount <= 0:
 		#call the lose game function
 		GameManager.loseGame()
 	#check if value goes over max
 	if hullIntegrity + amount >= HULL_INTEGRITY_MAX:
-		hullIntegrity = HULL_INTEGRITY_MAX
-		#update UI
-		GameManager.hullIntegrityLabel.text = ("Psyche Hull Integrity: " + str(hullIntegrity))
-		
-		return
+		inegrityToAdd = HULL_INTEGRITY_MAX - hullIntegrity
+	else:
+		inegrityToAdd = amount
 	
-	hullIntegrity += amount
+	hullIntegrity += inegrityToAdd
 	GameManager.hullIntegrityLabel.text = ("Psyche Hull Integrity: " + str(hullIntegrity))
+	GameManager.hullIntegrityBar.value = hullIntegrity
 	
 	
 func setVelocity(amount: float) -> void:
+	#temporary variable
+	var velocityToAdd
 	#check for complete loss of attribute
 	if velocity + amount <= 0:
 		#call the lose game function
 		GameManager.loseGame()
 	#check if value goes over max
 	if velocity + amount >  VELOCITY_MAX:
-		velocity = VELOCITY_MAX
-		#update UI
-		GameManager.veloctiyLabel.text = ("Psyche Velocity: " + str(velocity))
-		return
-	
-	velocity += amount
+		velocityToAdd = VELOCITY_MAX - velocity
+	else:
+		velocityToAdd = amount
+
+	velocity += velocityToAdd
 	GameManager.veloctiyLabel.text = ("Psyche Velocity: " + str(velocity))
+	GameManager.velocityBar.value = velocity
 	
 
 func setPower(amount: float) -> void:
+	#temporary variable
+	var powerToAdd
 	#check for complete loss of attribute
 	if power + amount <= 0:
 		#call the lose game function
 		GameManager.loseGame()
 	#check if value goes over max
 	if power + amount >  POWER_MAX:
-		power = POWER_MAX
-		#update UI
-		GameManager.powerLabel.text = ("Psyche Power: " + str(power))
-		return
+		powerToAdd = POWER_MAX - power
+	else:
+		powerToAdd = amount
 	
-	power += amount
+	power += powerToAdd
 	GameManager.powerLabel.text = ("Psyche Power: " + str(power))
+	GameManager.powerBar.value = power
 	
 	
 	

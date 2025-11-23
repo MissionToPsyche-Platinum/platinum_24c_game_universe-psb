@@ -12,6 +12,10 @@ var veloctiyLabel: Label
 var descriptionLabel: Label
 var effectLabel: Label
 
+var hullIntegrityBar : TextureProgressBar
+var powerBar : TextureProgressBar
+var velocityBar : TextureProgressBar
+
 @export var hand: Control
 
 func getPlayer() -> Player:

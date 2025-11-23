@@ -14,6 +14,12 @@ extends Node2D
 @export var descriptionLabel: Label
 @export var effectLabel: Label
 
+@export var hullIntegrityBar : TextureProgressBar
+@export var powerBar : TextureProgressBar
+@export var velocityBar : TextureProgressBar
+
+
+
 
 
 # Called when the node enters the scene tree for the first time.
@@ -29,6 +35,9 @@ func _ready() -> void:
 	GameManager.veloctiyLabel = velocityLabel
 	GameManager.descriptionLabel = descriptionLabel
 	GameManager.effectLabel = effectLabel
+	GameManager.hullIntegrityBar = hullIntegrityBar
+	GameManager.powerBar = powerBar
+	GameManager.velocityBar = velocityBar
 	
 	
 	#load the scenario
