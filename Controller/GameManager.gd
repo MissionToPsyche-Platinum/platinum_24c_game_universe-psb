@@ -58,6 +58,8 @@ func endPlayerTurn() -> void:
 	
 func endScenarioTurn() -> void:
 	#reenable hand 
+	if !is_instance_valid(hand):
+		return
 	print("scenario turn ended")
 	hand.visible = true
 	player.beginPlayerTurn()
@@ -69,4 +71,4 @@ func endScenario() -> void:
 func loseGame():
 	print("Game lost")
 	hand.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	
+	get_tree().change_scene_to_file("res://Model/ScreenData/LoseScreen.tscn")

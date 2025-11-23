@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpot2tv4nw1c0"]
+
+[ext_resource type="Script" uid="uid://c7hf44wy6buw8" path="res://Model/ScreenData/Retry.gd" id="1_5b772"]
+[ext_resource type="Texture2D" uid="uid://3jnv0wkeyodo" path="res://View/Assets/Lose Screen/Lose Screen.png" id="2_83br6"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5b772")
+
+[node name="LoseScreen" type="Sprite2D" parent="."]
+position = Vector2(576, 324.00003)
+scale = Vector2(0.7619047, 0.65987784)
+texture = ExtResource("2_83br6")
+
+[node name="Button" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.156
+anchor_top = 0.77900004
+anchor_right = 0.84400004
+anchor_bottom = 0.878
+offset_left = 0.28799438
+offset_top = 0.2079773
+offset_right = -0.2880249
+offset_bottom = 0.05596924
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

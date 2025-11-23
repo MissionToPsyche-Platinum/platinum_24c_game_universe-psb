@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://vc61u7ks67wb"]
+
+[ext_resource type="Script" uid="uid://bg5m3sjme8yjo" path="res://Model/ScreenData/PlayAgain.gd" id="1_felco"]
+[ext_resource type="Texture2D" uid="uid://3ab8s04qwo1k" path="res://View/Assets/Win Screen/Win Screen.png" id="1_yv73s"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_felco")
+
+[node name="WinScreen" type="Sprite2D" parent="."]
+position = Vector2(576.00006, 324)
+scale = Vector2(0.76190484, 0.65987784)
+texture = ExtResource("1_yv73s")
+
+[node name="Button" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.148
+anchor_top = 0.77900004
+anchor_right = 0.84400004
+anchor_bottom = 0.87700003
+offset_left = -0.4960022
+offset_top = 0.2079773
+offset_right = -0.2880249
+offset_bottom = -0.2960205
