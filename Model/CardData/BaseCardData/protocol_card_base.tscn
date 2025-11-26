@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://7wpt2pr8jwaa"]
+[gd_scene load_steps=6 format=3 uid="uid://7wpt2pr8jwaa"]
 
 [ext_resource type="Script" uid="uid://dbwvfr8urjpbn" path="res://Model/CardData/BaseCardData/protocol_card_base.gd" id="1_jce6x"]
 [ext_resource type="Texture2D" uid="uid://cx7e7cbtrvu8b" path="res://View/Assets/Sprites/ProtocolCard.svg" id="2_lon5y"]
@@ -12,11 +12,10 @@ font_color = Color(0.1148968, 0.11489681, 0.1148968, 1)
 font_size = 32
 font_color = Color(0, 0, 0, 1)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jce6x"]
-size = Vector2(546, 848)
-
-[node name="ProtocolCardBase" type="Node2D"]
-scale = Vector2(0.3, 0.3)
+[node name="ProtocolCardBase" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+scale = Vector2(0.5, 0.5)
 script = ExtResource("1_jce6x")
 
 [node name="CardBackground" type="Sprite2D" parent="."]
@@ -47,11 +46,3 @@ metadata/_edit_use_anchors_ = true
 [node name="ProtocolCardSprite" type="Sprite2D" parent="CardBackground"]
 position = Vector2(0, -151)
 texture = ExtResource("3_e7m50")
-
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-z_index = 1
-shape = SubResource("RectangleShape2D_jce6x")
-
-[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

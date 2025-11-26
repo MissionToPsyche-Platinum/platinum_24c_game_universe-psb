@@ -18,16 +18,28 @@ extends Node2D
 @export var powerBar : TextureProgressBar
 @export var velocityBar : TextureProgressBar
 
+#animation player reference
+@export var animationPlayer :AnimationPlayer
+
+#hand ui reference
+@export var handController : HandController
+
+
 
 
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	#reset player lost flag
+	GameManager.playerLost = false
+	
+	
 	#register all values with the GameManager
 	GameManager.player = player
 	GameManager.card_manager = cardManager
 	GameManager.hand = hand
+	
 	
 	#assign UI references
 	GameManager.hullIntegrityLabel = hullIntegrityLabel
@@ -39,6 +51,29 @@ func _ready() -> void:
 	GameManager.powerBar = powerBar
 	GameManager.velocityBar = velocityBar
 	
+	#assign animation player references
+	GameManager.UIAnimationPlayer = animationPlayer
+	
+	print("assigning hand controller...")
+	print(handController)
+	#assign Hand Controller reference 
+	GameManager.handController = handController
+	
+	
 	
 	#load the scenario
 	GameManager.loadScenario("res://Model/ScenarioData/Scenarios/Sc_DoubleDarkMatter.tscn")
+
+
+func _on_response_label_gui_input(event: InputEvent) -> void:
+	#display card gui
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+				animationPlayer.play("DisplayCardGui")
+
+
+func _on_scenario_label_gui_input(event: InputEvent) -> void:
+	#stop displaying card gui
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+				animationPlayer.play("HideCardGui")

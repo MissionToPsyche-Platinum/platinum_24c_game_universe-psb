@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b5aneqr63kcay"]
+[gd_scene load_steps=33 format=3 uid="uid://b5aneqr63kcay"]
 
 [ext_resource type="Script" uid="uid://bryyckfysnh62" path="res://Model/Scenes/test_scene.gd" id="1_6pwi0"]
 [ext_resource type="Script" uid="uid://lp0itw18h7mo" path="res://Model/Scenes/card_manager.gd" id="2_qb6nl"]
@@ -13,12 +13,13 @@
 [ext_resource type="Texture2D" uid="uid://chv57617bldww" path="res://View/Assets/Sprites/Attribute Bars/attribute_bar_mask.png" id="11_d184y"]
 [ext_resource type="FontFile" uid="uid://cyuqcf4mpncuy" path="res://View/Assets/Themes/PixelOperator-Bold.ttf" id="11_wki3r"]
 [ext_resource type="Texture2D" uid="uid://86il4rq4uylj" path="res://View/Assets/Sprites/Attribute Bars/attribute_bar_transparent-filled.png" id="12_wki3r"]
+[ext_resource type="Texture2D" uid="uid://dch647kaox1wi" path="res://View/Assets/Sprites/psyche.png" id="14_m84t2"]
+[ext_resource type="Texture2D" uid="uid://c11b3adcxqv2r" path="res://View/Assets/Card Hud/hud_filled.png" id="14_t7g2w"]
+[ext_resource type="Script" uid="uid://by8v8y3hmupv4" path="res://Model/Scenes/HandController.gd" id="14_v5pj8"]
+[ext_resource type="Texture2D" uid="uid://c5b6ep18mucxh" path="res://View/Assets/Card Hud/scenario_arrow.png" id="15_qatxi"]
+[ext_resource type="Texture2D" uid="uid://clkpqvj75twac" path="res://View/Assets/Card Hud/card_arrow_filled.png" id="16_k7non"]
 
 [sub_resource type="Theme" id="Theme_d184y"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_6pwi0"]
-font = ExtResource("11_wki3r")
-font_size = 20
 
 [sub_resource type="LabelSettings" id="LabelSettings_qb6nl"]
 font = ExtResource("11_wki3r")
@@ -32,19 +33,283 @@ font_size = 20
 font = ExtResource("11_wki3r")
 font_size = 20
 
-[node name="MainScene" type="Node2D" node_paths=PackedStringArray("player", "cardManager", "hand", "hullIntegrityLabel", "powerLabel", "velocityLabel", "descriptionLabel", "effectLabel", "hullIntegrityBar", "powerBar", "velocityBar")]
+[sub_resource type="LabelSettings" id="LabelSettings_6pwi0"]
+font = ExtResource("11_wki3r")
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_k7non"]
+font = ExtResource("11_wki3r")
+font_size = 40
+font_color = Color(0.972549, 0.62352943, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_v5pj8"]
+font = ExtResource("11_wki3r")
+font_size = 40
+font_color = Color(0.972549, 0.62352943, 0, 1)
+
+[sub_resource type="Animation" id="Animation_k7non"]
+resource_name = "DisplayCardGui"
+length = 0.22
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/Hand Container:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.19999999),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(575, 661), Vector2(581, -75)]
+}
+
+[sub_resource type="Animation" id="Animation_v5pj8"]
+resource_name = "HideCardGui"
+length = 0.22
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/Hand Container:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.210705),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(581, -75), Vector2(581, 661)]
+}
+
+[sub_resource type="Animation" id="Animation_t7g2w"]
+resource_name = "PsycheScenarioStart"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Psyche:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.0265115),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-217, 298), Vector2(220, 298)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/Attribute Holder:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.02, 1.96),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-300, 337), Vector2(155, 337)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UI/Description Label:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.9666667, 3.014702),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UI/Scenario Effect Labels:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2.5333333, 3.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1341, 134), Vector2(950, 134)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("UI/Hand Container/Response Label:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(3.8333333, 4.97),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 100), Vector2(1, -101)]
+}
+
+[sub_resource type="Animation" id="Animation_qatxi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Psyche:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-217, 298)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/Attribute Holder:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-640, 115)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UI/Description Label:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UI/Scenario Effect Labels:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1341, 134)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("UI/Hand Container:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(575, 661)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("UI/Hand Container/Response Label:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, -101)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("UI/Hand Container/Response Label:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_xfpm0"]
+resource_name = "UseCard"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/Hand Container:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(581, -75), Vector2(581, 700)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/Hand Container/Response Label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.26),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 20)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UI/Hand Container/Response Label:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.01, 0.29),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_k5rhg"]
+resource_name = "EnableResponse"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/Hand Container/Response Label:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.29, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 100), Vector2(1, -101), Vector2(1, -140)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k7non"]
+_data = {
+&"DisplayCardGui": SubResource("Animation_k7non"),
+&"EnableResponse": SubResource("Animation_k5rhg"),
+&"HideCardGui": SubResource("Animation_v5pj8"),
+&"PsycheScenarioStart": SubResource("Animation_t7g2w"),
+&"RESET": SubResource("Animation_qatxi"),
+&"UseCard": SubResource("Animation_xfpm0")
+}
+
+[node name="MainScene" type="Node2D" node_paths=PackedStringArray("player", "cardManager", "hullIntegrityLabel", "powerLabel", "velocityLabel", "descriptionLabel", "effectLabel", "hullIntegrityBar", "powerBar", "velocityBar", "animationPlayer", "handController")]
 script = ExtResource("1_6pwi0")
 player = NodePath("Player")
 cardManager = NodePath("CardManager")
-hand = NodePath("UI/Hand")
-hullIntegrityLabel = NodePath("UI/AttributeLabels/HullIntegrityLabel")
-powerLabel = NodePath("UI/AttributeLabels/Power Label")
-velocityLabel = NodePath("UI/AttributeLabels/Velocity Label")
+hullIntegrityLabel = NodePath("UI/Attribute Holder/AttributeLabels/HullIntegrityLabel")
+powerLabel = NodePath("UI/Attribute Holder/AttributeLabels/Power Label")
+velocityLabel = NodePath("UI/Attribute Holder/AttributeLabels/Velocity Label")
 descriptionLabel = NodePath("UI/Description Label")
 effectLabel = NodePath("UI/Scenario Effect Labels/Scenario Effect Label")
-hullIntegrityBar = NodePath("UI/Player Attribute Bars/Hull Inegrity Bar")
-powerBar = NodePath("UI/Player Attribute Bars/Power Bar")
-velocityBar = NodePath("UI/Player Attribute Bars/Velocity Bar")
+hullIntegrityBar = NodePath("UI/Attribute Holder/Player Attribute Bars/Hull Inegrity Bar")
+powerBar = NodePath("UI/Attribute Holder/Player Attribute Bars/Power Bar")
+velocityBar = NodePath("UI/Attribute Holder/Player Attribute Bars/Velocity Bar")
+animationPlayer = NodePath("AnimationPlayer")
+handController = NodePath("UI/Hand Container")
 
 [node name="CardManager" type="Node" parent="."]
 script = ExtResource("2_qb6nl")
@@ -53,7 +318,6 @@ cards = Array[PackedScene]([ExtResource("3_d184y"), ExtResource("4_wki3r"), ExtR
 [node name="Player" type="Node" parent="." node_paths=PackedStringArray("cardManager")]
 script = ExtResource("10_xfpm0")
 cardManager = NodePath("../CardManager")
-handBox = NodePath("../UI/Hand")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -63,51 +327,8 @@ offset_bottom = 40.0
 theme = SubResource("Theme_d184y")
 metadata/_edit_use_anchors_ = true
 
-[node name="Hand" type="HBoxContainer" parent="UI"]
-layout_mode = 0
-offset_left = 254.0
-offset_top = 482.0
-offset_right = 1132.0
-offset_bottom = 771.0
-alignment = 1
-
-[node name="AttributeLabels" type="Control" parent="UI"]
-anchors_preset = 0
-offset_left = 9.0
-offset_top = 177.0
-offset_right = 356.0
-offset_bottom = 378.0
-
-[node name="HullIntegrityLabel" type="Label" parent="UI/AttributeLabels"]
-layout_mode = 0
-offset_top = -10.0
-offset_right = 351.0
-offset_bottom = 41.0
-text = "Psyche Hull Integrity: 100"
-label_settings = SubResource("LabelSettings_6pwi0")
-vertical_alignment = 1
-
-[node name="Power Label" type="Label" parent="UI/AttributeLabels"]
-layout_mode = 0
-offset_left = -3.0
-offset_top = 70.0
-offset_right = 348.0
-offset_bottom = 121.0
-text = "Psyche Power: 100"
-label_settings = SubResource("LabelSettings_6pwi0")
-vertical_alignment = 1
-
-[node name="Velocity Label" type="Label" parent="UI/AttributeLabels"]
-layout_mode = 0
-offset_left = -2.0
-offset_top = 145.0
-offset_right = 349.0
-offset_bottom = 196.0
-text = "Psyche Velocity: 100"
-label_settings = SubResource("LabelSettings_6pwi0")
-vertical_alignment = 1
-
 [node name="Description Label" type="Label" parent="UI"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 21.0
 offset_top = 17.0
@@ -118,15 +339,18 @@ label_settings = SubResource("LabelSettings_qb6nl")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
+metadata/_edit_use_anchors_ = true
 
 [node name="Scenario Effect Labels" type="Control" parent="UI"]
 layout_mode = 1
-anchor_left = 21.25
-anchor_top = 5.85
-anchor_right = 26.375
-anchor_bottom = 8.3
-offset_right = 40.0
-offset_bottom = 40.0
+anchor_left = 33.0
+anchor_top = 10.95
+anchor_right = 33.4
+anchor_bottom = 11.175
+offset_left = 21.0
+offset_top = -304.0
+offset_right = 61.00049
+offset_bottom = -264.0
 metadata/_edit_use_anchors_ = true
 
 [node name="Scenario Effect Header" type="Label" parent="UI/Scenario Effect Labels"]
@@ -134,58 +358,280 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.79183674
 anchor_bottom = 0.24637681
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = -47.0
+offset_top = 73.0
+offset_right = 78.326515
+offset_bottom = 95.999985
 text = "Scenario Effects:"
 label_settings = SubResource("LabelSettings_d184y")
 metadata/_edit_use_anchors_ = true
 
 [node name="Scenario Effect Label" type="Label" parent="UI/Scenario Effect Labels"]
 layout_mode = 0
-offset_left = 4.0
-offset_top = 41.0
-offset_right = 268.0
-offset_bottom = 175.0
+offset_left = -43.0
+offset_top = 114.0
+offset_right = 221.0
+offset_bottom = 248.0
 label_settings = SubResource("LabelSettings_wki3r")
 autowrap_mode = 3
+metadata/_edit_use_anchors_ = true
 
-[node name="Player Attribute Bars" type="Control" parent="UI"]
+[node name="Attribute Holder" type="Control" parent="UI"]
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -640.0
+offset_top = 115.0
+offset_right = -600.0
+offset_bottom = 155.0
 
-[node name="Hull Inegrity Bar" type="TextureProgressBar" parent="UI/Player Attribute Bars"]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 211.0
-offset_right = 318.0
-offset_bottom = 254.0
+[node name="Player Attribute Bars" type="Control" parent="UI/Attribute Holder"]
+layout_mode = 1
+anchor_left = 2.575
+anchor_top = 0.975
+anchor_right = 2.575
+anchor_bottom = 0.975
+offset_left = 446.0
+offset_top = -118.0
+offset_right = 486.0
+offset_bottom = -78.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Hull Inegrity Bar" type="TextureProgressBar" parent="UI/Attribute Holder/Player Attribute Bars"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = -678.0
+offset_top = 182.0
+offset_right = -364.0
+offset_bottom = 225.0
 max_value = 200.0
 value = 100.0
 texture_over = ExtResource("11_d184y")
 texture_progress = ExtResource("12_wki3r")
 tint_progress = Color(0.6873869, 0.24107623, 0.2179296, 1)
+metadata/_edit_use_anchors_ = true
 
-[node name="Power Bar" type="TextureProgressBar" parent="UI/Player Attribute Bars"]
+[node name="Power Bar" type="TextureProgressBar" parent="UI/Attribute Holder/Player Attribute Bars"]
 layout_mode = 0
-offset_left = 5.0
-offset_top = 288.0
-offset_right = 319.0
-offset_bottom = 331.0
+offset_left = -677.0
+offset_top = 259.0
+offset_right = -363.0
+offset_bottom = 302.0
 max_value = 200.0
 value = 100.0
 texture_over = ExtResource("11_d184y")
 texture_progress = ExtResource("12_wki3r")
 tint_progress = Color(1.0947927, 0.8660366, 0.079880975, 1)
 
-[node name="Velocity Bar" type="TextureProgressBar" parent="UI/Player Attribute Bars"]
+[node name="Velocity Bar" type="TextureProgressBar" parent="UI/Attribute Holder/Player Attribute Bars"]
 layout_mode = 0
-offset_left = 7.0
-offset_top = 361.0
-offset_right = 321.0
-offset_bottom = 404.0
+offset_left = -675.0
+offset_top = 332.0
+offset_right = -361.0
+offset_bottom = 375.0
 max_value = 200.0
 value = 100.0
 texture_over = ExtResource("11_d184y")
 texture_progress = ExtResource("12_wki3r")
 tint_progress = Color(0.30377904, 0.38810593, 0.69365966, 1)
+
+[node name="AttributeLabels" type="Control" parent="UI/Attribute Holder"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = -124.0
+offset_top = 69.0
+offset_right = 223.0
+offset_bottom = 270.0
+metadata/_edit_use_anchors_ = true
+
+[node name="HullIntegrityLabel" type="Label" parent="UI/Attribute Holder/AttributeLabels"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.023054754
+anchor_top = -0.044776108
+anchor_right = -0.023054754
+anchor_bottom = -0.04477612
+offset_top = 3.999998
+offset_right = 351.0
+offset_bottom = 55.0
+text = "Psyche Hull Integrity: 100"
+label_settings = SubResource("LabelSettings_6pwi0")
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Power Label" type="Label" parent="UI/Attribute Holder/AttributeLabels"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = 70.0
+offset_right = 348.0
+offset_bottom = 121.0
+text = "Psyche Power: 100"
+label_settings = SubResource("LabelSettings_6pwi0")
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Velocity Label" type="Label" parent="UI/Attribute Holder/AttributeLabels"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 145.0
+offset_right = 349.0
+offset_bottom = 196.0
+text = "Psyche Velocity: 100"
+label_settings = SubResource("LabelSettings_6pwi0")
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Hand Container" type="Control" parent="UI"]
+z_index = 2
+z_as_relative = false
+anchors_preset = 0
+offset_left = 575.0
+offset_top = 661.0
+offset_right = 615.0
+offset_bottom = 696.0001
+script = ExtResource("14_v5pj8")
+card_container_path = NodePath("Card Container")
+
+[node name="Hud Image" type="Sprite2D" parent="UI/Hand Container"]
+position = Vector2(-10.621529, 612.656)
+scale = Vector2(0.6016891, 0.60143167)
+texture = ExtResource("14_t7g2w")
+
+[node name="Scenario Label" type="Control" parent="UI/Hand Container"]
+anchors_preset = 0
+offset_left = 1.0
+offset_top = 59.0
+offset_right = 36.0
+offset_bottom = 99.0
+
+[node name="Scenario Label" type="Label" parent="UI/Hand Container/Scenario Label"]
+layout_mode = 0
+offset_left = -92.0
+offset_top = 25.0
+offset_right = 63.0
+offset_bottom = 66.0
+mouse_filter = 0
+text = "Scenario"
+label_settings = SubResource("LabelSettings_k7non")
+
+[node name="ScenarioArrow" type="Sprite2D" parent="UI/Hand Container/Scenario Label"]
+position = Vector2(-123.99999, 46.000004)
+scale = Vector2(0.6580189, 0.6580189)
+texture = ExtResource("15_qatxi")
+
+[node name="ScenarioArrow2" type="Sprite2D" parent="UI/Hand Container/Scenario Label"]
+position = Vector2(93, 46)
+scale = Vector2(0.6777025, 0.67682153)
+texture = ExtResource("15_qatxi")
+
+[node name="Response Label" type="Control" parent="UI/Hand Container"]
+anchors_preset = 0
+offset_left = 1.0
+offset_top = -101.0
+offset_right = 36.0
+offset_bottom = -61.0
+
+[node name="Response Label" type="Label" parent="UI/Hand Container/Response Label"]
+layout_mode = 0
+offset_left = -92.0
+offset_top = 25.0
+offset_right = 63.0
+offset_bottom = 66.0
+mouse_filter = 0
+text = "Response"
+label_settings = SubResource("LabelSettings_k7non")
+
+[node name="ScenarioArrow" type="Sprite2D" parent="UI/Hand Container/Response Label"]
+position = Vector2(-118.99999, 46.000004)
+rotation = 3.1415927
+scale = Vector2(0.6580189, 0.6580189)
+texture = ExtResource("15_qatxi")
+
+[node name="ScenarioArrow2" type="Sprite2D" parent="UI/Hand Container/Response Label"]
+position = Vector2(96, 46)
+rotation = 3.1415927
+scale = Vector2(0.6777025, 0.67682153)
+texture = ExtResource("15_qatxi")
+
+[node name="Card Container" type="Control" parent="UI/Hand Container"]
+z_index = -1
+layout_mode = 1
+anchor_left = -0.75000006
+anchor_top = 9.029
+anchor_right = 0.275
+anchor_bottom = 10.057
+offset_left = 24.000002
+offset_top = 48.984436
+offset_right = 22.0
+offset_bottom = 54.004395
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Left Arrow" type="Sprite2D" parent="UI/Hand Container"]
+position = Vector2(-199, 327.00003)
+scale = Vector2(0.5493827, 0.54938275)
+texture = ExtResource("16_k7non")
+
+[node name="Left Arrow Button" type="Button" parent="UI/Hand Container/Left Arrow"]
+offset_left = -41.865147
+offset_top = -94.65173
+offset_right = 40.04501
+offset_bottom = 96.471924
+flat = true
+
+[node name="Right Arrow" type="Sprite2D" parent="UI/Hand Container"]
+position = Vector2(175, 327)
+scale = Vector2(0.574765, 0.57476515)
+texture = ExtResource("16_k7non")
+flip_h = true
+
+[node name="Right Arrow Button" type="Button" parent="UI/Hand Container/Right Arrow"]
+offset_left = -40.016376
+offset_top = -92.211624
+offset_right = 40.014996
+offset_bottom = 94.5282
+flat = true
+
+[node name="Select Response" type="Control" parent="UI/Hand Container"]
+anchors_preset = 0
+offset_left = -27.0
+offset_top = 543.0
+offset_right = 13.0
+offset_bottom = 583.0
+
+[node name="Select Response Label" type="Label" parent="UI/Hand Container/Select Response"]
+layout_mode = 0
+offset_left = -120.0
+offset_top = 115.0
+offset_right = 163.0
+offset_bottom = 156.0
+mouse_filter = 0
+text = "Select Response"
+label_settings = SubResource("LabelSettings_v5pj8")
+
+[node name="SelectResponseArrow" type="Sprite2D" parent="UI/Hand Container/Select Response"]
+position = Vector2(198, 137)
+rotation = -1.5707964
+scale = Vector2(0.69675374, 0.6967538)
+texture = ExtResource("15_qatxi")
+
+[node name="SelectResponseArrow2" type="Sprite2D" parent="UI/Hand Container/Select Response"]
+position = Vector2(-155, 137.00006)
+rotation = 1.5707964
+scale = Vector2(0.7167204, 0.7167205)
+texture = ExtResource("15_qatxi")
+
+[node name="Psyche" type="Sprite2D" parent="."]
+position = Vector2(-217, 298)
+scale = Vector2(0.6666667, 0.69402987)
+texture = ExtResource("14_m84t2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_k7non")
+}
+
+[connection signal="gui_input" from="UI/Hand Container" to="UI/Hand Container" method="_on_gui_input"]
+[connection signal="gui_input" from="UI/Hand Container/Scenario Label/Scenario Label" to="." method="_on_scenario_label_gui_input"]
+[connection signal="gui_input" from="UI/Hand Container/Response Label/Response Label" to="." method="_on_response_label_gui_input"]
+[connection signal="pressed" from="UI/Hand Container/Left Arrow/Left Arrow Button" to="UI/Hand Container" method="_on_left_arrow_button_pressed"]
+[connection signal="pressed" from="UI/Hand Container/Right Arrow/Right Arrow Button" to="UI/Hand Container" method="_on_right_arrow_button_pressed"]
+[connection signal="gui_input" from="UI/Hand Container/Select Response/Select Response Label" to="UI/Hand Container" method="_on_select_response_label_gui_input"]

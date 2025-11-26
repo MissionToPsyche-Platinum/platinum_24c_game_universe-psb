@@ -21,11 +21,6 @@ func _ready() -> void:
 	protocolCardDescription.text = cardDescription
 	protocolCardSprite.texture = cardSprite
 	
-
-#signals when the card is clicked
-func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		use();
 		
 func setupFromResource(resource: Resource) -> void:
 	cardName = resource.cardName

@@ -28,6 +28,7 @@ func performScenarioEffect() -> void:
 	await get_tree().create_timer(1).timeout
 	
 	print("Emmitting endScenarioTurn signal...")
+	emit_signal("endScenarioTurn")
 	#emit the end scenario turn signal 
-	emit_signal("endScenarioTurn")	
+	
 	
