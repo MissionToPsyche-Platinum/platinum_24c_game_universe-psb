@@ -7,6 +7,8 @@ class_name HandController
 @export var card_container_path: NodePath
 
 @export var cardEffectLabel: Label
+@export var continueScenarioControl : Control
+
 
 var card_container: Control
 var cards: Array[Control] = []
@@ -113,6 +115,32 @@ func _on_select_response_label_gui_input(event: InputEvent) -> void:
 		#hide the gui
 		GameManager.UIAnimationPlayer.play("UseCard")
 
+		#tween out the scenario header label to replace it's text
+		# Fade out
+		var tween = create_tween()
+		tween.tween_property(GameManager.scenarioHeader, "modulate", Color(1,1,1,0), 0.25)
+		await tween.finished
+
+		# Change the text after fade-out completes
+		GameManager.scenarioHeader.text = cards[selectedIndex].get_child(0).getCardUseHeader()
+
+		# Fade back in
+		tween = create_tween()
+		tween.tween_property(GameManager.scenarioHeader, "modulate", Color(1,1,1,1), 0.25)	
+		
 		#use the card
 		var card := cards[selectedIndex].get_child(0)
 		card.use()  
+		
+		#allows the player to click anywhere on screen to continue the scenario
+		continueScenarioControl.visible = true
+		
+
+
+func _on_continue_scenario_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		#disable teh continue Scenario Control
+		continueScenarioControl.visible = false
+		
+		#end the player's turn
+		GameManager.endPlayerTurn()

@@ -5,6 +5,7 @@ class_name Player
 
 var deck: Array[PackedScene] = []
 var discards: Array[PackedScene] = []
+var hand: Array[PackedScene] = []
 
 #attributes:
 @export var HULL_INTEGRITY_MAX = 200
@@ -34,25 +35,27 @@ func drawCard() -> void:
 		return
 
 	var packed_scene = deck.pop_back()
+	#add card to hand
+	hand.append(packed_scene)
+	#instantiate card to put on the UI
 	var card_instance = packed_scene.instantiate()
-
+	
 	card_instance.set_meta("source_scene", packed_scene)
 
 	# send card directly to the UI
 	GameManager.handController.addCard(card_instance)
 
 	# listen for usage
-	card_instance.connect("card_used", Callable(self, "_on_card_used"))
+	card_instance.connect("card_used", Callable(self, "discardCard"))
 
-func _on_card_used(card_node: Node) -> void:
+func discardCard(card_node: Node) -> void:
 	var packed_scene = card_node.get_meta("source_scene")
 	if packed_scene:
 		discards.append(packed_scene)
+		hand.erase(packed_scene)
 
 	# tell HandController to remove the card’s wrapper
 	GameManager.handController.removeCard(card_node)
-
-	GameManager.endPlayerTurn()
 
 
 func resetDiscards() -> void:
@@ -60,6 +63,13 @@ func resetDiscards() -> void:
 	deck.shuffle()
 	discards.clear()
 
+func returnAllCards() -> void:
+	resetDiscards()
+	for scene in hand:
+		deck.append(scene)
+	hand.clear()
+	deck.shuffle()
+	
 
 # Attribute modification remains unchanged:
 func setHullIntegrity(amount: float) -> void:

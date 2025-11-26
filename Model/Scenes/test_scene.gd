@@ -10,9 +10,10 @@ extends Node2D
 @export var hullIntegrityLabel: Label
 @export var powerLabel: Label
 @export var velocityLabel: Label
+@export var rewardsHolder: HBoxContainer
 
-@export var descriptionLabel: Label
-@export var effectLabel: Label
+@export var scenarioHeader: Label
+@export var scenarioEffectLabel: Label
 
 @export var hullIntegrityBar : TextureProgressBar
 @export var powerBar : TextureProgressBar
@@ -45,11 +46,12 @@ func _ready() -> void:
 	GameManager.hullIntegrityLabel = hullIntegrityLabel
 	GameManager.powerLabel = powerLabel
 	GameManager.veloctiyLabel = velocityLabel
-	GameManager.descriptionLabel = descriptionLabel
-	GameManager.effectLabel = effectLabel
+	GameManager.scenarioHeader = scenarioHeader
+	GameManager.scenarioEffectLabel = scenarioEffectLabel
 	GameManager.hullIntegrityBar = hullIntegrityBar
 	GameManager.powerBar = powerBar
 	GameManager.velocityBar = velocityBar
+	GameManager.rewardsHolder = rewardsHolder
 	
 	#assign animation player references
 	GameManager.UIAnimationPlayer = animationPlayer

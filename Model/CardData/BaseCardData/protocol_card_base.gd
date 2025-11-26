@@ -9,11 +9,15 @@ signal card_used(card)
 @export var cardSprite: Texture2D 
 @export var cardDescription: String
 @export var cardBehavior: Array[Resource]
+@export var cardUseHeader: String
+@export var rewardsClickable: Control
 
 #references to card nodes
 @onready var protocolCardName: Label = $CardBackground/ProtocolCardName
 @onready var protocolCardDescription: Label = $CardBackground/ProtocolCardDescription
 @onready var protocolCardSprite: Sprite2D = $CardBackground/ProtocolCardSprite
+
+signal rewardChosen(card)
 
 
 # Called when the node enters the scene tree for the first time.
@@ -58,3 +62,18 @@ func getCardHint() -> String:
 		hint += "\n"
 		
 	return hint
+
+func getCardUseHeader() -> String:
+	return cardUseHeader
+	
+func enableRewardsClickable() -> void:
+	rewardsClickable.visible = true
+	
+func disableRewardsClickable() -> void:
+	rewardsClickable.visible = false
+	
+
+func _on_reward_clickable_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		print("help")
+		emit_signal("rewardChosen", self)

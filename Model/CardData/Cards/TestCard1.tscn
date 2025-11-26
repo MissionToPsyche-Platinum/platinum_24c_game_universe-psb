@@ -20,3 +20,4 @@ cardName = "Test Card 1"
 cardSprite = ExtResource("2_pw5ty")
 cardDescription = "+ 10 Hull integrity"
 cardBehavior = Array[Resource]([SubResource("Resource_msoos")])
+cardUseHeader = "Test Card 1"

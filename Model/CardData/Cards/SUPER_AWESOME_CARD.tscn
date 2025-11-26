@@ -1,0 +1,33 @@
+[gd_scene load_steps=8 format=3 uid="uid://bndv7o1dhk3ki"]
+
+[ext_resource type="PackedScene" uid="uid://7wpt2pr8jwaa" path="res://Model/CardData/BaseCardData/protocol_card_base.tscn" id="1_sb6ho"]
+[ext_resource type="Script" uid="uid://cda51huvrayd1" path="res://Model/CardData/CardBehaviorData/AttriubuteEffect.gd" id="2_4qxth"]
+[ext_resource type="Script" uid="uid://jvo5d8np0a4x" path="res://Model/CardData/CardBehaviorData/AttributeBehavior.gd" id="3_e7mt6"]
+
+[sub_resource type="Resource" id="Resource_xecg1"]
+script = ExtResource("2_4qxth")
+amount = 200.0
+metadata/_custom_type_script = "uid://cda51huvrayd1"
+
+[sub_resource type="Resource" id="Resource_jojni"]
+script = ExtResource("2_4qxth")
+affectedAttribute = 1
+amount = 200.0
+metadata/_custom_type_script = "uid://cda51huvrayd1"
+
+[sub_resource type="Resource" id="Resource_ua1d2"]
+script = ExtResource("2_4qxth")
+affectedAttribute = 2
+amount = 200.0
+metadata/_custom_type_script = "uid://cda51huvrayd1"
+
+[sub_resource type="Resource" id="Resource_be7sx"]
+script = ExtResource("3_e7mt6")
+affectedAttributes = Array[ExtResource("2_4qxth")]([SubResource("Resource_xecg1"), SubResource("Resource_jojni"), SubResource("Resource_ua1d2")])
+metadata/_custom_type_script = "uid://jvo5d8np0a4x"
+
+[node name="ProtocolCardBase" instance=ExtResource("1_sb6ho")]
+cardName = "SUPER AWESOME CARD"
+cardDescription = "Win."
+cardBehavior = Array[Resource]([SubResource("Resource_be7sx")])
+cardUseHeader = "THIS CARD IS SUPER AWESOME"

@@ -32,3 +32,4 @@ cardName = "Test Card 7"
 cardSprite = ExtResource("2_l0c6e")
 cardDescription = "-10 Power, then -10 power again"
 cardBehavior = Array[Resource]([SubResource("Resource_phwe3"), SubResource("Resource_umqsf")])
+cardUseHeader = "Test Card 7"

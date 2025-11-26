@@ -26,3 +26,4 @@ cardName = "Test Card 4"
 cardSprite = ExtResource("2_t7eby")
 cardDescription = "+10 Heath, +10 Velocity"
 cardBehavior = Array[Resource]([SubResource("Resource_vq4ld")])
+cardUseHeader = "Test Card 4"

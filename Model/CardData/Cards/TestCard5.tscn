@@ -25,3 +25,4 @@ metadata/_custom_type_script = "uid://jvo5d8np0a4x"
 cardName = "Test Card 5"
 cardDescription = "+10 power, + 10 velocity"
 cardBehavior = Array[Resource]([SubResource("Resource_4t5fm")])
+cardUseHeader = "Test Card 5"

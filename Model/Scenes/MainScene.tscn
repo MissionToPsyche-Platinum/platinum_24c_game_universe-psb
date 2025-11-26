@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://b5aneqr63kcay"]
+[gd_scene load_steps=40 format=3 uid="uid://b5aneqr63kcay"]
 
 [ext_resource type="Script" uid="uid://bryyckfysnh62" path="res://Model/Scenes/test_scene.gd" id="1_6pwi0"]
 [ext_resource type="Script" uid="uid://lp0itw18h7mo" path="res://Model/Scenes/card_manager.gd" id="2_qb6nl"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bhhb73esfp2pe" path="res://Model/CardData/Cards/TestCard5.tscn" id="7_qatxi"]
 [ext_resource type="PackedScene" uid="uid://seg7h6mf4b4q" path="res://Model/CardData/Cards/TestCard6.tscn" id="8_k7non"]
 [ext_resource type="PackedScene" uid="uid://ck52rgyii648y" path="res://Model/CardData/Cards/TestCard7.tscn" id="9_v5pj8"]
+[ext_resource type="PackedScene" uid="uid://bndv7o1dhk3ki" path="res://Model/CardData/Cards/SUPER_AWESOME_CARD.tscn" id="10_k5rhg"]
 [ext_resource type="Script" uid="uid://2liaka0mg74s" path="res://Model/Scenes/mock_player.gd" id="10_xfpm0"]
 [ext_resource type="Texture2D" uid="uid://chv57617bldww" path="res://View/Assets/Sprites/Attribute Bars/attribute_bar_mask.png" id="11_d184y"]
 [ext_resource type="FontFile" uid="uid://cyuqcf4mpncuy" path="res://View/Assets/Themes/PixelOperator-Bold.ttf" id="11_wki3r"]
@@ -55,6 +56,10 @@ font_size = 30
 font = ExtResource("11_wki3r")
 font_size = 30
 
+[sub_resource type="LabelSettings" id="LabelSettings_j5y8d"]
+font = ExtResource("11_wki3r")
+font_size = 40
+
 [sub_resource type="Animation" id="Animation_k7non"]
 resource_name = "DisplayCardGui"
 length = 0.22
@@ -69,6 +74,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(575, 661), Vector2(581, -75)]
+}
+
+[sub_resource type="Animation" id="Animation_j5y8d"]
+resource_name = "DisplayRewards"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/Reward Holder:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.95),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(439, -75), Vector2(434, 218)]
 }
 
 [sub_resource type="Animation" id="Animation_k5rhg"]
@@ -133,7 +153,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("UI/Description Label:modulate")
+tracks/2/path = NodePath("UI/Scenario Header:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -196,7 +216,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("UI/Description Label:modulate")
+tracks/2/path = NodePath("UI/Scenario Header:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -253,6 +273,42 @@ tracks/6/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("UI/Reward Holder:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(471, -69)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("UI/Scenario Header:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(21, 17)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("UI/RewardControl:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(528, -133)]
+}
 
 [sub_resource type="Animation" id="Animation_xfpm0"]
 resource_name = "UseCard"
@@ -294,25 +350,145 @@ tracks/2/keys = {
 "values": [true, false, true]
 }
 
+[sub_resource type="Animation" id="Animation_b1qgh"]
+resource_name = "ScenarioEnd"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/Attribute Holder:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.76),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(155, 337), Vector2(-300, 336)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/Scenario Effect Labels:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.77),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(950, 134), Vector2(1300, 134)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UI/Hand Container/Response Label:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.77),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, -101), Vector2(1, 100)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UI/Scenario Header:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.76),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(21, 17), Vector2(21, -200)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("UI/RewardControl:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.79, 1.95),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(528, -133), Vector2(520, -20)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("UI/Reward Holder:position")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1.9666667, 2.98),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(433, -219), Vector2(433, 305)]
+}
+
+[sub_resource type="Animation" id="Animation_rxymg"]
+resource_name = "ScenarioOutro"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/Reward Holder:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.92),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(484, 305), Vector2(484, -284)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/RewardControl:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.91),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(520, -20), Vector2(520, -200)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Psyche:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1, 1.98, 3.8333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(220, 298), Vector2(150, 298), Vector2(2000, 298)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k7non"]
 _data = {
 &"DisplayCardGui": SubResource("Animation_k7non"),
+&"DisplayRewards": SubResource("Animation_j5y8d"),
 &"EnableResponse": SubResource("Animation_k5rhg"),
 &"HideCardGui": SubResource("Animation_v5pj8"),
 &"PsycheScenarioStart": SubResource("Animation_t7g2w"),
 &"RESET": SubResource("Animation_qatxi"),
+&"ScenarioEnd": SubResource("Animation_b1qgh"),
+&"ScenarioOutro": SubResource("Animation_rxymg"),
 &"UseCard": SubResource("Animation_xfpm0")
 }
 
-[node name="MainScene" type="Node2D" node_paths=PackedStringArray("player", "cardManager", "hullIntegrityLabel", "powerLabel", "velocityLabel", "descriptionLabel", "effectLabel", "hullIntegrityBar", "powerBar", "velocityBar", "animationPlayer", "handController")]
+[node name="MainScene" type="Node2D" node_paths=PackedStringArray("player", "cardManager", "hullIntegrityLabel", "powerLabel", "velocityLabel", "rewardsHolder", "scenarioHeader", "scenarioEffectLabel", "hullIntegrityBar", "powerBar", "velocityBar", "animationPlayer", "handController")]
 script = ExtResource("1_6pwi0")
 player = NodePath("Player")
 cardManager = NodePath("CardManager")
 hullIntegrityLabel = NodePath("UI/Attribute Holder/AttributeLabels/HullIntegrityLabel")
 powerLabel = NodePath("UI/Attribute Holder/AttributeLabels/Power Label")
 velocityLabel = NodePath("UI/Attribute Holder/AttributeLabels/Velocity Label")
-descriptionLabel = NodePath("UI/Description Label")
-effectLabel = NodePath("UI/Scenario Effect Labels/Scenario Effect Label")
+rewardsHolder = NodePath("UI/Reward Holder")
+scenarioHeader = NodePath("UI/Scenario Header")
+scenarioEffectLabel = NodePath("UI/Scenario Effect Labels/Scenario Effect Label")
 hullIntegrityBar = NodePath("UI/Attribute Holder/Player Attribute Bars/Hull Inegrity Bar")
 powerBar = NodePath("UI/Attribute Holder/Player Attribute Bars/Power Bar")
 velocityBar = NodePath("UI/Attribute Holder/Player Attribute Bars/Velocity Bar")
@@ -321,7 +497,9 @@ handController = NodePath("UI/Hand Container")
 
 [node name="CardManager" type="Node" parent="."]
 script = ExtResource("2_qb6nl")
-cards = Array[PackedScene]([ExtResource("3_d184y"), ExtResource("4_wki3r"), ExtResource("5_m84t2"), ExtResource("6_t7g2w"), ExtResource("7_qatxi"), ExtResource("8_k7non"), ExtResource("9_v5pj8")])
+defaultDeck = Array[PackedScene]([ExtResource("10_k5rhg"), ExtResource("3_d184y"), ExtResource("4_wki3r"), ExtResource("5_m84t2"), ExtResource("6_t7g2w")])
+bank = Array[PackedScene]([ExtResource("7_qatxi"), ExtResource("8_k7non"), ExtResource("9_v5pj8")])
+rewardMaximumAmount = 2
 
 [node name="Player" type="Node" parent="." node_paths=PackedStringArray("cardManager")]
 script = ExtResource("10_xfpm0")
@@ -335,7 +513,7 @@ offset_bottom = 40.0
 theme = SubResource("Theme_d184y")
 metadata/_edit_use_anchors_ = true
 
-[node name="Description Label" type="Label" parent="UI"]
+[node name="Scenario Header" type="Label" parent="UI"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 21.0
@@ -357,7 +535,7 @@ anchor_right = 33.4
 anchor_bottom = 11.175
 offset_left = 21.0
 offset_top = -304.0
-offset_right = 61.00049
+offset_right = 60.998535
 offset_bottom = -264.0
 metadata/_edit_use_anchors_ = true
 
@@ -487,7 +665,7 @@ label_settings = SubResource("LabelSettings_6pwi0")
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Hand Container" type="Control" parent="UI" node_paths=PackedStringArray("cardEffectLabel")]
+[node name="Hand Container" type="Control" parent="UI" node_paths=PackedStringArray("cardEffectLabel", "continueScenarioControl")]
 z_index = 2
 z_as_relative = false
 anchors_preset = 0
@@ -498,6 +676,7 @@ offset_bottom = 696.0001
 script = ExtResource("14_v5pj8")
 card_container_path = NodePath("Card Container")
 cardEffectLabel = NodePath("Card Effect Holder/Card Effect Label")
+continueScenarioControl = NodePath("../ContinueScenario")
 
 [node name="Hud Image" type="Sprite2D" parent="UI/Hand Container"]
 position = Vector2(-10.621529, 612.656)
@@ -652,6 +831,42 @@ offset_right = 164.0
 offset_bottom = 249.0
 label_settings = SubResource("LabelSettings_k5rhg")
 
+[node name="ContinueScenario" type="Control" parent="UI"]
+visible = false
+anchors_preset = 0
+offset_right = 1154.0
+offset_bottom = 650.0
+
+[node name="Reward Holder" type="HBoxContainer" parent="UI"]
+z_index = 1
+layout_mode = 1
+anchors_preset = -1
+offset_left = 471.0
+offset_top = -69.0
+offset_right = 555.00085
+offset_bottom = -38.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="RewardControl" type="Control" parent="UI"]
+anchors_preset = 0
+offset_left = 528.0
+offset_top = -133.0
+offset_right = 568.0
+offset_bottom = -93.0
+
+[node name="Reward Label" type="Label" parent="UI/RewardControl"]
+layout_mode = 0
+offset_left = -240.0
+offset_top = 28.0
+offset_right = 361.0
+offset_bottom = 113.0
+text = "Scenario Won!
+Choose a card to add to your deck:"
+label_settings = SubResource("LabelSettings_j5y8d")
+horizontal_alignment = 1
+
 [node name="Psyche" type="Sprite2D" parent="."]
 position = Vector2(-217, 298)
 scale = Vector2(0.6666667, 0.69402987)
@@ -668,3 +883,4 @@ libraries = {
 [connection signal="pressed" from="UI/Hand Container/Left Arrow/Left Arrow Button" to="UI/Hand Container" method="_on_left_arrow_button_pressed"]
 [connection signal="pressed" from="UI/Hand Container/Right Arrow/Right Arrow Button" to="UI/Hand Container" method="_on_right_arrow_button_pressed"]
 [connection signal="gui_input" from="UI/Hand Container/Select Response/Select Response Label" to="UI/Hand Container" method="_on_select_response_label_gui_input"]
+[connection signal="gui_input" from="UI/ContinueScenario" to="UI/Hand Container" method="_on_continue_scenario_gui_input"]

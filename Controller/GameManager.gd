@@ -11,9 +11,10 @@ var playerLost: bool = false
 var hullIntegrityLabel: Label
 var powerLabel: Label
 var veloctiyLabel: Label
+var rewardsHolder: HBoxContainer
 
-var descriptionLabel: Label
-var effectLabel: Label
+var scenarioHeader: Label
+var scenarioEffectLabel: Label
 
 var hullIntegrityBar : TextureProgressBar
 var powerBar : TextureProgressBar
@@ -25,6 +26,8 @@ var UIAnimationPlayer : AnimationPlayer
 
 #reference to hand controller
 var handController : HandController
+#array to hold the rewards from beeating the scenario
+var rewards
 
 @export var hand: Control
 
@@ -50,12 +53,12 @@ func loadScenario(scenePath: String) -> void:
 	add_child(scenario)
 	
 	#get the scenario description text
-	descriptionLabel.text = scenario.scenarioText
-	effectLabel.text = scenario.getAffectedAttributes()
+	scenarioHeader.text = scenario.scenarioText
+	scenarioEffectLabel.text = scenario.getAffectedAttributes()
 	
 	
 	#connect to scenario signals
-	scenario.connect("endScenario", Callable(self, "endScenario"))
+	scenario.connect("scenarioWon", Callable(self, "endScenario"))
 	scenario.connect("endScenarioTurn", Callable(self, "endScenarioTurn"))
 	
 	
@@ -69,13 +72,23 @@ func loadScenario(scenePath: String) -> void:
 	#play the intro animation
 	UIAnimationPlayer.play("PsycheScenarioStart")
 	
-	
-#not a huge fan of this, might change
 func endPlayerTurn() -> void:
+	print("Ending player turn")
 	#check if the player lost on their turn
 	if playerLost:
 		get_tree().change_scene_to_file("res://Model/ScreenData/LoseScreen.tscn")
 		return
+	
+	#tween the header text back to the scenario 
+	var tween = create_tween()
+	tween.tween_property(scenarioHeader, "modulate", Color(1,1,1,0), 0.25)
+	await tween.finished
+	
+	scenarioHeader.text = scenario.scenarioText
+	
+	tween = create_tween()
+	tween.tween_property(scenarioHeader, "modulate", Color(1,1,1,1), 0.25)
+	
 	
 	scenario.performScenarioEffect()
 	
@@ -92,9 +105,51 @@ func endScenarioTurn() -> void:
 	
 func endScenario() -> void:
 	print("Scenario Won!!!!")
-	return 
-
-func loseGame():
-	print("Game lost")
-	playerLost = true
 	
+	# Get reward scenes
+	rewards = card_manager.getReward()
+	#s
+	for reward in rewards:
+		var rewardInstance: Control = reward.instantiate()
+		#save the packed scene for later use
+		rewardInstance.set_meta("source_scene", reward)
+		#shrink the background of the card for some reason
+		rewardInstance.get_child(0).scale.x = 0.49
+		rewardInstance.get_child(0).scale.y = 0.5
+		rewardInstance.custom_minimum_size = Vector2(250, 0)
+		rewardInstance.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+		rewardInstance.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+		rewardInstance.enableRewardsClickable()
+		#connect to the reward chosen signal of the card
+		rewardInstance.connect("rewardChosen", Callable(self, "rewardChosen"))
+		
+		# Add directly to the HBoxContainer
+		rewardsHolder.add_child(rewardInstance)
+	
+	#play end of scenario animation
+	UIAnimationPlayer.play("ScenarioEnd")
+	
+	
+
+func rewardChosen(card) -> void:
+	#retrive the packed scene
+	var packedScene = card.get_meta("source_scene")
+	if packedScene:
+		#add scene to player's deck 
+		player.deck.append(packedScene)
+		UIAnimationPlayer.play("ScenarioOutro")
+		#remove the chosen cards from the rewards
+		rewards.erase(packedScene)
+		#append the remaining cards back into the bank
+		card_manager.bank += rewards
+		card_manager.bank.shuffle()
+		
+		#reset the player deck
+		player.returnAllCards()
+		print(player.deck)
+		
+		#load the map screen 
+		
+	else:
+		print("No packed scene detected, cannot add to player deck")
+	return 
