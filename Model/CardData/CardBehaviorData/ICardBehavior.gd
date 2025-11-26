@@ -1,3 +1,4 @@
+
 extends Resource
 class_name ICardBehavior
 
@@ -11,4 +12,7 @@ func isCardPlayable() -> bool:
 	push_error("isCardPlayable() not implemented yet!")
 	return true
 	
+func getBehaviorHint() -> String:
+	push_error("getBehaviorHint in ICardBehavior not implemented! ")
+	return ""
 	

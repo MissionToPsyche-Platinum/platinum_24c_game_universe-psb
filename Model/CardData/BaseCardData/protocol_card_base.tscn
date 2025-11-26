@@ -1,16 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://7wpt2pr8jwaa"]
+[gd_scene load_steps=7 format=3 uid="uid://7wpt2pr8jwaa"]
 
 [ext_resource type="Script" uid="uid://dbwvfr8urjpbn" path="res://Model/CardData/BaseCardData/protocol_card_base.gd" id="1_jce6x"]
-[ext_resource type="Texture2D" uid="uid://cx7e7cbtrvu8b" path="res://View/Assets/Sprites/ProtocolCard.svg" id="2_lon5y"]
+[ext_resource type="Texture2D" uid="uid://0yss2jchhn12" path="res://View/Assets/Sprites/card_filled.png" id="2_lon5y"]
 [ext_resource type="Texture2D" uid="uid://bh1yvmsi01mvl" path="res://View/Assets/Sprites/icon.svg" id="3_e7m50"]
+[ext_resource type="FontFile" uid="uid://cyuqcf4mpncuy" path="res://View/Assets/Themes/PixelOperator-Bold.ttf" id="3_evo7n"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_evo7n"]
-font_size = 32
-font_color = Color(0.1148968, 0.11489681, 0.1148968, 1)
+font = ExtResource("3_evo7n")
+font_size = 40
 
 [sub_resource type="LabelSettings" id="LabelSettings_l00ld"]
-font_size = 32
-font_color = Color(0, 0, 0, 1)
+font = ExtResource("3_evo7n")
+font_size = 40
 
 [node name="ProtocolCardBase" type="Control"]
 layout_mode = 3
@@ -19,19 +20,23 @@ scale = Vector2(0.5, 0.5)
 script = ExtResource("1_jce6x")
 
 [node name="CardBackground" type="Sprite2D" parent="."]
+position = Vector2(-11.000005, 15.685992)
+scale = Vector2(1.196, 1.1960001)
 texture = ExtResource("2_lon5y")
 
 [node name="ProtocolCardName" type="Label" parent="CardBackground"]
 offset_left = -213.0
-offset_top = -369.0
+offset_top = -340.0
 offset_right = 220.0
-offset_bottom = -300.0
+offset_bottom = -271.0
 text = "Protocol Card Title"
 label_settings = SubResource("LabelSettings_evo7n")
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="ProtocolCardDescription" type="Label" parent="CardBackground"]
+anchors_preset = -1
+anchor_top = -0.10378682
 offset_left = -213.0
 offset_top = 4.0
 offset_right = 219.0
@@ -44,5 +49,5 @@ autowrap_mode = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="ProtocolCardSprite" type="Sprite2D" parent="CardBackground"]
-position = Vector2(0, -151)
+position = Vector2(0, -178)
 texture = ExtResource("3_e7m50")

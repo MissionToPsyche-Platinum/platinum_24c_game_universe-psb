@@ -1,3 +1,4 @@
+
 extends Node
 class_name ProtocolCard
 
@@ -32,9 +33,6 @@ func setupFromResource(resource: Resource) -> void:
 func use() -> void:
 	#first check if card is playable
 	for behavior in cardBehavior:
-		#type checking like this is necessary in Godot because 
-		#declaring a variable of a specific type will only accept that type,
-		#not it's subclasses. 
 		if behavior is ICardBehavior:
 			if (!behavior.isCardPlayable()):
 				print("Card is not playable!")
@@ -52,3 +50,11 @@ func use() -> void:
 			behavior.use()
 	#emit the signal that the card has been used
 	emit_signal("card_used", self)
+
+func getCardHint() -> String:
+	var hint = ""
+	for behavior in cardBehavior:
+		hint += behavior.getBehaviorHint()
+		hint += "\n"
+		
+	return hint

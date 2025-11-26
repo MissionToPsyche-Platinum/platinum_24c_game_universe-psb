@@ -23,3 +23,17 @@ func use()-> bool:
 func isCardPlayable() -> bool:
 	#right now just enable every card
 	return true
+
+func getBehaviorHint() -> String:
+	var hint = ""
+	for effect in affectedAttributes:
+		if effect.affectedAttribute == 0:
+			hint += ("Hull Integrity +" + str(effect.amount) + '\n')
+		elif effect.affectedAttribute == 1:
+			hint += ("Power +" + str(effect.amount) + '\n')
+		else:
+			hint += ("Velocity +" + str(effect.amount) + '\n')
+		
+	
+	return hint
+	

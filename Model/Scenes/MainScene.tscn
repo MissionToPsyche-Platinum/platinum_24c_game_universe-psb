@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://b5aneqr63kcay"]
+[gd_scene load_steps=35 format=3 uid="uid://b5aneqr63kcay"]
 
 [ext_resource type="Script" uid="uid://bryyckfysnh62" path="res://Model/Scenes/test_scene.gd" id="1_6pwi0"]
 [ext_resource type="Script" uid="uid://lp0itw18h7mo" path="res://Model/Scenes/card_manager.gd" id="2_qb6nl"]
@@ -47,6 +47,14 @@ font = ExtResource("11_wki3r")
 font_size = 40
 font_color = Color(0.972549, 0.62352943, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_xfpm0"]
+font = ExtResource("11_wki3r")
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_k5rhg"]
+font = ExtResource("11_wki3r")
+font_size = 30
+
 [sub_resource type="Animation" id="Animation_k7non"]
 resource_name = "DisplayCardGui"
 length = 0.22
@@ -61,6 +69,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(575, 661), Vector2(581, -75)]
+}
+
+[sub_resource type="Animation" id="Animation_k5rhg"]
+resource_name = "EnableResponse"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/Hand Container/Response Label:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.29, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 100), Vector2(1, -101), Vector2(1, -140)]
 }
 
 [sub_resource type="Animation" id="Animation_v5pj8"]
@@ -270,22 +294,6 @@ tracks/2/keys = {
 "values": [true, false, true]
 }
 
-[sub_resource type="Animation" id="Animation_k5rhg"]
-resource_name = "EnableResponse"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("UI/Hand Container/Response Label:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.29, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 100), Vector2(1, -101), Vector2(1, -140)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k7non"]
 _data = {
 &"DisplayCardGui": SubResource("Animation_k7non"),
@@ -446,7 +454,7 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.023054754
-anchor_top = -0.044776108
+anchor_top = -0.04477612
 anchor_right = -0.023054754
 anchor_bottom = -0.04477612
 offset_top = 3.999998
@@ -479,7 +487,7 @@ label_settings = SubResource("LabelSettings_6pwi0")
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Hand Container" type="Control" parent="UI"]
+[node name="Hand Container" type="Control" parent="UI" node_paths=PackedStringArray("cardEffectLabel")]
 z_index = 2
 z_as_relative = false
 anchors_preset = 0
@@ -489,6 +497,7 @@ offset_right = 615.0
 offset_bottom = 696.0001
 script = ExtResource("14_v5pj8")
 card_container_path = NodePath("Card Container")
+cardEffectLabel = NodePath("Card Effect Holder/Card Effect Label")
 
 [node name="Hud Image" type="Sprite2D" parent="UI/Hand Container"]
 position = Vector2(-10.621529, 612.656)
@@ -618,6 +627,30 @@ position = Vector2(-155, 137.00006)
 rotation = 1.5707964
 scale = Vector2(0.7167204, 0.7167205)
 texture = ExtResource("15_qatxi")
+
+[node name="Card Effect Holder" type="Control" parent="UI/Hand Container"]
+anchors_preset = 0
+offset_left = -475.0
+offset_top = 450.0
+offset_right = -435.0
+offset_bottom = 490.0
+
+[node name="Effect Label" type="Label" parent="UI/Hand Container/Card Effect Holder"]
+layout_mode = 0
+offset_left = -100.0
+offset_top = 83.0
+offset_right = 43.0
+offset_bottom = 120.0
+text = "EFFECT:"
+label_settings = SubResource("LabelSettings_xfpm0")
+
+[node name="Card Effect Label" type="Label" parent="UI/Hand Container/Card Effect Holder"]
+layout_mode = 0
+offset_left = -90.0
+offset_top = 153.0
+offset_right = 164.0
+offset_bottom = 249.0
+label_settings = SubResource("LabelSettings_k5rhg")
 
 [node name="Psyche" type="Sprite2D" parent="."]
 position = Vector2(-217, 298)

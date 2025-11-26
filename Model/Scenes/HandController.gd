@@ -6,6 +6,8 @@ class_name HandController
 @export var centerScale := 1.0
 @export var card_container_path: NodePath
 
+@export var cardEffectLabel: Label
+
 var card_container: Control
 var cards: Array[Control] = []
 var selectedIndex := 0
@@ -89,7 +91,10 @@ func updateLayout() -> void:
 		tween.tween_property(card, "position", targetPos, 0.25)
 		tween.tween_property(card, "scale", targetScale, 0.25)
 		tween.tween_property(card, "rotation", targetRotation, 0.25)
-
+		
+		#set card effect label
+		cardEffectLabel.text = cards[selectedIndex].get_child(0).getCardHint()
+	
 
 
 
