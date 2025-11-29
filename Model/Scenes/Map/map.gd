@@ -10,7 +10,7 @@ const UnknownScenarioScene = preload("uid://bhmwabijgly1l")
 # want to find a better way to do this, make more flexible
 const TOTAL_NODES = 9
 const NODE_COORDS := [
-	Vector2(120, 540),
+	Vector2(140, 540),
 	Vector2(225, 315),
 	Vector2(450, 510),
 	Vector2(405, 150),
