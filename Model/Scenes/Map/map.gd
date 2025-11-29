@@ -1,4 +1,5 @@
 extends Node2D
+class_name Map
 
 const PsycheScene = preload("uid://cjy685rokwo4q")
 const EarthScene = preload("uid://d27qiheuudmom")
@@ -9,15 +10,15 @@ const UnknownScenarioScene = preload("uid://bhmwabijgly1l")
 # want to find a better way to do this, make more flexible
 const TOTAL_NODES = 9
 const NODE_COORDS := [
-	Vector2(200, 900),
-	Vector2(375, 525),
-	Vector2(750, 850),
-	Vector2(675, 250),
-	Vector2(850, 525),
-	Vector2(1225, 900),
-	Vector2(1224, 350),
-	Vector2(1500, 625),
-	Vector2(1675, 200),
+	Vector2(120, 540),
+	Vector2(225, 315),
+	Vector2(450, 510),
+	Vector2(405, 150),
+	Vector2(510, 315),
+	Vector2(735, 540),
+	Vector2(734, 210),
+	Vector2(900, 375),
+	Vector2(1005, 120),
 ]
 const CONNECTIONS := [
 	[0,1], [0,2], [1,3], [1,4],
@@ -39,6 +40,12 @@ func _ready() -> void:
 	gen_lines()
 	gen_scenarios()
 	update_line_colors()
+	#$Camera2D.position = Vector2(1920/2, 1080/2)
+	#$Camera2D.zoom = Vector2(1152.0/1920.0, 648.0/1080.0)
+	#var uniform_scale = min(1152.0/1920.0, 648.0/1080.0)
+	#self.position = Vector2(1920/2, 1080/2)
+	#self.scale = Vector2(uniform_scale, uniform_scale)
+	#self.scale = Vector2(0.6, 0.6)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -62,14 +69,14 @@ func advance_position():
 		if neighbors.has(idx):
 			convert_unknown_to_scenario(unknown)
 	update_line_colors()
+	self.visible = true
 
 # Recieves signal from battle scenario node when clicked on
 # Then sets selected scenario and anticipated location
 func _on_child_interacted(clicked_battle_scenario):
 	psyche_anticipated_location = clicked_battle_scenario.position
 	print("Anticipated location set")
-	# load selected scenario
-	# GameManager.loadScenario(scenePath)
+	self.visible = false
 
 # LOGIC #
 

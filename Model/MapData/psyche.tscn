@@ -6,6 +6,7 @@
 size = Vector2(402, 230)
 
 [node name="Psyche" type="Area2D"]
+scale = Vector2(0.6, 0.6)
 
 [node name="Psyche" type="Sprite2D" parent="."]
 texture = ExtResource("1_hc76y")

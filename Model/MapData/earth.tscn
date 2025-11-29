@@ -6,6 +6,7 @@
 radius = 119.0
 
 [node name="Earth" type="Area2D"]
+scale = Vector2(0.6, 0.6)
 
 [node name="Earth" type="Sprite2D" parent="."]
 texture = ExtResource("1_ew12j")

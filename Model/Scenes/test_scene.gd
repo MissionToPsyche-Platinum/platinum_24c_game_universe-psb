@@ -3,6 +3,7 @@ extends Node2D
 @export var player: Player
 @export var scenario: Scenario
 @export var cardManager: CardManager
+@export var map: Map
 
 @export var hand: Control 
 
@@ -64,7 +65,12 @@ func _ready() -> void:
 	
 	
 	#load the scenario
-	GameManager.loadScenario("res://Model/ScenarioData/Scenarios/Sc_DoubleDarkMatter.tscn")
+	#GameManager.loadScenario("res://Model/ScenarioData/Scenarios/Sc_DoubleDarkMatter.tscn")
+	var mapScene = preload("res://Model/Scenes/Map/Map.tscn").instantiate()
+	add_child(mapScene)
+	GameManager.map = mapScene
+	GameManager.UI = $UI
+	$UI.visible = false
 
 
 func _on_response_label_gui_input(event: InputEvent) -> void:

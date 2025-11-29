@@ -3,6 +3,9 @@ extends Node
 @export var player: Player
 @export var scenario: Scenario
 @export var card_manager: CardManager
+@export var map: Map
+
+@export var UI: Control
 
 #boolean to see if the player has lost
 var playerLost: bool = false
@@ -65,6 +68,7 @@ func loadScenario(scenePath: String) -> void:
 	
 	#Scenario is done loading
 	print("Scenario is done loading.")
+	UI.visible = true
 	
 	#have the player draw a new hand
 	player.getNewHand()
@@ -149,7 +153,8 @@ func rewardChosen(card) -> void:
 		print(player.deck)
 		
 		#load the map screen 
-		
+		map.advance_position()
+		UI.visible = false
 	else:
 		print("No packed scene detected, cannot add to player deck")
 	return 

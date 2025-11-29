@@ -6,6 +6,7 @@
 radius = 60.0
 
 [node name="Unknown Scenario" type="Area2D"]
+scale = Vector2(0.6, 0.6)
 
 [node name="Unknown Scenario" type="Sprite2D" parent="."]
 texture = ExtResource("1_7wkyc")

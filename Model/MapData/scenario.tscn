@@ -7,6 +7,7 @@
 size = Vector2(182, 85)
 
 [node name="Clickable Scenario" type="Area2D"]
+scale = Vector2(0.6, 0.6)
 script = ExtResource("1_klwqe")
 
 [node name="Battle Scenario" type="Sprite2D" parent="."]

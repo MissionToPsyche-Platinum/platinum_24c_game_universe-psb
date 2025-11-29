@@ -1,16 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://c1ua0jowfs0v3"]
+[gd_scene load_steps=3 format=3 uid="uid://c1ua0jowfs0v3"]
 
 [ext_resource type="Texture2D" uid="uid://yb1xwwado3yj" path="res://View/Assets/Sprites/General/background.png" id="1_givte"]
 [ext_resource type="Script" uid="uid://dggxqckbwin4k" path="res://Model/Scenes/Map/map.gd" id="1_wrw47"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wrw47"]
-texture = ExtResource("1_givte")
-
 [node name="Map" type="Node2D"]
 script = ExtResource("1_wrw47")
 
-[node name="Background" type="Panel" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
 offset_right = 1920.0
 offset_bottom = 1080.0
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_wrw47")
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_givte")
