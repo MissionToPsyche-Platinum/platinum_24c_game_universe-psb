@@ -58,3 +58,13 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 			GameManager.loadScenario(scenario_path)
 			#get_tree().change_scene_to_file("res://Model/Scenes/scenario_placeholder.tscn")
 			print("Changed scene to scenario")
+			
+func disable():
+	sprite.modulate = Color("383838")
+	# Disconnect mouse enter/exit
+	if is_connected("mouse_entered", Callable(self, "_on_mouse_entered")):
+		disconnect("mouse_entered", Callable(self, "_on_mouse_entered"))   
+	if is_connected("mouse_exited", Callable(self, "_on_mouse_exited")):
+		disconnect("mouse_exited", Callable(self, "_on_mouse_exited"))
+	if is_connected("input_event", Callable(self, "_on_input_event")):
+		disconnect("input_event", Callable(self, "_on_input_event"))

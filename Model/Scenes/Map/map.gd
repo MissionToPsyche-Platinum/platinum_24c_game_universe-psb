@@ -55,12 +55,16 @@ func _process(delta: float) -> void:
 # and the player returns to the map
 func advance_position():
 	psyche_node.position = psyche_anticipated_location
-	# if psyche_anticipated_location == end node,
-	# win screen should be triggered here
 	
 	var new_index = get_node_index_from_position(psyche_anticipated_location)
 	if new_index == -1:
 		return
+		
+	# if psyche_anticipated_location == end node, you win
+	var asteroid_neighbors = get_connected_nodes(TOTAL_NODES - 1)
+	if asteroid_neighbors.has(new_index):
+		get_tree().change_scene_to_file("res://Model/ScreenData/WinScreen.tscn")
+		self.visible = false
 
 	# Convert all unknown nodes adjacent to new location
 	var neighbors = get_connected_nodes(new_index)
