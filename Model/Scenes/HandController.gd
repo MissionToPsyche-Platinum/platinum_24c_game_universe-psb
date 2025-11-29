@@ -124,21 +124,21 @@ func _on_select_response_label_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		if cards.is_empty():
 			return
+		if not test_mode:
+			# Hide the GUI
+			GameManager.UIAnimationPlayer.play("UseCard")
 
-		# Hide the GUI
-		GameManager.UIAnimationPlayer.play("UseCard")
+			# Tween out the scenario header label to replace its text
+			var tween = create_tween()
+			tween.tween_property(GameManager.scenarioHeader, "modulate", Color(1,1,1,0), 0.25)
+			await tween.finished
 
-		# Tween out the scenario header label to replace its text
-		var tween = create_tween()
-		tween.tween_property(GameManager.scenarioHeader, "modulate", Color(1,1,1,0), 0.25)
-		await tween.finished
+			# Change the text after fade-out completes
+			GameManager.scenarioHeader.text = cards[selectedIndex].get_child(0).getCardUseHeader()
 
-		# Change the text after fade-out completes
-		GameManager.scenarioHeader.text = cards[selectedIndex].get_child(0).getCardUseHeader()
-
-		# Fade back in
-		tween = create_tween()
-		tween.tween_property(GameManager.scenarioHeader, "modulate", Color(1,1,1,1), 0.25)
+			# Fade back in
+			tween = create_tween()
+			tween.tween_property(GameManager.scenarioHeader, "modulate", Color(1,1,1,1), 0.25)
 
 		# Use the card
 		var card := cards[selectedIndex].get_child(0)
