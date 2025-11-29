@@ -34,6 +34,8 @@ var psyche_node : Node2D
 var lines = []
 var line_connections: Array = []
 var psyche_anticipated_location : Vector2
+var psyche_anticipated_index : int
+var psyche_previous_index := 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -54,9 +56,12 @@ func _process(delta: float) -> void:
 # Called whenever a scenario is successfully completed
 # and the player returns to the map
 func advance_position():
+	psyche_previous_index = psyche_node.get_meta("index")
 	psyche_node.position = psyche_anticipated_location
+	psyche_node.set_meta("index", psyche_anticipated_index)
 	
-	var new_index = get_node_index_from_position(psyche_anticipated_location)
+	#var new_index = get_node_index_from_position(psyche_anticipated_location)
+	var new_index = psyche_anticipated_index
 	if new_index == -1:
 		return
 		
@@ -68,9 +73,10 @@ func advance_position():
 	# Convert all unknown nodes to known adjacent to new location
 	var neighbors = get_connected_nodes(new_index)
 	for unknown in unknown_scenarios.duplicate():
-		var idx = get_node_index_from_position(unknown.position)
+		var idx = unknown.get_meta("index")
 		if neighbors.has(idx):
-			convert_unknown_to_scenario(unknown)
+			convert_unknown_to_scenario(unknown, idx)
+			
 	# Update line colors according to new location
 	update_line_colors()
 	
@@ -82,10 +88,11 @@ func advance_position():
 	
 	self.visible = true
 
-# Recieves signal from battle scenario node when clicked on
+# Recieves signal from scenario node when clicked on
 # Then sets selected scenario and anticipated location
-func _on_child_interacted(clicked_battle_scenario):
-	psyche_anticipated_location = clicked_battle_scenario.position
+func _on_child_interacted(clicked_scenario):
+	psyche_anticipated_location = clicked_scenario.position
+	psyche_anticipated_index = clicked_scenario.get_meta("index")
 	print("Anticipated location set")
 	self.visible = false
 
@@ -111,11 +118,10 @@ func get_connected_nodes(index: int) -> Array:
 
 # Called in _ready and advance_position to update line colors
 func update_line_colors():
-	var current_index = get_node_index_from_position(psyche_node.position)
+	#var current_index = get_node_index_from_position(psyche_node.position)
+	var current_index = psyche_node.get_meta("index")
 	if current_index == -1:
 		return
-
-	var neighbors = get_connected_nodes(current_index)
 
 	for i in range(lines.size()):
 		var line = lines[i]
@@ -123,20 +129,29 @@ func update_line_colors():
 		var a = pair[0]
 		var b = pair[1]
 
-		if (a == current_index and neighbors.has(b)) \
-		or (b == current_index and neighbors.has(a)):
+		# line is white onky if psyche is on this node and
+		# the other end is a known scenario node
+		if (a == current_index and is_known_scenario(b)) \
+		or (b == current_index and is_known_scenario(a)):
 			line.default_color = Color.WHITE
 		else:
 			line.default_color = Color(0.5, 0.5, 0.5)
 
 # Called in advance_position to convert an unknown node to a known node
-func convert_unknown_to_scenario(unknown_node: Node2D):
+func convert_unknown_to_scenario(unknown_node: Node2D, idx: int):
 	var pos = unknown_node.position
 
 	unknown_scenarios.erase(unknown_node)
 	unknown_node.queue_free()
 
-	add_scenario(pos.x, pos.y)
+	add_scenario(pos.x, pos.y, idx)
+
+# Called in update_line_colors to validate if a scenario at index is known
+func is_known_scenario(index: int) -> bool:
+	for scenario in scenarios:
+		if scenario.get_meta("index") == index and !scenario.is_disabled:
+			return true
+	return false
 
 # GEN HELPERS #
 
@@ -152,38 +167,43 @@ func gen_scenarios():
 	for i in range(TOTAL_NODES):
 		if i == 0: # first node is earth + psyche
 			add_earth(NODE_COORDS[i].x, NODE_COORDS[i].y)
+			add_psyche(NODE_COORDS[i].x, NODE_COORDS[i].y, i)
+			psyche_anticipated_location = psyche_node.position
+			psyche_anticipated_index = 0
+			# make psyche frontmost
+			psyche_node.z_index = 100
 		elif i == TOTAL_NODES-1: # last node is the asteroid
 			add_asteroid(NODE_COORDS[i].x, NODE_COORDS[i].y)
 		elif i == 1 or i == 2: # first two adj nodes are known
-			add_scenario(NODE_COORDS[i].x, NODE_COORDS[i].y)
+			add_scenario(NODE_COORDS[i].x, NODE_COORDS[i].y, i)
 		else: # all else unknown
-			add_unknown_scenario(NODE_COORDS[i].x, NODE_COORDS[i].y)
-	# add psyche last so its on top
-	add_psyche(NODE_COORDS[0].x, NODE_COORDS[0].y)
-	psyche_anticipated_location = psyche_node.position
-
+			add_unknown_scenario(NODE_COORDS[i].x, NODE_COORDS[i].y, i)
+	
 # ADD HELPERS #
 
 # Call in gen_scenarios() to add Psyche spacecraft to map
-func add_psyche(x: int, y: int):
+func add_psyche(x: int, y: int, i := -1):
 	var inst = PsycheScene.instantiate()
 	add_child(inst)
 	inst.position = Vector2(x, y)
+	inst.set_meta("index", i)
 	psyche_node = inst
 
 # Call in gen_scenarios() to add battle scenarios to map
-func add_scenario(x: int, y: int):
+func add_scenario(x: int, y: int, i := -1):
 	var inst = ScenarioScene.instantiate()
 	add_child(inst)
 	inst.position = Vector2(x, y)
+	inst.set_meta("index", i)
 	inst.connect("interacted", Callable(self, "_on_child_interacted"))
 	scenarios.append(inst)
 
 # Call in gen_scenarios() to add unknown (?) scenarios to map
-func add_unknown_scenario(x: int, y: int):
+func add_unknown_scenario(x: int, y: int, i := -1):
 	var inst = UnknownScenarioScene.instantiate()
 	add_child(inst)
 	inst.position = Vector2(x, y)
+	inst.set_meta("index", i)
 	unknown_scenarios.append(inst)
 
 # Call in gen_scenarios() to add Earth to map
