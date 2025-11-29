@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://b5aneqr63kcay"]
+[gd_scene load_steps=42 format=3 uid="uid://b5aneqr63kcay"]
 
 [ext_resource type="Script" uid="uid://bryyckfysnh62" path="res://Model/Scenes/test_scene.gd" id="1_6pwi0"]
 [ext_resource type="Script" path="res://Model/Scenes/card_manager.gd" id="2_qb6nl"]
@@ -10,13 +10,13 @@
 [ext_resource type="PackedScene" uid="uid://seg7h6mf4b4q" path="res://Model/CardData/Cards/TestCard6.tscn" id="8_k7non"]
 [ext_resource type="PackedScene" uid="uid://ck52rgyii648y" path="res://Model/CardData/Cards/TestCard7.tscn" id="9_v5pj8"]
 [ext_resource type="PackedScene" uid="uid://bndv7o1dhk3ki" path="res://Model/CardData/Cards/SUPER_AWESOME_CARD.tscn" id="10_k5rhg"]
-[ext_resource type="Script" path="res://Model/Scenes/mock_player.gd" id="10_xfpm0"]
+[ext_resource type="Script" uid="uid://2liaka0mg74s" path="res://Model/Scenes/mock_player.gd" id="10_xfpm0"]
 [ext_resource type="Texture2D" uid="uid://chv57617bldww" path="res://View/Assets/Sprites/Attribute Bars/attribute_bar_mask.png" id="11_d184y"]
 [ext_resource type="FontFile" uid="uid://cyuqcf4mpncuy" path="res://View/Assets/Themes/PixelOperator-Bold.ttf" id="11_wki3r"]
 [ext_resource type="Texture2D" uid="uid://86il4rq4uylj" path="res://View/Assets/Sprites/Attribute Bars/attribute_bar_transparent-filled.png" id="12_wki3r"]
 [ext_resource type="Texture2D" uid="uid://dch647kaox1wi" path="res://View/Assets/Sprites/psyche.png" id="14_m84t2"]
 [ext_resource type="Texture2D" uid="uid://c11b3adcxqv2r" path="res://View/Assets/Card Hud/hud_filled.png" id="14_t7g2w"]
-[ext_resource type="Script" path="res://Model/Scenes/HandController.gd" id="14_v5pj8"]
+[ext_resource type="Script" uid="uid://by8v8y3hmupv4" path="res://Model/Scenes/HandController.gd" id="14_v5pj8"]
 [ext_resource type="Texture2D" uid="uid://c5b6ep18mucxh" path="res://View/Assets/Card Hud/scenario_arrow.png" id="15_qatxi"]
 [ext_resource type="Texture2D" uid="uid://clkpqvj75twac" path="res://View/Assets/Card Hud/card_arrow_filled.png" id="16_k7non"]
 
@@ -309,6 +309,18 @@ tracks/9/keys = {
 "update": 0,
 "values": [Vector2(528, -133)]
 }
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("UI:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_b1qgh"]
 resource_name = "ScenarioEnd"
@@ -466,16 +478,48 @@ tracks/2/keys = {
 "values": [true, false, true]
 }
 
+[sub_resource type="Animation" id="Animation_06rge"]
+resource_name = "ShowUI"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_oeksu"]
+resource_name = "HideUI"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k7non"]
 _data = {
 &"DisplayCardGui": SubResource("Animation_k7non"),
 &"DisplayRewards": SubResource("Animation_j5y8d"),
 &"EnableResponse": SubResource("Animation_k5rhg"),
 &"HideCardGui": SubResource("Animation_v5pj8"),
+&"HideUI": SubResource("Animation_oeksu"),
 &"PsycheScenarioStart": SubResource("Animation_t7g2w"),
 &"RESET": SubResource("Animation_qatxi"),
 &"ScenarioEnd": SubResource("Animation_b1qgh"),
 &"ScenarioOutro": SubResource("Animation_rxymg"),
+&"ShowUI": SubResource("Animation_06rge"),
 &"UseCard": SubResource("Animation_xfpm0")
 }
 
@@ -506,6 +550,7 @@ script = ExtResource("10_xfpm0")
 cardManager = NodePath("../CardManager")
 
 [node name="UI" type="Control" parent="."]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0

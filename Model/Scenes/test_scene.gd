@@ -56,13 +56,11 @@ func _ready() -> void:
 	
 	#assign animation player references
 	GameManager.UIAnimationPlayer = animationPlayer
-	
+
 	print("assigning hand controller...")
 	print(handController)
 	#assign Hand Controller reference 
 	GameManager.handController = handController
-	
-	
 	
 	#load the scenario
 	#GameManager.loadScenario("res://Model/ScenarioData/Scenarios/Sc_DoubleDarkMatter.tscn")
@@ -70,7 +68,9 @@ func _ready() -> void:
 	add_child(mapScene)
 	GameManager.map = mapScene
 	GameManager.UI = $UI
-	$UI.visible = false
+	GameManager.UI.visible = false
+	#$UI.visible = false
+	GameManager.UIAnimationPlayer.play("HideUI")
 
 
 func _on_response_label_gui_input(event: InputEvent) -> void:

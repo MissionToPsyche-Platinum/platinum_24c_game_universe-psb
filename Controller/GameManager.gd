@@ -5,7 +5,9 @@ extends Node
 @export var card_manager: CardManager
 @export var map: Map
 
-@export var UI: Control
+var UI: Control
+#@onready var UI = get_tree().get_root().get_node("UI")
+
 
 #boolean to see if the player has lost
 var playerLost: bool = false
@@ -44,10 +46,18 @@ func getCardManager() -> CardManager:
 	return card_manager
 	
 func loadScenario(scenePath: String) -> void:
+
+	#UI = get_tree().get_root().get_node("UI")
 	#first unload the current scenario if necessary
 	if scenario:
 		scenario.queue_free()
 		
+	# Clear previous rewards
+	
+	# reset scenarioHeader text
+	scenarioHeader.text = ""
+	scenarioEffectLabel.text = ""
+
 	#get the scene from the file path
 	var scenarioScene = load(scenePath)
 	scenario = scenarioScene.instantiate()
@@ -56,18 +66,23 @@ func loadScenario(scenePath: String) -> void:
 	add_child(scenario)
 	
 	#get the scenario description text
+	#print("scenarioHeader parent: ", scenarioHeader.get_parent())
+
 	scenarioHeader.text = scenario.scenarioText
 	scenarioEffectLabel.text = scenario.getAffectedAttributes()
-	
-	
+	#scenarioHeader = UI.get_node("UI/Scenario Effect Labels/Scenario Effect Header")
+	#scenarioEffectLabel = UI.get_node("UI/Scenario Effect Labels/Scenario Effect Label")
+	#print("scenarioHeader in ready(): ", scenarioHeader, "   in tree? ", scenarioHeader.is_inside_tree())
+	print(scenarioHeader.text)
+
 	#connect to scenario signals
 	scenario.connect("scenarioWon", Callable(self, "endScenario"))
 	scenario.connect("endScenarioTurn", Callable(self, "endScenarioTurn"))
 	
-	
-	
 	#Scenario is done loading
 	print("Scenario is done loading.")
+	UIAnimationPlayer.play("ShowUI")
+	
 	UI.visible = true
 	
 	#have the player draw a new hand
@@ -76,6 +91,10 @@ func loadScenario(scenePath: String) -> void:
 	#play the intro animation
 	UIAnimationPlayer.play("PsycheScenarioStart")
 	
+	# force header back into proper position
+	scenarioHeader.position = Vector2(21, 17)
+	
+
 func endPlayerTurn() -> void:
 	print("Ending player turn")
 	#check if the player lost on their turn
@@ -112,7 +131,10 @@ func endScenario() -> void:
 	
 	# Get reward scenes
 	rewards = card_manager.getReward()
-	#s
+	rewardsHolder.visible = true
+	var rl = UI.get_node("RewardControl/Reward Label")
+	var rewardLabelParent = rl.get_parent()
+	rewardLabelParent.visible = true
 	for reward in rewards:
 		var rewardInstance: Control = reward.instantiate()
 		#save the packed scene for later use
@@ -152,8 +174,16 @@ func rewardChosen(card) -> void:
 		player.returnAllCards()
 		print(player.deck)
 		
+		rewardsHolder.visible = false
 		#load the map screen 
 		map.advance_position()
+		if UIAnimationPlayer.is_playing():
+			UIAnimationPlayer.stop()
+		UIAnimationPlayer.play("HideUI")
+
+		var rl = UI.get_node("RewardControl/Reward Label")
+		var rewardLabelParent = rl.get_parent()
+		rewardLabelParent.visible = false
 		UI.visible = false
 	else:
 		print("No packed scene detected, cannot add to player deck")
