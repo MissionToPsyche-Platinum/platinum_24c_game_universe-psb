@@ -39,6 +39,9 @@ func getScenario() -> Scenario:
 
 func getCardManager() -> CardManager:
 	return card_manager
+
+func change_scene_to_file(path: String) -> void:
+	get_tree().change_scene_to_file(path)
 	
 func loadScenario(scenePath: String) -> void:
 	#first unload the current scenario if necessary
@@ -76,7 +79,7 @@ func endPlayerTurn() -> void:
 	print("Ending player turn")
 	#check if the player lost on their turn
 	if playerLost:
-		get_tree().change_scene_to_file("res://Model/ScreenData/LoseScreen.tscn")
+		self.change_scene_to_file("res://Model/ScreenData/LoseScreen.tscn")
 		return
 	
 	#tween the header text back to the scenario 
@@ -96,7 +99,7 @@ func endScenarioTurn() -> void:
 	print("scenario turn ended") 
 	#check if the player lost on scenario turn
 	if playerLost:
-		get_tree().change_scene_to_file("res://Model/ScreenData/LoseScreen.tscn")
+		self.change_scene_to_file("res://Model/ScreenData/LoseScreen.tscn")
 		return
 	#have the player do what they need to do on the beginning of their turn
 	player.beginPlayerTurn()

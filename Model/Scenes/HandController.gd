@@ -28,7 +28,13 @@ func _ready():
 func addCard(card_node: Control) -> void:
 	# wrap so layout works
 	var wrapper := Control.new()
+<<<<<<< Updated upstream
 	wrapper.set_custom_minimum_size(Vector2(200, 0)) 
+=======
+	if not test_mode:
+			wrapper.set_custom_minimum_size(Vector2(200, 0))
+	
+>>>>>>> Stashed changes
 	wrapper.add_child(card_node)
 
 	card_container.add_child(wrapper)
@@ -37,8 +43,9 @@ func addCard(card_node: Control) -> void:
 	# ensure selectedIndex valid
 	if cards.size() == 1:
 		selectedIndex = 0
-
-	updateLayout()
+	
+	if not test_mode:
+		updateLayout()
 
 
 func removeCard(card_node: Control) -> void:
@@ -76,6 +83,9 @@ func rotateRight() -> void:
 
 
 func updateLayout() -> void:
+	if test_mode:
+		return
+		
 	if cards.size() == 0 or selectedIndex >= cards.size():
 		return  # nothing to layout
 	
