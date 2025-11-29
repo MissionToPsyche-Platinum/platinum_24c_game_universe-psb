@@ -25,5 +25,6 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			print("Clicked on sprite")
 			emit_signal("interacted", self)
+			# CHANGE TO SCENARIO CLICKED ON
 			get_tree().change_scene_to_file("res://Model/Scenes/scenario_placeholder.tscn")
 			print("Changed scene to scenario")

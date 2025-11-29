@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://vn1u0o2vkuy8"
-path="res://.godot/imported/white_path.png-f94e521c5fbbb971eb89d4845ff81e9f.ctex"
+uid="uid://xsawk3eoh0qq"
+path="res://.godot/imported/meteroid_scenario_icon_white.png-5d8f39f157b935eb15923b4e966b9ec6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://View/Assets/Sprites/Map/white_path.png"
-dest_files=["res://.godot/imported/white_path.png-f94e521c5fbbb971eb89d4845ff81e9f.ctex"]
+source_file="res://View/Assets/Sprites/Map/meteroid_scenario_icon_white.png"
+dest_files=["res://.godot/imported/meteroid_scenario_icon_white.png-5d8f39f157b935eb15923b4e966b9ec6.ctex"]
 
 [params]
 
