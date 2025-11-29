@@ -60,19 +60,26 @@ func advance_position():
 	if new_index == -1:
 		return
 		
-	# if psyche_anticipated_location == end node, you win
-	var asteroid_neighbors = get_connected_nodes(TOTAL_NODES - 1)
-	if asteroid_neighbors.has(new_index):
-		get_tree().change_scene_to_file("res://Model/ScreenData/WinScreen.tscn")
-		self.visible = false
+	# Disable previously active scenario nodes
+	for scenario in scenarios:
+		if !scenario.is_disabled:
+			scenario.disable()
 
-	# Convert all unknown nodes adjacent to new location
+	# Convert all unknown nodes to known adjacent to new location
 	var neighbors = get_connected_nodes(new_index)
 	for unknown in unknown_scenarios.duplicate():
 		var idx = get_node_index_from_position(unknown.position)
 		if neighbors.has(idx):
 			convert_unknown_to_scenario(unknown)
+	# Update line colors according to new location
 	update_line_colors()
+	
+	# if psyche_anticipated_location == end node, you win
+	var asteroid_neighbors = get_connected_nodes(TOTAL_NODES - 1)
+	if asteroid_neighbors.has(new_index):
+		get_tree().change_scene_to_file("res://Model/ScreenData/WinScreen.tscn")
+		self.visible = false
+	
 	self.visible = true
 
 # Recieves signal from battle scenario node when clicked on
@@ -145,14 +152,15 @@ func gen_scenarios():
 	for i in range(TOTAL_NODES):
 		if i == 0: # first node is earth + psyche
 			add_earth(NODE_COORDS[i].x, NODE_COORDS[i].y)
-			add_psyche(NODE_COORDS[i].x, NODE_COORDS[i].y)
-			psyche_anticipated_location = psyche_node.position
 		elif i == TOTAL_NODES-1: # last node is the asteroid
 			add_asteroid(NODE_COORDS[i].x, NODE_COORDS[i].y)
 		elif i == 1 or i == 2: # first two adj nodes are known
 			add_scenario(NODE_COORDS[i].x, NODE_COORDS[i].y)
 		else: # all else unknown
 			add_unknown_scenario(NODE_COORDS[i].x, NODE_COORDS[i].y)
+	# add psyche last so its on top
+	add_psyche(NODE_COORDS[0].x, NODE_COORDS[0].y)
+	psyche_anticipated_location = psyche_node.position
 
 # ADD HELPERS #
 
