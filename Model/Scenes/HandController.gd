@@ -37,6 +37,8 @@ func addCard(card_node: Control) -> void:
 			wrapper.set_custom_minimum_size(Vector2(200, 0))
 	if not test_mode:
 			wrapper.set_custom_minimum_size(Vector2(200, 0))
+	if not test_mode:
+			wrapper.set_custom_minimum_size(Vector2(200, 0))
 	wrapper.add_child(card_node)
 
 	card_container.add_child(wrapper)
