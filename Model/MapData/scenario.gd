@@ -41,6 +41,8 @@ func choose_random_scenario():
 		return
 	
 	# Pick a random scenario
+	# once more scenarios are added, probably want to exclude
+	# already selected scenarios
 	var random_index = randi() % files.size()
 	scenario_path = files[random_index]
 	print("Selected scenario: ", scenario_path)
