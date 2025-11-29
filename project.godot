@@ -18,3 +18,7 @@ config/icon="res://View/Assets/Sprites/icon.svg"
 [autoload]
 
 GameManager="*res://Controller/GameManager.gd"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gut/plugin.cfg")

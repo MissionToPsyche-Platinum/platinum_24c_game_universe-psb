@@ -17,7 +17,7 @@ position = Vector2(576, 324.00003)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("2_1ecxf")
 
-[node name="Button" type="Button" parent="."]
+[node name="StartButton" type="Button" parent="."]
 modulate = Color(1, 1, 1, 0)
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
@@ -31,4 +31,4 @@ offset_top = 0.27996826
 offset_right = -0.048034668
 offset_bottom = 0.11999512
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="StartButton" to="." method="_on_button_pressed"]

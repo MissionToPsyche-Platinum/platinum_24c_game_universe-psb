@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://faakgx8sc0bk"]
+
+[sub_resource type="GDScript" id="GDScript_01l7t"]
+script/source = "extends GutTest
+
+func test_game_starts_successfully():
+	# Load the main game scene
+	var main_scene_path = \"res://scenes/main_game.tscn\" # Adjust this path to your main scene
+	var main_scene = load(main_scene_path)
+	assert_not_null(main_scene, \"Main scene should not be null\")
+
+	# Instantiate the main scene
+	var main_instance = main_scene.instantiate()
+	assert_not_null(main_instance, \"Main scene instance should not be null\")
+
+	# Add the main scene to the current tree (for testing purposes)
+	get_tree().get_root().add_child(main_instance)
+
+	# Clean up after the test (remove the instantiated scene)
+	main_instance.queue_free()
+"
+
+[node name="GameStartTest" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_01l7t")
