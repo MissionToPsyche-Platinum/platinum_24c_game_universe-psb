@@ -27,13 +27,6 @@ func _ready() -> void:
 	protocolCardSprite.texture = cardSprite
 	
 		
-func setupFromResource(resource: Resource) -> void:
-	cardName = resource.cardName
-	cardSprite = resource.cardSprite
-	cardDescription = resource.cardDescription
-	cardBehavior = resource.cardBehavior
-	
-		
 func use() -> void:
 	#first check if card is playable
 	for behavior in cardBehavior:

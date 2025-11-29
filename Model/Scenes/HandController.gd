@@ -11,7 +11,7 @@ class_name HandController
 
 
 var card_container: Control
-var cards: Array[Control] = []
+var cards: Array[Control] = [] 
 var selectedIndex := 0
 
 
@@ -22,7 +22,7 @@ func _ready():
 func addCard(card_node: Control) -> void:
 	# wrap so layout works
 	var wrapper := Control.new()
-	wrapper.set_custom_minimum_size(Vector2(200, 0))
+	wrapper.set_custom_minimum_size(Vector2(200, 0)) 
 	wrapper.add_child(card_node)
 
 	card_container.add_child(wrapper)

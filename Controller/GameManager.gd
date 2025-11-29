@@ -148,7 +148,7 @@ func rewardChosen(card) -> void:
 		player.returnAllCards()
 		print(player.deck)
 		
-		#load the map screen 
+		#load the map screen   
 		
 	else:
 		print("No packed scene detected, cannot add to player deck")
