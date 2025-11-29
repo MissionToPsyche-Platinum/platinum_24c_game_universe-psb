@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://daxcgqmhsx8dw"]
+
+[ext_resource type="PackedScene" uid="uid://lhp1mrb310f" path="res://Model/ScenarioData/ScenarioBases/scenario_base.tscn" id="1_fag4n"]
+[ext_resource type="Script" uid="uid://cda51huvrayd1" path="res://Model/CardData/CardBehaviorData/AttriubuteEffect.gd" id="2_bjocv"]
+
+[sub_resource type="Resource" id="Resource_byvet"]
+script = ExtResource("2_bjocv")
+affectedAttribute = 2
+amount = -10.0
+metadata/_custom_type_script = "uid://cda51huvrayd1"
+
+[sub_resource type="Resource" id="Resource_fpsow"]
+script = ExtResource("2_bjocv")
+amount = 150.0
+metadata/_custom_type_script = "uid://cda51huvrayd1"
+
+[node name="ScenarioBase" instance=ExtResource("1_fag4n")]
+affectedAttributes = Array[ExtResource("2_bjocv")]([SubResource("Resource_byvet")])
+attributeWinConditions = Array[ExtResource("2_bjocv")]([SubResource("Resource_fpsow")])
+scenarioText = "A bunch of tiny space junk starts ramming into Psyche, causing it to slow down. It needs some thicker skin before it stops completely!"

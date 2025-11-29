@@ -64,7 +64,7 @@ func _ready() -> void:
 	
 	
 	#load the scenario
-	GameManager.loadScenario("res://Model/ScenarioData/Scenarios/Sc_DoubleDarkMatter.tscn")
+	GameManager.loadScenario("res://Model/ScenarioData/Scenarios/Sc_Icarus.tscn")
 
 
 func _on_response_label_gui_input(event: InputEvent) -> void:

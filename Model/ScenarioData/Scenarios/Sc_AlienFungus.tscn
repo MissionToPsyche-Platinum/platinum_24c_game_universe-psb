@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://baphpy6oa32bq"]
+
+[ext_resource type="PackedScene" uid="uid://lhp1mrb310f" path="res://Model/ScenarioData/ScenarioBases/scenario_base.tscn" id="1_tgi5n"]
+[ext_resource type="Script" uid="uid://cda51huvrayd1" path="res://Model/CardData/CardBehaviorData/AttriubuteEffect.gd" id="2_6qecr"]
+
+[sub_resource type="Resource" id="Resource_n6vdk"]
+script = ExtResource("2_6qecr")
+amount = -10.0
+metadata/_custom_type_script = "uid://cda51huvrayd1"
+
+[sub_resource type="Resource" id="Resource_kriyw"]
+script = ExtResource("2_6qecr")
+affectedAttribute = 1
+amount = 150.0
+metadata/_custom_type_script = "uid://cda51huvrayd1"
+
+[node name="ScenarioBase" instance=ExtResource("1_tgi5n")]
+affectedAttributes = Array[ExtResource("2_6qecr")]([SubResource("Resource_n6vdk")])
+attributeWinConditions = Array[ExtResource("2_6qecr")]([SubResource("Resource_kriyw")])
+scenarioText = "Uh, that alien fungus all over your hull wasnt there before, was it? Even worse, it seems to love the tast of itl. PerhapSs running enough electricity through your frame would get it to buzz off..."
