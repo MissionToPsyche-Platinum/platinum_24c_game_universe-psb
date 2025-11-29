@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=3 uid="uid://7wpt2pr8jwaa"]
+
+[ext_resource type="Script" uid="uid://dbwvfr8urjpbn" path="res://Model/CardData/BaseCardData/protocol_card_base.gd" id="1_jce6x"]
+[ext_resource type="Texture2D" uid="uid://0yss2jchhn12" path="res://View/Assets/Sprites/card_filled.png" id="2_lon5y"]
+[ext_resource type="Texture2D" uid="uid://bh1yvmsi01mvl" path="res://View/Assets/Sprites/icon.svg" id="3_e7m50"]
+[ext_resource type="FontFile" uid="uid://cyuqcf4mpncuy" path="res://View/Assets/Themes/PixelOperator-Bold.ttf" id="3_evo7n"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_evo7n"]
+font = ExtResource("3_evo7n")
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_l00ld"]
+font = ExtResource("3_evo7n")
+font_size = 40
+
+[node name="Control" type="Control" node_paths=PackedStringArray("rewardsClickable")]
+layout_mode = 3
+anchors_preset = 0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_jce6x")
+rewardsClickable = NodePath("CardBackground/RewardClickable")
+
+[node name="CardBackground" type="Sprite2D" parent="."]
+scale = Vector2(1.14, 1.11834)
+texture = ExtResource("2_lon5y")
+
+[node name="ProtocolCardName" type="Label" parent="CardBackground"]
+offset_left = -213.0
+offset_top = -340.0
+offset_right = 220.0
+offset_bottom = -271.0
+text = "Protocol Card Title"
+label_settings = SubResource("LabelSettings_evo7n")
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ProtocolCardDescription" type="Label" parent="CardBackground"]
+anchors_preset = -1
+anchor_top = -0.10378682
+offset_left = -213.0
+offset_top = 4.0
+offset_right = 219.0
+offset_bottom = 348.0
+text = "Protocol Card Description
+"
+label_settings = SubResource("LabelSettings_l00ld")
+horizontal_alignment = 1
+autowrap_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="ProtocolCardSprite" type="Sprite2D" parent="CardBackground"]
+position = Vector2(0, -178)
+texture = ExtResource("3_e7m50")
+
+[node name="RewardClickable" type="Control" parent="CardBackground"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = -242.47491
+offset_top = -351.17053
+offset_right = 249.16388
+offset_bottom = 351.17053
+
+[connection signal="gui_input" from="CardBackground/RewardClickable" to="." method="_on_reward_clickable_gui_input"]

@@ -1,0 +1,24 @@
+[gd_scene load_steps=7 format=3 uid="uid://17imtoq1ypop"]
+
+[ext_resource type="PackedScene" uid="uid://7wpt2pr8jwaa" path="res://Model/CardData/BaseCardData/protocol_card_base.tscn" id="1_pj608"]
+[ext_resource type="Texture2D" uid="uid://bnhxgu0f1ye4y" path="res://View/Assets/Sprites/dummyPsyche.jpg" id="2_dq7pe"]
+[ext_resource type="Script" uid="uid://cda51huvrayd1" path="res://Model/CardData/CardBehaviorData/AttriubuteEffect.gd" id="3_ykj22"]
+[ext_resource type="Script" uid="uid://jvo5d8np0a4x" path="res://Model/CardData/CardBehaviorData/AttributeBehavior.gd" id="4_g461a"]
+
+[sub_resource type="Resource" id="Resource_np7ld"]
+script = ExtResource("3_ykj22")
+affectedAttribute = 1
+amount = 10.0
+metadata/_custom_type_script = "uid://cda51huvrayd1"
+
+[sub_resource type="Resource" id="Resource_kxoqy"]
+script = ExtResource("4_g461a")
+affectedAttributes = Array[ExtResource("3_ykj22")]([SubResource("Resource_np7ld")])
+metadata/_custom_type_script = "uid://jvo5d8np0a4x"
+
+[node name="ProtocolCardBase" instance=ExtResource("1_pj608")]
+cardName = "Test Card 3"
+cardSprite = ExtResource("2_dq7pe")
+cardDescription = "+10 Power"
+cardBehavior = Array[Resource]([SubResource("Resource_kxoqy")])
+cardUseHeader = "Test Card 3"

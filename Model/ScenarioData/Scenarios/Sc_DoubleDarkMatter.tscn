@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://deeletb3f4xjx"]
+
+[ext_resource type="PackedScene" uid="uid://lhp1mrb310f" path="res://Model/ScenarioData/ScenarioBases/scenario_base.tscn" id="1_psfb2"]
+[ext_resource type="Script" uid="uid://cda51huvrayd1" path="res://Model/CardData/CardBehaviorData/AttriubuteEffect.gd" id="2_3k4yb"]
+
+[sub_resource type="Resource" id="Resource_b4et1"]
+script = ExtResource("2_3k4yb")
+affectedAttribute = 1
+amount = -20.0
+metadata/_custom_type_script = "uid://cda51huvrayd1"
+
+[sub_resource type="Resource" id="Resource_g1w15"]
+script = ExtResource("2_3k4yb")
+affectedAttribute = 2
+amount = 150.0
+metadata/_custom_type_script = "uid://cda51huvrayd1"
+
+[node name="ScenarioBase" instance=ExtResource("1_psfb2")]
+affectedAttributes = Array[ExtResource("2_3k4yb")]([SubResource("Resource_b4et1")])
+attributeWinConditions = Array[ExtResource("2_3k4yb")]([SubResource("Resource_g1w15")])
+scenarioText = "The amount of dark energy just doubled, and the universe is expanding twice as fast! Psyche needs to speed up - divert all power to propulsion!"

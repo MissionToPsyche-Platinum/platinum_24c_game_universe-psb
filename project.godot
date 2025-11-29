@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="PsycheAgainstTheUniverse"
-run/main_scene="res://Model/Scenes/node_2d.tscn"
+run/main_scene="uid://dho25gjn530im"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://View/Assets/Sprites/icon.svg"
 
@@ -27,3 +27,10 @@ window/stretch/mode="viewport"
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+[autoload]
+
+GameManager="*res://Controller/GameManager.gd"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gut/plugin.cfg")
