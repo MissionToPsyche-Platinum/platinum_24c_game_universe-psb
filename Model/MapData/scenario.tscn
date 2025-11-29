@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://65wbpo7vyc15" path="res://View/Assets/Sprites/Map/ufo_scenario_icon_white.png" id="2_jhy8r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ppkxm"]
-size = Vector2(182, 85)
+size = Vector2(185, 185)
 
 [node name="Clickable Scenario" type="Area2D"]
 scale = Vector2(0.6, 0.6)
