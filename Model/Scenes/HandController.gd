@@ -28,25 +28,15 @@ func _ready():
 func addCard(card_node: Control) -> void:
 	# wrap so layout works
 	var wrapper := Control.new()
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 	wrapper.set_custom_minimum_size(Vector2(200, 0)) 
-=======
 	if not test_mode:
 			wrapper.set_custom_minimum_size(Vector2(200, 0))
-	
->>>>>>> Stashed changes
-=======
 	if not test_mode:
 			wrapper.set_custom_minimum_size(Vector2(200, 0))
-	
->>>>>>> Stashed changes
-=======
 	if not test_mode:
 			wrapper.set_custom_minimum_size(Vector2(200, 0))
-	
->>>>>>> Stashed changes
+	if not test_mode:
+			wrapper.set_custom_minimum_size(Vector2(200, 0))
 	wrapper.add_child(card_node)
 
 	card_container.add_child(wrapper)
