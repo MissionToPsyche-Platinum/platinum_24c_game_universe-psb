@@ -1,7 +1,7 @@
-[gd_scene load_steps=42 format=3 uid="uid://b5aneqr63kcay"]
+[gd_scene load_steps=40 format=3 uid="uid://b5aneqr63kcay"]
 
 [ext_resource type="Script" uid="uid://bryyckfysnh62" path="res://Model/Scenes/test_scene.gd" id="1_6pwi0"]
-[ext_resource type="Script" path="res://Model/Scenes/card_manager.gd" id="2_qb6nl"]
+[ext_resource type="Script" uid="uid://lp0itw18h7mo" path="res://Model/Scenes/card_manager.gd" id="2_qb6nl"]
 [ext_resource type="PackedScene" uid="uid://ba3anonls50oq" path="res://Model/CardData/Cards/TestCard1.tscn" id="3_d184y"]
 [ext_resource type="PackedScene" uid="uid://dpbrwrnhljytj" path="res://Model/CardData/Cards/TestCard2.tscn" id="4_wki3r"]
 [ext_resource type="PackedScene" uid="uid://17imtoq1ypop" path="res://Model/CardData/Cards/TestCard3.tscn" id="5_m84t2"]
@@ -309,18 +309,6 @@ tracks/9/keys = {
 "update": 0,
 "values": [Vector2(528, -133)]
 }
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("UI:visible")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
 
 [sub_resource type="Animation" id="Animation_b1qgh"]
 resource_name = "ScenarioEnd"
@@ -478,48 +466,16 @@ tracks/2/keys = {
 "values": [true, false, true]
 }
 
-[sub_resource type="Animation" id="Animation_06rge"]
-resource_name = "ShowUI"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("UI:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_oeksu"]
-resource_name = "HideUI"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("UI:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k7non"]
 _data = {
 &"DisplayCardGui": SubResource("Animation_k7non"),
 &"DisplayRewards": SubResource("Animation_j5y8d"),
 &"EnableResponse": SubResource("Animation_k5rhg"),
 &"HideCardGui": SubResource("Animation_v5pj8"),
-&"HideUI": SubResource("Animation_oeksu"),
 &"PsycheScenarioStart": SubResource("Animation_t7g2w"),
 &"RESET": SubResource("Animation_qatxi"),
 &"ScenarioEnd": SubResource("Animation_b1qgh"),
 &"ScenarioOutro": SubResource("Animation_rxymg"),
-&"ShowUI": SubResource("Animation_06rge"),
 &"UseCard": SubResource("Animation_xfpm0")
 }
 
@@ -549,7 +505,6 @@ rewardMaximumAmount = 2
 script = ExtResource("10_xfpm0")
 
 [node name="UI" type="Control" parent="."]
-unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
