@@ -1,12 +1,14 @@
 extends Node2D
 class_name Map
 
+#node scenes
 const PsycheScene = preload("uid://cjy685rokwo4q")
 const EarthScene = preload("uid://d27qiheuudmom")
 const PsycheAsteroidScene = preload("uid://of3br6vte6xu")
 const ScenarioScene = preload("uid://brf8psrjkpbsh")
 const UnknownScenarioScene = preload("uid://bhmwabijgly1l")
 
+#node coordinates and connections
 # want to find a better way to do this, make more flexible
 const TOTAL_NODES = 9
 const NODE_COORDS := [
@@ -26,13 +28,16 @@ const CONNECTIONS := [
 	[4,7], [5,7], [6,8], [7,8]
 ]
 
+#map nodes
 var scenarios = []
 var unknown_scenarios = []
 var earth_node : Node2D
 var asteroid_node : Node2D
 var psyche_node : Node2D
+#map lines
 var lines = []
 var line_connections: Array = []
+#psyche's location
 var psyche_anticipated_location : Vector2
 var psyche_anticipated_index : int
 var psyche_previous_index := 0
@@ -42,12 +47,6 @@ func _ready() -> void:
 	gen_lines()
 	gen_scenarios()
 	update_line_colors()
-	#$Camera2D.position = Vector2(1920/2, 1080/2)
-	#$Camera2D.zoom = Vector2(1152.0/1920.0, 648.0/1080.0)
-	#var uniform_scale = min(1152.0/1920.0, 648.0/1080.0)
-	#self.position = Vector2(1920/2, 1080/2)
-	#self.scale = Vector2(uniform_scale, uniform_scale)
-	#self.scale = Vector2(0.6, 0.6)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -60,7 +59,6 @@ func advance_position():
 	psyche_node.position = psyche_anticipated_location
 	psyche_node.set_meta("index", psyche_anticipated_index)
 	
-	#var new_index = get_node_index_from_position(psyche_anticipated_location)
 	var new_index = psyche_anticipated_index
 	if new_index == -1:
 		return
@@ -70,14 +68,14 @@ func advance_position():
 		if !scenario.is_disabled:
 			scenario.disable()
 
-	# Convert all unknown nodes to known adjacent to new location
+	# convert all unknown nodes adjacent to new location
 	var neighbors = get_connected_nodes(new_index)
 	for unknown in unknown_scenarios.duplicate():
 		var idx = unknown.get_meta("index")
 		if neighbors.has(idx):
 			convert_unknown_to_scenario(unknown, idx)
 			
-	# Update line colors according to new location
+	# update line colors according to new location
 	update_line_colors()
 	
 	# if psyche_anticipated_location == end node, you win
@@ -140,10 +138,10 @@ func update_line_colors():
 # Called in advance_position to convert an unknown node to a known node
 func convert_unknown_to_scenario(unknown_node: Node2D, idx: int):
 	var pos = unknown_node.position
-
+	#remove from unknown scenarios
 	unknown_scenarios.erase(unknown_node)
 	unknown_node.queue_free()
-
+	#add new scenario node in its place
 	add_scenario(pos.x, pos.y, idx)
 
 # Called in update_line_colors to validate if a scenario at index is known
