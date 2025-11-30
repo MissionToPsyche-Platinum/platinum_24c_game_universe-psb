@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcy61pjypidjy"]
+
+[ext_resource type="Script" uid="uid://dex6wja4wegrh" path="res://test/integration/test_integration_map_tests.gd" id="1_e6xp8"]
+
+[node name="IntegrationMapTests" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_e6xp8")

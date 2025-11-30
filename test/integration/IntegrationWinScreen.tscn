@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://da7t2hqckxd5l"]
+
+[ext_resource type="Script" uid="uid://i6p32jnoeulo" path="res://test/integration/test_integration_win_screen.gd" id="1_at5jn"]
+
+[node name="IntegrationWinScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_at5jn")

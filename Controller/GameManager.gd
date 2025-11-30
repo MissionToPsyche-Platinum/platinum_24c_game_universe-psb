@@ -24,9 +24,8 @@ var hullIntegrityBar : TextureProgressBar
 var powerBar : TextureProgressBar
 var velocityBar : TextureProgressBar
 
-#reference to AnimationPlayers
 #UI animation Player
-var UIAnimationPlayer : AnimationPlayer
+var UIAnimationPlayer
 
 #reference to hand controller
 var handController : HandController
@@ -145,35 +144,50 @@ func endScenario() -> void:
 	UIAnimationPlayer.play("ScenarioEnd")
 
 func rewardChosen(card) -> void:
-	#retrive the packed scene
+	# Retrieve the packed scene
 	var packedScene = card.get_meta("source_scene")
 	if packedScene:
-		#add scene to player's deck 
+		# Add scene to player's deck 
 		player.deck.append(packedScene)
 		UIAnimationPlayer.play("ScenarioOutro")
-		#remove the chosen cards from the rewards
+
+		# Remove the chosen card from the rewards
 		rewards.erase(packedScene)
-		#append the remaining cards back into the bank
-		card_manager.bank += rewards
-		card_manager.bank.shuffle()
-		
-		#reset the player deck
+
+		# Append remaining rewards safely back into the card manager bank
+		if card_manager:
+			if not card_manager.bank:
+				card_manager.bank = []
+			card_manager.bank.append_array(rewards)
+			card_manager.bank.shuffle()
+
+		# Reset the player deck
 		player.returnAllCards()
 		print(player.deck)
-		
-		#disable rewardholder and reward label visibility
-		rewardsHolder.visible = false
+
+		# Disable rewardsHolder and reward label visibility
+		if rewardsHolder:
+			rewardsHolder.visible = false
 		var rl = UI.get_node("RewardControl/Reward Label")
-		var rewardLabelParent = rl.get_parent()
-		rewardLabelParent.visible = false
+		if rl:
+			var rewardLabelParent = rl.get_parent()
+			if rewardLabelParent:
+				rewardLabelParent.visible = false
+
+		# Load the map screen safely
+		if map and map.has_method("advance_position"):
+			map.advance_position()
+		else:
+			print("Warning: Map is not assigned or missing 'advance_position' method")
+
+		# Handle UI animations
+		if UIAnimationPlayer:
+			if UIAnimationPlayer.is_playing():
+				UIAnimationPlayer.stop()
+			UIAnimationPlayer.play("HideUI")
+			UIAnimationPlayer.play("RESET")
 		
-		#load the map screen 
-		map.advance_position()
-		if UIAnimationPlayer.is_playing():
-			UIAnimationPlayer.stop()
-		UIAnimationPlayer.play("HideUI")
-		UIAnimationPlayer.play("RESET")
-		UI.visible = false
+		if UI:
+			UI.visible = false
 	else:
 		print("No packed scene detected, cannot add to player deck")
-	return 

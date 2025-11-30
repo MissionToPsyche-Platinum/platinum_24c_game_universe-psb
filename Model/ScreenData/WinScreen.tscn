@@ -1,7 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://vc61u7ks67wb"]
+[gd_scene load_steps=4 format=3 uid="uid://0glo3ucw20ob"]
 
-[ext_resource type="Script" uid="uid://bg5m3sjme8yjo" path="res://Model/ScreenData/PlayAgain.gd" id="1_felco"]
 [ext_resource type="Texture2D" uid="uid://3ab8s04qwo1k" path="res://View/Assets/Win Screen/Win Screen.png" id="1_yv73s"]
+[ext_resource type="Script" uid="uid://c10ts85rvyodh" path="res://Model/ScreenData/PlayAgain.gd" id="3_gkcnr"]
+
+[sub_resource type="GDScript" id="GDScript_felco"]
+script/source = "extends Control
+
+func _on_play_again_button_pressed() -> void:
+	get_tree().change_scene_to_file(\"res://Model/Scenes/MainScene.tscn\")
+	pass # Replace with function body.
+"
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -10,23 +18,26 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_felco")
+script = SubResource("GDScript_felco")
 
 [node name="WinScreen" type="Sprite2D" parent="."]
 position = Vector2(576.00006, 324)
 scale = Vector2(0.76190484, 0.65987784)
 texture = ExtResource("1_yv73s")
 
-[node name="Button" type="Button" parent="."]
+[node name="PlayAgainButton" type="Button" parent="."]
 modulate = Color(1, 1, 1, 0)
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.148
+anchor_left = 0.147
 anchor_top = 0.77900004
-anchor_right = 0.84400004
-anchor_bottom = 0.87700003
-offset_left = -0.4960022
+anchor_right = 0.845
+anchor_bottom = 0.878
+offset_left = -0.34399414
 offset_top = 0.2079773
-offset_right = -0.2880249
-offset_bottom = -0.2960205
+offset_right = -0.44006348
+offset_bottom = 0.05596924
+script = ExtResource("3_gkcnr")
+
+[connection signal="pressed" from="PlayAgainButton" to="." method="_on_play_again_button_pressed"]

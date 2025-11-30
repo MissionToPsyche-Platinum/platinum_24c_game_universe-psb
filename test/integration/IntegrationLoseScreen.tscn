@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://doft07kot2pus"]
+
+[ext_resource type="Script" uid="uid://8yfscu1jfcqj" path="res://test/integration/test_integration_lose_screen.gd" id="1_ecal3"]
+
+[node name="IntegrationLoseScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ecal3")
