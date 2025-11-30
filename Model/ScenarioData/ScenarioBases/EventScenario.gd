@@ -31,4 +31,27 @@ func performScenarioEffect() -> void:
 	emit_signal("endScenarioTurn")
 	#emit the end scenario turn signal 
 	
+func getWinCondition() -> String:
+		var header = ""
+		var conditions = ""
+		
+		if attributeWinConditions.size() > 1:
+			header = "Scenario Win Conditions: \n "
+		else:
+			header = "Scenario Win Condition: \n "
+			
+		for condition in attributeWinConditions:
+			match condition.affectedAttribute:
+				0: 
+					conditions += (str(condition.amount) + " Hull Integrity\n")
+				1:
+					conditions += (str(condition.amount) + " Power\n")
+				2:
+					conditions += (str(condition.amount) + " Velocity\n")
+		
+		return header + conditions
+				
+					
+			
+	
 	

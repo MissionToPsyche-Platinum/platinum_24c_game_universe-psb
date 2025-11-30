@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b2s4573m24uxf"]
+[gd_scene load_steps=7 format=3 uid="uid://b2s4573m24uxf"]
 
 [ext_resource type="PackedScene" uid="uid://7wpt2pr8jwaa" path="res://Model/CardData/BaseCardData/protocol_card_base.tscn" id="1_x7db8"]
 [ext_resource type="Texture2D" uid="uid://bh1yvmsi01mvl" path="res://View/Assets/Sprites/icon.svg" id="2_t7eby"]
@@ -7,23 +7,18 @@
 
 [sub_resource type="Resource" id="Resource_a4ypw"]
 script = ExtResource("3_23dcj")
-amount = 10.0
-metadata/_custom_type_script = "uid://cda51huvrayd1"
-
-[sub_resource type="Resource" id="Resource_u08ot"]
-script = ExtResource("3_23dcj")
 affectedAttribute = 2
-amount = 10.0
+amount = 30.0
 metadata/_custom_type_script = "uid://cda51huvrayd1"
 
 [sub_resource type="Resource" id="Resource_vq4ld"]
 script = ExtResource("4_jtk32")
-affectedAttributes = Array[ExtResource("3_23dcj")]([SubResource("Resource_a4ypw"), SubResource("Resource_u08ot")])
+affectedAttributes = Array[ExtResource("3_23dcj")]([SubResource("Resource_a4ypw")])
 metadata/_custom_type_script = "uid://jvo5d8np0a4x"
 
 [node name="ProtocolCardBase" instance=ExtResource("1_x7db8")]
-cardName = "Test Card 4"
+cardName = "Tap Out"
 cardSprite = ExtResource("2_t7eby")
-cardDescription = "+10 Heath, +10 Velocity"
+cardDescription = "Is life too hard? You bet it is! Time to avoid responsibility!"
 cardBehavior = Array[Resource]([SubResource("Resource_vq4ld")])
-cardUseHeader = "Test Card 4"
+cardUseHeader = "When the going gets tough, the tough get going. "

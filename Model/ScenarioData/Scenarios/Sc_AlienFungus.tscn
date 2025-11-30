@@ -17,4 +17,4 @@ metadata/_custom_type_script = "uid://cda51huvrayd1"
 [node name="ScenarioBase" instance=ExtResource("1_tgi5n")]
 affectedAttributes = Array[ExtResource("2_6qecr")]([SubResource("Resource_n6vdk")])
 attributeWinConditions = Array[ExtResource("2_6qecr")]([SubResource("Resource_kriyw")])
-scenarioText = "Uh, that alien fungus all over your hull wasnt there before, was it? Even worse, it seems to love the tast of itl. PerhapSs running enough electricity through your frame would get it to buzz off..."
+scenarioText = "Uh, that alien fungus all over your hull wasnt there before, was it? Even worse, it seems to love the tast of it. Perhaps running enough electricity through your frame would get it to buzz off..."

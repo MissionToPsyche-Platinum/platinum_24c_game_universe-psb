@@ -8,8 +8,12 @@ extends Node
 #UI root node
 var UI: Control
 
+#boolean to see if the player has been instantiated 
+var playerInstantiated: bool = false
+
 #boolean to see if the player has lost
 var playerLost: bool = false
+
 
 #references to UI elements
 var hullIntegrityLabel: Label
@@ -19,6 +23,7 @@ var rewardsHolder: HBoxContainer
 
 var scenarioHeader: Label
 var scenarioEffectLabel: Label
+var scenarioWinConditionsLabel : Label
 
 var hullIntegrityBar : TextureProgressBar
 var powerBar : TextureProgressBar
@@ -50,6 +55,11 @@ func loadScenario(scenePath: String) -> void:
 	#first unload the current scenario if necessary
 	if scenario:
 		scenario.queue_free()
+		
+	#ensure the player has been instantiated properly
+	if !playerInstantiated:
+		player.instantiatePlayerDeck()
+		playerInstantiated = true
 	
 	#get the scene from the file path
 	var scenarioScene = load(scenePath)
@@ -61,6 +71,7 @@ func loadScenario(scenePath: String) -> void:
 	#get the scenario description text
 	scenarioHeader.text = scenario.scenarioText
 	scenarioEffectLabel.text = scenario.getAffectedAttributes()
+	scenarioWinConditionsLabel.text = scenario.getWinCondition()
 	print(scenarioHeader.text)
 
 	#connect to scenario signals
@@ -164,6 +175,14 @@ func rewardChosen(card) -> void:
 		# Reset the player deck
 		player.returnAllCards()
 		print(player.deck)
+		
+		#reset the hand controller
+		handController.resetHandController()
+		
+		#remove all children from the rewards holder
+		for child in rewardsHolder.get_children(): 
+			rewardsHolder.remove_child(child)
+		
 
 		# Disable rewardsHolder and reward label visibility
 		if rewardsHolder:

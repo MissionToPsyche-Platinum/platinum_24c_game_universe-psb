@@ -154,3 +154,10 @@ func _on_continue_scenario_gui_input(event: InputEvent) -> void:
 
 		# End the player's turn
 		GameManager.endPlayerTurn()
+		
+func resetHandController() -> void:
+	#clear the hand 
+	cards.clear()
+	#remove all children from the card container
+	for child in card_container.get_children():
+		card_container.remove_child(child)

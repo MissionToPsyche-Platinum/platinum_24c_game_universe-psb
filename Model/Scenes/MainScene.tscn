@@ -1,13 +1,13 @@
-[gd_scene load_steps=42 format=3 uid="uid://b5aneqr63kcay"]
+[gd_scene load_steps=43 format=3 uid="uid://b5aneqr63kcay"]
 
 [ext_resource type="Script" uid="uid://bryyckfysnh62" path="res://Model/Scenes/test_scene.gd" id="1_6pwi0"]
-[ext_resource type="Script" path="res://Model/Scenes/card_manager.gd" id="2_qb6nl"]
-[ext_resource type="PackedScene" uid="uid://ba3anonls50oq" path="res://Model/CardData/Cards/TestCard1.tscn" id="3_d184y"]
-[ext_resource type="PackedScene" uid="uid://dpbrwrnhljytj" path="res://Model/CardData/Cards/TestCard2.tscn" id="4_wki3r"]
-[ext_resource type="PackedScene" uid="uid://17imtoq1ypop" path="res://Model/CardData/Cards/TestCard3.tscn" id="5_m84t2"]
-[ext_resource type="PackedScene" uid="uid://b2s4573m24uxf" path="res://Model/CardData/Cards/TestCard4.tscn" id="6_t7g2w"]
-[ext_resource type="PackedScene" uid="uid://bhhb73esfp2pe" path="res://Model/CardData/Cards/TestCard5.tscn" id="7_qatxi"]
-[ext_resource type="PackedScene" uid="uid://seg7h6mf4b4q" path="res://Model/CardData/Cards/TestCard6.tscn" id="8_k7non"]
+[ext_resource type="Script" uid="uid://lp0itw18h7mo" path="res://Model/Scenes/card_manager.gd" id="2_qb6nl"]
+[ext_resource type="PackedScene" uid="uid://ba3anonls50oq" path="res://Model/CardData/Cards/RedshiftAccelerator.tscn" id="3_d184y"]
+[ext_resource type="PackedScene" uid="uid://dpbrwrnhljytj" path="res://Model/CardData/Cards/RedundantEngineering.tscn" id="4_wki3r"]
+[ext_resource type="PackedScene" uid="uid://17imtoq1ypop" path="res://Model/CardData/Cards/LuckyPeanuts.tscn" id="5_m84t2"]
+[ext_resource type="PackedScene" uid="uid://b2s4573m24uxf" path="res://Model/CardData/Cards/TapOut.tscn" id="6_t7g2w"]
+[ext_resource type="PackedScene" uid="uid://bhhb73esfp2pe" path="res://Model/CardData/Cards/SameRevolutionDeliver.tscn" id="7_qatxi"]
+[ext_resource type="PackedScene" uid="uid://seg7h6mf4b4q" path="res://Model/CardData/Cards/GasPedal.tscn" id="8_k7non"]
 [ext_resource type="PackedScene" uid="uid://ck52rgyii648y" path="res://Model/CardData/Cards/TestCard7.tscn" id="9_v5pj8"]
 [ext_resource type="PackedScene" uid="uid://bndv7o1dhk3ki" path="res://Model/CardData/Cards/SUPER_AWESOME_CARD.tscn" id="10_k5rhg"]
 [ext_resource type="Script" uid="uid://2liaka0mg74s" path="res://Model/Scenes/mock_player.gd" id="10_xfpm0"]
@@ -31,6 +31,10 @@ font = ExtResource("11_wki3r")
 font_size = 20
 
 [sub_resource type="LabelSettings" id="LabelSettings_wki3r"]
+font = ExtResource("11_wki3r")
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_rxymg"]
 font = ExtResource("11_wki3r")
 font_size = 20
 
@@ -121,6 +125,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(581, -75), Vector2(581, 661)]
+}
+
+[sub_resource type="Animation" id="Animation_oeksu"]
+resource_name = "HideUI"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_t7g2w"]
@@ -438,6 +457,21 @@ tracks/2/keys = {
 "values": [Vector2(220, 298), Vector2(150, 298), Vector2(2000, 298)]
 }
 
+[sub_resource type="Animation" id="Animation_06rge"]
+resource_name = "ShowUI"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="Animation" id="Animation_xfpm0"]
 resource_name = "UseCard"
 length = 0.3
@@ -478,36 +512,6 @@ tracks/2/keys = {
 "values": [true, false, true]
 }
 
-[sub_resource type="Animation" id="Animation_06rge"]
-resource_name = "ShowUI"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("UI:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_oeksu"]
-resource_name = "HideUI"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("UI:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k7non"]
 _data = {
 &"DisplayCardGui": SubResource("Animation_k7non"),
@@ -523,7 +527,7 @@ _data = {
 &"UseCard": SubResource("Animation_xfpm0")
 }
 
-[node name="MainScene" type="Node2D" node_paths=PackedStringArray("player", "cardManager", "hullIntegrityLabel", "powerLabel", "velocityLabel", "rewardsHolder", "scenarioHeader", "scenarioEffectLabel", "hullIntegrityBar", "powerBar", "velocityBar", "animationPlayer", "handController")]
+[node name="MainScene" type="Node2D" node_paths=PackedStringArray("player", "cardManager", "hullIntegrityLabel", "powerLabel", "velocityLabel", "rewardsHolder", "scenarioHeader", "scenarioEffectLabel", "scenarioWinConditionLabel", "hullIntegrityBar", "powerBar", "velocityBar", "animationPlayer", "handController")]
 script = ExtResource("1_6pwi0")
 player = NodePath("Player")
 cardManager = NodePath("CardManager")
@@ -533,6 +537,7 @@ velocityLabel = NodePath("UI/Attribute Holder/AttributeLabels/Velocity Label")
 rewardsHolder = NodePath("UI/Reward Holder")
 scenarioHeader = NodePath("UI/Scenario Header")
 scenarioEffectLabel = NodePath("UI/Scenario Effect Labels/Scenario Effect Label")
+scenarioWinConditionLabel = NodePath("UI/Scenario Effect Labels/Scenario Win Condition Label")
 hullIntegrityBar = NodePath("UI/Attribute Holder/Player Attribute Bars/Hull Inegrity Bar")
 powerBar = NodePath("UI/Attribute Holder/Player Attribute Bars/Power Bar")
 velocityBar = NodePath("UI/Attribute Holder/Player Attribute Bars/Velocity Bar")
@@ -605,6 +610,14 @@ offset_bottom = 248.0
 label_settings = SubResource("LabelSettings_wki3r")
 autowrap_mode = 3
 metadata/_edit_use_anchors_ = true
+
+[node name="Scenario Win Condition Label" type="Label" parent="UI/Scenario Effect Labels"]
+layout_mode = 0
+offset_left = -47.0
+offset_top = 234.0
+offset_right = 221.0
+offset_bottom = 356.0
+label_settings = SubResource("LabelSettings_rxymg")
 
 [node name="Attribute Holder" type="Control" parent="UI"]
 anchors_preset = 0

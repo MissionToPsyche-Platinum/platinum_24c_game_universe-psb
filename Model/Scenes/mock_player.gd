@@ -17,10 +17,12 @@ var hand: Array[PackedScene] = []
 
 @export var BEGINNING_DECK_SIZE = 5
 
-func getNewHand() -> void:
+func instantiatePlayerDeck() -> void:
 	deck = GameManager.card_manager.getDefaultDeck()
 	deck.shuffle()
+	
 
+func getNewHand() -> void:
 	for i in range(BEGINNING_DECK_SIZE):
 		drawCard()
 
@@ -59,6 +61,8 @@ func discardCard(card_node: Node) -> void:
 func resetDiscards() -> void:
 	deck += discards
 	deck.shuffle()
+	print("Reseting discards, deck should have " + str(deck.size() + discards.size()) + " cards:")
+	print(deck)
 	discards.clear()
 
 func returnAllCards() -> void:

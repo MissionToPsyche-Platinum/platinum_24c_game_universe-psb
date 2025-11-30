@@ -7,7 +7,8 @@
 
 [sub_resource type="Resource" id="Resource_8skws"]
 script = ExtResource("3_ln20d")
-amount = 10.0
+affectedAttribute = 2
+amount = 30.0
 metadata/_custom_type_script = "uid://cda51huvrayd1"
 
 [sub_resource type="Resource" id="Resource_msoos"]
@@ -16,8 +17,8 @@ affectedAttributes = Array[ExtResource("3_ln20d")]([SubResource("Resource_8skws"
 metadata/_custom_type_script = "uid://jvo5d8np0a4x"
 
 [node name="ProtocolCardBase" instance=ExtResource("1_2miws")]
-cardName = "Test Card 1"
+cardName = "Redshift Accelerator "
 cardSprite = ExtResource("2_pw5ty")
-cardDescription = "+ 10 Hull integrity"
+cardDescription = "By cleverly manipulating the spectrometer, Psyche amplifies an object's redshift, convincing the universe it's already in rapid retreat. The result? Psyche takes off at incredible speed!"
 cardBehavior = Array[Resource]([SubResource("Resource_msoos")])
-cardUseHeader = "Test Card 1"
+cardUseHeader = "You successfuly convice the universe to let you speed up - and Newton rolls over in his grave."

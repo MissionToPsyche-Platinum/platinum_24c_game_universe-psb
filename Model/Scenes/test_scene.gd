@@ -15,6 +15,7 @@ extends Node2D
 
 @export var scenarioHeader: Label
 @export var scenarioEffectLabel: Label
+@export var scenarioWinConditionLabel: Label
 
 @export var hullIntegrityBar : TextureProgressBar
 @export var powerBar : TextureProgressBar
@@ -49,6 +50,7 @@ func _ready() -> void:
 	GameManager.veloctiyLabel = velocityLabel
 	GameManager.scenarioHeader = scenarioHeader
 	GameManager.scenarioEffectLabel = scenarioEffectLabel
+	GameManager.scenarioWinConditionsLabel = scenarioWinConditionLabel
 	GameManager.hullIntegrityBar = hullIntegrityBar
 	GameManager.powerBar = powerBar
 	GameManager.velocityBar = velocityBar

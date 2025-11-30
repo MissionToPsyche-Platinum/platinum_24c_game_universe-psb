@@ -27,6 +27,9 @@ signal scenarioWon
 @abstract()
 func performScenarioEffect() -> void
 
+@abstract() 
+func getWinCondition() -> String
+
 #helper function to be run before every scenario to determine if the player has won 
 func checkWinCondition() -> bool:
 	#for now, each attribute needs to be higher or equal to the win condition
@@ -67,4 +70,6 @@ func getAffectedAttributes() -> String:
 	
 	return affectedAttributesText
 
+
+	
 	
