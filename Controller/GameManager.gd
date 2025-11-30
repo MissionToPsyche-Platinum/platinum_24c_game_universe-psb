@@ -3,10 +3,6 @@ extends Node
 @export var player: Player
 @export var scenario: Scenario
 @export var card_manager: CardManager
-@export var map: Map
-
-#UI root node
-var UI: Control
 
 #boolean to see if the player has lost
 var playerLost: bool = false
@@ -51,7 +47,7 @@ func loadScenario(scenePath: String) -> void:
 	#first unload the current scenario if necessary
 	if scenario:
 		scenario.queue_free()
-	
+		
 	#get the scene from the file path
 	var scenarioScene = load(scenePath)
 	scenario = scenarioScene.instantiate()
@@ -62,17 +58,16 @@ func loadScenario(scenePath: String) -> void:
 	#get the scenario description text
 	scenarioHeader.text = scenario.scenarioText
 	scenarioEffectLabel.text = scenario.getAffectedAttributes()
-	print(scenarioHeader.text)
-
+	
+	
 	#connect to scenario signals
 	scenario.connect("scenarioWon", Callable(self, "endScenario"))
 	scenario.connect("endScenarioTurn", Callable(self, "endScenarioTurn"))
 	
+	
+	
 	#Scenario is done loading
 	print("Scenario is done loading.")
-	# enable scenario UI
-	UIAnimationPlayer.play("ShowUI")
-	UI.visible = true
 	
 	#have the player draw a new hand
 	player.getNewHand()
@@ -80,7 +75,6 @@ func loadScenario(scenePath: String) -> void:
 	#play the intro animation
 	UIAnimationPlayer.play("PsycheScenarioStart")
 	
-
 func endPlayerTurn() -> void:
 	print("Ending player turn")
 	#check if the player lost on their turn
@@ -117,13 +111,7 @@ func endScenario() -> void:
 	
 	# Get reward scenes
 	rewards = card_manager.getReward()
-	
-	# enable rewardholder and rewardlabel visibility
-	rewardsHolder.visible = true
-	var rl = UI.get_node("RewardControl/Reward Label")
-	var rewardLabelParent = rl.get_parent()
-	rewardLabelParent.visible = true
-	
+	#s
 	for reward in rewards:
 		var rewardInstance: Control = reward.instantiate()
 		#save the packed scene for later use
@@ -143,6 +131,8 @@ func endScenario() -> void:
 	
 	#play end of scenario animation
 	UIAnimationPlayer.play("ScenarioEnd")
+	
+	
 
 func rewardChosen(card) -> void:
 	#retrive the packed scene
@@ -161,19 +151,8 @@ func rewardChosen(card) -> void:
 		player.returnAllCards()
 		print(player.deck)
 		
-		#disable rewardholder and reward label visibility
-		rewardsHolder.visible = false
-		var rl = UI.get_node("RewardControl/Reward Label")
-		var rewardLabelParent = rl.get_parent()
-		rewardLabelParent.visible = false
+		#load the map screen   
 		
-		#load the map screen 
-		map.advance_position()
-		if UIAnimationPlayer.is_playing():
-			UIAnimationPlayer.stop()
-		UIAnimationPlayer.play("HideUI")
-		UIAnimationPlayer.play("RESET")
-		UI.visible = false
 	else:
 		print("No packed scene detected, cannot add to player deck")
 	return 
