@@ -16,3 +16,4 @@ func getBehaviorHint() -> String:
 	push_error("getBehaviorHint in ICardBehavior not implemented! ")
 	return ""
 	
+ 

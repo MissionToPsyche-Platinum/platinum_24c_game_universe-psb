@@ -14,12 +14,12 @@ func before_each():
 func after_each():
 	main_node.queue_free()
 
-func test_title_screen_loads():
-	assert_not_null(main_node, "TitleScreen should instantiate")
-
-func test_has_start_button():
+func test_start_button_navigation():
 	var start_button = main_node.get_node_or_null("StartButton")
-	assert_not_null(start_button, "Start button should exist on the title screen")
-
-func test_title_screen_has_script():
-	assert_not_null(main_node.get_script(), "TitleScreen should have a script attached")
+	assert_not_null(start_button, "Start button should exist for navigation test")
+	
+	start_button.emit_signal("pressed")
+	
+	# Check that the current scene changed
+	var current_scene = get_tree().current_scene
+	assert_true(current_scene != main_node, "Pressing Start should change the scene")

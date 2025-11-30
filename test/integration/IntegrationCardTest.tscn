@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dr2f2us5wk01u"]
+
+[ext_resource type="Script" uid="uid://baiaewfy85e2t" path="res://test/integration/test_integration_card_test.gd" id="1_wr1dn"]
+
+[node name="IntegrationCardTest" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_wr1dn")

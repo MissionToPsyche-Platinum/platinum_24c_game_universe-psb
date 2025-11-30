@@ -545,9 +545,8 @@ defaultDeck = Array[PackedScene]([ExtResource("10_k5rhg"), ExtResource("3_d184y"
 bank = Array[PackedScene]([ExtResource("7_qatxi"), ExtResource("8_k7non"), ExtResource("9_v5pj8")])
 rewardMaximumAmount = 2
 
-[node name="Player" type="Node" parent="." node_paths=PackedStringArray("cardManager")]
+[node name="Player" type="Node" parent="."]
 script = ExtResource("10_xfpm0")
-cardManager = NodePath("../CardManager")
 
 [node name="UI" type="Control" parent="."]
 unique_name_in_owner = true
