@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://brf8psrjkpbsh"]
+
+[ext_resource type="Script" uid="uid://chmudwc1ytdlq" path="res://Model/MapData/scenario.gd" id="1_klwqe"]
+[ext_resource type="Texture2D" uid="uid://65wbpo7vyc15" path="res://View/Assets/Sprites/Map/ufo_scenario_icon_white.png" id="2_jhy8r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ppkxm"]
+size = Vector2(185, 185)
+
+[node name="Clickable Scenario" type="Area2D"]
+scale = Vector2(0.6, 0.6)
+script = ExtResource("1_klwqe")
+
+[node name="Battle Scenario" type="Sprite2D" parent="."]
+texture = ExtResource("2_jhy8r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ppkxm")
+
+[node name="MapNode" type="Node2D" parent="."]
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

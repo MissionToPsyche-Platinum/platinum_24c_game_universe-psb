@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://d27qiheuudmom"]
+
+[ext_resource type="Texture2D" uid="uid://culw2jxor2qje" path="res://View/Assets/Sprites/Map/earth.png" id="1_ew12j"]
+[ext_resource type="FontFile" uid="uid://cyuqcf4mpncuy" path="res://View/Assets/Themes/PixelOperator-Bold.ttf" id="2_yfc0q"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ew12j"]
+radius = 119.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_fhpx8"]
+font = ExtResource("2_yfc0q")
+font_size = 50
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Earth" type="Area2D"]
+scale = Vector2(0.6, 0.6)
+
+[node name="Earth" type="Sprite2D" parent="."]
+texture = ExtResource("1_ew12j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ew12j")
+
+[node name="Earth Text" type="Label" parent="."]
+offset_left = 126.666664
+offset_top = 51.666664
+offset_right = 248.66666
+offset_bottom = 102.666664
+text = "Earth"
+label_settings = SubResource("LabelSettings_fhpx8")

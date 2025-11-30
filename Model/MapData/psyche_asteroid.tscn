@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://of3br6vte6xu"]
+
+[ext_resource type="Texture2D" uid="uid://dw8inuw8fy7xq" path="res://View/Assets/Sprites/Map/psyche_asteroid.png" id="1_oafex"]
+[ext_resource type="FontFile" uid="uid://cyuqcf4mpncuy" path="res://View/Assets/Themes/PixelOperator-Bold.ttf" id="2_1246u"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oafex"]
+radius = 150.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_1qddh"]
+font = ExtResource("2_1246u")
+font_size = 50
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Psyche Asteroid" type="Area2D"]
+scale = Vector2(0.6, 0.6)
+
+[node name="Psyche Asteroid" type="Sprite2D" parent="."]
+texture = ExtResource("1_oafex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_oafex")
+
+[node name="Asteroid Text" type="Label" parent="."]
+offset_left = 15.0
+offset_top = 108.33333
+offset_right = 206.0
+offset_bottom = 213.33333
+text = "Psyche
+Asteroid"
+label_settings = SubResource("LabelSettings_1qddh")
+horizontal_alignment = 2
