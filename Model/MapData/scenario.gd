@@ -6,6 +6,8 @@ enum ScenarioType { EVENT, BATTLE, MINIGAME }
 var type : ScenarioType
 var scenario_path : String
 
+static var available_scenarios := []
+
 var is_disabled := false
 signal interacted
 
@@ -20,32 +22,34 @@ func _process(delta: float) -> void:
 
 # Selects random scenario from Scenarios folder and assigns it to this node
 func choose_random_scenario():
+	if available_scenarios.is_empty():
+		load_scenario_list() # refill
+	#assign random scenario to this node
+	var index = randi() % available_scenarios.size()
+	scenario_path = available_scenarios[index]
+	#remove so no repeats
+	available_scenarios.remove_at(index)
+	
+func load_scenario_list():
 	# Access Scenarios directory
 	var dir = DirAccess.open("res://Model/ScenarioData/Scenarios")
 	if dir == null:
 		print("Failed to open scenario folder")
 		return
 	
-	# Gather scenario filenames
+	# gather scenario filenames into list
 	dir.list_dir_begin()
-	var files := []
+	available_scenarios = []
 	var filename = dir.get_next()
 	while filename != "":
 		if filename.ends_with(".tscn"):
-			files.append("res://Model/ScenarioData/Scenarios/" + filename)
+			available_scenarios.append("res://Model/ScenarioData/Scenarios/" + filename)
 		filename = dir.get_next()
 	dir.list_dir_end()
 	
-	if files.size() == 0:
+	if available_scenarios.size() == 0:
 		print("No scenarios found!")
 		return
-	
-	# Pick a random scenario
-	# once more scenarios are added, probably want to exclude
-	# already selected scenarios
-	var random_index = randi() % files.size()
-	scenario_path = files[random_index]
-	print("Selected scenario: ", scenario_path)
 
 # set sprite based on scenario type
 func set_sprite():
