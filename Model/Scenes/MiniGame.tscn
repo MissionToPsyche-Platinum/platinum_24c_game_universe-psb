@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://baurn8abmfm3q"]
+[gd_scene load_steps=10 format=3 uid="uid://baurn8abmfm3q"]
 
 [ext_resource type="Script" uid="uid://buyijkrpi6lts" path="res://Model/Scenes/minigame_player.gd" id="1_kqcay"]
+[ext_resource type="Texture2D" uid="uid://c3iq4tbrlyyx3" path="res://View/Assets/Sprites/MiniPsyche.png" id="2_33mjn"]
 [ext_resource type="Script" uid="uid://buexmjw3sbpst" path="res://Model/Scenes/obstacle_spawner.gd" id="2_ajg4u"]
 
 [sub_resource type="GDScript" id="GDScript_ajg4u"]
@@ -17,15 +18,34 @@ func _process(delta: float) -> void:
 	pass
 "
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_33mjn"]
+size = Vector2(237, 153)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u2h6p"]
+size = Vector2(1174, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4fwjh"]
+size = Vector2(20, 657)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w3j5p"]
+size = Vector2(21, 658)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pcsbl"]
+size = Vector2(1167, 20)
+
 [node name="MiniGame" type="Node2D"]
 script = SubResource("GDScript_ajg4u")
 
 [node name="Player" type="CharacterBody2D" parent="."]
 script = ExtResource("1_kqcay")
 
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
+[node name="MiniPsyche" type="Sprite2D" parent="Player"]
+position = Vector2(512, 199)
+texture = ExtResource("2_33mjn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(507.5, 196)
+shape = SubResource("RectangleShape2D_33mjn")
 
 [node name="ObstacleSpawner" type="Node2D" parent="."]
 script = ExtResource("2_ajg4u")
@@ -33,12 +53,20 @@ script = ExtResource("2_ajg4u")
 [node name="Movement Box" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D(Top)" type="CollisionShape2D" parent="Movement Box"]
+position = Vector2(577, 0)
+shape = SubResource("RectangleShape2D_u2h6p")
 
 [node name="CollisionShape2D(Left)" type="CollisionShape2D" parent="Movement Box"]
+position = Vector2(0, 318.5)
+shape = SubResource("RectangleShape2D_4fwjh")
 
 [node name="CollisionShape2D(Right)" type="CollisionShape2D" parent="Movement Box"]
+position = Vector2(1154.5, 320)
+shape = SubResource("RectangleShape2D_w3j5p")
 
 [node name="CollisionShape2D(Bottom)" type="CollisionShape2D" parent="Movement Box"]
+position = Vector2(572.5, 636)
+shape = SubResource("RectangleShape2D_pcsbl")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
