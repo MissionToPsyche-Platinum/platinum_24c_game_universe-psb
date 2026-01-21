@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://d00fpw8cct58u"]
+
+[ext_resource type="Script" uid="uid://cablj627vg5qe" path="res://test/integration/test_integration_mini_game_test.gd" id="1_tcvjk"]
+
+[node name="IntegrationMiniGameTest" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_tcvjk")

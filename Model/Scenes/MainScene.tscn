@@ -547,7 +547,7 @@ handController = NodePath("UI/Hand Container")
 [node name="CardManager" type="Node" parent="."]
 script = ExtResource("2_qb6nl")
 defaultDeck = Array[PackedScene]([ExtResource("10_k5rhg"), ExtResource("3_d184y"), ExtResource("4_wki3r"), ExtResource("5_m84t2"), ExtResource("6_t7g2w")])
-bank = Array[PackedScene]([ExtResource("7_qatxi"), ExtResource("8_k7non"), ExtResource("9_v5pj8")])
+bank = Array[PackedScene]([ExtResource("7_qatxi"), ExtResource("8_k7non"), ExtResource("9_v5pj8"), ExtResource("7_qatxi")])
 rewardMaximumAmount = 2
 
 [node name="Player" type="Node" parent="."]

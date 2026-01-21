@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://baurn8abmfm3q"]
+
+[ext_resource type="Script" uid="uid://buyijkrpi6lts" path="res://Model/Scenes/minigame_player.gd" id="1_kqcay"]
+[ext_resource type="Script" uid="uid://buexmjw3sbpst" path="res://Model/Scenes/obstacle_spawner.gd" id="2_ajg4u"]
+
+[sub_resource type="GDScript" id="GDScript_ajg4u"]
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="MiniGame" type="Node2D"]
+script = SubResource("GDScript_ajg4u")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+script = ExtResource("1_kqcay")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+
+[node name="ObstacleSpawner" type="Node2D" parent="."]
+script = ExtResource("2_ajg4u")
+
+[node name="Movement Box" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D(Top)" type="CollisionShape2D" parent="Movement Box"]
+
+[node name="CollisionShape2D(Left)" type="CollisionShape2D" parent="Movement Box"]
+
+[node name="CollisionShape2D(Right)" type="CollisionShape2D" parent="Movement Box"]
+
+[node name="CollisionShape2D(Bottom)" type="CollisionShape2D" parent="Movement Box"]
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
