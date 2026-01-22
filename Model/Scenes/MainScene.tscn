@@ -8,9 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://b2s4573m24uxf" path="res://Model/CardData/Cards/TapOut.tscn" id="6_t7g2w"]
 [ext_resource type="PackedScene" uid="uid://bhhb73esfp2pe" path="res://Model/CardData/Cards/SameRevolutionDeliver.tscn" id="7_qatxi"]
 [ext_resource type="PackedScene" uid="uid://seg7h6mf4b4q" path="res://Model/CardData/Cards/GasPedal.tscn" id="8_k7non"]
-[ext_resource type="PackedScene" uid="uid://ck52rgyii648y" path="res://Model/CardData/Cards/TestCard7.tscn" id="9_v5pj8"]
+[ext_resource type="PackedScene" uid="uid://ck52rgyii648y" path="res://Model/CardData/Cards/ForgotSomething.tscn" id="9_v5pj8"]
 [ext_resource type="PackedScene" uid="uid://bndv7o1dhk3ki" path="res://Model/CardData/Cards/SUPER_AWESOME_CARD.tscn" id="10_k5rhg"]
-[ext_resource type="Script" uid="uid://2liaka0mg74s" path="res://Model/Scenes/mock_player.gd" id="10_xfpm0"]
+[ext_resource type="Script" uid="uid://2liaka0mg74s" path="res://Model/Scenes/mainScene.gd" id="10_xfpm0"]
 [ext_resource type="Texture2D" uid="uid://chv57617bldww" path="res://View/Assets/Sprites/Attribute Bars/attribute_bar_mask.png" id="11_d184y"]
 [ext_resource type="FontFile" uid="uid://cyuqcf4mpncuy" path="res://View/Assets/Themes/PixelOperator-Bold.ttf" id="11_wki3r"]
 [ext_resource type="Texture2D" uid="uid://86il4rq4uylj" path="res://View/Assets/Sprites/Attribute Bars/attribute_bar_transparent-filled.png" id="12_wki3r"]
@@ -547,7 +547,7 @@ handController = NodePath("UI/Hand Container")
 [node name="CardManager" type="Node" parent="."]
 script = ExtResource("2_qb6nl")
 defaultDeck = Array[PackedScene]([ExtResource("10_k5rhg"), ExtResource("3_d184y"), ExtResource("4_wki3r"), ExtResource("5_m84t2"), ExtResource("6_t7g2w")])
-bank = Array[PackedScene]([ExtResource("7_qatxi"), ExtResource("8_k7non"), ExtResource("9_v5pj8")])
+bank = Array[PackedScene]([ExtResource("7_qatxi"), ExtResource("8_k7non"), ExtResource("9_v5pj8"), ExtResource("9_v5pj8")])
 rewardMaximumAmount = 2
 
 [node name="Player" type="Node" parent="."]
@@ -924,6 +924,15 @@ Choose a card to add to your deck:"
 label_settings = SubResource("LabelSettings_j5y8d")
 horizontal_alignment = 1
 
+[node name="Button" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 28.0
+offset_right = 85.0
+offset_bottom = 59.0
+text = "Restart Game
+"
+
 [node name="Psyche" type="Sprite2D" parent="."]
 position = Vector2(-217, 298)
 scale = Vector2(0.6666667, 0.69402987)
@@ -941,3 +950,4 @@ libraries = {
 [connection signal="pressed" from="UI/Hand Container/Right Arrow/Right Arrow Button" to="UI/Hand Container" method="_on_right_arrow_button_pressed"]
 [connection signal="gui_input" from="UI/Hand Container/Select Response/Select Response Label" to="UI/Hand Container" method="_on_select_response_label_gui_input"]
 [connection signal="gui_input" from="UI/ContinueScenario" to="UI/Hand Container" method="_on_continue_scenario_gui_input"]
+[connection signal="pressed" from="UI/Button" to="." method="_on_button_pressed"]

@@ -30,7 +30,8 @@ func onCardUsed(card: Node) -> void:
 		wrapper.queue_free()
 	
 func getDefaultDeck() -> Array[PackedScene]:
-	return defaultDeck
+	#return a prototype of the default deck so the default deck persists between games
+	return defaultDeck.duplicate()
 	
 
 func getReward() -> Array[PackedScene]:

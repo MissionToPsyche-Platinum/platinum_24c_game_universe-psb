@@ -39,6 +39,10 @@ var rewards
 
 @export var hand: Control
 
+#instantiation function so the player hand gets created when the game reloads
+func _ready() -> void:
+	playerInstantiated = false
+
 func getPlayer() -> Player:
 	return player
 
@@ -210,3 +214,18 @@ func rewardChosen(card) -> void:
 			UI.visible = false
 	else:
 		print("No packed scene detected, cannot add to player deck")
+		
+		
+func restartGame() -> void:
+	#this function will be called whenever the game needs to restart
+	#reset player instantiation
+	playerInstantiated = false
+	
+	#reset player attributes
+	player.hullIntegrity = 100
+	player.velocity = 100
+	player.power = 100
+	
+	#reset the game scene
+	get_tree().change_scene_to_file("res://Model/Scenes/MainScene.tscn")
+	

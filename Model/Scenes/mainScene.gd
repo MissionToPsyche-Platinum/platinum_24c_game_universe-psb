@@ -18,8 +18,10 @@ var hand: Array[PackedScene] = []
 @export var BEGINNING_DECK_SIZE = 5
 
 func instantiatePlayerDeck() -> void:
+	
 	deck = GameManager.card_manager.getDefaultDeck()
 	deck.shuffle()
+
 	
 
 func getNewHand() -> void:
