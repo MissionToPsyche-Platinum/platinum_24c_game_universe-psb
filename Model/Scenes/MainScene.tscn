@@ -1,6 +1,6 @@
-[gd_scene load_steps=43 format=3 uid="uid://b5aneqr63kcay"]
+[gd_scene load_steps=51 format=4 uid="uid://b5aneqr63kcay"]
 
-[ext_resource type="Script" uid="uid://bryyckfysnh62" path="res://Model/Scenes/test_scene.gd" id="1_6pwi0"]
+[ext_resource type="Script" uid="uid://bryyckfysnh62" path="res://Model/Scenes/MainScene.gd" id="1_6pwi0"]
 [ext_resource type="Script" uid="uid://lp0itw18h7mo" path="res://Model/Scenes/card_manager.gd" id="2_qb6nl"]
 [ext_resource type="PackedScene" uid="uid://ba3anonls50oq" path="res://Model/CardData/Cards/RedshiftAccelerator.tscn" id="3_d184y"]
 [ext_resource type="PackedScene" uid="uid://dpbrwrnhljytj" path="res://Model/CardData/Cards/RedundantEngineering.tscn" id="4_wki3r"]
@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://seg7h6mf4b4q" path="res://Model/CardData/Cards/GasPedal.tscn" id="8_k7non"]
 [ext_resource type="PackedScene" uid="uid://ck52rgyii648y" path="res://Model/CardData/Cards/ForgotSomething.tscn" id="9_v5pj8"]
 [ext_resource type="PackedScene" uid="uid://bndv7o1dhk3ki" path="res://Model/CardData/Cards/SUPER_AWESOME_CARD.tscn" id="10_k5rhg"]
-[ext_resource type="Script" uid="uid://2liaka0mg74s" path="res://Model/Scenes/mainScene.gd" id="10_xfpm0"]
+[ext_resource type="Script" uid="uid://2liaka0mg74s" path="res://Model/Scenes/Player.gd" id="10_xfpm0"]
 [ext_resource type="Texture2D" uid="uid://chv57617bldww" path="res://View/Assets/Sprites/Attribute Bars/attribute_bar_mask.png" id="11_d184y"]
 [ext_resource type="FontFile" uid="uid://cyuqcf4mpncuy" path="res://View/Assets/Themes/PixelOperator-Bold.ttf" id="11_wki3r"]
 [ext_resource type="Texture2D" uid="uid://86il4rq4uylj" path="res://View/Assets/Sprites/Attribute Bars/attribute_bar_transparent-filled.png" id="12_wki3r"]
@@ -19,6 +19,8 @@
 [ext_resource type="Script" uid="uid://by8v8y3hmupv4" path="res://Model/Scenes/HandController.gd" id="14_v5pj8"]
 [ext_resource type="Texture2D" uid="uid://c5b6ep18mucxh" path="res://View/Assets/Card Hud/scenario_arrow.png" id="15_qatxi"]
 [ext_resource type="Texture2D" uid="uid://clkpqvj75twac" path="res://View/Assets/Card Hud/card_arrow_filled.png" id="16_k7non"]
+[ext_resource type="Texture2D" uid="uid://bhu7vsco5g2qo" path="res://View/Assets/Sprites/UI/trashcan.png" id="19_k5rhg"]
+[ext_resource type="Script" uid="uid://7y010iwclveo" path="res://Controller/UI Scripts/discardButtonScrip.gd" id="20_j5y8d"]
 
 [sub_resource type="Theme" id="Theme_d184y"]
 
@@ -59,6 +61,90 @@ font_size = 30
 [sub_resource type="LabelSettings" id="LabelSettings_k5rhg"]
 font = ExtResource("11_wki3r")
 font_size = 30
+
+[sub_resource type="Animation" id="Animation_35wlo"]
+length = 0.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.100000024, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.13333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-410, 77), Vector2(-411, 146)]
+}
+
+[sub_resource type="Animation" id="Animation_46vkd"]
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [9, 9, 9, 9, 9, 8, 8, 8, 8, 8]
+}
+
+[sub_resource type="Animation" id="Animation_t26e8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-410, 77)]
+}
+
+[sub_resource type="Animation" id="Animation_xetsj"]
+resource_name = "Hide"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.27, 0.41),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-411, 146), Vector2(-411, 0), Vector2(-865, -6)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t26e8"]
+_data = {
+&"Hide": SubResource("Animation_xetsj"),
+&"Idle": SubResource("Animation_46vkd"),
+&"RESET": SubResource("Animation_t26e8"),
+&"Startup": SubResource("Animation_35wlo")
+}
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_xetsj"]
+_data = PackedByteArray("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")
+size_override = Vector2(2000, 900)
 
 [sub_resource type="LabelSettings" id="LabelSettings_j5y8d"]
 font = ExtResource("11_wki3r")
@@ -722,7 +808,7 @@ label_settings = SubResource("LabelSettings_6pwi0")
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Hand Container" type="Control" parent="UI" node_paths=PackedStringArray("cardEffectLabel", "continueScenarioControl")]
+[node name="Hand Container" type="Control" parent="UI" node_paths=PackedStringArray("cardEffectLabel", "continueScenarioControl", "discardCardButtonAnimationPlayer")]
 z_index = 2
 z_as_relative = false
 anchors_preset = 0
@@ -734,6 +820,8 @@ script = ExtResource("14_v5pj8")
 card_container_path = NodePath("Card Container")
 cardEffectLabel = NodePath("Card Effect Holder/Card Effect Label")
 continueScenarioControl = NodePath("../ContinueScenario")
+discardLabel = "You toss your cards into the solar wind, hoping for better draws in the future..."
+discardCardButtonAnimationPlayer = NodePath("DiscardButtonHolder/DiscardButtonAnimationPlayer")
 
 [node name="Hud Image" type="Sprite2D" parent="UI/Hand Container"]
 position = Vector2(-10.621529, 612.656)
@@ -888,6 +976,69 @@ offset_right = 164.0
 offset_bottom = 249.0
 label_settings = SubResource("LabelSettings_k5rhg")
 
+[node name="TrashCan" type="Sprite2D" parent="UI/Hand Container"]
+position = Vector2(-208.75, 577.75)
+scale = Vector2(0.67355376, 0.7066116)
+texture = ExtResource("19_k5rhg")
+
+[node name="ToggleDiscardButton" type="Button" parent="UI/Hand Container/TrashCan"]
+offset_left = -64.21167
+offset_top = -61.91521
+offset_right = 66.4386
+offset_bottom = 62.622814
+flat = true
+
+[node name="DiscardButtonHolder" type="Control" parent="UI/Hand Container" node_paths=PackedStringArray("discardButtonAnimationPlayer")]
+anchors_preset = 0
+offset_left = -410.0
+offset_top = 77.0
+offset_right = -370.0
+offset_bottom = 117.0004
+script = ExtResource("20_j5y8d")
+discardButtonAnimationPlayer = NodePath("DiscardButtonAnimationPlayer")
+
+[node name="DiscardButtonAnimationPlayer" type="AnimationPlayer" parent="UI/Hand Container/DiscardButtonHolder"]
+libraries = {
+&"": SubResource("AnimationLibrary_t26e8")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/Hand Container/DiscardButtonHolder"]
+texture_filter = 1
+texture = SubResource("PortableCompressedTexture2D_xetsj")
+hframes = 4
+vframes = 3
+frame = 8
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"convert_fps_field": 60.0,
+"convert_ms_field": 16.0,
+"convert_to_fps": false,
+"embed_tex": true,
+"i_mode": 0,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "UI/Hand Container/DiscardButtonHolder/DiscardButtonAnimationPlayer",
+"scale": "1.0",
+"slice": "",
+"source": "res://View/Assets/Sprites/UI/Sprite-0001.aseprite",
+"source_uid": 2103727920568364698
+}
+metadata/_aseprite_wizard_source_file_hash_ = "8f5da0a6cf9bc531f53b5973a9033249"
+
+[node name="DiscardButton" type="Button" parent="UI/Hand Container/DiscardButtonHolder"]
+layout_mode = 0
+offset_left = -169.0
+offset_top = -71.0
+offset_right = 169.0
+offset_bottom = -13.0
+flat = true
+
 [node name="ContinueScenario" type="Control" parent="UI"]
 visible = false
 anchors_preset = 0
@@ -925,13 +1076,19 @@ label_settings = SubResource("LabelSettings_j5y8d")
 horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="UI"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 23.825
+anchor_top = -0.025
+anchor_right = 25.725
+anchor_bottom = -0.025
 offset_left = 47.0
 offset_top = 28.0
 offset_right = 85.0
 offset_bottom = 59.0
 text = "Restart Game
 "
+metadata/_edit_use_anchors_ = true
 
 [node name="Psyche" type="Sprite2D" parent="."]
 position = Vector2(-217, 298)
@@ -949,5 +1106,8 @@ libraries = {
 [connection signal="pressed" from="UI/Hand Container/Left Arrow/Left Arrow Button" to="UI/Hand Container" method="_on_left_arrow_button_pressed"]
 [connection signal="pressed" from="UI/Hand Container/Right Arrow/Right Arrow Button" to="UI/Hand Container" method="_on_right_arrow_button_pressed"]
 [connection signal="gui_input" from="UI/Hand Container/Select Response/Select Response Label" to="UI/Hand Container" method="_on_select_response_label_gui_input"]
+[connection signal="pressed" from="UI/Hand Container/TrashCan/ToggleDiscardButton" to="UI/Hand Container" method="_on_toggle_discard_button_pressed"]
+[connection signal="animation_finished" from="UI/Hand Container/DiscardButtonHolder/DiscardButtonAnimationPlayer" to="UI/Hand Container/DiscardButtonHolder" method="_on_discard_button_animation_player_animation_finished"]
+[connection signal="pressed" from="UI/Hand Container/DiscardButtonHolder/DiscardButton" to="UI/Hand Container" method="_on_discard_button_pressed"]
 [connection signal="gui_input" from="UI/ContinueScenario" to="UI/Hand Container" method="_on_continue_scenario_gui_input"]
 [connection signal="pressed" from="UI/Button" to="." method="_on_button_pressed"]

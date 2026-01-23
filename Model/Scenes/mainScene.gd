@@ -1,110 +1,95 @@
-extends Node
-class_name Player
+extends Node2D
 
-var deck: Array[PackedScene] = []
-var discards: Array[PackedScene] = []
-var hand: Array[PackedScene] = []
+@export var player: Player
+@export var scenario: Scenario
+@export var cardManager: CardManager
+@export var map: Map
 
-#attributes:
-@export var HULL_INTEGRITY_MAX = 200
-@export var hullIntegrity: float = 100
+@export var hand: Control 
 
-@export var VELOCITY_MAX = 200
-@export var velocity = 100
+#assign referenes to UI elements
+@export var hullIntegrityLabel: Label
+@export var powerLabel: Label
+@export var velocityLabel: Label
+@export var rewardsHolder: HBoxContainer
 
-@export var POWER_MAX = 200
-@export var power = 100
+@export var scenarioHeader: Label
+@export var scenarioEffectLabel: Label
+@export var scenarioWinConditionLabel: Label
 
-@export var BEGINNING_DECK_SIZE = 5
+@export var hullIntegrityBar : TextureProgressBar
+@export var powerBar : TextureProgressBar
+@export var velocityBar : TextureProgressBar
 
-func instantiatePlayerDeck() -> void:
+#animation player reference
+@export var animationPlayer :AnimationPlayer
+
+#hand ui reference
+@export var handController : HandController
+
+
+
+
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	#reset player lost flag
+	GameManager.playerLost = false
 	
-	deck = GameManager.card_manager.getDefaultDeck()
-	deck.shuffle()
-
 	
-
-func getNewHand() -> void:
-	for i in range(BEGINNING_DECK_SIZE):
-		drawCard()
-
-func beginPlayerTurn() -> void:
-	drawCard()
-
-func drawCard() -> void:
-	if deck.is_empty():
-		print("Attempted to draw from empty deck!")
-		return
-
-	var packed_scene = deck.pop_back()
-	#add card to hand
-	hand.append(packed_scene)
-	#instantiate card to put on the UI
-	var card_instance = packed_scene.instantiate()
+	#register all values with the GameManager
+	GameManager.player = player
+	GameManager.card_manager = cardManager
+	GameManager.hand = hand
 	
-	card_instance.set_meta("source_scene", packed_scene)
-
-	# send card directly to the UI
-	GameManager.handController.addCard(card_instance)
-
-	# listen for usage
-	card_instance.connect("card_used", Callable(self, "discardCard"))
-
-func discardCard(card_node: Node) -> void:
-	var packed_scene = card_node.get_meta("source_scene")
-	if packed_scene:
-		discards.append(packed_scene)
-		hand.erase(packed_scene)
-
-	# tell HandController to remove the card’s wrapper
-	GameManager.handController.removeCard(card_node)
-
-
-func resetDiscards() -> void:
-	deck += discards
-	deck.shuffle()
-	print("Reseting discards, deck should have " + str(deck.size() + discards.size()) + " cards:")
-	print(deck)
-	discards.clear()
-
-func returnAllCards() -> void:
-	resetDiscards()
-	for scene in hand:
-		deck.append(scene)
-	hand.clear()
-	deck.shuffle()
 	
+	#assign UI references
+	GameManager.hullIntegrityLabel = hullIntegrityLabel
+	GameManager.powerLabel = powerLabel
+	GameManager.veloctiyLabel = velocityLabel
+	GameManager.scenarioHeader = scenarioHeader
+	GameManager.scenarioEffectLabel = scenarioEffectLabel
+	GameManager.scenarioWinConditionsLabel = scenarioWinConditionLabel
+	GameManager.hullIntegrityBar = hullIntegrityBar
+	GameManager.powerBar = powerBar
+	GameManager.velocityBar = velocityBar
+	GameManager.rewardsHolder = rewardsHolder
+	
+	#assign animation player references
+	GameManager.UIAnimationPlayer = animationPlayer
 
-# Attribute modification remains unchanged:
-func setHullIntegrity(amount: float) -> void:
-	var add = amount
-	if hullIntegrity + amount <= 0:
-		GameManager.loseGame()
-	if hullIntegrity + amount >= HULL_INTEGRITY_MAX:
-		add = HULL_INTEGRITY_MAX - hullIntegrity
+	print("assigning hand controller...")
+	print(handController)
+	#assign Hand Controller reference 
+	GameManager.handController = handController
+	
+	#load the scenario
+	#GameManager.loadScenario("res://Model/ScenarioData/Scenarios/Sc_DoubleDarkMatter.tscn")
+	#load the map
+	var mapScene = preload("res://Model/Scenes/Map/Map.tscn").instantiate()
+	add_child(mapScene)
+	GameManager.map = mapScene
+	GameManager.UI = $UI
+	#hide scenario UI
+	GameManager.UI.visible = false
+	GameManager.UIAnimationPlayer.play("HideUI")
 
-	hullIntegrity += add
-	GameManager.hullIntegrityLabel.text = "Psyche Hull Integrity: %s" % hullIntegrity
-	GameManager.hullIntegrityBar.value = hullIntegrity
 
-func setVelocity(amount: float) -> void:
-	var add = amount
-	if velocity + amount <= 0:
-		GameManager.loseGame()
-	if velocity + amount > VELOCITY_MAX:
-		add = VELOCITY_MAX - velocity
+func _on_response_label_gui_input(event: InputEvent) -> void:
+	#display card gui
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+				animationPlayer.play("DisplayCardGui")
 
-	velocity += add
-	GameManager.veloctiyLabel.text = "Psyche Velocity: %s" % velocity
-	GameManager.velocityBar.value = velocity
 
-func setPower(amount: float) -> void:
-	var add = amount
-	if power + amount <= 0:
-		GameManager.loseGame()
-	if power + amount > POWER_MAX:
-		add = POWER_MAX - power
+func _on_scenario_label_gui_input(event: InputEvent) -> void:
+	#stop displaying card gui
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+				animationPlayer.play("HideCardGui")
 
-	power += add
-	GameManager.powerLabel.text = "Psyche Power: %s" % power
-	GameManager.powerBar.value = power
+
+func _on_button_pressed() -> void:
+	GameManager.restartGame()
+	

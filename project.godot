@@ -21,7 +21,7 @@ GameManager="*res://Controller/GameManager.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gut/plugin.cfg")
+enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/gut/plugin.cfg")
 
 [rendering]
 

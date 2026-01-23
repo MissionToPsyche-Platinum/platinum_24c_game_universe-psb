@@ -11,9 +11,17 @@ class_name HandController
 
 @export var test_mode: bool = false
 
+#text that shows when cards are discarded
+@export var discardLabel: String
+
+@export var discardCardButtonAnimationPlayer: AnimationPlayer
+
 var card_container: Control
 var cards: Array[Control] = [] 
 var selectedIndex := 0
+
+#Dictionary set to track which cards are currently toggled for discarding
+var holdingDiscards := {}
 
 func _ready():
 	# In test mode, we manually assign nodes in tests, so skip lookups
@@ -24,15 +32,18 @@ func _ready():
 	card_container = get_node(card_container_path)
 
 func addCard(card_node: Control) -> void:
-	# wrap so layout works
-	var wrapper := Control.new()
-	if not test_mode:
-		wrapper.set_custom_minimum_size(Vector2(200, 0))
-
-	wrapper.add_child(card_node)
-	card_container.add_child(wrapper)
-	cards.append(wrapper)
-
+	## Old card settup where Control Wrappers were needed 
+	#var wrapper := Control.new()
+	#if not test_mode:
+		#wrapper.set_custom_minimum_size(Vector2(200, 0))
+#
+	#wrapper.add_child(card_node)
+	#card_container.add_child(wrapper)
+	#cards.append(wrapper)
+	
+	card_container.add_child(card_node)
+	cards.append(card_node)
+	
 	# ensure selectedIndex valid
 	if cards.size() == 1:
 		selectedIndex = 0
@@ -109,8 +120,8 @@ func updateLayout() -> void:
 		return
 
 	var selected_card := cards[selectedIndex]
-	if selected_card != null and selected_card.get_child_count() > 0 and selected_card.get_child(0) != null and selected_card.get_child(0).has_method("getCardHint"):
-		cardEffectLabel.text = selected_card.get_child(0).getCardHint()
+	if selected_card != null:
+		cardEffectLabel.text = selected_card.getCardHint()
 	else:
 		cardEffectLabel.text = ""
 
@@ -125,23 +136,10 @@ func _on_select_response_label_gui_input(event: InputEvent) -> void:
 		if cards.is_empty():
 			return
 		if not test_mode:
-			# Hide the GUI
-			GameManager.UIAnimationPlayer.play("UseCard")
-
-			# Tween out the scenario header label to replace its text
-			var tween = create_tween()
-			tween.tween_property(GameManager.scenarioHeader, "modulate", Color(1,1,1,0), 0.25)
-			await tween.finished
-
-			# Change the text after fade-out completes
-			GameManager.scenarioHeader.text = cards[selectedIndex].get_child(0).getCardUseHeader()
-
-			# Fade back in
-			tween = create_tween()
-			tween.tween_property(GameManager.scenarioHeader, "modulate", Color(1,1,1,1), 0.25)
+			fadeOutUI(cards[selectedIndex].getCardUseHeader())
 
 		# Use the card
-		var card := cards[selectedIndex].get_child(0)
+		var card := cards[selectedIndex]
 		card.use()
 
 		# Allow the player to click anywhere on screen to continue the scenario
@@ -161,3 +159,62 @@ func resetHandController() -> void:
 	#remove all children from the card container
 	for child in card_container.get_children():
 		card_container.remove_child(child)
+
+
+func _on_toggle_discard_button_pressed() -> void:
+	#save how many cards were are currently in holding discards
+	var numberOfDiscardsBeforeToggle = holdingDiscards.size()
+	
+	#check if the card is toggled for discarding
+	#if yes, untoggle it
+	if holdingDiscards.has(cards[selectedIndex]):
+		holdingDiscards.erase(cards[selectedIndex])
+	else:
+		#fuckin weird ass syntax for adding something to a Dictonary 
+		holdingDiscards[cards[selectedIndex]] = true
+	
+	#after which check if the discard button needs to be shown 
+	if numberOfDiscardsBeforeToggle == 0 and holdingDiscards.size() == 1:
+		discardCardButtonAnimationPlayer.play("Startup")
+	elif holdingDiscards.size() == 0:
+		discardCardButtonAnimationPlayer.play("Hide")
+	
+
+
+func _on_discard_button_pressed() -> void:
+	#count how many cards are in the holding discard pile
+	var holdingDiscardCount = holdingDiscards.size()
+	#Player cannot discard every card in their hand, must have at least one to play
+	if holdingDiscardCount >= cards.size():
+		print("Cannot Discard all cards in your hand!")
+		return 
+		
+	#remove all cards in the holdingDiscards from the player's hand
+	for card in holdingDiscards:
+		GameManager.player.discardCard(card)
+	
+	#have the player draw the same amount of cards they discarded
+	for i in range(holdingDiscardCount):
+		GameManager.player.drawCard()
+		
+	#Fade out the UI
+	fadeOutUI(discardLabel)
+	
+	
+		
+func fadeOutUI(uiText : String) -> void:
+	# Hide the GUI
+		GameManager.UIAnimationPlayer.play("UseCard")
+
+		# Tween out the scenario header label to replace its text
+		var tween = create_tween()
+		tween.tween_property(GameManager.scenarioHeader, "modulate", Color(1,1,1,0), 0.25)
+		await tween.finished
+
+		# Change the text after fade-out completes
+		GameManager.scenarioHeader.text = uiText
+
+		# Fade back in
+		tween = create_tween()
+		tween.tween_property(GameManager.scenarioHeader, "modulate", Color(1,1,1,1), 0.25)
+	
