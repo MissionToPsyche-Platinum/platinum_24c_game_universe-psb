@@ -16,6 +16,10 @@ class_name HandController
 
 @export var discardCardButtonAnimationPlayer: AnimationPlayer
 
+@export var trashcanAnimationPlayer: AnimationPlayer
+#boolean to check if the trash can is in the open or closed position
+var trashCanOpened := false
+
 var card_container: Control
 var cards: Array[Control] = [] 
 var selectedIndex := 0
@@ -52,20 +56,16 @@ func addCard(card_node: Control) -> void:
 		updateLayout()
 
 func removeCard(card_node: Control) -> void:
-	# find the wrapper containing this card
-	for i in cards.size():
-		var wrapper := cards[i]
-		if wrapper.get_child(0) == card_node:
-			# remove from list
-			cards.remove_at(i)
+	#remove the card
+	cards.erase(card_node)
 
-			# fix selected index
-			if selectedIndex >= cards.size():
-				selectedIndex = max(0, cards.size() - 1)
+	# fix selected index
+	if selectedIndex >= cards.size():
+		selectedIndex = max(0, cards.size() - 1)
 
-			wrapper.queue_free()
-			updateLayout()
-			return
+	#update the layout
+	updateLayout()
+	return
 
 func rotateLeft() -> void:
 	if cards.size() <= 1:
@@ -124,6 +124,20 @@ func updateLayout() -> void:
 		cardEffectLabel.text = selected_card.getCardHint()
 	else:
 		cardEffectLabel.text = ""
+		
+		
+	#check if the card is tagged for discard
+	if holdingDiscards.has(cards[selectedIndex]):
+		#if yes, check if we need to show that it is
+		if !trashCanOpened:
+			trashcanAnimationPlayer.play("Open")
+			trashCanOpened = true
+			
+	else:
+		#if it is not, check if we need to close the can
+		if trashCanOpened:
+			trashcanAnimationPlayer.play("Close")
+			trashCanOpened = false
 
 func _on_right_arrow_button_pressed() -> void:
 	rotateRight()
@@ -169,9 +183,13 @@ func _on_toggle_discard_button_pressed() -> void:
 	#if yes, untoggle it
 	if holdingDiscards.has(cards[selectedIndex]):
 		holdingDiscards.erase(cards[selectedIndex])
+		trashcanAnimationPlayer.play("Close")
+		trashCanOpened = false
 	else:
 		#fuckin weird ass syntax for adding something to a Dictonary 
 		holdingDiscards[cards[selectedIndex]] = true
+		trashcanAnimationPlayer.play("Open")
+		trashCanOpened = true
 	
 	#after which check if the discard button needs to be shown 
 	if numberOfDiscardsBeforeToggle == 0 and holdingDiscards.size() == 1:
@@ -199,6 +217,12 @@ func _on_discard_button_pressed() -> void:
 		
 	#Fade out the UI
 	fadeOutUI(discardLabel)
+	
+	#clear the holding discards
+	holdingDiscards.clear()
+	
+	#let the player click anywhere to continue 
+	continueScenarioControl.visible = true
 	
 	
 		
