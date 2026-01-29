@@ -1,6 +1,6 @@
 [gd_scene load_steps=57 format=4 uid="uid://b5aneqr63kcay"]
 
-[ext_resource type="Script" uid="uid://bryyckfysnh62" path="res://Model/Scenes/mainScene.gd" id="1_6pwi0"]
+[ext_resource type="Script" uid="uid://bryyckfysnh62" path="res://Model/Scenes/MainScene.gd" id="1_6pwi0"]
 [ext_resource type="Script" uid="uid://lp0itw18h7mo" path="res://Model/Scenes/card_manager.gd" id="2_qb6nl"]
 [ext_resource type="PackedScene" uid="uid://ba3anonls50oq" path="res://Model/CardData/Cards/RedshiftAccelerator.tscn" id="3_d184y"]
 [ext_resource type="PackedScene" uid="uid://dpbrwrnhljytj" path="res://Model/CardData/Cards/RedundantEngineering.tscn" id="4_wki3r"]
@@ -20,7 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://c5b6ep18mucxh" path="res://View/Assets/Card Hud/scenario_arrow.png" id="15_qatxi"]
 [ext_resource type="Texture2D" uid="uid://clkpqvj75twac" path="res://View/Assets/Card Hud/card_arrow_filled.png" id="16_k7non"]
 [ext_resource type="Script" uid="uid://7y010iwclveo" path="res://Controller/UI Scripts/discardButtonScrip.gd" id="20_j5y8d"]
-[ext_resource type="Script" uid="uid://d3pn7t3bl1oxr" path="res://Controller/UI Scripts/trashcanScript.gd" id="20_rxymg"]
+[ext_resource type="Script" path="res://Controller/UI Scripts/trashcanScript.gd" id="20_rxymg"]
 
 [sub_resource type="Theme" id="Theme_d184y"]
 
@@ -150,6 +150,21 @@ size_override = Vector2(2000, 900)
 _data = PackedByteArray("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")
 size_override = Vector2(786, 504)
 
+[sub_resource type="Animation" id="Animation_t7ums"]
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TrashCan:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [5, 6, 7, 8]
+}
+
 [sub_resource type="Animation" id="Animation_nmj4c"]
 length = 0.1
 loop_mode = 1
@@ -164,21 +179,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_0uxo7"]
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TrashCan:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [1, 2, 3, 4]
 }
 
 [sub_resource type="Animation" id="Animation_6wt4v"]
@@ -197,7 +197,7 @@ tracks/0/keys = {
 "values": [4]
 }
 
-[sub_resource type="Animation" id="Animation_t7ums"]
+[sub_resource type="Animation" id="Animation_0uxo7"]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -209,7 +209,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [5, 6, 7, 8]
+"values": [1, 2, 3, 4]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6rofx"]

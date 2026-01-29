@@ -56,8 +56,11 @@ func addCard(card_node: Control) -> void:
 		updateLayout()
 
 func removeCard(card_node: Control) -> void:
-	#remove the card
+	#remove the card from the hand controller
 	cards.erase(card_node)
+	
+	#delete the card
+	card_node.queue_free()
 
 	# fix selected index
 	if selectedIndex >= cards.size():
@@ -164,6 +167,11 @@ func _on_continue_scenario_gui_input(event: InputEvent) -> void:
 		# Disable the continue scenario control
 		continueScenarioControl.visible = false
 
+		#clear the holding discards
+		holdingDiscards.clear()
+
+		#play the hide animation for the discard button
+		discardCardButtonAnimationPlayer.play("Hide")
 		# End the player's turn
 		GameManager.endPlayerTurn()
 		
