@@ -1,5 +1,6 @@
 extends Node
 
+
 @export var player: Player
 @export var scenario: Scenario
 @export var card_manager: CardManager
@@ -34,6 +35,9 @@ var UIAnimationPlayer
 
 #reference to hand controller
 var handController : HandController
+
+var drawCardPreview : DrawCardPreview
+
 #array to hold the rewards from beeating the scenario
 var rewards
 

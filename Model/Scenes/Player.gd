@@ -40,6 +40,11 @@ func drawCard() -> void:
 	var packed_scene = deck.pop_back()
 	#add card to hand
 	hand.append(packed_scene)
+	
+	#show the drawn card to the player
+	GameManager.drawCardPreview.drawCardPreview(packed_scene)
+	
+	
 	#instantiate card to put on the UI
 	var card_instance = packed_scene.instantiate()
 	
