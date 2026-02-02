@@ -8,6 +8,9 @@ const PsycheAsteroidScene = preload("uid://of3br6vte6xu")
 const ScenarioScene = preload("uid://brf8psrjkpbsh")
 const UnknownScenarioScene = preload("uid://bhmwabijgly1l")
 
+# active bool; used to fix autoadvance bug
+var map_active := true
+
 #node coordinates and connections
 # want to find a better way to do this, make more flexible
 const TOTAL_NODES = 9
@@ -85,10 +88,23 @@ func advance_position():
 		self.visible = false
 	
 	self.visible = true
+	reactivate_map__delay(0.5) # reactivate map w .5 sec delay
+	
+	
+# Called in advance_position to reactivate the map w delay
+func reactivate_map__delay(delay := 0.5) -> void:
+	map_active = false
+	await get_tree().create_timer(delay).timeout
+	map_active = true
+
 
 # Recieves signal from scenario node when clicked on
 # Then sets selected scenario and anticipated location
 func _on_child_interacted(clicked_scenario):
+	if !map_active: # do nothing if map inactive (prevent clickthrough)
+		return
+		
+	map_active = false # deactivate map once scenario is chosen
 	psyche_anticipated_location = clicked_scenario.position
 	psyche_anticipated_index = clicked_scenario.get_meta("index")
 	print("Anticipated location set")
