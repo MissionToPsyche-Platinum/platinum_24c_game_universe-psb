@@ -1,6 +1,10 @@
 [gd_scene load_steps=57 format=4 uid="uid://b5aneqr63kcay"]
 
+<<<<<<< Updated upstream
 [ext_resource type="Script" uid="uid://bryyckfysnh62" path="res://Model/Scenes/MainScene.gd" id="1_6pwi0"]
+=======
+[ext_resource type="Script" path="res://Model/Scenes/MainScene.gd" id="1_6pwi0"]
+>>>>>>> Stashed changes
 [ext_resource type="Script" uid="uid://lp0itw18h7mo" path="res://Model/Scenes/card_manager.gd" id="2_qb6nl"]
 [ext_resource type="PackedScene" uid="uid://ba3anonls50oq" path="res://Model/CardData/Cards/RedshiftAccelerator.tscn" id="3_d184y"]
 [ext_resource type="PackedScene" uid="uid://dpbrwrnhljytj" path="res://Model/CardData/Cards/RedundantEngineering.tscn" id="4_wki3r"]
@@ -21,6 +25,10 @@
 [ext_resource type="Texture2D" uid="uid://clkpqvj75twac" path="res://View/Assets/Card Hud/card_arrow_filled.png" id="16_k7non"]
 [ext_resource type="Script" uid="uid://7y010iwclveo" path="res://Controller/UI Scripts/discardButtonScrip.gd" id="20_j5y8d"]
 [ext_resource type="Script" path="res://Controller/UI Scripts/trashcanScript.gd" id="20_rxymg"]
+<<<<<<< Updated upstream
+=======
+[ext_resource type="Script" uid="uid://bdio638up815l" path="res://Controller/UI Scripts/drawCardPreview.gd" id="21_rxymg"]
+>>>>>>> Stashed changes
 
 [sub_resource type="Theme" id="Theme_d184y"]
 
@@ -1151,7 +1159,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_6rofx")
 }
 
-[node name="ColorRect" type="ColorRect" parent="UI/Hand Container"]
+[node name="Background" type="ColorRect" parent="UI/Hand Container"]
 z_index = -2
 layout_mode = 0
 offset_left = -580.0

@@ -16,9 +16,6 @@ func _ready() -> void:
 	choose_random_scenario()
 	set_sprite()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 # Selects random scenario from Scenarios folder and assigns it to this node
 func choose_random_scenario():

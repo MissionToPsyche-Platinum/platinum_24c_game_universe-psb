@@ -66,7 +66,8 @@ func loadScenario(scenePath: String) -> void:
 		playerInstantiated = true
 	
 	#get the scene from the file path
-	var scenarioScene = load(scenePath)
+	print("SCENARIO IS HARD CODED FOR TESTING, GO TO GAMEMANAGER TO FIX")
+	var scenarioScene = load("res://Model/ScenarioData/Scenarios/BattleSceneTest1.tscn")
 	scenario = scenarioScene.instantiate()
 	
 	#add scenario to scene tree

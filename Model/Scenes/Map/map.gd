@@ -52,8 +52,7 @@ func _ready() -> void:
 	update_line_colors()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+
 
 # Called whenever a scenario is successfully completed
 # and the player returns to the map

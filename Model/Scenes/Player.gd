@@ -27,12 +27,12 @@ func instantiatePlayerDeck() -> void:
 
 func getNewHand() -> void:
 	for i in range(BEGINNING_DECK_SIZE):
-		drawCard()
+		drawCard(false)
 
 func beginPlayerTurn() -> void:
-	drawCard()
+	drawCard(true)
 
-func drawCard() -> void:
+func drawCard(showPreview : bool) -> void:
 	if deck.is_empty():
 		print("Attempted to draw from empty deck!")
 		return
@@ -40,6 +40,15 @@ func drawCard() -> void:
 	var packed_scene = deck.pop_back()
 	#add card to hand
 	hand.append(packed_scene)
+<<<<<<< Updated upstream
+=======
+	
+	if showPreview:
+		#show the drawn card to the player
+		GameManager.drawCardPreview.drawCardPreview(packed_scene)
+	
+	
+>>>>>>> Stashed changes
 	#instantiate card to put on the UI
 	var card_instance = packed_scene.instantiate()
 	
