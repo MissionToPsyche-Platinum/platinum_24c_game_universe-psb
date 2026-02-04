@@ -13,9 +13,9 @@ signal card_used(card)
 @export var rewardsClickable: Control
 
 #references to card nodes
-@onready var protocolCardName: Label = $CardBackground/ProtocolCardName
-@onready var protocolCardDescription: Label = $CardBackground/ProtocolCardDescription
-@onready var protocolCardSprite: Sprite2D = $CardBackground/ProtocolCardSprite
+@export var protocolCardName: Label 
+@export var protocolCardDescription: Label 
+@export var protocolCardSprite: Sprite2D 
 
 signal rewardChosen(card)
 

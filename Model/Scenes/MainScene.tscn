@@ -1,6 +1,6 @@
-[gd_scene load_steps=57 format=4 uid="uid://b5aneqr63kcay"]
+[gd_scene load_steps=62 format=4 uid="uid://b5aneqr63kcay"]
 
-[ext_resource type="Script" uid="uid://bryyckfysnh62" path="res://Model/Scenes/MainScene.gd" id="1_6pwi0"]
+[ext_resource type="Script" uid="uid://bryyckfysnh62" path="res://Model/Scenes/mainScene.gd" id="1_6pwi0"]
 [ext_resource type="Script" uid="uid://lp0itw18h7mo" path="res://Model/Scenes/card_manager.gd" id="2_qb6nl"]
 [ext_resource type="PackedScene" uid="uid://ba3anonls50oq" path="res://Model/CardData/Cards/RedshiftAccelerator.tscn" id="3_d184y"]
 [ext_resource type="PackedScene" uid="uid://dpbrwrnhljytj" path="res://Model/CardData/Cards/RedundantEngineering.tscn" id="4_wki3r"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://clkpqvj75twac" path="res://View/Assets/Card Hud/card_arrow_filled.png" id="16_k7non"]
 [ext_resource type="Script" uid="uid://7y010iwclveo" path="res://Controller/UI Scripts/discardButtonScrip.gd" id="20_j5y8d"]
 [ext_resource type="Script" path="res://Controller/UI Scripts/trashcanScript.gd" id="20_rxymg"]
+[ext_resource type="Script" uid="uid://bdio638up815l" path="res://Controller/UI Scripts/drawCardPreview.gd" id="21_rxymg"]
 
 [sub_resource type="Theme" id="Theme_d184y"]
 
@@ -223,6 +224,143 @@ _data = {
 [sub_resource type="LabelSettings" id="LabelSettings_j5y8d"]
 font = ExtResource("11_wki3r")
 font_size = 40
+
+[sub_resource type="Animation" id="Animation_6rofx"]
+resource_name = "DrawCard"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.53, 1.28, 1.4666667, 1.78),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1255, 460), Vector2(955, 460), Vector2(955, 460), Vector2(955, 460), Vector2(955, 958)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:size")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Drew Card Label:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Drew Card Label:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.46666667, 0.7, 0.96, 1.2, 1.4333333, 1.63),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Drew Card Label:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.83),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-208.18042, -165.00002)]
+}
+
+[sub_resource type="Animation" id="Animation_vpyr8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1255, 460)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(49.99994, 50.00061)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Drew Card Label:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Drew Card Label:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Drew Card Label:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-149.50903, -46)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hpnhm"]
+_data = {
+&"DrawCard": SubResource("Animation_6rofx"),
+&"RESET": SubResource("Animation_vpyr8")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_c1geu"]
+font = ExtResource("11_wki3r")
+font_size = 30
 
 [sub_resource type="Animation" id="Animation_k7non"]
 resource_name = "DisplayCardGui"
@@ -687,7 +825,7 @@ _data = {
 &"UseCard": SubResource("Animation_xfpm0")
 }
 
-[node name="MainScene" type="Node2D" node_paths=PackedStringArray("player", "cardManager", "hullIntegrityLabel", "powerLabel", "velocityLabel", "rewardsHolder", "scenarioHeader", "scenarioEffectLabel", "scenarioWinConditionLabel", "hullIntegrityBar", "powerBar", "velocityBar", "animationPlayer", "handController")]
+[node name="MainScene" type="Node2D" node_paths=PackedStringArray("player", "cardManager", "hullIntegrityLabel", "powerLabel", "velocityLabel", "rewardsHolder", "scenarioHeader", "scenarioEffectLabel", "scenarioWinConditionLabel", "hullIntegrityBar", "powerBar", "velocityBar", "animationPlayer", "handController", "drawCardPreview")]
 script = ExtResource("1_6pwi0")
 player = NodePath("Player")
 cardManager = NodePath("CardManager")
@@ -703,6 +841,7 @@ powerBar = NodePath("UI/Attribute Holder/Player Attribute Bars/Power Bar")
 velocityBar = NodePath("UI/Attribute Holder/Player Attribute Bars/Velocity Bar")
 animationPlayer = NodePath("AnimationPlayer")
 handController = NodePath("UI/Hand Container")
+drawCardPreview = NodePath("UI/DrawCardPreview")
 
 [node name="CardManager" type="Node" parent="."]
 script = ExtResource("2_qb6nl")
@@ -1171,12 +1310,15 @@ offset_bottom = 650.0
 z_index = 1
 layout_mode = 1
 anchors_preset = -1
+anchor_right = 28.850002
+anchor_bottom = 16.25
 offset_left = 471.0
 offset_top = -69.0
-offset_right = 555.00085
-offset_bottom = -38.0
+offset_right = 470.99988
+offset_bottom = -69.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 alignment = 1
 
 [node name="RewardControl" type="Control" parent="UI"]
@@ -1212,6 +1354,42 @@ text = "Restart Game
 "
 metadata/_edit_use_anchors_ = true
 
+[node name="DrawCardPreview" type="Control" parent="UI" node_paths=PackedStringArray("drawCardPreviewAnimationPlayer", "drawCardPreviewHolder")]
+layout_mode = 1
+anchor_right = 28.850002
+anchor_bottom = 16.25
+offset_right = -0.00012207031
+mouse_filter = 2
+script = ExtResource("21_rxymg")
+drawCardPreviewAnimationPlayer = NodePath("PreviewHolder/DrawCardAnimationPlayer")
+drawCardPreviewHolder = NodePath("PreviewHolder")
+resizeScaleX = 0.4
+resizeScaleY = 0.4
+
+[node name="PreviewHolder" type="Control" parent="UI/DrawCardPreview"]
+anchors_preset = 0
+offset_left = 1255.0
+offset_top = 460.0
+offset_right = 1305.0
+offset_bottom = 510.0006
+
+[node name="DrawCardAnimationPlayer" type="AnimationPlayer" parent="UI/DrawCardPreview/PreviewHolder"]
+libraries = {
+&"": SubResource("AnimationLibrary_hpnhm")
+}
+
+[node name="Drew Card Label" type="Label" parent="UI/DrawCardPreview/PreviewHolder"]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = -149.50903
+offset_top = -46.0
+offset_right = 21.490967
+offset_bottom = -15.0
+rotation = -0.53407073
+text = "Drew Card !!!"
+label_settings = SubResource("LabelSettings_c1geu")
+
 [node name="Psyche" type="Sprite2D" parent="."]
 position = Vector2(-217, 298)
 scale = Vector2(0.6666667, 0.69402987)
@@ -1234,3 +1412,5 @@ libraries = {
 [connection signal="animation_finished" from="UI/Hand Container/TrashCanHolder/TrashCanAnimationPlayer" to="UI/Hand Container/TrashCanHolder" method="_on_trash_can_animation_player_animation_finished"]
 [connection signal="gui_input" from="UI/ContinueScenario" to="UI/Hand Container" method="_on_continue_scenario_gui_input"]
 [connection signal="pressed" from="UI/Button" to="." method="_on_button_pressed"]
+[connection signal="animation_finished" from="UI/DrawCardPreview/PreviewHolder/DrawCardAnimationPlayer" to="UI/DrawCardPreview" method="_on_draw_card_animation_player_animation_finished"]
+[connection signal="animation_finished" from="UI/DrawCardPreview/PreviewHolder/DrawCardAnimationPlayer" to="UI/DrawCardPreview/PreviewHolder" method="_on_draw_card_animation_player_animation_finished"]
