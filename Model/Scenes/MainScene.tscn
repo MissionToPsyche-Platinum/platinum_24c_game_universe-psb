@@ -1,11 +1,7 @@
 [gd_scene load_steps=57 format=4 uid="uid://b5aneqr63kcay"]
 
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
 [ext_resource type="Script" uid="uid://bryyckfysnh62" path="res://Model/Scenes/MainScene.gd" id="1_6pwi0"]
-=======
-[ext_resource type="Script" path="res://Model/Scenes/MainScene.gd" id="1_6pwi0"]
->>>>>>> Stashed changes
 =======
 [ext_resource type="Script" path="res://Model/Scenes/MainScene.gd" id="1_6pwi0"]
 >>>>>>> Stashed changes
@@ -30,10 +26,7 @@
 [ext_resource type="Script" uid="uid://7y010iwclveo" path="res://Controller/UI Scripts/discardButtonScrip.gd" id="20_j5y8d"]
 [ext_resource type="Script" path="res://Controller/UI Scripts/trashcanScript.gd" id="20_rxymg"]
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
 =======
-=======
->>>>>>> Stashed changes
 [ext_resource type="Script" uid="uid://bdio638up815l" path="res://Controller/UI Scripts/drawCardPreview.gd" id="21_rxymg"]
 >>>>>>> Stashed changes
 
