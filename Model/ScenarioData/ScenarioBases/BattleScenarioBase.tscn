@@ -1,0 +1,85 @@
+[gd_scene load_steps=6 format=3 uid="uid://bqgb25p6cqeoa"]
+
+[ext_resource type="Script" path="res://Model/ScenarioData/ScenarioBases/BattleScenario.gd" id="1_sriu2"]
+[ext_resource type="Texture2D" uid="uid://damk48kf44hid" path="res://View/Assets/Backgrounds/background.png" id="2_qhjs1"]
+
+[sub_resource type="Animation" id="Animation_qhjs1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1505, 232)]
+}
+
+[sub_resource type="Animation" id="Animation_sriu2"]
+resource_name = "ShowGrid"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1550, 130), Vector2(471, 130)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ehyr3"]
+_data = {
+&"RESET": SubResource("Animation_qhjs1"),
+&"ShowGrid": SubResource("Animation_sriu2")
+}
+
+[node name="BattleScenarioBase" type="Node2D" node_paths=PackedStringArray("enemyContainer", "enemyGrid", "enemyContainerAnimationPlayer")]
+script = ExtResource("1_sriu2")
+enemyContainer = NodePath("EnemyContainer")
+enemyGrid = NodePath("EnemyContainer/Enemy Grid")
+enemyContainerAnimationPlayer = NodePath("EnemyContainer/AnimationPlayer")
+scenarioType = 1
+scenarioText = "Uh oh, its the Feds"
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="Parallax2D" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(3, 3)
+repeat_size = Vector2(1920, 0)
+autoscroll = Vector2(-30, 0)
+
+[node name="BackgroundImage" type="Sprite2D" parent="Background/Parallax2D"]
+position = Vector2(734.25006, 337)
+scale = Vector2(1.004948, 0.81203705)
+texture = ExtResource("2_qhjs1")
+
+[node name="EnemyContainer" type="Control" parent="."]
+custom_minimum_size = Vector2(682, 519)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1505.0
+offset_top = 232.0
+offset_right = 2187.001
+offset_bottom = 751.0
+
+[node name="Enemy Grid" type="GridContainer" parent="EnemyContainer"]
+custom_minimum_size = Vector2(180, 240)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EnemyContainer"]
+libraries = {
+&"": SubResource("AnimationLibrary_ehyr3")
+}
