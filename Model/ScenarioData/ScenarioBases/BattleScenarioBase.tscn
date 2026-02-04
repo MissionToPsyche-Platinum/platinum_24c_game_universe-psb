@@ -1,22 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bqgb25p6cqeoa"]
+[gd_scene load_steps=6 format=3 uid="uid://ccs4ryghtb0bf"]
 
-[ext_resource type="Script" path="res://Model/ScenarioData/ScenarioBases/BattleScenario.gd" id="1_sriu2"]
+[ext_resource type="Script" uid="uid://bnq8wkiku4077" path="res://Model/ScenarioData/ScenarioBases/BattleScenario.gd" id="1_sriu2"]
 [ext_resource type="Texture2D" uid="uid://damk48kf44hid" path="res://View/Assets/Backgrounds/background.png" id="2_qhjs1"]
-
-[sub_resource type="Animation" id="Animation_qhjs1"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1505, 232)]
-}
 
 [sub_resource type="Animation" id="Animation_sriu2"]
 resource_name = "ShowGrid"
@@ -32,6 +17,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1550, 130), Vector2(471, 130)]
+}
+
+[sub_resource type="Animation" id="Animation_qhjs1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1505, 232)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ehyr3"]

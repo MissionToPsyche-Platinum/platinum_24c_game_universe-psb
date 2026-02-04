@@ -221,7 +221,7 @@ func _on_discard_button_pressed() -> void:
 	
 	#have the player draw the same amount of cards they discarded
 	for i in range(holdingDiscardCount):
-		GameManager.player.drawCard()
+		GameManager.player.drawCard(false)
 		
 	#Fade out the UI
 	fadeOutUI(discardLabel)

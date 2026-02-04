@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://df5i2gsuui8n7"]
 
-[ext_resource type="Script" path="res://Model/ScenarioData/EnemyData/Enemy.gd" id="1_oqej4"]
-[ext_resource type="Texture2D" path="res://View/Assets/Sprites/Enemies/aliens.png" id="1_v2m37"]
+[ext_resource type="Script" uid="uid://p75noca3rrwy" path="res://Model/ScenarioData/EnemyData/Enemy.gd" id="1_oqej4"]
+[ext_resource type="Texture2D" uid="uid://b6qhrnt10w205" path="res://View/Assets/Sprites/Enemies/aliens.png" id="1_v2m37"]
 
 [sub_resource type="Animation" id="Animation_oqej4"]
 resource_name = "EnemyIdle"
@@ -48,8 +48,9 @@ script = ExtResource("1_oqej4")
 
 [node name="EnemySprite" type="TextureRect" parent="."]
 layout_mode = 0
+offset_top = 43.891438
 offset_right = 734.0
-offset_bottom = 333.0
+offset_bottom = 376.89145
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_v2m37")
 

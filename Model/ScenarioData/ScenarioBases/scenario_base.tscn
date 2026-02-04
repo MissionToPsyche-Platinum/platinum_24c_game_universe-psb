@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://lhp1mrb310f"]
+[gd_scene load_steps=3 format=3 uid="uid://daqtccsrkuw38"]
 
 [ext_resource type="Script" uid="uid://ci8rwothrjp43" path="res://Model/ScenarioData/ScenarioBases/EventScenario.gd" id="1_wmm3l"]
 [ext_resource type="Texture2D" uid="uid://damk48kf44hid" path="res://View/Assets/Backgrounds/background.png" id="2_uphp0"]
