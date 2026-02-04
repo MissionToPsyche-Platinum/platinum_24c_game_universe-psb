@@ -70,7 +70,7 @@ func loadScenario(scenePath: String) -> void:
 		playerInstantiated = true
 	
 	#get the scene from the file path
-	var scenarioScene = load(scenePath)
+	var scenarioScene = load("res://Model/ScenarioData/Scenarios/BattleSceneTest1.tscn")
 	scenario = scenarioScene.instantiate()
 	
 	#add scenario to scene tree
