@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MapLayout" load_steps=2 format=3 uid="uid://bhalcqgv8vhdh"]
+
+[ext_resource type="Script" uid="uid://bijovwh8c4qj7" path="res://Model/MapData/MapLayout.gd" id="1_1j073"]
+
+[resource]
+script = ExtResource("1_1j073")
+node_positions = Array[Vector2]([Vector2(140, 540), Vector2(225, 315), Vector2(450, 510), Vector2(405, 150), Vector2(510, 315), Vector2(734, 210), Vector2(900, 375), Vector2(1005, 120)])
+connections = Array[Vector2i]([Vector2i(0, 1), Vector2i(0, 2), Vector2i(1, 3), Vector2i(1, 4), Vector2i(2, 4), Vector2i(3, 5), Vector2i(4, 5), Vector2i(4, 6), Vector2i(5, 7), Vector2i(6, 7)])
+end_index = 8

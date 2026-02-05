@@ -16,23 +16,33 @@ func _ready():
 	model.changed.connect(_on_model_changed)
 	model.reached_end.connect(_on_reached_end)
 
+	#view.toggle_visibility(false)
 	activate_map_delayed()
+
+func advance_position():
+	model.has_advanced()
+	activate_map_delayed()
+	view.toggle_visibility(true)
 
 func _on_node_clicked(index: int):
 	if !map_active:
 		return
 
+	view.toggle_visibility(false)
 	map_active = false
 	model.move_to(index)
 
 func _on_model_changed():
 	view.update_from_model(model)
-	activate_map_delayed()
+	#activate_map_delayed()
 
 func activate_map_delayed(delay := 0.5):
 	map_active = false
 	await get_tree().create_timer(delay).timeout
 	map_active = true
+	
 
 func _on_reached_end():
+	map_active = false
+	view.toggle_visibility(false)
 	get_tree().change_scene_to_file("res://Model/ScreenData/WinScreen.tscn")

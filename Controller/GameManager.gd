@@ -3,7 +3,8 @@ extends Node
 @export var player: Player
 @export var scenario: Scenario
 @export var card_manager: CardManager
-@export var map: Map
+#@export var map: Map
+@export var map: MapController
 
 #UI root node
 var UI: Control
