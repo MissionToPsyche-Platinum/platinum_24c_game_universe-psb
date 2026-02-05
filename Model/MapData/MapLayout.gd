@@ -6,11 +6,4 @@ class_name MapLayout
 @export var node_positions: Array[Vector2]
 @export var connections: Array[Vector2i] # (from, to)
 @export var start_index := 0
-
-var end_index: int
-
-func _init():
-	if node_positions.size() > 0:
-		end_index = node_positions.size() - 1
-	else:
-		end_index = -1
+@export var end_index := -1
