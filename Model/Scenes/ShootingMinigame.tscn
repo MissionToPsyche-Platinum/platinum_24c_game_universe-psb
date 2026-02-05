@@ -1,0 +1,81 @@
+[gd_scene load_steps=14 format=3 uid="uid://b625bvp2xgl6p"]
+
+[ext_resource type="Script" uid="uid://bqgg65agkmona" path="res://Model/Scenes/shooting_minigame.gd" id="1_jp78x"]
+[ext_resource type="Texture2D" uid="uid://c3iq4tbrlyyx3" path="res://View/Assets/Sprites/MiniPsyche.png" id="1_oulyw"]
+[ext_resource type="Script" uid="uid://8or8g6abupg5" path="res://Model/Scenes/Shooting_Player.gd" id="2_uwuhv"]
+[ext_resource type="PackedScene" uid="uid://chye4k5n4cwp1" path="res://Model/Scenes/Projectile.tscn" id="3_7d8pj"]
+[ext_resource type="Script" uid="uid://hn14cp77nx3c" path="res://Model/Scenes/UFOSpawner.gd" id="5_kb4xu"]
+[ext_resource type="Script" uid="uid://dbaa0xgtu8bfm" path="res://Model/Scenes/Player_hitbox.gd" id="5_simhh"]
+[ext_resource type="PackedScene" uid="uid://bn27xkqw3riwh" path="res://Model/Scenes/UFO.tscn" id="6_simhh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7d8pj"]
+size = Vector2(47, 29)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gajr4"]
+size = Vector2(59, 38)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_robsb"]
+size = Vector2(1174, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oulyw"]
+size = Vector2(20, 657)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jp78x"]
+size = Vector2(21, 658)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uwuhv"]
+size = Vector2(1167, 20)
+
+[node name="ShootingMinigame" type="Node2D"]
+script = ExtResource("1_jp78x")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(543, 569)
+collision_mask = 2
+script = ExtResource("2_uwuhv")
+projectile_scene = ExtResource("3_7d8pj")
+
+[node name="Shooting Psyche" type="Sprite2D" parent="Player"]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_oulyw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_7d8pj")
+
+[node name="Muzzle" type="Marker2D" parent="Player"]
+position = Vector2(0, -20.5)
+
+[node name="Hitbox" type="Area2D" parent="Player"]
+script = ExtResource("5_simhh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Hitbox"]
+position = Vector2(-1.5, -1)
+shape = SubResource("RectangleShape2D_gajr4")
+
+[node name="UFOSpawner" type="Node2D" parent="."]
+script = ExtResource("5_kb4xu")
+ufo_scene = ExtResource("6_simhh")
+
+[node name="Movement Box" type="StaticBody2D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape2D(Top)" type="CollisionShape2D" parent="Movement Box"]
+position = Vector2(579, -9)
+shape = SubResource("RectangleShape2D_robsb")
+debug_color = Color(0, 0.6, 0.69803923, 1)
+
+[node name="CollisionShape2D(Left)" type="CollisionShape2D" parent="Movement Box"]
+position = Vector2(-11, 319)
+shape = SubResource("RectangleShape2D_oulyw")
+debug_color = Color(0, 0.6, 0.69803923, 1)
+
+[node name="CollisionShape2D(Right)" type="CollisionShape2D" parent="Movement Box"]
+position = Vector2(1162, 322)
+shape = SubResource("RectangleShape2D_jp78x")
+debug_color = Color(0, 0.6, 0.69803923, 1)
+
+[node name="CollisionShape2D(Bottom)" type="CollisionShape2D" parent="Movement Box"]
+position = Vector2(570, 660)
+shape = SubResource("RectangleShape2D_uwuhv")
+debug_color = Color(0, 0.6, 0.69803923, 1)

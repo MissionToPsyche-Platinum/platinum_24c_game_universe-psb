@@ -31,4 +31,5 @@ func test_object_moves_when_velocity_applied():
 		"Object should move to the right"
 	)
 	
+func test_destroy_asteroid():
 	

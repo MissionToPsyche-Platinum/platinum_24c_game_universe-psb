@@ -38,6 +38,7 @@ size = Vector2(1167, 20)
 script = SubResource("GDScript_ajg4u")
 
 [node name="Player" type="CharacterBody2D" parent="."]
+collision_layer = 3
 script = ExtResource("1_kqcay")
 
 [node name="MiniPsyche" type="Sprite2D" parent="Player"]
@@ -67,7 +68,7 @@ shape = SubResource("RectangleShape2D_4fwjh")
 debug_color = Color(0, 0.6, 0.69803923, 1)
 
 [node name="CollisionShape2D(Right)" type="CollisionShape2D" parent="Movement Box"]
-position = Vector2(1170, 322)
+position = Vector2(1162, 322)
 shape = SubResource("RectangleShape2D_w3j5p")
 debug_color = Color(0, 0.6, 0.69803923, 1)
 
