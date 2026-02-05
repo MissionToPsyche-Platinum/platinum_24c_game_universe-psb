@@ -89,8 +89,8 @@ func advance_position():
 	
 	self.visible = true
 	reactivate_map__delay(0.5) # reactivate map w .5 sec delay
-	
-	
+
+
 # Called in advance_position to reactivate the map w delay
 func reactivate_map__delay(delay := 0.5) -> void:
 	map_active = false

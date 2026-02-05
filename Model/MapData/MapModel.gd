@@ -14,13 +14,18 @@ var disabled_nodes := {}
 
 # Initialize layout, current index & earth node
 func _init(map_layout: MapLayout):
+	# Initialize layout, index, known node (earth)
 	layout = map_layout
 	current_index = layout.start_index
 	known_nodes[current_index] = true
+	
+	# Reveal initial neighbors
+	for n in get_proceeding_neighbors(current_index):
+		known_nodes[n] = true
 
 # Helper to get all proceeding neighbors of index
 func get_proceeding_neighbors(index: int) -> Array[int]:
-	var neighbors := []
+	var neighbors: Array[int] = []
 	for c in layout.connections:
 		if c.x == index:
 			neighbors.append(c.y)
