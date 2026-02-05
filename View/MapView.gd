@@ -73,10 +73,6 @@ func _update_nodes(model: MapModel):
 		elif i == model.layout.end_index:
 			scene = asteroid_scene
 
-		# Psyche
-		elif i == model.current_index:
-			scene = psyche_scene
-
 		# Known scenario
 		elif model.known_nodes.has(i):
 			scene = scenario_scene
