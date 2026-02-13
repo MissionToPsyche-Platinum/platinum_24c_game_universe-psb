@@ -16,11 +16,10 @@ func _init(map_layout: MapLayout):
 	current_index = layout.start_index
 	known_nodes[current_index] = true
 
-	# First two adjacent nodes are initially known
-	var initial_neighbors = get_proceeding_neighbors(current_index)
-	for i in range(initial_neighbors.size()):
-		if i < 2: # preserve "first two nodes known"
-			known_nodes[initial_neighbors[i]] = true
+	# First adjacent nodes are initially known
+	for n in get_proceeding_neighbors(current_index):
+		known_nodes[n] = true
+
 
 # Move Psyche only if the node is adjacent
 func move_to(index: int):
@@ -44,7 +43,7 @@ func advance_position():
 		disabled_nodes[k] = true
 		
 	# Check for win
-	if get_proceeding_neighbors(layout.end_index).has(current_index):
+	if get_preceeding_neighbors(layout.end_index).has(current_index):
 		reached_end.emit()
 
 	# Reveal all adjacent unknown nodes

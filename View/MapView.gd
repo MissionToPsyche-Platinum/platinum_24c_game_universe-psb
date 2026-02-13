@@ -15,6 +15,9 @@ var visited_nodes := {}
 var line_connections := [] # Vector2i
 var psyche_view: Node2D
 
+var psyche_last_index := -1
+var deactivated := []
+
 func build(layout: MapLayout):
 	_clear()
 	# Draw lines first
@@ -52,11 +55,16 @@ func update_from_model(model: MapModel):
 		if scene == scenario_scene and not node.is_connected("interacted", Callable(self, "_on_node_interacted")):
 			node.connect("interacted", Callable(self, "_on_node_interacted"))
 		
-		# If this node has been visited before and is scenario_scene, disable
-		if visited_nodes.has(i) and scene == scenario_scene and i != model.current_index:
-			if node.has_method("disable"):
-				node.disable()
+		# Disable previously enabled nodes
+		if psyche_last_index != -1:
+			if get_proceeding_neighbors(psyche_last_index, model.layout).has(i):
+					node = _replace_node(i, scenario_scene)
+					if node.has_method("disable") and node != null:
+						node.disable()
+						deactivated.append(i)
+	
 	# end of for loop
+	psyche_last_index = model.current_index
 	
 	# Mark the current node as visited
 	visited_nodes[model.current_index] = true
@@ -87,12 +95,14 @@ func update_from_model(model: MapModel):
 # --------------------
 func _replace_node(index: int, scene: PackedScene) -> Node2D:
 	var old = node_views[index]
-	if old and old.scene_file_path == scene.resource_path:
+	#if old and old.scene_file_path == scene.resource_path:
+	# Stops disabled nodes from being replaced w/ unknown
+	if old and deactivated.has(index):
 		return old
 	
 	# If old node is a disabled scenario, do NOT replace it
-	if old is Scenario and old.is_disabled:
-		return old
+	#if old is Scenario and old.is_disabled:
+		#return old
 
 	var pos = old.position
 	old.queue_free()
@@ -123,3 +133,10 @@ func _clear():
 	line_views.clear()
 	line_connections.clear()
 	psyche_view = null
+
+func get_proceeding_neighbors(index: int, layout: MapLayout) -> Array[int]:
+	var neighbors: Array[int] = []
+	for c in layout.connections:
+		if c.x == index:
+			neighbors.append(c.y)
+	return neighbors
