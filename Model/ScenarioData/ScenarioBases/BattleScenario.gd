@@ -4,8 +4,8 @@ class_name BattleScenario
 #holder for the enemy grid
 @export var enemyContainer : Control
 
-#enemy grid
-@export var enemyGrid : GridContainer
+#array of enemy control positions
+@export var enemyPositions : Array[Control]
 
 #enemy holder AnimationPlayer
 @export var enemyContainerAnimationPlayer : AnimationPlayer
@@ -19,8 +19,9 @@ var enemyList : Array[Enemy]
 
 func _ready() -> void:
 	#clear old enemies
-	for child in enemyGrid.get_children():
-		child.queue_free()
+	for position in enemyPositions:
+		if position.get_child(0) != null:
+			position.get_child(0).queue_free()
 	enemyList.clear()
 				
 	#instantiate all enemies
@@ -36,13 +37,17 @@ func _ready() -> void:
 	#shuffle the placement of the enemies 
 	instances.shuffle()
 	
-	#add the enemies to the grid and enemyList
-	for enemy in instances:
-		enemyGrid.add_child(enemy)
-		#connect to enemy defeated signal
-		enemy.connect("enemyDefeated", Callable(self, "enemyDefeated"))
-		enemyList.append(enemy)
+	# place these enemies on the various position nodes and add them to enemy list, connect to enemy signal 
+	for i in range(instances.size()):
+		enemyList.append(instances[i])
+		enemyPositions[i].add_child(instances[i])
+		instances[i].connect("enemyDefeated", Callable(self, "enemyDefeated"))
 		
+		
+	for e in enemyList:
+		print(e.name, " size=", e.size, " min=", e.get_combined_minimum_size(), " filter=", e.mouse_filter)
+	
+	
 	#slide the enemies onto the screen
 	enemyContainerAnimationPlayer.play("ShowGrid")
 			
@@ -77,8 +82,9 @@ func performScenarioEffect() -> void:
 func checkWinCondition() -> bool:
 	#check if all enemies are defeated 
 	for enemy in enemyList:
-		if !(enemy.isDefeated()):
-			return false
+		if is_instance_valid(enemy):
+			if !(enemy.isDefeated()):
+				return false
 			
 	#check for attribute win conditions
 	for condition in attributeWinConditions:
@@ -125,13 +131,16 @@ func getAliveEnemyCount() -> int:
 	var count = 0
 	
 	for enemy in enemyList:
-		if !(enemy.isDefeated()):
-			count += 1
+		if is_instance_valid(enemy):
+			if !(enemy.isDefeated()):
+				count += 1
 	return count
 	
 	
 func enemyDefeated(enemy : Enemy) -> void:
-	#remove the enemy from the grid
-	enemyGrid.remove_child(enemy)
+	#find the enemy position
+	for position in enemyPositions:
+		if position.get_child(0) == enemy:
+			position.get_child(0).queue_free()
 	#
 			

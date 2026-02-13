@@ -1,6 +1,10 @@
 extends Control
 class_name Enemy
 
+signal clicked(enemy : Enemy)
+
+
+
 #variable to determine the maximum health of an enemy
 @export var MAX_HEALTH : int
 #reference to the enemy's health bar
@@ -18,6 +22,8 @@ func _ready() -> void:
 	healthBar.max_value = MAX_HEALTH
 	healthBar.min_value = 0
 	healthBar.value = MAX_HEALTH
+	mouse_filter = Control.MOUSE_FILTER_STOP
+	setChildrenIgnoreMouse(self)
 	
 
 func damageEnemy(amt : int) -> void:
@@ -33,9 +39,14 @@ func damageEnemy(amt : int) -> void:
 func isDefeated() -> bool:
 	return health <= 0 
 	
-	
 
+func _on_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		print("Enemy Clicked")
+		emit_signal("clicked",self)
 
-func _on_button_pressed() -> void:
-	#damage enemy for testing:
-	damageEnemy(1)
+func setChildrenIgnoreMouse(node: Node) -> void:
+	for c in node.get_children():
+		if c is Control:
+			(c as Control).mouse_filter = Control.MOUSE_FILTER_IGNORE
+		setChildrenIgnoreMouse(c)

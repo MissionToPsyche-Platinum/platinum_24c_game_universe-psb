@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bd8rk3dr3vnpn"]
+[gd_scene load_steps=5 format=3 uid="uid://dskd3eatdk06y"]
 
-[ext_resource type="PackedScene" uid="uid://ccs4ryghtb0bf" path="res://Model/ScenarioData/ScenarioBases/BattleScenarioBase.tscn" id="1_1p7bj"]
-[ext_resource type="PackedScene" uid="uid://c1mt50iu7aff0" path="res://Model/ScenarioData/EnemyData/Alien.tscn" id="2_jlajf"]
+[ext_resource type="PackedScene" uid="uid://bqgb25p6cqeoa" path="res://Model/ScenarioData/ScenarioBases/BattleScenarioBase.tscn" id="1_1p7bj"]
+[ext_resource type="PackedScene" uid="uid://daj8tho34jbpd" path="res://Model/ScenarioData/EnemyData/Alien.tscn" id="2_jlajf"]
 [ext_resource type="Script" uid="uid://cda51huvrayd1" path="res://Model/CardData/CardBehaviorData/AttriubuteEffect.gd" id="3_vsoto"]
 
 [sub_resource type="Resource" id="Resource_2rt3n"]
@@ -10,6 +10,15 @@ amount = -10.0
 metadata/_custom_type_script = "uid://cda51huvrayd1"
 
 [node name="BattleScenarioBase" instance=ExtResource("1_1p7bj")]
-enemyScenes = Array[PackedScene]([ExtResource("2_jlajf"), ExtResource("2_jlajf"), ExtResource("2_jlajf")])
+enemyScenes = Array[PackedScene]([ExtResource("2_jlajf"), ExtResource("2_jlajf"), ExtResource("2_jlajf"), ExtResource("2_jlajf")])
 affectedAttributes = Array[ExtResource("3_vsoto")]([SubResource("Resource_2rt3n")])
 scenarioText = "Uh oh, its the Feds - CHEESE IT!"
+
+[node name="EnemyPlacement 3" parent="EnemyContainer" index="3"]
+offset_top = 220.0
+offset_bottom = 260.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Enemy Placement 4" parent="EnemyContainer" index="4"]
+offset_top = 220.0
+offset_bottom = 260.0

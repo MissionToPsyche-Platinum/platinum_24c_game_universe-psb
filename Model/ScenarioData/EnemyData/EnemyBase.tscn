@@ -43,14 +43,18 @@ _data = {
 
 [node name="Enemy" type="Control"]
 layout_mode = 3
-anchors_preset = 0
+anchor_right = 0.34
+anchor_bottom = 0.356
+offset_right = 0.32000732
+offset_bottom = 0.31199646
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_oqej4")
 
 [node name="EnemySprite" type="TextureRect" parent="."]
 layout_mode = 0
-offset_top = 43.891438
 offset_right = 734.0
-offset_bottom = 376.89145
+offset_bottom = 333.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_v2m37")
 
@@ -58,3 +62,5 @@ texture = ExtResource("1_v2m37")
 libraries = {
 &"": SubResource("AnimationLibrary_xop6d")
 }
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

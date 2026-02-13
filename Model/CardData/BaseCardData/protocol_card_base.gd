@@ -44,7 +44,7 @@ func use() -> void:
 		#declaring a variable of a specific type will only accept that type,
 		#not it's subclasses. 
 		if behavior is ICardBehavior:
-			behavior.use()
+			await behavior.use()
 	#emit the signal that the card has been used
 	emit_signal("card_used", self)
 

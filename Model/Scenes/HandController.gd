@@ -27,6 +27,9 @@ var selectedIndex := 0
 #Dictionary set to track which cards are currently toggled for discarding
 var holdingDiscards := {}
 
+#the header that is displayed when the discard button is used
+@export var discardUseHeader : String
+
 func _ready():
 	# In test mode, we manually assign nodes in tests, so skip lookups
 	if test_mode:
@@ -155,9 +158,25 @@ func _on_select_response_label_gui_input(event: InputEvent) -> void:
 		if not test_mode:
 			fadeOutUI(cards[selectedIndex].getCardUseHeader())
 
-		# Use the card
+		# Grab the card
 		var card := cards[selectedIndex]
-		card.use()
+		
+		#get the card use text
+		var cardUseText = card.getCardUseHeader()
+		
+		await card.use()
+
+		# Tween out the scenario header label to replace its text
+		var tween = create_tween()
+		tween.tween_property(GameManager.scenarioHeader, "modulate", Color(1,1,1,0), 0.25)
+		await tween.finished
+
+		# Change the text after fade-out completes
+		GameManager.scenarioHeader.text = cardUseText 
+
+		# Fade back in
+		tween = create_tween()
+		tween.tween_property(GameManager.scenarioHeader, "modulate", Color(1,1,1,1), 0.25)
 
 		# Allow the player to click anywhere on screen to continue the scenario
 		continueScenarioControl.visible = true
@@ -229,6 +248,18 @@ func _on_discard_button_pressed() -> void:
 	#clear the holding discards
 	holdingDiscards.clear()
 	
+	# Tween out the scenario header label to replace its text
+	var tween = create_tween()
+	tween.tween_property(GameManager.scenarioHeader, "modulate", Color(1,1,1,0), 0.25)
+	await tween.finished
+
+	# Change the text after fade-out completes
+	GameManager.scenarioHeader.text = discardUseHeader
+
+	# Fade back in
+	tween = create_tween()
+	tween.tween_property(GameManager.scenarioHeader, "modulate", Color(1,1,1,1), 0.25)
+	
 	#let the player click anywhere to continue 
 	continueScenarioControl.visible = true
 	
@@ -238,15 +269,5 @@ func fadeOutUI(uiText : String) -> void:
 	# Hide the GUI
 		GameManager.UIAnimationPlayer.play("UseCard")
 
-		# Tween out the scenario header label to replace its text
-		var tween = create_tween()
-		tween.tween_property(GameManager.scenarioHeader, "modulate", Color(1,1,1,0), 0.25)
-		await tween.finished
-
-		# Change the text after fade-out completes
-		GameManager.scenarioHeader.text = uiText
-
-		# Fade back in
-		tween = create_tween()
-		tween.tween_property(GameManager.scenarioHeader, "modulate", Color(1,1,1,1), 0.25)
+		
 	

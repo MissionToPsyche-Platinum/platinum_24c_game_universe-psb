@@ -18,6 +18,7 @@ config/icon="res://View/Assets/Sprites/icon.svg"
 [autoload]
 
 GameManager="*res://Controller/GameManager.gd"
+TargetController="*res://Controller/TargetController.gd"
 
 [editor_plugins]
 
