@@ -155,17 +155,25 @@ func _on_select_response_label_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		if cards.is_empty():
 			return
+			# Grab the card
+		var card := cards[selectedIndex]
+	
+		#first check if card can be played
+		if !(card.isCardPlayable()):
+			#TODO: give user an error message
+			print("Cannot use this card!")
+			return 
+			
+		#check for test mode
 		if not test_mode:
 			fadeOutUI(cards[selectedIndex].getCardUseHeader())
+			
 
-		# Grab the card
-		var card := cards[selectedIndex]
-		
 		#get the card use text
 		var cardUseText = card.getCardUseHeader()
 		
 		await card.use()
-
+		
 		# Tween out the scenario header label to replace its text
 		var tween = create_tween()
 		tween.tween_property(GameManager.scenarioHeader, "modulate", Color(1,1,1,0), 0.25)

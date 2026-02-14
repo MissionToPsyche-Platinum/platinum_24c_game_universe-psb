@@ -70,3 +70,9 @@ func _on_reward_clickable_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		print("help")
 		emit_signal("rewardChosen", self)
+		
+func isCardPlayable() -> bool:
+	for behavior in cardBehavior:
+		if (!behavior.isCardPlayable()):
+			return false
+	return true

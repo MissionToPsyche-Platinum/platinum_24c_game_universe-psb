@@ -78,7 +78,7 @@ func loadScenario(scenePath: String) -> void:
 	
 	#get the scenario description text
 	scenarioHeader.text = scenario.scenarioText
-	scenarioEffectLabel.text = scenario.getAffectedAttributes()
+	scenarioEffectLabel.text = scenario.getAffectedAttributes()   
 	scenarioWinConditionsLabel.text = scenario.getWinCondition()
 	print(scenarioHeader.text)
 

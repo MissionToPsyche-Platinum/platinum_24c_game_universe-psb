@@ -5,7 +5,7 @@ signal enemyClicked(enemy : Enemy)
 signal targetingCompleted()
 
 
-var targetingActive := true
+var targetingActive := false
 var remainingTargets := 0
 var currentScenario: BattleScenario
 

@@ -21,7 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://c5b6ep18mucxh" path="res://View/Assets/Card Hud/scenario_arrow.png" id="15_qatxi"]
 [ext_resource type="Texture2D" uid="uid://clkpqvj75twac" path="res://View/Assets/Card Hud/card_arrow_filled.png" id="16_k7non"]
 [ext_resource type="Script" uid="uid://7y010iwclveo" path="res://Controller/UI Scripts/discardButtonScrip.gd" id="20_j5y8d"]
-[ext_resource type="Script" path="res://Controller/UI Scripts/trashcanScript.gd" id="20_rxymg"]
+[ext_resource type="Script" uid="uid://d3pn7t3bl1oxr" path="res://Controller/UI Scripts/trashcanScript.gd" id="20_rxymg"]
 [ext_resource type="Script" uid="uid://bdio638up815l" path="res://Controller/UI Scripts/drawCardPreview.gd" id="21_rxymg"]
 
 [sub_resource type="Theme" id="Theme_d184y"]
@@ -32,7 +32,7 @@ font_size = 32
 
 [sub_resource type="LabelSettings" id="LabelSettings_d184y"]
 font = ExtResource("11_wki3r")
-font_size = 20
+font_size = 30
 
 [sub_resource type="LabelSettings" id="LabelSettings_wki3r"]
 font = ExtResource("11_wki3r")
@@ -487,10 +487,10 @@ tracks/3/path = NodePath("UI/Scenario Effect Labels:position")
 tracks/3/interp = 2
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(2.5333333, 3.5),
+"times": PackedFloat32Array(3.03, 3.83),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1341, 134), Vector2(950, 134)]
+"values": [Vector2(-194, -54), Vector2(58, -54)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -503,6 +503,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 100), Vector2(1, -101)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("UI/Scenario Header:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(255.4, 17)]
 }
 
 [sub_resource type="Animation" id="Animation_qatxi"]
@@ -594,26 +606,26 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("UI/RewardControl/Reward Holder:position")
+tracks/7/path = NodePath("UI/Scenario Header:position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(471, -69)]
+"values": [Vector2(21, 17)]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("UI/Scenario Header:position")
+tracks/8/path = NodePath("UI/RewardControl/Reward Holder:position")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(21, 17)]
+"values": [Vector2(471, -69)]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
@@ -840,7 +852,7 @@ scenarioWinConditionLabel = NodePath("UI/Scenario Effect Labels/Scenario Win Con
 hullIntegrityBar = NodePath("UI/Attribute Holder/Player Attribute Bars/Hull Inegrity Bar")
 powerBar = NodePath("UI/Attribute Holder/Player Attribute Bars/Power Bar")
 velocityBar = NodePath("UI/Attribute Holder/Player Attribute Bars/Velocity Bar")
-animationPlayer = NodePath("AnimationPlayer")
+animationPlayer = NodePath("GUIAnimationPlayer")
 handController = NodePath("UI/Hand Container")
 drawCardPreview = NodePath("UI/DrawCardPreview")
 
@@ -864,11 +876,17 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Scenario Header" type="Label" parent="UI"]
 modulate = Color(1, 1, 1, 0)
-layout_mode = 0
-offset_left = 21.0
-offset_top = 17.0
-offset_right = 1124.0
-offset_bottom = 156.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 6.385
+anchor_top = 0.5
+anchor_right = 28.362001
+anchor_bottom = 3.9
+offset_left = -234.40001
+offset_top = -3.0
+offset_right = -234.40625
+grow_horizontal = 2
+grow_vertical = 2
 text = "Description Label"
 label_settings = SubResource("LabelSettings_qb6nl")
 horizontal_alignment = 1
@@ -878,14 +896,14 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Scenario Effect Labels" type="Control" parent="UI"]
 layout_mode = 1
-anchor_left = 33.0
-anchor_top = 10.95
-anchor_right = 33.4
-anchor_bottom = 11.175
-offset_left = 21.0
-offset_top = -304.0
-offset_right = 60.998535
-offset_bottom = -264.0
+anchor_left = 1.4499996
+anchor_top = -1.35
+anchor_right = 2.85
+anchor_bottom = -0.125
+offset_left = 1283.0
+offset_top = 188.0
+offset_right = 1282.9985
+offset_bottom = 188.0
 metadata/_edit_use_anchors_ = true
 
 [node name="Scenario Effect Header" type="Label" parent="UI/Scenario Effect Labels"]
@@ -902,11 +920,16 @@ label_settings = SubResource("LabelSettings_d184y")
 metadata/_edit_use_anchors_ = true
 
 [node name="Scenario Effect Label" type="Label" parent="UI/Scenario Effect Labels"]
-layout_mode = 0
-offset_left = -43.0
-offset_top = 114.0
-offset_right = 221.0
-offset_bottom = 248.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.768
+anchor_top = 2.3270001
+anchor_right = 3.9470003
+anchor_bottom = 3.8980002
+offset_left = 0.0068740845
+offset_top = -0.023010254
+offset_right = -0.026229858
+offset_bottom = -0.0020141602
 label_settings = SubResource("LabelSettings_wki3r")
 autowrap_mode = 3
 metadata/_edit_use_anchors_ = true
@@ -914,9 +937,9 @@ metadata/_edit_use_anchors_ = true
 [node name="Scenario Win Condition Label" type="Label" parent="UI/Scenario Effect Labels"]
 layout_mode = 0
 offset_left = -47.0
-offset_top = 234.0
+offset_top = 194.29
 offset_right = 221.0
-offset_bottom = 356.0
+offset_bottom = 316.28937
 label_settings = SubResource("LabelSettings_rxymg")
 
 [node name="Attribute Holder" type="Control" parent="UI"]
@@ -1396,7 +1419,7 @@ position = Vector2(-217, 298)
 scale = Vector2(0.6666667, 0.69402987)
 texture = ExtResource("14_m84t2")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="GUIAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_k7non")
 }

@@ -10,6 +10,9 @@ signal clicked(enemy : Enemy)
 #reference to the enemy's health bar
 @export var healthBar : TextureProgressBar
 
+#referecence to the enemySprite for shader control
+@export var sprite  : TextureRect
+
 #health variable
 var health
 
@@ -24,7 +27,15 @@ func _ready() -> void:
 	healthBar.value = MAX_HEALTH
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	setChildrenIgnoreMouse(self)
+	var mat := sprite.material.duplicate() as ShaderMaterial
+	#set the duplicate shader to the enemy instance
+	sprite.material = mat
 	
+	#set shader invisible 
+	mat.set_shader_parameter("color", Color(1,1,0,0))
+	print("help")
+	
+
 
 func damageEnemy(amt : int) -> void:
 	health -= amt
@@ -50,3 +61,18 @@ func setChildrenIgnoreMouse(node: Node) -> void:
 		if c is Control:
 			(c as Control).mouse_filter = Control.MOUSE_FILTER_IGNORE
 		setChildrenIgnoreMouse(c)
+
+
+func _on_mouse_entered() -> void:
+	#check if we're in targeting mode 
+	if TargetController.targetingActive == true:
+		var mat:= sprite.material as ShaderMaterial
+		mat.set_shader_parameter("color", Color(1.0, 0.0, 0.017, 1.0))
+		
+
+func _on_mouse_exited() -> void:
+	#check if we're in targeting mode
+	if TargetController.targetingActive == true:
+		var mat:= sprite.material as ShaderMaterial
+		mat.set_shader_parameter("color", Color(1,1,0,0))
+	

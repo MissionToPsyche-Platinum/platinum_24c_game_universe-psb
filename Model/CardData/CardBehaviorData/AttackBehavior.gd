@@ -44,5 +44,7 @@ func onEnemyClicked(enemy : Enemy) -> void:
 	if is_instance_valid(enemy) and not enemy.isDefeated():
 		enemy.damageEnemy(damage)
 	
+func getBehaviorHint() -> String:
+	return "Damages Enemies\nTargets: " + str(targets) + "\nDamage: " + str(damage)
 	
 		

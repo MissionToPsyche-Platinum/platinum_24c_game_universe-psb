@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://df5i2gsuui8n7"]
+[gd_scene load_steps=7 format=3 uid="uid://df5i2gsuui8n7"]
 
 [ext_resource type="Script" uid="uid://p75noca3rrwy" path="res://Model/ScenarioData/EnemyData/Enemy.gd" id="1_oqej4"]
 [ext_resource type="Texture2D" uid="uid://b6qhrnt10w205" path="res://View/Assets/Sprites/Enemies/aliens.png" id="1_v2m37"]
+[ext_resource type="Material" uid="uid://sr7jy46okfds" path="res://View/Assets/Materials/enemyOutlineMaterial.tres" id="2_e43fq"]
 
 [sub_resource type="Animation" id="Animation_oqej4"]
 resource_name = "EnemyIdle"
@@ -41,7 +42,7 @@ _data = {
 &"RESET": SubResource("Animation_e43fq")
 }
 
-[node name="Enemy" type="Control"]
+[node name="Enemy" type="Control" node_paths=PackedStringArray("sprite")]
 layout_mode = 3
 anchor_right = 0.34
 anchor_bottom = 0.356
@@ -50,8 +51,10 @@ offset_bottom = 0.31199646
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_oqej4")
+sprite = NodePath("EnemySprite")
 
 [node name="EnemySprite" type="TextureRect" parent="."]
+material = ExtResource("2_e43fq")
 layout_mode = 0
 offset_right = 734.0
 offset_bottom = 333.0
@@ -64,3 +67,5 @@ libraries = {
 }
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
