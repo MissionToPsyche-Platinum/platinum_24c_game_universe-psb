@@ -113,16 +113,23 @@ func getWinCondition() -> String:
 	var conditions = ""
 	
 	#in battle scenarios, there will always be enemies, and attribute conditions are optional
-	if affectedAttributes.size() > 0:
+	if attributeWinConditions.size() > 0:
 		header = "Scenario Win Conditions:\n"
 	else:
-		header = "Scenario Win Condition:"
+		header = "Scenario Win Condition:\n"
 		
 	#the scenario will always have enemies
 	conditions = "Defeat All Enemies\n"
 	
 	#append the possible attribute conditions
-	conditions += getAffectedAttributes()
+	for attribute in attributeWinConditions:
+		match attribute.affectedAttribute:
+			0: 
+				conditions += (str(attribute.amount) + " Hull Integrity\n")
+			1:
+				conditions += (str(attribute.amount) + " Power\n")
+			2:
+				conditions += (str(attribute.amount) + " Velocity\n")
 	
 	return header + conditions
 	
@@ -142,5 +149,23 @@ func enemyDefeated(enemy : Enemy) -> void:
 	for position in enemyPositions:
 		if position.get_child(0) == enemy:
 			position.get_child(0).queue_free()
-	#
 			
+	#update the scenario effects label
+	GameManager.scenarioEffectLabel.text = getAffectedAttributes()
+
+func getAffectedAttributes() -> String:
+	var affectedAttributesString := ""
+	for attribute in affectedAttributes:
+		match attribute.affectedAttribute:
+			0:
+				#hull integrity 
+				affectedAttributesString += "Affecting Hull Integrity By " + str(attribute.amount) + " * " + str(getAliveEnemyCount()) + " (Currently Active Enemies)"
+			1:
+				#Power
+				affectedAttributesString += "Affecting Power " + str(attribute.amount) + " * " + str(getAliveEnemyCount()) + " (Currently Active Enemies)"
+			2:
+				#Velocity
+				affectedAttributesString += "Affecting Velocity By " + str(attribute.amount) + " * " + str(getAliveEnemyCount()) + " (Currently Active Enemies)"
+		affectedAttributesString += "\n"
+	
+	return affectedAttributesString

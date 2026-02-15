@@ -70,7 +70,7 @@ func loadScenario(scenePath: String) -> void:
 		playerInstantiated = true
 	
 	#get the scene from the file path
-	var scenarioScene = load("res://Model/ScenarioData/Scenarios/BattleSceneTest1.tscn")
+	var scenarioScene = load(scenePath)
 	scenario = scenarioScene.instantiate()
 	
 	#add scenario to scene tree
@@ -136,28 +136,31 @@ func endScenario() -> void:
 	# Get reward scenes
 	rewards = card_manager.getReward()
 	
-	# enable rewardholder and rewardlabel visibility
-	rewardsHolder.visible = true
-	var rl = UI.get_node("RewardControl/Reward Label")
-	var rewardLabelParent = rl.get_parent()
-	rewardLabelParent.visible = true
+	
 	
 	for reward in rewards:
 		var rewardInstance: Control = reward.instantiate()
 		#save the packed scene for later use
 		rewardInstance.set_meta("source_scene", reward)
-		#shrink the background of the card for some reason
-		rewardInstance.get_child(0).scale.x = 0.49
-		rewardInstance.get_child(0).scale.y = 0.5
-		rewardInstance.custom_minimum_size = Vector2(250, 0)
-		rewardInstance.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
-		rewardInstance.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+		
+		#set the scale of the reward option
+		rewardInstance.scale.x = 0.49
+		rewardInstance.scale.y = 0.5
+		
+		#create a control wrapper with a specified minimun distance
+		var wrapper := Control.new()
+		wrapper.custom_minimum_size = Vector2(300, 0)
+		
+		#add reward instance as child of wrapper
+		wrapper.add_child(rewardInstance)
+		
+			
 		rewardInstance.enableRewardsClickable()
 		#connect to the reward chosen signal of the card
 		rewardInstance.connect("rewardChosen", Callable(self, "rewardChosen"))
 		
-		# Add directly to the HBoxContainer
-		rewardsHolder.add_child(rewardInstance)
+		#add wrapper to hbox
+		rewardsHolder.add_child(wrapper)
 	
 	#play end of scenario animation
 	UIAnimationPlayer.play("ScenarioEnd")
