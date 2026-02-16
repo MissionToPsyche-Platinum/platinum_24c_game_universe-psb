@@ -218,19 +218,23 @@ func _on_toggle_discard_button_pressed() -> void:
 	#if yes, untoggle it
 	if holdingDiscards.has(cards[selectedIndex]):
 		holdingDiscards.erase(cards[selectedIndex])
-		trashcanAnimationPlayer.play("Close")
+		if not test_mode:
+			trashcanAnimationPlayer.play("Close")
 		trashCanOpened = false
 	else:
 		#fuckin weird ass syntax for adding something to a Dictonary 
 		holdingDiscards[cards[selectedIndex]] = true
-		trashcanAnimationPlayer.play("Open")
+		if not test_mode:
+			trashcanAnimationPlayer.play("Open")
 		trashCanOpened = true
 	
 	#after which check if the discard button needs to be shown 
 	if numberOfDiscardsBeforeToggle == 0 and holdingDiscards.size() == 1:
-		discardCardButtonAnimationPlayer.play("Startup")
+		if not test_mode:
+			discardCardButtonAnimationPlayer.play("Startup")
 	elif holdingDiscards.size() == 0:
-		discardCardButtonAnimationPlayer.play("Hide")
+		if not test_mode:
+			discardCardButtonAnimationPlayer.play("Hide")
 	
 
 
@@ -250,11 +254,17 @@ func _on_discard_button_pressed() -> void:
 	for i in range(holdingDiscardCount):
 		GameManager.player.drawCard(false)
 		
+
+	#clear the holding discards
+	holdingDiscards.clear()
+	
+	#returning for test
+	if test_mode:
+		return  
+	
 	#Fade out the UI
 	fadeOutUI(discardLabel)
 	
-	#clear the holding discards
-	holdingDiscards.clear()
 	
 	# Tween out the scenario header label to replace its text
 	var tween = create_tween()
