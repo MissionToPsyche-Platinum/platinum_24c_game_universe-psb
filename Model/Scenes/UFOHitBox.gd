@@ -13,4 +13,4 @@ func _on_body_entered(body):
 		enemy.hit += 1
 
 		if enemy.hit >= 3:
-			enemy.queue_free()
+			enemy.eliminated()

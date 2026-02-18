@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var shoot_interval := 1.5
 var ufo_direction := 1
 var hit := 0
+signal destroyed
 
 
 func _physics_process(delta):
@@ -38,3 +39,7 @@ func shoot_at_player():
 	projectile.direction = (player.global_position - global_position).normalized()
 
 	projectile.add_to_group("EnemyProjectile")
+	
+func eliminated():
+	emit_signal("destroyed")
+	queue_free()

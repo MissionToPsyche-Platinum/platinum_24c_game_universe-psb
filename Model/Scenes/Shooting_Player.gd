@@ -4,10 +4,10 @@ extends CharacterBody2D
 @export var projectile_scene: PackedScene
 
 # Movement boundaries
-@export var min_x := -11.0
-@export var max_x := 1162.0
-@export var min_y := -9.0
-@export var max_y := 660.0
+@export var min_x := 484
+@export var max_x := 829
+@export var min_y := 119
+@export var max_y := 541
 var hit := 0
 
 func _ready():
@@ -26,9 +26,8 @@ func _physics_process(delta):
 	if Input.is_action_pressed("ui_left"):  direction.x -= 1
 
 	velocity = direction.normalized() * speed
-	move_and_slide()  # Godot 4: velocity is a property of CharacterBody2D
-
-	# Clamp position so the player stays inside the movement box
+	move_and_slide()  
+	
 	position.x = clamp(position.x, min_x, max_x)
 	position.y = clamp(position.y, min_y, max_y)
 
@@ -40,7 +39,7 @@ func shoot():
 		print("Error: projectile_scene is not assigned!")
 		return
 	var projectile = projectile_scene.instantiate()
-	get_tree().current_scene.add_child(projectile)  # ensure it’s added to scene
+	get_tree().current_scene.add_child(projectile)
 	projectile.global_position = $Muzzle.global_position
 	projectile.direction = Vector2.UP
 	projectile.add_to_group("Projectile")

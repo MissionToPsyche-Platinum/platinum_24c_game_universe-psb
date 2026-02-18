@@ -1,8 +1,8 @@
 extends Node2D
 
 @export var ufo_scene: PackedScene
-@export var spawn_width := 1000
-@export var spawn_y := 50
+@export var spawn_width := 412
+@export var spawn_y := 170
 @export var spawn_delay := 0.5
 
 func _ready():
@@ -16,6 +16,6 @@ func _ready():
 
 func spawn_ufo():
 	var UFO = ufo_scene.instantiate()
-	UFO.position = Vector2(randf_range(0, spawn_width), spawn_y)
+	UFO.position = Vector2(randf_range(450, 450+spawn_width), spawn_y)
 	add_child(UFO)
 	UFO.add_to_group("ufo")

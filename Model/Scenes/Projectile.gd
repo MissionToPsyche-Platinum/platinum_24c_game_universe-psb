@@ -5,14 +5,13 @@ extends CharacterBody2D
 var direction := Vector2.UP
 
 func _ready():
-	remove_after_lifetime()  # start coroutine
+	remove_after_lifetime()
 
 func _physics_process(delta):
 	var collision = move_and_collide(direction * speed * delta)
 	if collision:
 		var collider = collision.get_collider()
-		if collider.is_in_group("obstacles"):
-			collider.queue_free()
+		if collider.is_in_group("Wall") or collider.is_in_group("Projectile"):  
 			queue_free()
 
 # Coroutine-style function

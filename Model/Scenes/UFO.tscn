@@ -11,7 +11,7 @@ size = Vector2(59, 29)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cts74"]
 size = Vector2(70, 41)
 
-[node name="Ufo" type="CharacterBody2D"]
+[node name="Ufo" type="CharacterBody2D" groups=["UFO"]]
 script = ExtResource("1_gmn1f")
 projectile_scene = ExtResource("2_fnk5y")
 

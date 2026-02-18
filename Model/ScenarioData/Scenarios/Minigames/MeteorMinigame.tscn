@@ -1,0 +1,109 @@
+[gd_scene load_steps=12 format=3 uid="uid://baurn8abmfm3q"]
+
+[ext_resource type="Script" uid="uid://bxr1kd0m58uk2" path="res://Model/ScenarioData/Scenarios/Minigames/MeteorMinigame.gd" id="1_38bt7"]
+[ext_resource type="Texture2D" uid="uid://damk48kf44hid" path="res://View/Assets/Backgrounds/background.png" id="2_nar30"]
+[ext_resource type="Script" uid="uid://buyijkrpi6lts" path="res://Model/Scenes/minigame_player.gd" id="3_2khvb"]
+[ext_resource type="Texture2D" uid="uid://c3iq4tbrlyyx3" path="res://View/Assets/Sprites/MiniPsyche.png" id="4_5tds1"]
+[ext_resource type="Script" uid="uid://buexmjw3sbpst" path="res://Model/Scenes/obstacle_spawner.gd" id="5_jxl3i"]
+[ext_resource type="PackedScene" uid="uid://carqfabi83euw" path="res://Model/Scenes/Obstacle.tscn" id="6_dokvp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_33mjn"]
+size = Vector2(237, 153)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u2h6p"]
+size = Vector2(432, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4fwjh"]
+size = Vector2(20, 435)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w3j5p"]
+size = Vector2(21, 441)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pcsbl"]
+size = Vector2(432, 20)
+
+[node name="MiniGame" type="Node"]
+script = ExtResource("1_38bt7")
+scenarioType = 2
+scenarioText = "Survive for 30 seconds"
+metadata/_custom_type_script = "uid://bxr1kd0m58uk2"
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="Parallax2D" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(3, 3)
+repeat_size = Vector2(1920, 0)
+autoscroll = Vector2(-30, 0)
+
+[node name="BackgroundImage" type="Sprite2D" parent="Background/Parallax2D"]
+position = Vector2(734.25006, 337)
+scale = Vector2(1.004948, 0.81203705)
+texture = ExtResource("2_nar30")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(100, 200)
+scale = Vector2(0.75, 0.75)
+collision_layer = 3
+script = ExtResource("3_2khvb")
+
+[node name="MiniPsyche" type="Sprite2D" parent="Player"]
+position = Vector2(608.5, 324)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_5tds1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(604, 321)
+scale = Vector2(0.25, 0.25)
+shape = SubResource("RectangleShape2D_33mjn")
+
+[node name="ObstacleSpawner" type="Node2D" parent="."]
+position = Vector2(-7.6293945e-06, -1.5258789e-05)
+script = ExtResource("5_jxl3i")
+obstacle_scene = ExtResource("6_dokvp")
+
+[node name="Movement Box" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D(Top)" type="CollisionShape2D" parent="Movement Box"]
+position = Vector2(656, 119)
+shape = SubResource("RectangleShape2D_u2h6p")
+debug_color = Color(0, 0.6, 0.69803923, 1)
+
+[node name="CollisionShape2D(Left)" type="CollisionShape2D" parent="Movement Box"]
+position = Vector2(450, 332.5)
+shape = SubResource("RectangleShape2D_4fwjh")
+debug_color = Color(0, 0.6, 0.69803923, 1)
+
+[node name="CollisionShape2D(Right)" type="CollisionShape2D" parent="Movement Box"]
+position = Vector2(862, 329.5)
+shape = SubResource("RectangleShape2D_w3j5p")
+debug_color = Color(0, 0.6, 0.69803923, 1)
+
+[node name="CollisionShape2D(Bottom)" type="CollisionShape2D" parent="Movement Box"]
+position = Vector2(656, 541)
+shape = SubResource("RectangleShape2D_pcsbl")
+debug_color = Color(0, 0.6, 0.69803923, 1)
+
+[node name="Polygon2D(Top)" type="Polygon2D" parent="Movement Box"]
+position = Vector2(-49571.875, -270.99997)
+scale = Vector2(108.2508, 3.3333333)
+polygon = PackedVector2Array(462, 114, 462, 120, 466, 120, 466, 114)
+
+[node name="Polygon2D(Left)" type="Polygon2D" parent="Movement Box"]
+position = Vector2(227.4074, -5569.0005)
+scale = Vector2(0.7407407, 17.000002)
+polygon = PackedVector2Array(287, 334, 287, 360, 314, 360, 314, 334)
+
+[node name="Polygon2D(Right)" type="Polygon2D" parent="Movement Box"]
+position = Vector2(628.7783, -5568.998)
+scale = Vector2(0.77777594, 16.999992)
+polygon = PackedVector2Array(287, 334, 287, 346.97678, 287, 360, 314, 360, 314, 347.00015, 314, 334)
+
+[node name="Polygon2D(Bottom)" type="Polygon2D" parent="Movement Box"]
+position = Vector2(-19304.582, -799.00415)
+scale = Vector2(43.299526, 2.5000076)
+polygon = PackedVector2Array(456, 532, 466, 532, 466.00006, 535.9828, 466, 540, 456, 540, 456, 535.96985)
+
+[node name="Polygon2D(Tail)" type="Polygon2D" parent="Movement Box"]
+position = Vector2(-912.59204, -838.83435)
+scale = Vector2(3.074073, 2.701489)
+polygon = PackedVector2Array(440, 493, 440, 460, 386, 426)

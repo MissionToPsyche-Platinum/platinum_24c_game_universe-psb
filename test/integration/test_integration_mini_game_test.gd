@@ -5,7 +5,7 @@ var instance
 var movable_object
 
 func before_each():
-	scene = load("res://Model/ScenarioData/ScenarioBases/MinigameScenarion.tscn")
+	scene = load("res://Model/ScenarioData/Scenarios/MiniGame.tscn")
 	instance = scene.instantiate()
 	add_child(instance)
 
@@ -31,5 +31,5 @@ func test_object_moves_when_velocity_applied():
 		"Object should move to the right"
 	)
 	
-func test_destroy_asteroid():
+#func test_destroy_asteroid():
 	
