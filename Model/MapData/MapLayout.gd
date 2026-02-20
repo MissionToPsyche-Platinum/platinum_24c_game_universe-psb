@@ -7,3 +7,4 @@ class_name MapLayout
 @export var connections: Array[Vector2i] # (from, to)
 @export var start_index := 0
 @export var end_index: int
+@export var is_scrollable := false

@@ -9,7 +9,7 @@ signal node_clicked(index: int)
 @export var earth_scene: PackedScene
 @export var asteroid_scene: PackedScene
 
-var node_views := {}      # index -> Node2D
+var node_views := {} 
 var line_views := []      # Line2D
 var visited_nodes := {}
 var line_connections := [] # Vector2i
@@ -34,65 +34,67 @@ func build(layout: MapLayout):
 		node_views[i] = placeholder
 
 func update_from_model(model: MapModel):
-	for i in node_views.keys():
-		var scene: PackedScene = null
+	if model.has_won == true:
+		get_tree().change_scene_to_file("res://Model/ScreenData/WinScreen.tscn")
+	else:
+		for i in node_views.keys():
+			var scene: PackedScene = null
 
-		if i == model.layout.start_index:
-			scene = earth_scene
-		elif i == model.layout.end_index:
-			scene = asteroid_scene
-		elif model.is_node_active(i):
-			scene = scenario_scene
-		elif visited_nodes.has(i):
-			# If previously visited, keep scenario_scene (disabled) instead of unknown
-			scene = scenario_scene
-		else:
-			scene = unknown_scene
+			if i == model.layout.start_index:
+				scene = earth_scene
+			elif i == model.layout.end_index:
+				scene = asteroid_scene
+			elif model.is_node_active(i):
+				scene = scenario_scene
+			elif visited_nodes.has(i):
+				# If previously visited, keep scenario_scene (disabled) instead of unknown
+				scene = scenario_scene
+			else:
+				scene = unknown_scene
 
-		var node = _replace_node(i, scene)
+			var node = _replace_node(i, scene)
 
-		# Only active scenario nodes get interaction
-		if scene == scenario_scene and not node.is_connected("interacted", Callable(self, "_on_node_interacted")):
-			node.connect("interacted", Callable(self, "_on_node_interacted"))
+			# Only active scenario nodes get interaction
+			if scene == scenario_scene and not node.is_connected("interacted", Callable(self, "_on_node_interacted")):
+				node.connect("interacted", Callable(self, "_on_node_interacted"))
+			
+			# Disable previously enabled nodes
+			if psyche_last_index != -1:
+				if get_proceeding_neighbors(psyche_last_index, model.layout).has(i):
+						node = _replace_node(i, scenario_scene)
+						if node.has_method("disable") and node != null:
+							node.disable()
+							deactivated.append(i)
 		
-		# Disable previously enabled nodes
-		if psyche_last_index != -1:
-			if get_proceeding_neighbors(psyche_last_index, model.layout).has(i):
-					node = _replace_node(i, scenario_scene)
-					if node.has_method("disable") and node != null:
-						node.disable()
-						deactivated.append(i)
-	
-	# end of for loop
-	psyche_last_index = model.current_index
-	
-	# Mark the current node as visited
-	visited_nodes[model.current_index] = true
+		# end of for loop
+		psyche_last_index = model.current_index
+		
+		# Mark the current node as visited
+		visited_nodes[model.current_index] = true
 
-	# Update Psyche
-	if psyche_view == null:
-		psyche_view = psyche_scene.instantiate()
-		add_child(psyche_view)
-		psyche_view.z_index = 100
+		# Update Psyche
+		if psyche_view == null:
+			psyche_view = psyche_scene.instantiate()
+			add_child(psyche_view)
+			psyche_view.z_index = 100
 
-	psyche_view.position = model.layout.node_positions[model.current_index]
+		psyche_view.position = model.layout.node_positions[model.current_index]
 
-	# Update lines
-	for idx in range(line_views.size()):
-		var line = line_views[idx]
-		var pair = line_connections[idx]
-		var a = pair.x
-		var b = pair.y
+		# Update lines
+		for idx in range(line_views.size()):
+			var line = line_views[idx]
+			var pair = line_connections[idx]
+			var a = pair.x
+			var b = pair.y
 
-		if (a == model.current_index and model.is_node_active(b)) or \
-		   (b == model.current_index and model.is_node_active(a)):
-			line.default_color = Color.WHITE
-		else:
-			line.default_color = Color(0.5, 0.5, 0.5)
+			if (a == model.current_index and model.is_node_active(b)) or \
+			   (b == model.current_index and model.is_node_active(a)):
+				line.default_color = Color.WHITE
+			else:
+				line.default_color = Color(0.5, 0.5, 0.5)
 
-# --------------------
-# HELPERS
-# --------------------
+# Helper functions:
+
 func _replace_node(index: int, scene: PackedScene) -> Node2D:
 	var old = node_views[index]
 	#if old and old.scene_file_path == scene.resource_path:

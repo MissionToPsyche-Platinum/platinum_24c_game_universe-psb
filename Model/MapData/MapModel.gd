@@ -8,6 +8,7 @@ var layout: MapLayout
 var current_index := -1
 var known_nodes := {}      # index -> true
 var disabled_nodes := {}   # index -> true for disabled scenarios
+var has_won = false
 
 var psyche_anticipated_index := -1
 
@@ -44,12 +45,13 @@ func advance_position():
 		
 	# Check for win
 	if get_preceeding_neighbors(layout.end_index).has(current_index):
+		has_won = true
 		reached_end.emit()
-
-	# Reveal all adjacent unknown nodes
-	for n in get_proceeding_neighbors(current_index):
-		known_nodes[n] = true
-		disabled_nodes.erase(n) # newly revealed nodes are active
+	else:
+		# Reveal all adjacent unknown nodes
+		for n in get_proceeding_neighbors(current_index):
+			known_nodes[n] = true
+			disabled_nodes.erase(n) # newly revealed nodes are active
 
 	#changed.emit()
 

@@ -1,7 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://l5bls356gnis"]
+[gd_scene load_steps=16 format=3 uid="uid://l5bls356gnis"]
 
 [ext_resource type="Script" uid="uid://bxwswjf8gv2si" path="res://Controller/MapController.gd" id="1_0nbhw"]
-[ext_resource type="Resource" uid="uid://bhalcqgv8vhdh" path="res://Model/MapData/Maps/Map_8Nodes.tres" id="2_qw5r3"]
+[ext_resource type="Resource" uid="uid://cv7u6xfck1qng" path="res://Model/MapData/Maps/Map_12Nodes_Scroll.tres" id="2_4go6t"]
 [ext_resource type="Script" uid="uid://elf5ysvy7ssy" path="res://View/MapView.gd" id="3_3wf5c"]
 [ext_resource type="PackedScene" uid="uid://brf8psrjkpbsh" path="res://Model/MapData/scenario.tscn" id="4_om086"]
 [ext_resource type="PackedScene" uid="uid://bhmwabijgly1l" path="res://Model/MapData/unknown_scenario.tscn" id="5_imiea"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://of3br6vte6xu" path="res://Model/MapData/psyche_asteroid.tscn" id="8_wi0ff"]
 [ext_resource type="Texture2D" uid="uid://yb1xwwado3yj" path="res://View/Assets/Sprites/General/background.png" id="9_wi0ff"]
 [ext_resource type="FontFile" uid="uid://cyuqcf4mpncuy" path="res://View/Assets/Themes/PixelOperator-Bold.ttf" id="10_qw5r3"]
+[ext_resource type="Script" uid="uid://bd5akip35wqma" path="res://Model/Scenes/Map/scroll_button.gd" id="11_4go6t"]
+[ext_resource type="Texture2D" uid="uid://eqvd8b5ljqv5" path="res://View/Assets/Sprites/Map/scroll_arrow.png" id="12_7yjl8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4q65e"]
 font = ExtResource("10_qw5r3")
@@ -19,9 +21,12 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="GDScript" id="GDScript_4go6t"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_om4mg"]
+size = Vector2(274, 39)
+
 [node name="MapMvctest" type="Node2D" node_paths=PackedStringArray("view")]
 script = ExtResource("1_0nbhw")
-layout = ExtResource("2_qw5r3")
+layout = ExtResource("2_4go6t")
 view = NodePath("MapView")
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -31,10 +36,12 @@ scale = Vector2(0.6, 0.6)
 texture = ExtResource("9_wi0ff")
 
 [node name="Map Text Control" type="Control" parent="."]
+z_index = 100
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0
 offset_bottom = 88.0
+mouse_filter = 2
 
 [node name="InstructionText" type="Label" parent="Map Text Control"]
 layout_mode = 1
@@ -61,3 +68,21 @@ unknown_scene = ExtResource("5_imiea")
 psyche_scene = ExtResource("6_30bud")
 earth_scene = ExtResource("7_30bud")
 asteroid_scene = ExtResource("8_wi0ff")
+
+[node name="Scroll Button" type="Area2D" parent="."]
+script = ExtResource("11_4go6t")
+
+[node name="Sprite2D" type="Sprite2D" parent="Scroll Button"]
+position = Vector2(574, 91)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("12_7yjl8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scroll Button"]
+position = Vector2(574, 90.5)
+shape = SubResource("RectangleShape2D_om4mg")
+
+[node name="Node2D" type="Node2D" parent="Scroll Button"]
+
+[connection signal="input_event" from="Scroll Button" to="." method="_on_scroll_button_input_event"]
+[connection signal="mouse_entered" from="Scroll Button" to="Scroll Button" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Scroll Button" to="Scroll Button" method="_on_mouse_exited"]
