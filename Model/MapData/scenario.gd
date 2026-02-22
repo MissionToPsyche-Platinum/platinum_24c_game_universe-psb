@@ -27,6 +27,15 @@ func choose_random_scenario():
 	#remove so no repeats
 	available_scenarios.remove_at(index)
 	
+	#load scenario scene to get scenarioType
+	var packed_scene := load(scenario_path) as PackedScene
+	if packed_scene:
+		var instance = packed_scene.instantiate()
+		type = instance.scenarioType
+		instance.queue_free()
+	else:
+		print("Failed to load scenario scene.")
+	
 func load_scenario_list():
 	# Access Scenarios directory
 	var dir = DirAccess.open("res://Model/ScenarioData/Scenarios/")
