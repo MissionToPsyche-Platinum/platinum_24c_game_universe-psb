@@ -27,8 +27,8 @@ extends Node2D
 #hand ui reference
 @export var handController : HandController
 
-
-
+#draw card preview reference
+@export var drawCardPreview : DrawCardPreview
 
 
 
@@ -58,11 +58,12 @@ func _ready() -> void:
 	
 	#assign animation player references
 	GameManager.UIAnimationPlayer = animationPlayer
-
-	print("assigning hand controller...")
-	print(handController)
+	
 	#assign Hand Controller reference 
 	GameManager.handController = handController
+	
+	#assign draw card preview reference
+	GameManager.drawCardPreview = drawCardPreview
 	
 	#load the scenario
 	#GameManager.loadScenario("res://Model/ScenarioData/Scenarios/Sc_DoubleDarkMatter.tscn")
@@ -88,3 +89,8 @@ func _on_scenario_label_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 				animationPlayer.play("HideCardGui")
+
+
+func _on_button_pressed() -> void:
+	GameManager.restartGame()
+	

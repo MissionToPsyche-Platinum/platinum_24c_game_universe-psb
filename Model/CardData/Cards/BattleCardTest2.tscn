@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://bcxgb8y4u1w7d"]
+
+[ext_resource type="PackedScene" uid="uid://7wpt2pr8jwaa" path="res://Model/CardData/BaseCardData/protocol_card_base.tscn" id="1_4opu6"]
+[ext_resource type="Texture2D" uid="uid://bh1yvmsi01mvl" path="res://View/Assets/Sprites/icon.svg" id="2_4opu6"]
+[ext_resource type="Script" uid="uid://csm0y40wfj4uj" path="res://Model/CardData/CardBehaviorData/AttackBehavior.gd" id="3_o160m"]
+
+[sub_resource type="Resource" id="Resource_o27tm"]
+script = ExtResource("3_o160m")
+targets = 5
+damage = 4
+metadata/_custom_type_script = "uid://csm0y40wfj4uj"
+
+[node name="Control" instance=ExtResource("1_4opu6")]
+cardName = "Battle Card 2"
+cardSprite = ExtResource("2_4opu6")
+cardDescription = "Battle Card 2"
+cardBehavior = Array[Resource]([SubResource("Resource_o27tm")])
+cardUseHeader = "Battle Card 2"

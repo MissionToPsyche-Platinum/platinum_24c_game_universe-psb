@@ -13,9 +13,9 @@ signal card_used(card)
 @export var rewardsClickable: Control
 
 #references to card nodes
-@onready var protocolCardName: Label = $CardBackground/ProtocolCardName
-@onready var protocolCardDescription: Label = $CardBackground/ProtocolCardDescription
-@onready var protocolCardSprite: Sprite2D = $CardBackground/ProtocolCardSprite
+@export var protocolCardName: Label 
+@export var protocolCardDescription: Label 
+@export var protocolCardSprite: Sprite2D 
 
 signal rewardChosen(card)
 
@@ -44,7 +44,7 @@ func use() -> void:
 		#declaring a variable of a specific type will only accept that type,
 		#not it's subclasses. 
 		if behavior is ICardBehavior:
-			behavior.use()
+			await behavior.use()
 	#emit the signal that the card has been used
 	emit_signal("card_used", self)
 
@@ -70,3 +70,9 @@ func _on_reward_clickable_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		print("help")
 		emit_signal("rewardChosen", self)
+		
+func isCardPlayable() -> bool:
+	for behavior in cardBehavior:
+		if (!behavior.isCardPlayable()):
+			return false
+	return true

@@ -1,0 +1,112 @@
+[gd_scene load_steps=6 format=3 uid="uid://ccs4ryghtb0bf"]
+
+[ext_resource type="Script" uid="uid://bnq8wkiku4077" path="res://Model/ScenarioData/ScenarioBases/BattleScenario.gd" id="1_sriu2"]
+[ext_resource type="Texture2D" uid="uid://damk48kf44hid" path="res://View/Assets/Backgrounds/background.png" id="2_qhjs1"]
+
+[sub_resource type="Animation" id="Animation_qhjs1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1505, 232)]
+}
+
+[sub_resource type="Animation" id="Animation_sriu2"]
+resource_name = "ShowGrid"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1550, 130), Vector2(471, 130)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ehyr3"]
+_data = {
+&"RESET": SubResource("Animation_qhjs1"),
+&"ShowGrid": SubResource("Animation_sriu2")
+}
+
+[node name="BattleScenarioBase" type="Node2D" node_paths=PackedStringArray("enemyContainer", "enemyPositions", "enemyContainerAnimationPlayer")]
+script = ExtResource("1_sriu2")
+enemyContainer = NodePath("EnemyContainer")
+enemyPositions = [NodePath("EnemyContainer/EnemyPlacement 1"), NodePath("EnemyContainer/Enemy Placement 2"), NodePath("EnemyContainer/EnemyPlacement 3"), NodePath("EnemyContainer/Enemy Placement 4")]
+enemyContainerAnimationPlayer = NodePath("EnemyContainer/AnimationPlayer")
+scenarioType = 1
+scenarioText = "Uh oh, its the Feds"
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="Parallax2D" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(3, 3)
+repeat_size = Vector2(1920, 0)
+autoscroll = Vector2(-30, 0)
+
+[node name="BackgroundImage" type="Sprite2D" parent="Background/Parallax2D"]
+position = Vector2(734.25006, 337)
+scale = Vector2(1.004948, 0.81203705)
+texture = ExtResource("2_qhjs1")
+
+[node name="EnemyContainer" type="Control" parent="."]
+custom_minimum_size = Vector2(682, 519)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1505.0
+offset_top = 232.0
+offset_right = 2187.001
+offset_bottom = 751.0
+mouse_filter = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EnemyContainer"]
+libraries = {
+&"": SubResource("AnimationLibrary_ehyr3")
+}
+
+[node name="EnemyPlacement 1" type="Control" parent="EnemyContainer"]
+layout_mode = 1
+anchor_left = -0.07917877
+anchor_right = -0.07917877
+offset_left = 155.0
+offset_top = 31.0
+offset_right = 195.0
+offset_bottom = 71.0
+mouse_filter = 2
+
+[node name="Enemy Placement 2" type="Control" parent="EnemyContainer"]
+layout_mode = 1
+anchor_left = -0.07917877
+anchor_right = -0.07917877
+offset_left = 500.0
+offset_top = 31.0
+offset_right = 540.0
+offset_bottom = 71.0
+mouse_filter = 2
+
+[node name="EnemyPlacement 3" type="Control" parent="EnemyContainer"]
+anchors_preset = 0
+offset_left = 23.0
+offset_top = 155.0
+offset_right = 63.0
+offset_bottom = 195.0
+mouse_filter = 2
+
+[node name="Enemy Placement 4" type="Control" parent="EnemyContainer"]
+anchors_preset = 0
+offset_left = 368.0
+offset_top = 155.0
+offset_right = 408.0
+offset_bottom = 195.0
+mouse_filter = 2

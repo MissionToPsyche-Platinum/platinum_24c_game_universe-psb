@@ -58,6 +58,31 @@ func test_move_to_new_scenario():
 			"Neighbor %s should be converted from unknown → scenario" % idx
 		)
 
+func test_during_choose_reward():
+	# Map currently disabled & invisible (as if player is choosing reward card)
+	map.map_active = false
+	map.visible = false
+	
+	var scenario1: Node2D = _get_scenario_by_index(1)
+	assert_not_null(
+		scenario1,
+		"Scenario at index 1 should exist"
+	)
+	
+	# Attempt to select scenario while map is disabled
+	scenario1.emit_signal("interacted", scenario1)
+	await get_tree().process_frame
+	
+	assert_false(
+		map.map_active,
+		"Map should NOT be anabled yet"
+	)
+	
+	assert_false(
+		map.visible,
+		"Map should NOT be visible yet"
+	)
+
 func _get_scenario_by_index(i: int) -> Node2D:
 	for s in map.scenarios:
 		if s.get_meta("index") == i:

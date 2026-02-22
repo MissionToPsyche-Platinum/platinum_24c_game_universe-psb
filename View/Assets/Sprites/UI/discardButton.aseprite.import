@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://dh3h3q5ix2au5"
+path="res://.godot/imported/discardButton.aseprite-e9fad4879d5ebcf062c8e4dee0a120c7.res"
+
+[deps]
+
+source_file="res://View/Assets/Sprites/UI/discardButton.aseprite"
+dest_files=["res://.godot/imported/discardButton.aseprite-e9fad4879d5ebcf062c8e4dee0a120c7.res"]
+
+[params]
+
