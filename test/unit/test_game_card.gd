@@ -36,10 +36,6 @@ func make_test_card(name: String = "TestCard") -> TestCard:
 	card.use_header = "use_header_for_%s" % name
 	return card
 
-# -------------------------
-# TESTS
-# -------------------------
-
 func test_add_card():
 	var card = make_test_card("SingleCard")
 

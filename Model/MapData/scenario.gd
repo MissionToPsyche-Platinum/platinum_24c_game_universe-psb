@@ -29,7 +29,7 @@ func choose_random_scenario():
 	
 func load_scenario_list():
 	# Access Scenarios directory
-	var dir = DirAccess.open("res://Model/ScenarioData/Scenarios")
+	var dir = DirAccess.open("res://Model/ScenarioData/Scenarios/")
 	if dir == null:
 		print("Failed to open scenario folder")
 		return
@@ -73,7 +73,7 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 			print("Clicked on sprite")
 			emit_signal("interacted", self)
 			GameManager.loadScenario(scenario_path)
-			#get_tree().change_scene_to_file("res://Model/Scenes/scenario_placeholder.tscn")
+			#get_tree().change_scene_to_file("res://Model/ScenarioData/Scenarios/MiniGame.tscn")
 			print("Changed scene to scenario")
 
 # called once nodes are inaccessible

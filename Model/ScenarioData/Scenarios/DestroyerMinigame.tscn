@@ -1,0 +1,105 @@
+[gd_scene load_steps=12 format=3 uid="uid://cl18i6vu11p1g"]
+
+[ext_resource type="Script" uid="uid://cdd3x52rwy75m" path="res://Model/ScenarioData/Scenarios/Minigames/Destroyer_minigame.gd" id="1_rmixt"]
+[ext_resource type="Texture2D" uid="uid://damk48kf44hid" path="res://View/Assets/Backgrounds/background.png" id="2_5f5sr"]
+[ext_resource type="Script" uid="uid://gvu1oxogrdct" path="res://Model/Scenes/Destroyerplayer.gd" id="3_kh0nn"]
+[ext_resource type="Texture2D" uid="uid://c3iq4tbrlyyx3" path="res://View/Assets/Sprites/MiniPsyche.png" id="4_tf0wu"]
+[ext_resource type="PackedScene" uid="uid://bcjcdsyq1u72e" path="res://Model/Scenes/Ball.tscn" id="5_1ln3u"]
+[ext_resource type="Script" uid="uid://dr5vhyexxmm22" path="res://Model/Scenes/ResetBall.gd" id="6_b64cb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tr506"]
+size = Vector2(59, 38)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6qaoc"]
+size = Vector2(432, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xntuu"]
+size = Vector2(20, 435)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_doc6e"]
+size = Vector2(21, 441)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y078s"]
+size = Vector2(392, 6)
+
+[node name="DestroyerMinigame" type="Node"]
+script = ExtResource("1_rmixt")
+scenarioText = "Destroy The Bricks (Press Space To Start)"
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="Parallax2D" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(3, 3)
+repeat_size = Vector2(1920, 0)
+autoscroll = Vector2(-30, 0)
+
+[node name="BackgroundImage" type="Sprite2D" parent="Background/Parallax2D"]
+position = Vector2(734.25006, 337)
+scale = Vector2(1.004948, 0.81203705)
+texture = ExtResource("2_5f5sr")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+script = ExtResource("3_kh0nn")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+position = Vector2(605, 499)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_tf0wu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(603.5, 498)
+shape = SubResource("RectangleShape2D_tr506")
+
+[node name="Movement Box" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D(Top)" type="CollisionShape2D" parent="Movement Box"]
+position = Vector2(656, 119)
+shape = SubResource("RectangleShape2D_6qaoc")
+debug_color = Color(0, 0.6, 0.69803923, 1)
+
+[node name="CollisionShape2D(Left)" type="CollisionShape2D" parent="Movement Box"]
+position = Vector2(450, 332.5)
+shape = SubResource("RectangleShape2D_xntuu")
+debug_color = Color(0, 0.6, 0.69803923, 1)
+
+[node name="CollisionShape2D(Right)" type="CollisionShape2D" parent="Movement Box"]
+position = Vector2(862, 329.5)
+shape = SubResource("RectangleShape2D_doc6e")
+debug_color = Color(0, 0.6, 0.69803923, 1)
+
+[node name="Polygon2D(Top)" type="Polygon2D" parent="Movement Box"]
+position = Vector2(-49571.875, -270.99997)
+scale = Vector2(108.2508, 3.3333333)
+polygon = PackedVector2Array(462, 114, 462, 120, 466, 120, 466, 114)
+
+[node name="Polygon2D(Left)" type="Polygon2D" parent="Movement Box"]
+position = Vector2(227.4074, -5569.0005)
+scale = Vector2(0.7407407, 17.000002)
+polygon = PackedVector2Array(287, 334, 287, 360, 314, 360, 314, 334)
+
+[node name="Polygon2D(Right)" type="Polygon2D" parent="Movement Box"]
+position = Vector2(628.7783, -5568.998)
+scale = Vector2(0.77777594, 16.999992)
+polygon = PackedVector2Array(287, 334, 287, 346.97678, 287, 360, 314, 360, 314, 347.00015, 314, 334)
+
+[node name="Polygon2D(Bottom)" type="Polygon2D" parent="Movement Box"]
+position = Vector2(-19304.582, -799.00415)
+scale = Vector2(43.299526, 2.5000076)
+polygon = PackedVector2Array(456, 532, 466, 532, 466.00006, 535.9828, 466, 540, 456, 540, 456, 535.96985)
+
+[node name="Polygon2D(Tail)" type="Polygon2D" parent="Movement Box"]
+position = Vector2(-912.59204, -838.83435)
+scale = Vector2(3.074073, 2.701489)
+polygon = PackedVector2Array(440, 493, 440, 460, 386, 426)
+
+[node name="Ball" parent="." groups=["Ball"] instance=ExtResource("5_1ln3u")]
+position = Vector2(599, 445)
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("6_b64cb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(656, 528)
+shape = SubResource("RectangleShape2D_y078s")
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

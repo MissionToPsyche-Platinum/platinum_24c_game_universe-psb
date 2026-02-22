@@ -1,6 +1,13 @@
 extends GutTest
 
-# --- Mock Players for testing ---
+# ======================================================
+#  Mock Classes
+# ======================================================
+
+const GameManagerScript = preload("res://Controller/GameManager.gd")
+const HandControllerScript = preload("res://Model/Scenes/HandController.gd")
+
+# --- Mock Players ---
 class MockPlayerHull:
 	extends Player
 	func _ready():
@@ -50,17 +57,34 @@ class MockCardManager:
 # --- Mock AnimationPlayer ---
 class MockAnimationPlayer:
 	func play(anim_name: String) -> void: pass
-	func stop() -> void: pass
-	func is_playing() -> bool: return false
+	func stop(): pass
+	func is_playing() -> bool:
+		return false
 
-# --- Testable GameManager ---
+# --- Mock HandController (critical fix) ---
+class MockHandController:
+	extends HandControllerScript
+
+	func resetHandController():
+		pass
+
+# --- Testable GameManager (must use preload!) ---
 class TestableGameManager:
-	extends "res://Controller/GameManager.gd"
+	extends GameManagerScript
+
 	var scene_changed_path: String = ""
+
+	func _ready():
+		pass
+
 	func change_scene_to_file(path: String) -> void:
 		scene_changed_path = path
 
-# --- Hand Rotation Tests ---
+
+# ======================================================
+#  Hand Rotation Tests
+# ======================================================
+
 func test_rotate_left():
 	var HandScript = load("res://Model/Scenes/HandController.gd")
 	var hand = HandScript.new()
@@ -87,6 +111,7 @@ func test_rotate_left():
 	assert_eq(hand.selectedIndex, 0)
 
 	hand.queue_free()
+
 
 func test_rotate_right():
 	var HandScript = load("res://Model/Scenes/HandController.gd")
@@ -115,14 +140,25 @@ func test_rotate_right():
 
 	hand.queue_free()
 
-# --- Player Loss Tests ---
+
+# ======================================================
+#  Player Loss Tests
+# ======================================================
+
+func _add_dummy_handcontroller(controller):
+	var dummy_hand = MockHandController.new()
+	controller.handController = dummy_hand as HandController
+
+
 func test_Hull_Loss():
 	var controller = TestableGameManager.new()
 	add_child(controller)
+
 	controller.scenarioHeader = Label.new()
 	controller.add_child(controller.scenarioHeader)
-
 	controller.UIAnimationPlayer = MockAnimationPlayer.new()
+
+	_add_dummy_handcontroller(controller)
 
 	var player = MockPlayerHull.new()
 	add_child(player)
@@ -133,16 +169,20 @@ func test_Hull_Loss():
 
 	assert_true(controller.playerLost)
 	assert_eq(controller.scene_changed_path, "res://Model/ScreenData/LoseScreen.tscn")
+
 	player.queue_free()
 	controller.queue_free()
+
 
 func test_Power_Loss():
 	var controller = TestableGameManager.new()
 	add_child(controller)
+
 	controller.scenarioHeader = Label.new()
 	controller.add_child(controller.scenarioHeader)
-
 	controller.UIAnimationPlayer = MockAnimationPlayer.new()
+
+	_add_dummy_handcontroller(controller)
 
 	var player = MockPlayerPower.new()
 	add_child(player)
@@ -153,16 +193,20 @@ func test_Power_Loss():
 
 	assert_true(controller.playerLost)
 	assert_eq(controller.scene_changed_path, "res://Model/ScreenData/LoseScreen.tscn")
+
 	player.queue_free()
 	controller.queue_free()
+
 
 func test_Velocity_Loss():
 	var controller = TestableGameManager.new()
 	add_child(controller)
+
 	controller.scenarioHeader = Label.new()
 	controller.add_child(controller.scenarioHeader)
-
 	controller.UIAnimationPlayer = MockAnimationPlayer.new()
+
+	_add_dummy_handcontroller(controller)
 
 	var player = MockPlayerVelocity.new()
 	add_child(player)
@@ -173,10 +217,15 @@ func test_Velocity_Loss():
 
 	assert_true(controller.playerLost)
 	assert_eq(controller.scene_changed_path, "res://Model/ScreenData/LoseScreen.tscn")
+
 	player.queue_free()
 	controller.queue_free()
 
-# --- Reward Test ---
+
+# ======================================================
+#  Reward Test
+# ======================================================
+
 func test_reward_chosen_adds_card_to_player_deck():
 	var controller = TestableGameManager.new()
 	add_child(controller)
@@ -184,6 +233,9 @@ func test_reward_chosen_adds_card_to_player_deck():
 	var player = MockPlayerForRewards.new()
 	controller.player = player
 	controller.card_manager = MockCardManager.new()
+
+	# Attach dummy HandController
+	_add_dummy_handcontroller(controller)
 
 	var fake_packed_scene = PackedScene.new()
 	controller.rewards = [fake_packed_scene]
