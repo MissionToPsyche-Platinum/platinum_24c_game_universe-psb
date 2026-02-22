@@ -16,3 +16,9 @@ cardSprite = ExtResource("2_hftgk")
 cardDescription = "Lets see how this goes..."
 cardBehavior = Array[Resource]([SubResource("Resource_75u8u")])
 cardUseHeader = "Battle Card Test 1"
+
+[node name="RewardClickable" parent="CardBackground2" index="2"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 491.6388
+offset_bottom = 702.34106

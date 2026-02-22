@@ -864,6 +864,7 @@ drawCardPreview = NodePath("UI/DrawCardPreview")
 script = ExtResource("2_qb6nl")
 defaultDeck = Array[PackedScene]([ExtResource("10_k5rhg"), ExtResource("3_d184y"), ExtResource("4_wki3r"), ExtResource("5_m84t2"), ExtResource("7_rxymg"), ExtResource("5_m84t2"), ExtResource("8_b1qgh")])
 bank = Array[PackedScene]([ExtResource("7_qatxi"), SubResource("PackedScene_nmj4c"), ExtResource("9_v5pj8"), ExtResource("9_v5pj8")])
+rewardMinimumAmount = 3
 
 [node name="Player" type="Node" parent="."]
 script = ExtResource("10_xfpm0")
@@ -1407,8 +1408,8 @@ anchor_top = 7.5230002
 anchor_right = 29.025002
 anchor_bottom = 7.5230002
 offset_top = -300.92
-offset_right = 317.05505
-offset_bottom = -300.92
+offset_right = 341.0
+offset_bottom = -293.92
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2

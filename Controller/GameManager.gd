@@ -136,7 +136,8 @@ func endScenario() -> void:
 	# Get reward scenes
 	rewards = card_manager.getReward()
 	
-	
+	#show the rewards
+	rewardsHolder.visible = true
 	
 	for reward in rewards:
 		var rewardInstance: Control = reward.instantiate()
@@ -150,6 +151,7 @@ func endScenario() -> void:
 		#create a control wrapper with a specified minimun distance
 		var wrapper := Control.new()
 		wrapper.custom_minimum_size = Vector2(300, 0)
+		wrapper.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		
 		#add reward instance as child of wrapper
 		wrapper.add_child(rewardInstance)
@@ -191,8 +193,8 @@ func rewardChosen(card) -> void:
 		handController.resetHandController()
 		
 		#remove all children from the rewards holder
-		for child in rewardsHolder.get_children(): 
-			rewardsHolder.remove_child(child)
+		for child in rewardsHolder.get_children():
+			child.queue_free()
 		
 
 		# Disable rewardsHolder and reward label visibility

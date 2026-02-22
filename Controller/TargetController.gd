@@ -50,7 +50,7 @@ func onEnemyClicked(enemy: Enemy) -> void:
 	remainingTargets -= 1
 	
 	#change ui
-	GameManager.scenarioHeader.text = "Select Targets \nTargets remaning: " + str(remainingTargets)
+	GameManager.scenarioHeader.text = "Select Targets \nTargets remaning: " + str(remainingTargets)	
 	
 	
 	if remainingTargets <= 0:
