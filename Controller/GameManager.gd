@@ -1,5 +1,6 @@
 extends Node
 
+
 @export var player: Player
 @export var scenario: Scenario
 @export var card_manager: CardManager
@@ -34,10 +35,17 @@ var UIAnimationPlayer
 
 #reference to hand controller
 var handController : HandController
+
+var drawCardPreview : DrawCardPreview
+
 #array to hold the rewards from beeating the scenario
 var rewards
 
 @export var hand: Control
+
+#instantiation function so the player hand gets created when the game reloads
+func _ready() -> void:
+	playerInstantiated = false
 
 func getPlayer() -> Player:
 	return player
@@ -70,7 +78,7 @@ func loadScenario(scenePath: String) -> void:
 	
 	#get the scenario description text
 	scenarioHeader.text = scenario.scenarioText
-	scenarioEffectLabel.text = scenario.getAffectedAttributes()
+	scenarioEffectLabel.text = scenario.getAffectedAttributes()   
 	scenarioWinConditionsLabel.text = scenario.getWinCondition()
 	print(scenarioHeader.text)
 
@@ -128,28 +136,33 @@ func endScenario() -> void:
 	# Get reward scenes
 	rewards = card_manager.getReward()
 	
-	# enable rewardholder and rewardlabel visibility
+	#show the rewards
 	rewardsHolder.visible = true
-	var rl = UI.get_node("RewardControl/Reward Label")
-	var rewardLabelParent = rl.get_parent()
-	rewardLabelParent.visible = true
 	
 	for reward in rewards:
 		var rewardInstance: Control = reward.instantiate()
 		#save the packed scene for later use
 		rewardInstance.set_meta("source_scene", reward)
-		#shrink the background of the card for some reason
-		rewardInstance.get_child(0).scale.x = 0.49
-		rewardInstance.get_child(0).scale.y = 0.5
-		rewardInstance.custom_minimum_size = Vector2(250, 0)
-		rewardInstance.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
-		rewardInstance.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+		
+		#set the scale of the reward option
+		rewardInstance.scale.x = 0.49
+		rewardInstance.scale.y = 0.5
+		
+		#create a control wrapper with a specified minimun distance
+		var wrapper := Control.new()
+		wrapper.custom_minimum_size = Vector2(300, 0)
+		wrapper.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		
+		#add reward instance as child of wrapper
+		wrapper.add_child(rewardInstance)
+		
+			
 		rewardInstance.enableRewardsClickable()
 		#connect to the reward chosen signal of the card
 		rewardInstance.connect("rewardChosen", Callable(self, "rewardChosen"))
 		
-		# Add directly to the HBoxContainer
-		rewardsHolder.add_child(rewardInstance)
+		#add wrapper to hbox
+		rewardsHolder.add_child(wrapper)
 	
 	#play end of scenario animation
 	UIAnimationPlayer.play("ScenarioEnd")
@@ -180,8 +193,8 @@ func rewardChosen(card) -> void:
 		handController.resetHandController()
 		
 		#remove all children from the rewards holder
-		for child in rewardsHolder.get_children(): 
-			rewardsHolder.remove_child(child)
+		for child in rewardsHolder.get_children():
+			child.queue_free()
 		
 
 		# Disable rewardsHolder and reward label visibility
@@ -210,6 +223,18 @@ func rewardChosen(card) -> void:
 			UI.visible = false
 	else:
 		print("No packed scene detected, cannot add to player deck")
-
-func _on_obstacle_player_hit():
-	get_tree().reload_current_scene()
+		
+		
+func restartGame() -> void:
+	#this function will be called whenever the game needs to restart
+	#reset player instantiation
+	playerInstantiated = false
+	
+	#reset player attributes
+	player.hullIntegrity = 100
+	player.velocity = 100
+	player.power = 100
+	
+	#reset the game scene
+	get_tree().change_scene_to_file("res://Model/Scenes/MainScene.tscn")
+	

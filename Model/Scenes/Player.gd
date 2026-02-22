@@ -5,6 +5,7 @@ var deck: Array[PackedScene] = []
 var discards: Array[PackedScene] = []
 var hand: Array[PackedScene] = []
 
+
 #attributes:
 @export var HULL_INTEGRITY_MAX = 200
 @export var hullIntegrity: float = 100
@@ -18,18 +19,20 @@ var hand: Array[PackedScene] = []
 @export var BEGINNING_DECK_SIZE = 5
 
 func instantiatePlayerDeck() -> void:
+	
 	deck = GameManager.card_manager.getDefaultDeck()
 	deck.shuffle()
+
 	
 
 func getNewHand() -> void:
 	for i in range(BEGINNING_DECK_SIZE):
-		drawCard()
+		drawCard(false)
 
 func beginPlayerTurn() -> void:
-	drawCard()
+	drawCard(true)
 
-func drawCard() -> void:
+func drawCard(showPreview : bool) -> void:
 	if deck.is_empty():
 		print("Attempted to draw from empty deck!")
 		return
@@ -37,6 +40,14 @@ func drawCard() -> void:
 	var packed_scene = deck.pop_back()
 	#add card to hand
 	hand.append(packed_scene)
+
+	
+	#show the drawn card to the player
+	if showPreview:
+		GameManager.drawCardPreview.drawCardPreview(packed_scene)
+	
+
+
 	#instantiate card to put on the UI
 	var card_instance = packed_scene.instantiate()
 	

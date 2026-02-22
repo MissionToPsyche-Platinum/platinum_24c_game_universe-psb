@@ -18,10 +18,11 @@ config/icon="res://View/Assets/Sprites/icon.svg"
 [autoload]
 
 GameManager="*res://Controller/GameManager.gd"
+TargetController="*res://Controller/TargetController.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gut/plugin.cfg")
+enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/gut/plugin.cfg")
 
 [input]
 
