@@ -1,6 +1,7 @@
 extends Area2D
 
 @export var speed := 200
+signal player_hit
 
 func _process(delta):
 	position.y += speed * delta
@@ -13,4 +14,4 @@ func _ready():
 
 func on_body_entered(body):
 	if body.name == "Player":
-		get_tree().reload_current_scene()
+		player_hit.emit()

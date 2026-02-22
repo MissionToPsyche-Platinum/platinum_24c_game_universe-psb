@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var speed := 200
 @export var projectile_scene: PackedScene
 @export var shoot_interval := 1.5
+@export var disable_ai := false
 var ufo_direction := 1
 var hit := 0
 signal destroyed
@@ -16,6 +17,8 @@ func _physics_process(delta):
 		ufo_direction *= -1
 
 func _ready():
+	if disable_ai:
+		return
 	shoot_loop()
 
 func shoot_loop() -> void:

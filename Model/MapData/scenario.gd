@@ -32,7 +32,7 @@ func choose_random_scenario():
 	
 func load_scenario_list():
 	# Access Scenarios directory
-	var dir = DirAccess.open("res://Model/ScenarioData/Scenarios/Minigames/")
+	var dir = DirAccess.open("res://Model/ScenarioData/Scenarios/")
 	if dir == null:
 		print("Failed to open scenario folder")
 		return
@@ -43,7 +43,7 @@ func load_scenario_list():
 	var filename = dir.get_next()
 	while filename != "":
 		if filename.ends_with(".tscn"):
-			available_scenarios.append("res://Model/ScenarioData/Scenarios/Minigames/" + filename)
+			available_scenarios.append("res://Model/ScenarioData/Scenarios/" + filename)
 		filename = dir.get_next()
 	dir.list_dir_end()
 	

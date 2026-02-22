@@ -18,4 +18,4 @@ func spawn_ufo():
 	var UFO = ufo_scene.instantiate()
 	UFO.position = Vector2(randf_range(450, 450+spawn_width), spawn_y)
 	add_child(UFO)
-	UFO.add_to_group("ufo")
+	UFO.add_to_group("UFO")

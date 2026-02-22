@@ -1,11 +1,11 @@
 [gd_scene load_steps=12 format=3 uid="uid://baurn8abmfm3q"]
 
-[ext_resource type="Script" uid="uid://bxr1kd0m58uk2" path="res://Model/ScenarioData/Scenarios/Minigames/MeteorMinigame.gd" id="1_38bt7"]
-[ext_resource type="Texture2D" uid="uid://damk48kf44hid" path="res://View/Assets/Backgrounds/background.png" id="2_nar30"]
-[ext_resource type="Script" uid="uid://buyijkrpi6lts" path="res://Model/Scenes/minigame_player.gd" id="3_2khvb"]
-[ext_resource type="Texture2D" uid="uid://c3iq4tbrlyyx3" path="res://View/Assets/Sprites/MiniPsyche.png" id="4_5tds1"]
-[ext_resource type="Script" uid="uid://buexmjw3sbpst" path="res://Model/Scenes/obstacle_spawner.gd" id="5_jxl3i"]
-[ext_resource type="PackedScene" uid="uid://carqfabi83euw" path="res://Model/Scenes/Obstacle.tscn" id="6_dokvp"]
+[ext_resource type="Script" uid="uid://bxr1kd0m58uk2" path="res://Model/ScenarioData/Scenarios/Minigames/MeteorMinigame.gd" id="1_hhsjt"]
+[ext_resource type="Texture2D" uid="uid://damk48kf44hid" path="res://View/Assets/Backgrounds/background.png" id="2_dqcod"]
+[ext_resource type="Script" uid="uid://buyijkrpi6lts" path="res://Model/Scenes/minigame_player.gd" id="3_scj23"]
+[ext_resource type="Texture2D" uid="uid://c3iq4tbrlyyx3" path="res://View/Assets/Sprites/MiniPsyche.png" id="4_h6auf"]
+[ext_resource type="Script" uid="uid://buexmjw3sbpst" path="res://Model/Scenes/obstacle_spawner.gd" id="5_kgu73"]
+[ext_resource type="PackedScene" uid="uid://carqfabi83euw" path="res://Model/Scenes/Obstacle.tscn" id="6_arrel"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_33mjn"]
 size = Vector2(237, 153)
@@ -23,7 +23,7 @@ size = Vector2(21, 441)
 size = Vector2(432, 20)
 
 [node name="MiniGame" type="Node"]
-script = ExtResource("1_38bt7")
+script = ExtResource("1_hhsjt")
 scenarioType = 2
 scenarioText = "Survive for 30 seconds"
 metadata/_custom_type_script = "uid://bxr1kd0m58uk2"
@@ -38,18 +38,18 @@ autoscroll = Vector2(-30, 0)
 [node name="BackgroundImage" type="Sprite2D" parent="Background/Parallax2D"]
 position = Vector2(734.25006, 337)
 scale = Vector2(1.004948, 0.81203705)
-texture = ExtResource("2_nar30")
+texture = ExtResource("2_dqcod")
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(100, 200)
 scale = Vector2(0.75, 0.75)
 collision_layer = 3
-script = ExtResource("3_2khvb")
+script = ExtResource("3_scj23")
 
 [node name="MiniPsyche" type="Sprite2D" parent="Player"]
 position = Vector2(608.5, 324)
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("4_5tds1")
+texture = ExtResource("4_h6auf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 position = Vector2(604, 321)
@@ -58,8 +58,8 @@ shape = SubResource("RectangleShape2D_33mjn")
 
 [node name="ObstacleSpawner" type="Node2D" parent="."]
 position = Vector2(-7.6293945e-06, -1.5258789e-05)
-script = ExtResource("5_jxl3i")
-obstacle_scene = ExtResource("6_dokvp")
+script = ExtResource("5_kgu73")
+obstacle_scene = ExtResource("6_arrel")
 
 [node name="Movement Box" type="StaticBody2D" parent="."]
 

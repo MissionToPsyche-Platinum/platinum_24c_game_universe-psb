@@ -210,3 +210,6 @@ func rewardChosen(card) -> void:
 			UI.visible = false
 	else:
 		print("No packed scene detected, cannot add to player deck")
+
+func _on_obstacle_player_hit():
+	get_tree().reload_current_scene()
