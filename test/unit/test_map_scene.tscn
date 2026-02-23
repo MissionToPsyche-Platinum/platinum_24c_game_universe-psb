@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ciq2r5dnodtx8"]
+
+[ext_resource type="Script" uid="uid://cnup2nbj45r4s" path="res://addons/gut/test.gd" id="1_xnb82"]
+
+[node name="TestMapScene" type="Node"]
+script = ExtResource("1_xnb82")
+metadata/_custom_type_script = "uid://cnup2nbj45r4s"
