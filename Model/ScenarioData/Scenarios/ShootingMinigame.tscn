@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://bqgg65agkmona" path="res://Model/ScenarioData/Scenarios/Minigames/shooting_minigame.gd" id="1_8w5t2"]
 [ext_resource type="Texture2D" uid="uid://damk48kf44hid" path="res://View/Assets/Backgrounds/background.png" id="2_2fd1w"]
-[ext_resource type="Script" uid="uid://8or8g6abupg5" path="res://Model/Scenes/Shooting_Player.gd" id="3_q5o0r"]
+[ext_resource type="Script" path="res://Model/Scenes/Shooting_Player.gd" id="3_q5o0r"]
 [ext_resource type="PackedScene" uid="uid://chye4k5n4cwp1" path="res://Model/Scenes/Projectile.tscn" id="4_ca4h5"]
 [ext_resource type="Texture2D" uid="uid://c3iq4tbrlyyx3" path="res://View/Assets/Sprites/MiniPsyche.png" id="5_2lgeh"]
-[ext_resource type="Script" uid="uid://dbaa0xgtu8bfm" path="res://Model/Scenes/Player_hitbox.gd" id="6_y7ad3"]
-[ext_resource type="Script" uid="uid://hn14cp77nx3c" path="res://Model/Scenes/UFOSpawner.gd" id="7_r2dru"]
+[ext_resource type="Script" path="res://Model/Scenes/Player_hitbox.gd" id="6_y7ad3"]
+[ext_resource type="Script" path="res://Model/Scenes/UFOSpawner.gd" id="7_r2dru"]
 [ext_resource type="PackedScene" uid="uid://bn27xkqw3riwh" path="res://Model/Scenes/UFO.tscn" id="8_3ekcj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7d8pj"]
