@@ -1,0 +1,122 @@
+[gd_scene load_steps=15 format=3 uid="uid://b625bvp2xgl6p"]
+
+[ext_resource type="Script" uid="uid://bqgg65agkmona" path="res://Model/ScenarioData/Scenarios/Minigames/shooting_minigame.gd" id="1_8w5t2"]
+[ext_resource type="Texture2D" uid="uid://damk48kf44hid" path="res://View/Assets/Backgrounds/background.png" id="2_2fd1w"]
+[ext_resource type="Script" uid="uid://8or8g6abupg5" path="res://Model/Scenes/Shooting_Player.gd" id="3_q5o0r"]
+[ext_resource type="PackedScene" uid="uid://chye4k5n4cwp1" path="res://Model/Scenes/Projectile.tscn" id="4_ca4h5"]
+[ext_resource type="Texture2D" uid="uid://c3iq4tbrlyyx3" path="res://View/Assets/Sprites/MiniPsyche.png" id="5_2lgeh"]
+[ext_resource type="Script" uid="uid://dbaa0xgtu8bfm" path="res://Model/Scenes/Player_hitbox.gd" id="6_y7ad3"]
+[ext_resource type="Script" uid="uid://hn14cp77nx3c" path="res://Model/Scenes/UFOSpawner.gd" id="7_r2dru"]
+[ext_resource type="PackedScene" uid="uid://bn27xkqw3riwh" path="res://Model/Scenes/UFO.tscn" id="8_3ekcj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7d8pj"]
+size = Vector2(47, 29)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gajr4"]
+size = Vector2(59, 38)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_robsb"]
+size = Vector2(431, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oulyw"]
+size = Vector2(20, 442)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jp78x"]
+size = Vector2(21, 442)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uwuhv"]
+size = Vector2(432, 20)
+
+[node name="ShootingMinigame" type="Node"]
+script = ExtResource("1_8w5t2")
+scenarioType = 2
+scenarioText = "Eliminate the Enemy"
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="Parallax2D" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(3, 3)
+repeat_size = Vector2(1920, 0)
+autoscroll = Vector2(-30, 0)
+
+[node name="BackgroundImage" type="Sprite2D" parent="Background/Parallax2D"]
+position = Vector2(739, 344)
+scale = Vector2(1.004948, 0.81203705)
+texture = ExtResource("2_2fd1w")
+
+[node name="Player" type="CharacterBody2D" parent="." groups=["Player"]]
+position = Vector2(543, 500)
+scale = Vector2(0.75, 0.75)
+collision_mask = 2
+script = ExtResource("3_q5o0r")
+projectile_scene = ExtResource("4_ca4h5")
+
+[node name="Shooting Psyche" type="Sprite2D" parent="Player"]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_2lgeh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_7d8pj")
+
+[node name="Muzzle" type="Marker2D" parent="Player"]
+position = Vector2(0, -20.5)
+
+[node name="Hitbox" type="Area2D" parent="Player"]
+script = ExtResource("6_y7ad3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Hitbox"]
+position = Vector2(-1.5, -1)
+shape = SubResource("RectangleShape2D_gajr4")
+
+[node name="UFOSpawner" type="Node2D" parent="."]
+script = ExtResource("7_r2dru")
+ufo_scene = ExtResource("8_3ekcj")
+
+[node name="ProjectileZone" type="StaticBody2D" parent="." groups=["Wall"]]
+collision_mask = 3
+
+[node name="CollisionShape2D(Top)" type="CollisionShape2D" parent="ProjectileZone" groups=["Wall"]]
+position = Vector2(656.5, 119)
+shape = SubResource("RectangleShape2D_robsb")
+debug_color = Color(0, 0.6, 0.69803923, 1)
+
+[node name="CollisionShape2D(Left)" type="CollisionShape2D" parent="ProjectileZone" groups=["Wall"]]
+position = Vector2(450, 330)
+shape = SubResource("RectangleShape2D_oulyw")
+debug_color = Color(0, 0.6, 0.69803923, 1)
+
+[node name="CollisionShape2D(Right)" type="CollisionShape2D" parent="ProjectileZone" groups=["Wall"]]
+position = Vector2(862, 330)
+shape = SubResource("RectangleShape2D_jp78x")
+debug_color = Color(0, 0.6, 0.69803923, 1)
+
+[node name="CollisionShape2D(Bottom)" type="CollisionShape2D" parent="ProjectileZone" groups=["Wall"]]
+position = Vector2(656, 541)
+shape = SubResource("RectangleShape2D_uwuhv")
+debug_color = Color(0, 0.6, 0.69803923, 1)
+
+[node name="Polygon2D(Top)" type="Polygon2D" parent="ProjectileZone"]
+position = Vector2(-10238.764, -25.444347)
+scale = Vector2(11.13517, 0.5555552)
+polygon = PackedVector2Array(960, 278, 960, 259.88333, 960, 242, 978.4165, 241.99998, 997, 242, 996.99994, 260.60867, 997, 278, 979.25525, 277.99997)
+
+[node name="Polygon2D(Left)" type="Polygon2D" parent="ProjectileZone"]
+position = Vector2(-78.917694, -2862.2188)
+scale = Vector2(0.54053926, 12.277765)
+polygon = PackedVector2Array(960, 278, 960, 242, 978.4165, 241.99998, 997, 242, 996.99994, 260.60867, 997, 278)
+
+[node name="Polygon2D(Right)" type="Polygon2D" parent="ProjectileZone"]
+position = Vector2(280.1892, -2862.2207)
+scale = Vector2(0.5945946, 12.277772)
+polygon = PackedVector2Array(960, 278, 960, 242, 978.4165, 241.99998, 997, 242, 996.99994, 260.60867, 997, 278)
+
+[node name="Polygon2D(Bottom)" type="Polygon2D" parent="ProjectileZone"]
+position = Vector2(-10290, 396.55563)
+scale = Vector2(11.190267, 0.55555534)
+polygon = PackedVector2Array(960, 278, 960, 259.88333, 960, 242, 978.4165, 241.99998, 997, 242, 996.99994, 260.60867, 997, 278, 979.25525, 277.99997)
+
+[node name="Polygon2D(Tail)" type="Polygon2D" parent="ProjectileZone"]
+position = Vector2(-912.59204, -838.83435)
+scale = Vector2(3.074073, 2.701489)
+polygon = PackedVector2Array(440, 493, 440, 460, 386, 426)

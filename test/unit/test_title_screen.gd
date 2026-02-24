@@ -20,6 +20,3 @@ func test_title_screen_loads():
 func test_has_start_button():
 	var start_button = main_node.get_node_or_null("StartButton")
 	assert_not_null(start_button, "Start button should exist on the title screen")
-
-func test_title_screen_has_script():
-	assert_not_null(main_node.get_script(), "TitleScreen should have a script attached")

@@ -27,6 +27,9 @@ var selectedIndex := 0
 #Dictionary set to track which cards are currently toggled for discarding
 var holdingDiscards := {}
 
+#the header that is displayed when the discard button is used
+@export var discardUseHeader : String
+
 func _ready():
 	# In test mode, we manually assign nodes in tests, so skip lookups
 	if test_mode:
@@ -152,12 +155,36 @@ func _on_select_response_label_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		if cards.is_empty():
 			return
+			# Grab the card
+		var card := cards[selectedIndex]
+	
+		#first check if card can be played
+		if !(card.isCardPlayable()):
+			#TODO: give user an error message
+			print("Cannot use this card!")
+			return 
+			
+		#check for test mode
 		if not test_mode:
 			fadeOutUI(cards[selectedIndex].getCardUseHeader())
+			
 
-		# Use the card
-		var card := cards[selectedIndex]
-		card.use()
+		#get the card use text
+		var cardUseText = card.getCardUseHeader()
+		
+		await card.use()
+		
+		# Tween out the scenario header label to replace its text
+		var tween = create_tween()
+		tween.tween_property(GameManager.scenarioHeader, "modulate", Color(1,1,1,0), 0.25)
+		await tween.finished
+
+		# Change the text after fade-out completes
+		GameManager.scenarioHeader.text = cardUseText 
+
+		# Fade back in
+		tween = create_tween()
+		tween.tween_property(GameManager.scenarioHeader, "modulate", Color(1,1,1,1), 0.25)
 
 		# Allow the player to click anywhere on screen to continue the scenario
 		continueScenarioControl.visible = true
@@ -191,19 +218,23 @@ func _on_toggle_discard_button_pressed() -> void:
 	#if yes, untoggle it
 	if holdingDiscards.has(cards[selectedIndex]):
 		holdingDiscards.erase(cards[selectedIndex])
-		trashcanAnimationPlayer.play("Close")
+		if not test_mode:
+			trashcanAnimationPlayer.play("Close")
 		trashCanOpened = false
 	else:
 		#fuckin weird ass syntax for adding something to a Dictonary 
 		holdingDiscards[cards[selectedIndex]] = true
-		trashcanAnimationPlayer.play("Open")
+		if not test_mode:
+			trashcanAnimationPlayer.play("Open")
 		trashCanOpened = true
 	
 	#after which check if the discard button needs to be shown 
 	if numberOfDiscardsBeforeToggle == 0 and holdingDiscards.size() == 1:
-		discardCardButtonAnimationPlayer.play("Startup")
+		if not test_mode:
+			discardCardButtonAnimationPlayer.play("Startup")
 	elif holdingDiscards.size() == 0:
-		discardCardButtonAnimationPlayer.play("Hide")
+		if not test_mode:
+			discardCardButtonAnimationPlayer.play("Hide")
 	
 
 
@@ -221,13 +252,31 @@ func _on_discard_button_pressed() -> void:
 	
 	#have the player draw the same amount of cards they discarded
 	for i in range(holdingDiscardCount):
-		GameManager.player.drawCard()
+		GameManager.player.drawCard(false)
 		
+
+	#clear the holding discards
+	holdingDiscards.clear()
+	
+	#returning for test
+	if test_mode:
+		return  
+	
 	#Fade out the UI
 	fadeOutUI(discardLabel)
 	
-	#clear the holding discards
-	holdingDiscards.clear()
+	
+	# Tween out the scenario header label to replace its text
+	var tween = create_tween()
+	tween.tween_property(GameManager.scenarioHeader, "modulate", Color(1,1,1,0), 0.25)
+	await tween.finished
+
+	# Change the text after fade-out completes
+	GameManager.scenarioHeader.text = discardUseHeader
+
+	# Fade back in
+	tween = create_tween()
+	tween.tween_property(GameManager.scenarioHeader, "modulate", Color(1,1,1,1), 0.25)
 	
 	#let the player click anywhere to continue 
 	continueScenarioControl.visible = true
@@ -238,15 +287,5 @@ func fadeOutUI(uiText : String) -> void:
 	# Hide the GUI
 		GameManager.UIAnimationPlayer.play("UseCard")
 
-		# Tween out the scenario header label to replace its text
-		var tween = create_tween()
-		tween.tween_property(GameManager.scenarioHeader, "modulate", Color(1,1,1,0), 0.25)
-		await tween.finished
-
-		# Change the text after fade-out completes
-		GameManager.scenarioHeader.text = uiText
-
-		# Fade back in
-		tween = create_tween()
-		tween.tween_property(GameManager.scenarioHeader, "modulate", Color(1,1,1,1), 0.25)
+		
 	

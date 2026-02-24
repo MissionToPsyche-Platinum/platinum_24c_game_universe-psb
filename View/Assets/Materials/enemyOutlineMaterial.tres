@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://sr7jy46okfds"]
+
+[ext_resource type="Shader" uid="uid://5edsjtyd4p26" path="res://View/Assets/Shaders/enemyOutlineShader.gdshader" id="1_wuaxl"]
+
+[resource]
+shader = ExtResource("1_wuaxl")
+shader_parameter/color = Color(0.9908635, 0.10122939, 1.1551381e-06, 1)
+shader_parameter/width = 9.6310004574725
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true

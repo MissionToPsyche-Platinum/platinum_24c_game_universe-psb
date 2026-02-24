@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://bn27xkqw3riwh"]
+
+[ext_resource type="Script" uid="uid://josask2g04m2" path="res://Model/Scenes/ufo.gd" id="1_gmn1f"]
+[ext_resource type="Texture2D" uid="uid://b38jnmftuwk61" path="res://View/Assets/Sprites/UFO.png" id="1_ycos7"]
+[ext_resource type="PackedScene" uid="uid://chye4k5n4cwp1" path="res://Model/Scenes/Projectile.tscn" id="2_fnk5y"]
+[ext_resource type="Script" uid="uid://nudrbq2hvnfk" path="res://Model/Scenes/UFOHitBox.gd" id="3_cts74"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gmn1f"]
+size = Vector2(59, 29)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cts74"]
+size = Vector2(70, 41)
+
+[node name="Ufo" type="CharacterBody2D" groups=["UFO"]]
+script = ExtResource("1_gmn1f")
+projectile_scene = ExtResource("2_fnk5y")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_ycos7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3.5, -7.5)
+shape = SubResource("RectangleShape2D_gmn1f")
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(0, 19)
+
+[node name="Hitbox" type="Area2D" parent="."]
+script = ExtResource("3_cts74")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(4, -2)
+shape = SubResource("RectangleShape2D_cts74")

@@ -27,8 +27,8 @@ extends Node2D
 #hand ui reference
 @export var handController : HandController
 
-
-
+#draw card preview reference
+@export var drawCardPreview : DrawCardPreview
 
 
 
@@ -58,11 +58,12 @@ func _ready() -> void:
 	
 	#assign animation player references
 	GameManager.UIAnimationPlayer = animationPlayer
-
-	print("assigning hand controller...")
-	print(handController)
+	
 	#assign Hand Controller reference 
 	GameManager.handController = handController
+	
+	#assign draw card preview reference
+	GameManager.drawCardPreview = drawCardPreview
 	
 	#load the scenario
 	#GameManager.loadScenario("res://Model/ScenarioData/Scenarios/Sc_DoubleDarkMatter.tscn")

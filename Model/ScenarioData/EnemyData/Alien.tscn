@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://daj8tho34jbpd"]
+
+[ext_resource type="PackedScene" uid="uid://df5i2gsuui8n7" path="res://Model/ScenarioData/EnemyData/EnemyBase.tscn" id="1_c2nfw"]
+[ext_resource type="Texture2D" uid="uid://chv57617bldww" path="res://View/Assets/Sprites/Attribute Bars/attribute_bar_mask.png" id="2_xk248"]
+[ext_resource type="Texture2D" uid="uid://86il4rq4uylj" path="res://View/Assets/Sprites/Attribute Bars/attribute_bar_transparent-filled.png" id="3_vl7f4"]
+
+[node name="Enemy" node_paths=PackedStringArray("healthBar") instance=ExtResource("1_c2nfw")]
+custom_minimum_size = Vector2(259, 116)
+anchor_right = 0.286
+anchor_bottom = 0.289
+offset_right = 107.527985
+offset_bottom = 77.728
+MAX_HEALTH = 3
+healthBar = NodePath("HealthBar")
+
+[node name="EnemySprite" parent="." index="0"]
+offset_right = 650.0
+offset_bottom = 308.0
+mouse_filter = 2
+expand_mode = 1
+
+[node name="HealthBar" type="TextureProgressBar" parent="." index="2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.029239766
+anchor_top = 0.45436105
+anchor_right = 0.029239766
+anchor_bottom = 0.45436105
+offset_left = -7.0
+offset_top = 48.75862
+offset_right = 307.0
+offset_bottom = 91.75862
+mouse_filter = 2
+max_value = 200.0
+texture_over = ExtResource("2_xk248")
+texture_progress = ExtResource("3_vl7f4")
+tint_progress = Color(0.6873869, 0.24107623, 0.2179296, 1)
+metadata/_edit_use_anchors_ = true

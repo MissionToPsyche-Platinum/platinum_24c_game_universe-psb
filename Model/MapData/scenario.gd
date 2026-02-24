@@ -16,9 +16,6 @@ func _ready() -> void:
 	choose_random_scenario()
 	set_sprite()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 # Selects random scenario from Scenarios folder and assigns it to this node
 func choose_random_scenario():
@@ -30,9 +27,18 @@ func choose_random_scenario():
 	#remove so no repeats
 	available_scenarios.remove_at(index)
 	
+	#load scenario scene to get scenarioType
+	var packed_scene := load(scenario_path) as PackedScene
+	if packed_scene:
+		var instance = packed_scene.instantiate()
+		type = instance.scenarioType
+		instance.queue_free()
+	else:
+		print("Failed to load scenario scene.")
+	
 func load_scenario_list():
 	# Access Scenarios directory
-	var dir = DirAccess.open("res://Model/ScenarioData/Scenarios")
+	var dir = DirAccess.open("res://Model/ScenarioData/Scenarios/")
 	if dir == null:
 		print("Failed to open scenario folder")
 		return
@@ -76,7 +82,7 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 			print("Clicked on sprite")
 			emit_signal("interacted", self)
 			GameManager.loadScenario(scenario_path)
-			#get_tree().change_scene_to_file("res://Model/Scenes/scenario_placeholder.tscn")
+			#get_tree().change_scene_to_file("res://Model/ScenarioData/Scenarios/MiniGame.tscn")
 			print("Changed scene to scenario")
 
 # called once nodes are inaccessible
