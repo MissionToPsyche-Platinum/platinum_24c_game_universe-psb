@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://das1bafoe1c1i"]
+[gd_scene load_steps=0 format=3 uid="uid://das1bafoe1c1i"]
 
 [node name="IntegrationMiniGame" type="Control"]
 layout_mode = 3
