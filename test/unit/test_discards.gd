@@ -1,10 +1,14 @@
 extends GutTest
 
+# Preloads
 const HandController = preload("res://Model/Scenes/HandController.gd")
 const Player = preload("res://Model/Scenes/Player.gd")
 
 var hand_controller: HandController
 
+# -----------------------------
+# Fake Player for testing
+# -----------------------------
 class FakePlayer:
 	extends Player
 
@@ -17,7 +21,9 @@ class FakePlayer:
 	func drawCard(_animate: bool) -> void:
 		draw_calls += 1
 
-
+# -----------------------------
+# Test Card
+# -----------------------------
 class TestCard:
 	extends Control
 	var id: String
@@ -25,26 +31,21 @@ class TestCard:
 	func _init(_id: String = ""):
 		id = _id
 
-
+# -----------------------------
+# Setup / Teardown
+# -----------------------------
 func before_each():
+	# Create hand controller
 	hand_controller = HandController.new()
 	hand_controller.test_mode = true
+	add_child_autofree(hand_controller)
 
-	# Required for addCard()
+	# Card container (UI) and continue control
 	hand_controller.card_container = Control.new()
-
-	# Needed because toggle plays animations
-	hand_controller.trashcanAnimationPlayer = AnimationPlayer.new()
-	hand_controller.discardCardButtonAnimationPlayer = AnimationPlayer.new()
-
-	# Safe stubs
-	hand_controller.cardEffectLabel = Label.new()
 	hand_controller.continueScenarioControl = Control.new()
 	hand_controller.continueScenarioControl.visible = false
 
-	# Inject fake player into autoload
-	GameManager.player = FakePlayer.new()
-	
+	# Animation players
 	hand_controller.trashcanAnimationPlayer = AnimationPlayer.new()
 	var trash_lib := AnimationLibrary.new()
 	trash_lib.add_animation("Open", Animation.new())
@@ -57,8 +58,45 @@ func before_each():
 	discard_lib.add_animation("Hide", Animation.new())
 	hand_controller.discardCardButtonAnimationPlayer.add_animation_library("test", discard_lib)
 
+	# Label for effects
+	hand_controller.cardEffectLabel = Label.new()
 
+	# Inject fake player
+	GameManager.player = FakePlayer.new()
+	GameManager.handController = hand_controller
 
+func after_each():
+	# Free all cards in hand controller
+	for c in hand_controller.cards:
+		if c.is_inside_tree():
+			c.queue_free()
+	hand_controller.cards.clear()
+	hand_controller.holdingDiscards.clear()
+
+	# Free animation players
+	if hand_controller.trashcanAnimationPlayer:
+		hand_controller.trashcanAnimationPlayer.queue_free()
+	if hand_controller.discardCardButtonAnimationPlayer:
+		hand_controller.discardCardButtonAnimationPlayer.queue_free()
+
+	# Free controls
+	if hand_controller.card_container:
+		hand_controller.card_container.queue_free()
+	if hand_controller.continueScenarioControl:
+		hand_controller.continueScenarioControl.queue_free()
+
+	# Free hand controller itself
+	if hand_controller.is_inside_tree():
+		hand_controller.queue_free()
+	hand_controller = null
+
+	# Reset GameManager
+	GameManager.player = null
+	GameManager.handController = null
+
+# -----------------------------
+# Helpers
+# -----------------------------
 func make_cards(n: int) -> Array[TestCard]:
 	var created: Array[TestCard] = []
 	for i in range(n):
@@ -67,11 +105,13 @@ func make_cards(n: int) -> Array[TestCard]:
 		created.append(c)
 	return created
 
-
+# -----------------------------
+# Tests
+# -----------------------------
 func test_SF_M_01_toggle_adds_and_removes_selected_card():
 	var cards := make_cards(3)
-
 	hand_controller.selectedIndex = 1
+
 	hand_controller._on_toggle_discard_button_pressed()
 	assert_true(hand_controller.holdingDiscards.has(cards[1]))
 
@@ -90,7 +130,7 @@ func test_SF_M_04_cannot_discard_all_cards_in_hand():
 
 	assert_eq(player.discarded.size(), 0)
 	assert_eq(player.draw_calls, 0)
-	assert_eq(hand_controller.holdingDiscards.size(), 3) # unchanged because discard blocked
+	assert_eq(hand_controller.holdingDiscards.size(), 3) # unchanged
 
 
 func test_SF_M_03_discard_draws_same_amount_as_discarded():
@@ -105,7 +145,6 @@ func test_SF_M_03_discard_draws_same_amount_as_discarded():
 	assert_eq(player.discarded.size(), 2)
 	assert_true(player.discarded.has(cards[0]))
 	assert_true(player.discarded.has(cards[3]))
-
 	assert_eq(player.draw_calls, 2)
 	assert_eq(hand_controller.holdingDiscards.size(), 0)
 
@@ -116,7 +155,7 @@ func test_SF_M_04_can_discard_hand_size_minus_one():
 
 	hand_controller.holdingDiscards[cards[0]] = true
 	hand_controller.holdingDiscards[cards[1]] = true
-	hand_controller.holdingDiscards[cards[2]] = true # 3 discards, 4 in hand
+	hand_controller.holdingDiscards[cards[2]] = true
 
 	hand_controller._on_discard_button_pressed()
 
@@ -124,34 +163,24 @@ func test_SF_M_04_can_discard_hand_size_minus_one():
 	assert_eq(player.draw_calls, 3)
 	assert_eq(hand_controller.holdingDiscards.size(), 0)
 
+
 func test_SF_M_02_discarded_card_removed_from_hand_and_ui():
-	# Use the real Player.discardCard implementation
+	# Use real Player
 	var real_player := Player.new()
 	add_child_autofree(real_player)
 	GameManager.player = real_player
-
-	# HandController must be reachable from GameManager.player.discardCard()
 	GameManager.handController = hand_controller
 
-	# Create a card node and add it to the HandController UI
 	var card := TestCard.new("DiscardMe")
 	hand_controller.addCard(card)
 
-	# Simulate what your real cards do: store the PackedScene they came from
 	var packed := PackedScene.new()
 	card.set_meta("source_scene", packed)
-
-	# Simulate that this packed scene is currently in the player's hand
 	real_player.hand.append(packed)
-	# Ensure discards exists/empty (if not already)
-	# real_player.discards = []  # only if needed in your Player.gd
 
-	# Discard it
+	# Discard card
 	real_player.discardCard(card)
 
-	# Assertions: removed from player's hand, added to discards
 	assert_false(real_player.hand.has(packed))
 	assert_true(real_player.discards.has(packed))
-
-	# Assertions: removed from UI list so it cannot be selected/used anymore
 	assert_false(hand_controller.cards.has(card))

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cmw0oe2xgpebk"]
 
-[ext_resource type="PackedScene" uid="uid://lhp1mrb310f" path="res://Model/ScenarioData/ScenarioBases/scenario_base.tscn" id="1_r7a3i"]
+[ext_resource type="PackedScene" uid="uid://daqtccsrkuw38" path="res://Model/ScenarioData/ScenarioBases/scenario_base.tscn" id="1_r7a3i"]
 [ext_resource type="Script" uid="uid://cda51huvrayd1" path="res://Model/CardData/CardBehaviorData/AttriubuteEffect.gd" id="2_um4q1"]
 
 [sub_resource type="Resource" id="Resource_ks25e"]
