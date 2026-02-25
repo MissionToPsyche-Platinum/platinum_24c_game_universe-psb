@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://c1ua0jowfs0v3"]
+[gd_scene load_steps=6 format=3 uid="uid://c1ua0jowfs0v3"]
 
 [ext_resource type="Texture2D" uid="uid://yb1xwwado3yj" path="res://View/Assets/Sprites/General/background.png" id="1_givte"]
-[ext_resource type="Script" uid="uid://dggxqckbwin4k" path="res://Model/Scenes/Map/map.gd" id="1_wrw47"]
 [ext_resource type="FontFile" uid="uid://cyuqcf4mpncuy" path="res://View/Assets/Themes/PixelOperator-Bold.ttf" id="3_1sjgm"]
-[ext_resource type="Script" uid="uid://jx0wjrrbb031" path="res://Model/Scenes/Map/map_text_control.gd" id="3_4dfsp"]
+[ext_resource type="Script" uid="uid://dggxqckbwin4k" path="res://Model/Scenes/Map/map.gd" id="3_4dfsp"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2exad"]
 font = ExtResource("3_1sjgm")
@@ -14,7 +13,7 @@ outline_color = Color(0, 0, 0, 1)
 [sub_resource type="GDScript" id="GDScript_2exad"]
 
 [node name="Map" type="Node2D"]
-script = ExtResource("1_wrw47")
+script = ExtResource("3_4dfsp")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_right = 1920.0
@@ -27,7 +26,6 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0
 offset_bottom = 88.0
-script = ExtResource("3_4dfsp")
 
 [node name="InstructionText" type="Label" parent="Map Text Control"]
 layout_mode = 1

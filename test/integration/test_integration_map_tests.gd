@@ -1,9 +1,10 @@
 extends GutTest
 
-var map
+var map: MapController
+
 
 func before_each():
-	var scene: PackedScene = load("res://Model/Scenes/Map/map.tscn")
+	var scene: PackedScene = load("res://Model/Scenes/Map/map_mvctest.tscn")
 	map = scene.instantiate()
 	add_child(map)
 
@@ -13,78 +14,78 @@ func before_each():
 func after_each():
 	map.queue_free()
 
-
+# test movement to new scenario after scenario completion
 func test_move_to_new_scenario():
-	var scenario1: Node2D = _get_scenario_by_index(1)
-	assert_not_null(
-		scenario1,
-		"Scenario at index 1 should exist at game start"
+	var model := map.model
+	var view := map.view
+	
+	var start_index := model.current_index
+	var neighbors := model.get_proceeding_neighbors(start_index)
+
+	assert_gt(neighbors.size(), 0, "Start node should have neighbors")
+
+	var target_index := neighbors[0]
+
+	# Simulate clicking node via controller
+	map.map_active = true
+	map._on_node_clicked(target_index)
+
+	# Model should anticipate move
+	assert_eq(
+		model.psyche_anticipated_index,
+		target_index,
+		"Model should anticipate movement"
 	)
 
-	scenario1.emit_signal("interacted", scenario1)
-	await get_tree().process_frame   # allow map to hide
-
+	# Simulate returning from scenario
 	map.advance_position()
-	await get_tree().process_frame   # allow position + conversions
-
-	var psyche: Node2D = map.psyche_node
+	await get_tree().process_frame
 
 	assert_eq(
-		psyche.get_meta("index"),
-		1,
-		"Psyche should now be at index 1"
+		model.current_index,
+		target_index,
+		"Model should update current index"
 	)
 
+	# Psyche view position should match layout position
+	var expected_pos := model.layout.node_positions[target_index]
 	assert_eq(
-		psyche.position,
-		scenario1.position,
-		"Psyche should move to the clicked scenario's location"
+		view.psyche_view.position,
+		expected_pos,
+		"Psyche view should move to target node"
 	)
 
 	assert_true(
 		map.visible,
-		"Map should be visible again after moving"
+		"Map should be visible after advancing position"
 	)
+	
 
-	var neighbors: Array = map.get_connected_nodes(1)
-
-	for idx in neighbors:
-		if idx in [0, 1, 2]:
-			continue
-
-		var s: Node2D = _get_scenario_by_index(idx)
-		assert_not_null(
-			s,
-			"Neighbor %s should be converted from unknown → scenario" % idx
-		)
-
+# make sure map doesnt auto-advance when clicking reward card
 func test_during_choose_reward():
-	# Map currently disabled & invisible (as if player is choosing reward card)
+	var model := map.model
+
 	map.map_active = false
 	map.visible = false
-	
-	var scenario1: Node2D = _get_scenario_by_index(1)
-	assert_not_null(
-		scenario1,
-		"Scenario at index 1 should exist"
-	)
-	
-	# Attempt to select scenario while map is disabled
-	scenario1.emit_signal("interacted", scenario1)
+
+	var start_index := model.current_index
+	var neighbors := model.get_proceeding_neighbors(start_index)
+
+	assert_gt(neighbors.size(), 0, "Start node should have neighbors")
+
+	var target_index := neighbors[0]
+
+	map._on_node_clicked(target_index)
 	await get_tree().process_frame
-	
-	assert_false(
-		map.map_active,
-		"Map should NOT be anabled yet"
-	)
-	
-	assert_false(
-		map.visible,
-		"Map should NOT be visible yet"
+
+	assert_eq(
+		model.psyche_anticipated_index,
+		-1,
+		"Movement should NOT be registered while map inactive"
 	)
 
-func _get_scenario_by_index(i: int) -> Node2D:
-	for s in map.scenarios:
-		if s.get_meta("index") == i:
-			return s
-	return null
+	assert_false(
+		map.visible,
+		"Map should remain invisible"
+	)
+	

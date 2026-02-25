@@ -4,7 +4,8 @@ extends Node
 @export var player: Player
 @export var scenario: Scenario
 @export var card_manager: CardManager
-@export var map: Map
+#@export var map: Map
+@export var map: MapController
 
 #UI root node
 var UI: Control
@@ -75,6 +76,11 @@ func loadScenario(scenePath: String) -> void:
 	
 	#add scenario to scene tree
 	add_child(scenario)
+	
+	# hard reset scenario animations
+	UIAnimationPlayer.stop()
+	UIAnimationPlayer.play("RESET")
+	UIAnimationPlayer.seek(0.0, true) # force-apply immediately
 	
 	#get the scenario description text
 	scenarioHeader.text = scenario.scenarioText
@@ -166,6 +172,23 @@ func endScenario() -> void:
 	
 	#play end of scenario animation
 	UIAnimationPlayer.play("ScenarioEnd")
+	
+	# Wait for end of scenario animation to finish
+	while true:
+		var anim = await UIAnimationPlayer.animation_finished
+		if anim != "ScenarioEnd":
+			break
+	
+	# Reset animations (before next scenario starts)
+	if UIAnimationPlayer:
+		UIAnimationPlayer.play("HideUI")
+
+	# Load the map screen safely
+	if map and map.has_method("advance_position"):
+		map.advance_position()
+	else:
+		print("Warning: Map is not assigned or missing 'advance_position' method")
+	
 
 func rewardChosen(card) -> void:
 	# Retrieve the packed scene
@@ -205,22 +228,7 @@ func rewardChosen(card) -> void:
 			var rewardLabelParent = rl.get_parent()
 			if rewardLabelParent:
 				rewardLabelParent.visible = false
-
-		# Load the map screen safely
-		if map and map.has_method("advance_position"):
-			map.advance_position()
-		else:
-			print("Warning: Map is not assigned or missing 'advance_position' method")
-
-		# Handle UI animations
-		if UIAnimationPlayer:
-			if UIAnimationPlayer.is_playing():
-				UIAnimationPlayer.stop()
-			UIAnimationPlayer.play("HideUI")
-			UIAnimationPlayer.play("RESET")
 		
-		if UI:
-			UI.visible = false
 	else:
 		print("No packed scene detected, cannot add to player deck")
 		

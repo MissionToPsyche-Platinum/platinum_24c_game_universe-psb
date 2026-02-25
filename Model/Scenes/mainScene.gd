@@ -68,7 +68,8 @@ func _ready() -> void:
 	#load the scenario
 	#GameManager.loadScenario("res://Model/ScenarioData/Scenarios/Sc_DoubleDarkMatter.tscn")
 	#load the map
-	var mapScene = preload("res://Model/Scenes/Map/Map.tscn").instantiate()
+	#var mapScene = preload("res://Model/Scenes/Map/Map.tscn").instantiate()
+	var mapScene = preload("res://Model/Scenes/Map/map_mvctest.tscn").instantiate()
 	add_child(mapScene)
 	GameManager.map = mapScene
 	GameManager.UI = $UI
