@@ -159,10 +159,9 @@ func _on_select_response_label_gui_input(event: InputEvent) -> void:
 		var card := cards[selectedIndex]
 	
 		#first check if card can be played
-		if !(card.isCardPlayable()):
-			#TODO: give user an error message
+		if not card.has_method("isCardPlayable") or not card.isCardPlayable():
 			print("Cannot use this card!")
-			return 
+			return
 			
 		#check for test mode
 		if not test_mode:

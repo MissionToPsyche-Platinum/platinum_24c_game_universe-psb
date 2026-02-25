@@ -226,15 +226,6 @@ func rewardChosen(card) -> void:
 		
 		
 func restartGame() -> void:
-	#this function will be called whenever the game needs to restart
-	#reset player instantiation
 	playerInstantiated = false
 	
-	#reset player attributes
-	player.hullIntegrity = 100
-	player.velocity = 100
-	player.power = 100
-	
-	#reset the game scene
 	get_tree().change_scene_to_file("res://Model/Scenes/MainScene.tscn")
-	
