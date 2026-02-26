@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://cdd3x52rwy75m" path="res://Model/ScenarioData/Scenarios/Minigames/Destroyer_minigame.gd" id="1_rmixt"]
 [ext_resource type="Texture2D" uid="uid://damk48kf44hid" path="res://View/Assets/Backgrounds/background.png" id="2_5f5sr"]
-[ext_resource type="Script" uid="uid://gvu1oxogrdct" path="res://Model/Scenes/Destroyerplayer.gd" id="3_kh0nn"]
+[ext_resource type="Script" path="res://Model/Scenes/Destroyerplayer.gd" id="3_kh0nn"]
 [ext_resource type="Texture2D" uid="uid://c3iq4tbrlyyx3" path="res://View/Assets/Sprites/MiniPsyche.png" id="4_tf0wu"]
 [ext_resource type="PackedScene" uid="uid://bcjcdsyq1u72e" path="res://Model/Scenes/Ball.tscn" id="5_1ln3u"]
-[ext_resource type="Script" uid="uid://dr5vhyexxmm22" path="res://Model/Scenes/ResetBall.gd" id="6_b64cb"]
+[ext_resource type="Script" path="res://Model/Scenes/ResetBall.gd" id="6_b64cb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tr506"]
 size = Vector2(59, 38)
@@ -24,6 +24,7 @@ size = Vector2(392, 6)
 
 [node name="DestroyerMinigame" type="Node"]
 script = ExtResource("1_rmixt")
+scenarioType = 2
 scenarioText = "Destroy The Bricks (Press Space To Start)"
 
 [node name="Background" type="Node2D" parent="."]
