@@ -109,10 +109,28 @@ func _replace_node(index: int, scene: PackedScene) -> Node2D:
 	var pos = old.position
 	old.queue_free()
 
+	#var inst = scene.instantiate()
+	#add_child(inst)
+	#inst.position = pos
+	#inst.set_meta("index", index)
+	#node_views[index] = inst
+	#return inst
 	var inst = scene.instantiate()
 	add_child(inst)
 	inst.position = pos
 	inst.set_meta("index", index)
+
+	# Assign fixed demo scenarios
+	if inst.has_method("load_scenario_type"):
+		match index:
+			1: inst.scenario_path = "res://Model/ScenarioData/Scenarios/Sc_AlienFungus.tscn"
+			2: inst.scenario_path = "res://Model/ScenarioData/Scenarios/BattleSceneTest1.tscn"
+			3: inst.scenario_path = "res://Model/ScenarioData/Scenarios/MeteorMinigame.tscn"
+			4: inst.scenario_path = "res://Model/ScenarioData/Scenarios/DestroyerMinigame.tscn"
+			5: inst.scenario_path = "res://Model/ScenarioData/Scenarios/ShootingMinigame.tscn"
+		inst.load_scenario_type()
+		inst.set_sprite()
+
 	node_views[index] = inst
 	return inst
 

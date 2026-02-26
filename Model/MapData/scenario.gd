@@ -13,9 +13,20 @@ signal interacted
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	choose_random_scenario()
-	set_sprite()
+	#choose_random_scenario()
+	#set_sprite()
+	if scenario_path != "":
+		load_scenario_type()
+		set_sprite()
 
+func load_scenario_type():
+	var packed_scene := load(scenario_path) as PackedScene
+	if packed_scene:
+		var instance = packed_scene.instantiate()
+		type = instance.scenarioType
+		instance.queue_free()
+	else:
+		print("Failed to load scenario scene.")
 
 # Selects random scenario from Scenarios folder and assigns it to this node
 func choose_random_scenario():
