@@ -24,6 +24,7 @@ size = Vector2(392, 6)
 
 [node name="DestroyerMinigame" type="Node"]
 script = ExtResource("1_rmixt")
+scenarioType = 2
 scenarioText = "Destroy The Bricks (Press Space To Start)"
 
 [node name="Background" type="Node2D" parent="."]
