@@ -95,3 +95,14 @@ func _on_scenario_label_gui_input(event: InputEvent) -> void:
 func _on_button_pressed() -> void:
 	GameManager.restartGame()
 	
+func _input(event):
+	if event.is_action_pressed("pause"):
+		toggle_pause()
+
+func toggle_pause():
+	get_tree().paused = !get_tree().paused
+	$PauseMenu.visible = get_tree().paused
+
+func _on_Resume_pressed():
+	get_tree().paused = false
+	$PauseMenu.visible = false

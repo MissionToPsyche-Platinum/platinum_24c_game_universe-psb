@@ -43,7 +43,6 @@ texture = ExtResource("2_dqcod")
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(100, 200)
 scale = Vector2(0.75, 0.75)
-collision_layer = 3
 script = ExtResource("3_scj23")
 
 [node name="MiniPsyche" type="Sprite2D" parent="Player"]

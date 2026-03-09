@@ -6,9 +6,9 @@ extends Node2D
 @export var spawn_delay := 0.9
 
 var stopped := false
+@onready var minigame = get_parent()
 
 func _ready():
-	# Start the spawn loop as a coroutine
 	call_deferred("spawn_loop")
 
 func spawn_loop() -> void:
@@ -26,3 +26,11 @@ func spawn_obstacle():
 	obstacle.position = Vector2(randf_range(450, 450+spawn_width), spawn_y)
 	add_child(obstacle)
 	obstacle.add_to_group("obstacles")
+	
+	# Connect the meteor's collision signal to minigame
+	obstacle.player_hit.connect(_on_player_hit)
+
+func _on_player_hit():
+	print("Player hit! Game Over!")
+	stop_spawning()
+	minigame.player.queue_free()

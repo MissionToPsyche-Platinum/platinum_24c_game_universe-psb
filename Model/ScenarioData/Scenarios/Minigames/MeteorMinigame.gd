@@ -5,20 +5,25 @@ class_name MeteorMinigame
 var elapsed := 0.0
 var won = false
 
+@onready var spawner = $ObstacleSpawner
+@onready var player = $Player
+
+func _ready():
+	# Make sure player is in a "player" group
+	player.add_to_group("player")
+
 func _process(delta: float) -> void:
 	elapsed += delta
-	if elapsed >= survival_time:
-		if won == false:
-			won = true
-			performScenarioEffect()
-	
+	if elapsed >= survival_time and not won:
+		won = true
+		performScenarioEffect()
+
 func performScenarioEffect() -> void:
-	if won == true:
+	if won:
 		emit_signal("scenarioWon")
 		print("Won")
-		$Player.queue_free()
-		$ObstacleSpawner.stop_spawning()
-		return
+		player.queue_free()
+		spawner.stop_spawning()
 
 func getWinCondition() -> String:
 	return "Survive for %d seconds." % survival_time
