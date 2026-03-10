@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=4 uid="uid://b5aneqr63kcay"]
+[gd_scene load_steps=75 format=4 uid="uid://b5aneqr63kcay"]
 
 [ext_resource type="Script" uid="uid://bryyckfysnh62" path="res://Model/Scenes/mainScene.gd" id="1_6pwi0"]
 [ext_resource type="Script" uid="uid://lp0itw18h7mo" path="res://Model/Scenes/card_manager.gd" id="2_qb6nl"]
@@ -842,6 +842,24 @@ _data = {
 &"UseCard": SubResource("Animation_xfpm0")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_35wlo"]
+bg_color = Color(0, 0, 0, 0.827451)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xetsj"]
+font = ExtResource("11_wki3r")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_35wlo"]
+modulate_color = Color(0.972549, 0.62352943, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_46vkd"]
+modulate_color = Color(0.972549, 0.62352943, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t26e8"]
+modulate_color = Color(0.972549, 0.62352943, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xetsj"]
+modulate_color = Color(0.972549, 0.62352943, 0, 1)
+
 [node name="MainScene" type="Node2D" node_paths=PackedStringArray("player", "cardManager", "hullIntegrityLabel", "powerLabel", "velocityLabel", "rewardsHolder", "scenarioHeader", "scenarioEffectLabel", "scenarioWinConditionLabel", "hullIntegrityBar", "powerBar", "velocityBar", "animationPlayer", "handController", "drawCardPreview")]
 script = ExtResource("1_6pwi0")
 player = NodePath("Player")
@@ -1444,6 +1462,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_35wlo")
 
 [node name="Label" type="Label" parent="PauseMenu/Pause Screen"]
 layout_mode = 1
@@ -1456,6 +1475,7 @@ offset_bottom = 23.0
 grow_horizontal = 2
 scale = Vector2(3, 3)
 text = "Game Paused"
+label_settings = SubResource("LabelSettings_xetsj")
 horizontal_alignment = 1
 
 [node name="Resume" type="Button" parent="PauseMenu/Pause Screen"]
@@ -1472,6 +1492,11 @@ offset_bottom = 15.5
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("11_wki3r")
+theme_override_styles/hover = SubResource("StyleBoxTexture_35wlo")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxTexture_46vkd")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_t26e8")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_xetsj")
 text = "Resume"
 
 [connection signal="gui_input" from="UI/Hand Container" to="UI/Hand Container" method="_on_gui_input"]

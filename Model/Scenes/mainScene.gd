@@ -101,8 +101,10 @@ func _input(event):
 
 func toggle_pause():
 	get_tree().paused = !get_tree().paused
+	#visible = false #Remove All Items from Background
 	$PauseMenu.visible = get_tree().paused
 
 func _on_Resume_pressed():
 	get_tree().paused = false
+	#visible = true
 	$PauseMenu.visible = false
