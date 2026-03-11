@@ -103,8 +103,23 @@ func toggle_pause():
 	get_tree().paused = !get_tree().paused
 	#visible = false #Remove All Items from Background
 	$PauseMenu.visible = get_tree().paused
+	# whenever we toggle pause, default back to showing the pause menu
+	if has_node("SettingsMenu"):
+		$SettingsMenu.visible = false
 
 func _on_Resume_pressed():
 	get_tree().paused = false
 	#visible = true
 	$PauseMenu.visible = false
+	if has_node("SettingsMenu"):
+		$SettingsMenu.visible = false
+
+func _on_Settings_pressed() -> void:
+	if has_node("SettingsMenu"):
+		$PauseMenu.visible = false
+		$SettingsMenu.visible = true
+
+func _on_SettingsBackButton_pressed() -> void:
+	if has_node("SettingsMenu"):
+		$SettingsMenu.visible = false
+		$PauseMenu.visible = true

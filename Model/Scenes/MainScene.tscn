@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=4 uid="uid://b5aneqr63kcay"]
+[gd_scene load_steps=77 format=4 uid="uid://b5aneqr63kcay"]
 
 [ext_resource type="Script" uid="uid://bryyckfysnh62" path="res://Model/Scenes/mainScene.gd" id="1_6pwi0"]
 [ext_resource type="Script" uid="uid://lp0itw18h7mo" path="res://Model/Scenes/card_manager.gd" id="2_qb6nl"]
@@ -26,6 +26,8 @@
 [ext_resource type="Script" uid="uid://7y010iwclveo" path="res://Controller/UI Scripts/discardButtonScrip.gd" id="20_j5y8d"]
 [ext_resource type="Script" uid="uid://d3pn7t3bl1oxr" path="res://Controller/UI Scripts/trashcanScript.gd" id="20_rxymg"]
 [ext_resource type="Script" uid="uid://bdio638up815l" path="res://Controller/UI Scripts/drawCardPreview.gd" id="21_rxymg"]
+[ext_resource type="Texture2D" uid="uid://dvn36rign71ly" path="res://View/Assets/Sprites/Gear.png" id="27_46vkd"]
+[ext_resource type="Texture2D" uid="uid://7t06ui4ivxhu" path="res://View/Assets/Sprites/Arrow.png" id="28_t26e8"]
 
 [sub_resource type="Resource" id="Resource_7ptv6"]
 script = ExtResource("12_t26e8")
@@ -1499,6 +1501,56 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_t26e8")
 theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_xetsj")
 text = "Resume"
 
+[node name="Settings" type="Button" parent="PauseMenu/Pause Screen"]
+layout_mode = 0
+offset_top = 594.0
+offset_right = 209.0
+offset_bottom = 809.0
+scale = Vector2(0.25, 0.25)
+icon = ExtResource("27_46vkd")
+
+[node name="SettingsMenu" type="CanvasLayer" parent="."]
+process_mode = 2
+visible = false
+
+[node name="Setting Screen" type="Control" parent="SettingsMenu"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="SettingsMenu/Setting Screen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_35wlo")
+
+[node name="Label" type="Label" parent="SettingsMenu/Setting Screen"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -159.0
+offset_right = -53.0
+offset_bottom = 23.0
+grow_horizontal = 2
+scale = Vector2(3, 3)
+text = "Settings"
+label_settings = SubResource("LabelSettings_xetsj")
+horizontal_alignment = 1
+
+[node name="Back" type="Button" parent="SettingsMenu/Setting Screen"]
+layout_mode = 0
+offset_top = 600.0
+offset_right = 48.0
+offset_bottom = 648.0
+icon = ExtResource("28_t26e8")
+
 [connection signal="gui_input" from="UI/Hand Container" to="UI/Hand Container" method="_on_gui_input"]
 [connection signal="gui_input" from="UI/Hand Container/Scenario Label/Scenario Label" to="." method="_on_scenario_label_gui_input"]
 [connection signal="gui_input" from="UI/Hand Container/Response Label/Response Label" to="." method="_on_response_label_gui_input"]
@@ -1514,3 +1566,5 @@ text = "Resume"
 [connection signal="animation_finished" from="UI/DrawCardPreview/PreviewHolder/DrawCardAnimationPlayer" to="UI/DrawCardPreview" method="_on_draw_card_animation_player_animation_finished"]
 [connection signal="animation_finished" from="UI/DrawCardPreview/PreviewHolder/DrawCardAnimationPlayer" to="UI/DrawCardPreview/PreviewHolder" method="_on_draw_card_animation_player_animation_finished"]
 [connection signal="pressed" from="PauseMenu/Pause Screen/Resume" to="." method="_on_Resume_pressed"]
+[connection signal="pressed" from="PauseMenu/Pause Screen/Settings" to="." method="_on_Settings_pressed"]
+[connection signal="pressed" from="SettingsMenu/Setting Screen/Back" to="." method="_on_SettingsBackButton_pressed"]
