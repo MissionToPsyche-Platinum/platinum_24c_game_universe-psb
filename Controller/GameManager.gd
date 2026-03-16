@@ -16,6 +16,8 @@ var playerInstantiated: bool = false
 #boolean to see if the player has lost
 var playerLost: bool = false
 
+#boolean to see if the player is in tutorial mode
+var tutorialMode = false
 
 #references to UI elements
 var hullIntegrityLabel: Label
@@ -111,6 +113,9 @@ func endPlayerTurn() -> void:
 	if playerLost:
 		self.change_scene_to_file("res://Model/ScreenData/LoseScreen.tscn")
 		return
+	if tutorialMode:
+		scenario.progressTutorial()
+		return 
 	
 	#tween the header text back to the scenario 
 	var tween = create_tween()
