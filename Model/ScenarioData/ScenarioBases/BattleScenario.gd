@@ -18,6 +18,9 @@ var enemyList : Array[Enemy]
 
 
 func _ready() -> void:
+	initializeBattleScenario()
+	
+func initializeBattleScenario() -> void:
 	#clear old enemies
 	for position in enemyPositions:
 		if position.get_child(0) != null:
@@ -49,8 +52,8 @@ func _ready() -> void:
 	
 	
 	#slide the enemies onto the screen
-	enemyContainerAnimationPlayer.play("ShowGrid")
-			
+	if enemyContainerAnimationPlayer != null:
+		enemyContainerAnimationPlayer.play("ShowGrid")	
 
 func performScenarioEffect() -> void:
 	

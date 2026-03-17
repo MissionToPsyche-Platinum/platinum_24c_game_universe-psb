@@ -18,6 +18,7 @@ var playerLost: bool = false
 
 #boolean to see if the player is in tutorial mode
 var tutorialMode = false
+var tutorialScenario : TutorialScenario
 
 #references to UI elements
 var hullIntegrityLabel: Label
@@ -114,7 +115,7 @@ func endPlayerTurn() -> void:
 		self.change_scene_to_file("res://Model/ScreenData/LoseScreen.tscn")
 		return
 	if tutorialMode:
-		scenario.progressTutorial()
+		tutorialScenario.progressTutorial()
 		return 
 	
 	#tween the header text back to the scenario 

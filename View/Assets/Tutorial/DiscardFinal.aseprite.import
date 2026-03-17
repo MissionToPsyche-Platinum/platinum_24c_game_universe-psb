@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://i04ygdgvbxe6"
+path="res://.godot/imported/DiscardFinal.aseprite-f270d6a89e06563bb987150a134a0c1b.res"
+
+[deps]
+
+source_file="res://View/Assets/Tutorial/DiscardFinal.aseprite"
+dest_files=["res://.godot/imported/DiscardFinal.aseprite-f270d6a89e06563bb987150a134a0c1b.res"]
+
+[params]
+

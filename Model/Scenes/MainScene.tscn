@@ -24,7 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://c5b6ep18mucxh" path="res://View/Assets/Card Hud/scenario_arrow.png" id="15_qatxi"]
 [ext_resource type="Texture2D" uid="uid://clkpqvj75twac" path="res://View/Assets/Card Hud/card_arrow_filled.png" id="16_k7non"]
 [ext_resource type="Script" uid="uid://7y010iwclveo" path="res://Controller/UI Scripts/discardButtonScrip.gd" id="20_j5y8d"]
-[ext_resource type="Script" uid="uid://d3pn7t3bl1oxr" path="res://Controller/UI Scripts/trashcanScript.gd" id="20_rxymg"]
+[ext_resource type="Script" path="res://Controller/UI Scripts/trashcanScript.gd" id="20_rxymg"]
 [ext_resource type="Script" uid="uid://bdio638up815l" path="res://Controller/UI Scripts/drawCardPreview.gd" id="21_rxymg"]
 [ext_resource type="Texture2D" uid="uid://dvn36rign71ly" path="res://View/Assets/Sprites/Gear.png" id="27_46vkd"]
 [ext_resource type="Texture2D" uid="uid://7t06ui4ivxhu" path="res://View/Assets/Sprites/Arrow.png" id="28_t26e8"]
@@ -1355,21 +1355,6 @@ anchors_preset = 0
 offset_right = 1154.0
 offset_bottom = 650.0
 
-[node name="Button" type="Button" parent="UI"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 23.825
-anchor_top = -0.025
-anchor_right = 25.725
-anchor_bottom = -0.025
-offset_left = 47.0
-offset_top = 28.0
-offset_right = 85.0
-offset_bottom = 59.0
-text = "Restart Game
-"
-metadata/_edit_use_anchors_ = true
-
 [node name="DrawCardPreview" type="Control" parent="UI" node_paths=PackedStringArray("drawCardPreviewAnimationPlayer", "drawCardPreviewHolder")]
 layout_mode = 1
 anchor_right = 28.850002
@@ -1562,7 +1547,6 @@ icon = ExtResource("28_t26e8")
 [connection signal="pressed" from="UI/Hand Container/TrashCanHolder/TrashCan/ToggleDiscardButton" to="UI/Hand Container" method="_on_toggle_discard_button_pressed"]
 [connection signal="animation_finished" from="UI/Hand Container/TrashCanHolder/TrashCanAnimationPlayer" to="UI/Hand Container/TrashCanHolder" method="_on_trash_can_animation_player_animation_finished"]
 [connection signal="gui_input" from="UI/ContinueScenario" to="UI/Hand Container" method="_on_continue_scenario_gui_input"]
-[connection signal="pressed" from="UI/Button" to="." method="_on_button_pressed"]
 [connection signal="animation_finished" from="UI/DrawCardPreview/PreviewHolder/DrawCardAnimationPlayer" to="UI/DrawCardPreview" method="_on_draw_card_animation_player_animation_finished"]
 [connection signal="animation_finished" from="UI/DrawCardPreview/PreviewHolder/DrawCardAnimationPlayer" to="UI/DrawCardPreview/PreviewHolder" method="_on_draw_card_animation_player_animation_finished"]
 [connection signal="pressed" from="PauseMenu/Pause Screen/Resume" to="." method="_on_Resume_pressed"]

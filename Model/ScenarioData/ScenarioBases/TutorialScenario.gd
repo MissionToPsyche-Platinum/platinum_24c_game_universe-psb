@@ -1,7 +1,9 @@
+class_name TutorialScenario
 extends Scenario
 
 @export var earthAnimationPlayer: AnimationPlayer
 @export var UIAnimationPlayer: AnimationPlayer
+@export var ResponseLabelAnimationPlayer : AnimationPlayer
 @export var scenarioHeaderLabel: Label
 @export var clickAnywhereLabel : Label
 @export var hullIntegrityBar : TextureProgressBar
@@ -23,11 +25,18 @@ extends Scenario
 
 @export var freebieCard : PackedScene
 @export var discardCard : PackedScene
+@export var battleCard : PackedScene
 
+@export var protocolCard : Control
+
+@export var enemyPosition : Control
+@export var enemyScene : PackedScene
 
 var tutorialEventScenario : EventScenario
 var tutorialBattleScenario : BattleScenario
 var tutorialPlayer : Player
+
+
 	
 
 var tutorialSteps = []
@@ -36,14 +45,11 @@ var currentIndex:= 0
 func _ready() -> void:
 	
 	# initalize tutorial objects
-	
 	tutorialPlayer = Player.new()
-	
-
-	
 	#set gamemanager objects
+	
 	GameManager.tutorialMode = true
-	GameManager.scenario = self
+	GameManager.tutorialScenario = self
 	GameManager.hullIntegrityBar = hullIntegrityBar
 	GameManager.velocityBar = velocityBar
 	GameManager.powerBar = powerBar
@@ -63,6 +69,7 @@ func _ready() -> void:
 	
 	GameManager.player.deck.append(freebieCard)
 	GameManager.player.drawCard(false)
+	
 	
 	
 	
@@ -171,27 +178,31 @@ func _ready() -> void:
 		},
 		{
 			"text" : "After you play a card, an Event Scenario will simply directly reduce one of your attributes by a set amount.",
-			"actions" : [enableClickable, showScenarioEffectLabel]
+			"actions" : [enableClickable, setScenarioEffectLabelEventText, showScenarioEffectLabel]
 		},
 		{
 			"text" : "Event Scenarios also have a win condition, where you have to have an equal or above amount of a certain Attribute to beat the Scenario. In this case, you need 130 Velocity or above.",
-			"actions" : [enableClickable, showScenarioWinConditionLabel]	
+			"actions" : [enableClickable, setScenarioWinConditionLabelEventText, showScenarioWinConditionLabel ]	
 		},
 		{
-			"text" : "Clicking the Response label will let you see all of the cards currently in your hand. You can look through your hand by clicking the left or right arrows.",
-			"actions" : [enableClickable]	
+			"text" : "Clicking the Response label will let you see all of the cards currently in your hand.",
+			"actions" : [enableClickable, scenarioResponseShow]	
+		},
+		{
+			"text" : "You can look through your hand by clicking the left or right arrows.",
+			"actions" : [enableClickable, scenarioArrowShow]
 		},
 		{
 			"text" : "The card in the middle of the card screen will tell you what it does in the bottom left under EFFECTS.",
-			"actions" : [enableClickable]	
+			"actions" : [enableClickable, scenarioEffectsShow]	
 		},
 		{
 			"text" : "To use a card, click the left or right arrows on the card screen until the card you want to use is in the middle, then click Select Response. It's that easy!",
-			"actions" : [enableClickable]
+			"actions" : [enableClickable, scenarioSelectResponseShow]
 		},
 		{
 			"text" : "Try it out with the card I just gave you!",
-			"actions" : [enableResponse]
+			"actions" : [enableResponse, scenarioSelectResponseHide]
 		},
 		{
 			"text" : "Nice work!",
@@ -219,27 +230,27 @@ func _ready() -> void:
 		},
 		{
 			"text" : "To discard cards, simply click the trash can icon while the card you want to discard is in the middle of the card screen.",
-			"actions" : [enableClickable]
+			"actions" : [enableClickable, discardStart]
 		},
 		{
-			"text" : "This will cause the trashacan to turn red, toggling the card for discarding, and the discard button to appear.",
-			"actions" : [enableClickable]
+			"text" : "This will cause the trashcan to turn red, toggling the card for discarding, and the discard button to appear.",
+			"actions" : [enableClickable, discardButton]
 		},
 		{
 			"text" : "You can then use the arrows to choose more cards to discard if you want.",
-			"actions" : [enableClickable]
+			"actions" : [enableClickable, discardArrows]
 		},
 		{
 			"text" : "If you change your mind about discarding a card, simply click the trashcan again. This will untoggle it from discarding.",
-			"actions" : [enableClickable]
+			"actions" : [enableClickable, discardTrashCan]
 		},
 		{
 			"text" : "Once your choice has been made, simply click the discard button and you're done!",
-			"actions" : [enableClickable]
+			"actions" : [enableClickable, discardFinalShow]
 		},
 		{
 			"text" : "Discarding will cost you your turn, so be careful when choosing to use it.",
-			"actions" : [enableClickable]
+			"actions" : [enableClickable, discardFinalHide]
 		},
 		{
 			"text" : "I've given you an Attack Card, which can't be used in event scenarios. Try discarding it!",
@@ -248,7 +259,132 @@ func _ready() -> void:
 		{
 			"text" : "Perfect! In an actual Scenario, you would have drawn an extra card on your turn.",
 			"actions" : [enableClickable, performTutorialEventScenarioEffect]
+		},
+		{
+			"text" : "Alright, that's enough foofing around here. Let's beat this scenario!",
+			"actions" : [enableClickable]
+		},
+		{
+			"text" : "I've given you another Freebie Card. Go ahead and use it to beat the scenario!",
+			"actions" : [enableResponse, giveFreebie]
+		},
+		{
+			"text" : "Nice work!",
+			"actions" : [hideScenarioEffectLabels,enableClickable]
+			
+		},
+		{
+			"text" : "In a real scenario, you'll be able to select a reward card to add to your deck to be used for future Scenarios. Keep on the lookout for rarer cards!",
+			"actions" : [enableClickable]
+		},
+		{
+			"text" : "That should do it for the...",
+			"actions" : [enableClickable]
+		},
+		{
+			"text" : "...Hold on, what is that?",
+			"actions" : [showCardbot]
+		
+		},
+		{
+			"text" : "OH NO! IT'S CARDBOT! HE'S COME TO DESTROY YOU!",
+			"actions" : [enableClickable, prepareBattleScenario]
+		},
+		{
+			"text" : "You'll have to play a Battle Scenario to beat him!",
+			"actions" : [enableClickable]
+		},
+		{
+			"text" :  "Battle Scenarios are a lot like Event Scenarios- they will also try to reduce one of your attributes.",
+			"actions" : [enableClickable, setScenarioEffectLabelBattleText, showScenarioEffectLabel]
+		},
+		{
+			"text" : "But in this case, how much it's reduced will be a base value multiplied by how many enemies are left in the Battle Scenario!",
+			"actions" : [enableClickable]
+		},
+		{
+			"text" : "In this case, there's only one enemy, so your Hull Integrity will be reduced by 10 * 1 = 10 points each turn.",
+			"actions" : [enableClickable]
+		},
+		{
+			"text" : "Battle Scenarios also have a win condition: You must defeat all of the enemies to beat the Scenario.",
+			"actions" : [enableClickable, setScenarioWinConditionLabelBattleText, showScenarioWinConditionLabel]
+		},
+		{
+			"text" : "In order to defeat them, you have to use Battle Cards!",
+			"actions" : [enableClickable]
+		},
+		{
+			"text" : "Instead of increasing your attributes, Battle Cards have a number of Damage and Targets.",
+			"actions" : [enableClickable]
+		},
+		{
+			"text" : "The Damage shows how much it will reduce the chosen enemy's HP by, and the number of Targets shows how many times you can damage enemies after using it.",
+			"actions" : [enableClickable]
+		},
+		{
+			"text" : "Once a Battle Card is used, you'll enter Targeting Mode, and the number of targets you have left will be displayed a the top of the screen.",
+			"actions" : [enableClickable]
+		},
+		{
+			"text" : "Simply hover over the enemy you wish to damage and click on them to use one of your targets!",
+			"actions" : [enableClickable]
+		},
+		{
+			"text" : "You'll leave Targeting Mode once you use all of your targets, or all enemies have been defeated.",
+			"actions" : [enableClickable]
+		},
+		{
+			"text" : "I've just given you a Battle Card. Try damaging Cardbot!",
+			"actions" : [giveBattleFreebie, enableResponse]
+		},
+		{
+			"text" : "Nice Job!",
+			"actions" : [enableClickable]
+		},
+		{
+			"text" : "Notice how your Hull Integrity was affected, just like the last scenario.",
+			"actions" : [enableClickable]
+		},
+		{
+			"text" : "Alright, we know the drill by now. I've given you another freebie, go ahead and finish this scenario!",
+			"actions" : [giveBattleFreebie, enableResponse]
+		},
+		{
+			"text" : "The evil has been defeated. Amazing Job!",
+			"actions" : [enableClickable, hideScenarioEffectLabels, hideAttributes]
+		},
+		{
+			"text" : "That about does it for the technical part of the tutorial.",
+			"actions" : [enableClickable]
+		},
+		{
+			"text" : "The third type of Scenario, the Minigame Scenario, has you take a break from the Card formula and play a quick minigame!",
+			"actions" : [enableClickable]
+		},
+		{
+			"text" : "We think you'll have more fun discovering those on your own.",
+			"actions" : [enableClickable]
+		},
+		{
+			"text" : "You're as ready as you'll ever be for your journey - it's time you start heading towards the Psyche Asteroid!",
+			"actions" : [enableClickable]
+		},
+		{
+			"text" : "Good luck out there!",
+			"actions" : [enableClickable]
+		},
+		{
+			"text" : "And remember...",
+			"actions" : [enableClickable],
+			
+		},
+		{
+			"text" : "It's Psyche Against the Universe!",
+			"actions" : [enableClickable]
 		}
+		
+		
 		
 	]
 
@@ -263,9 +399,7 @@ func progressTutorial() -> void:
 	#finish the current animation
 	var currentAnimation = UIAnimationPlayer.current_animation
 	if currentAnimation != "":
-		var animationData = UIAnimationPlayer.get_animation(currentAnimation)
-		if animationData != null:
-			UIAnimationPlayer.seek(animationData.length, true)
+		await UIAnimationPlayer.animation_finished
 	
 	
 	#check if an action needs to be performed  
@@ -312,6 +446,8 @@ func enableClickable() -> void:
 func _on_gui_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "TutorialBegin":
 		progressTutorial()
+	elif anim_name == "ShowCardbot":
+		progressTutorial()
 		
 func performScenarioEffect() -> void:
 	pass
@@ -338,8 +474,7 @@ func _on_advance_tutorial_clickable_gui_input(event: InputEvent) -> void:
 
 #ANIMATION FUNCTIONS
 func youArrow() -> void:
-
-	UIAnimationPlayer.duplicate().play("YOUArrow")
+	UIAnimationPlayer.play("YOUArrow")
 	
 func youArrowDown() -> void:
 	UIAnimationPlayer.play("YOUArrowDown")
@@ -374,17 +509,30 @@ func showProtocolCard() -> void:
 func hideProtocolCard() -> void:
 	#it took me this long to find this function
 	UIAnimationPlayer.play_backwards("ShowProtocolCard")
+	await UIAnimationPlayer.animation_finished
+	protocolCard.visible = false
 	
 func showScenarioEffectLabel() -> void:
-	scenarioEffectLabel.text = "Affecting Hull Integrity by 10.0"
 	UIAnimationPlayer.play("ShowScenarioEffectLabel")
+	
+func setScenarioEffectLabelEventText() -> void:
+	scenarioEffectLabel.text = "Affecting Hull Integrity by 10.0"
+	
+func setScenarioEffectLabelBattleText() -> void:
+	scenarioEffectLabel.text = "Affecting Hull Integrity by 10.0 * 1 (Currently Active Enemies)"
 
 func showScenarioWinConditionLabel() -> void:
-	scenarioWinConditionLabel.text = "Scenario Win Condition:\n130 Velocity"
 	UIAnimationPlayer.play("ShowScenarioWinConditionLabel")
 	
+func setScenarioWinConditionLabelEventText() -> void:
+	scenarioWinConditionLabel.text = "Scenario Win Condition:\n130 Velocity"
+	
+func setScenarioWinConditionLabelBattleText() -> void:
+	scenarioWinConditionLabel.text = "Scenario Win Condition:\nDefeat All Enemies"
+	
 func enableResponse() -> void:
-	UIAnimationPlayer.play("EnableResponse")
+	ResponseLabelAnimationPlayer.play(&"RESET")
+	ResponseLabelAnimationPlayer.play("EnableResponse")
 
 func performTutorialEventScenarioEffect() -> void:
 	GameManager.player.setHullIntegrity(-10)
@@ -395,8 +543,73 @@ func giveDiscardCard() -> void:
 	trashCanButton.visible = true
 	trashCanIcon.visible = true
 	
-	
+func giveFreebie() -> void:
+	GameManager.player.deck.append(freebieCard)
+	GameManager.player.drawCard(false)
+	trashCanButton.visible = false
+	trashCanIcon.visible = false
 
+func hideScenarioEffectLabels() -> void:
+	UIAnimationPlayer.play("HideScenarioLabels")
+	
+func giveBattleFreebie() -> void:
+	GameManager.player.deck.append(battleCard)
+	GameManager.player.drawCard(false)
+	trashCanButton.visible = false
+	trashCanIcon.visible = false
+	
+	
+func showCardbot() -> void:
+	UIAnimationPlayer.play("ShowCardbot")
+
+func prepareBattleScenario() -> void:
+	#create a battle scenario
+	var battleScenario = BattleScenario.new()
+	battleScenario.scenarioType = 1
+	battleScenario.enemyPositions.append(enemyPosition)
+	battleScenario.enemyScenes.append(enemyScene)
+	GameManager.scenario = battleScenario
+	GameManager.scenario.initializeBattleScenario()
+	
+func scenarioResponseShow() -> void:
+	UIAnimationPlayer.play("ScenarioResponseShow")
+	
+func scenarioArrowShow() -> void:
+	UIAnimationPlayer.play("ScenarioArrowShow")
+
+func scenarioEffectsShow() -> void:
+	UIAnimationPlayer.play("ScenarioEffectsShow")
+	
+func scenarioSelectResponseShow() -> void:
+	UIAnimationPlayer.play("ScenarioSelectResponseShow")
+	
+func scenarioSelectResponseHide() -> void:
+	UIAnimationPlayer.play("ScenarioSelectResponseHide")
+
+func discardStart() -> void:
+	UIAnimationPlayer.play("DiscardStart")
+	
+func discardButton() -> void:
+	UIAnimationPlayer.play("DiscardButton")
+
+func discardArrows() -> void:
+	UIAnimationPlayer.play("DiscardArrows")
+	
+func discardTrashCan() -> void:
+	UIAnimationPlayer.play("DiscardTrashCan")
+
+func discardFinalShow() -> void:
+	UIAnimationPlayer.play("DiscardFinalShow")
+
+func discardFinalHide() -> void:
+	UIAnimationPlayer.play("DiscardFinalHide")
+
+func hideAttributes() -> void:
+	UIAnimationPlayer.play_backwards("ShowAttribues")
+
+
+func performBattleScenarioEffect() -> void:
+	GameManager.player.setHullIntegrity(-10)
 
 # signal functions
 func _on_response_label_gui_input(event: InputEvent) -> void:
