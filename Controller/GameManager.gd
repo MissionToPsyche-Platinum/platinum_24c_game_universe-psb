@@ -44,6 +44,15 @@ var rewards
 
 @export var hand: Control
 
+func _set_response_label_enabled(enabled: bool) -> void:
+	if UI == null:
+		return
+	var response_control := UI.get_node_or_null("Hand Container/Response Label")
+	if response_control:
+		response_control.visible = enabled
+		# Avoid accidentally clicking it while hidden
+		response_control.mouse_filter = Control.MOUSE_FILTER_STOP if enabled else Control.MOUSE_FILTER_IGNORE
+
 #instantiation function so the player hand gets created when the game reloads
 func _ready() -> void:
 	playerInstantiated = false
@@ -98,6 +107,12 @@ func loadScenario(scenePath: String) -> void:
 	UIAnimationPlayer.play("ShowUI")
 	UI.visible = true
 	
+	# In minigames, the regular "response" UI should not be shown
+	if scenario and scenario.scenarioType == Scenario.ScenarioType.MINIGAME:
+		_set_response_label_enabled(false)
+	else:
+		_set_response_label_enabled(true)
+	
 	#have the player draw a new hand
 	player.getNewHand()
 	
@@ -133,8 +148,12 @@ func endScenarioTurn() -> void:
 		return
 	#have the player do what they need to do on the beginning of their turn
 	player.beginPlayerTurn()
-	#reenable the response label
-	UIAnimationPlayer.play("EnableResponse")
+	# Re-enable the response label for non-minigame scenarios only
+	if scenario and scenario.scenarioType != Scenario.ScenarioType.MINIGAME:
+		UIAnimationPlayer.play("EnableResponse")
+		_set_response_label_enabled(true)
+	else:
+		_set_response_label_enabled(false)
 	
 func endScenario() -> void:
 	print("Scenario Won!!!!")
