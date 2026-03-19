@@ -32,6 +32,8 @@ extends Scenario
 @export var enemyPosition : Control
 @export var enemyScene : PackedScene
 
+@export var selectResponseLabel : Control
+
 var tutorialEventScenario : EventScenario
 var tutorialBattleScenario : BattleScenario
 var tutorialPlayer : Player
@@ -254,11 +256,11 @@ func _ready() -> void:
 		},
 		{
 			"text" : "I've given you an Attack Card, which can't be used in event scenarios. Try discarding it!",
-			"actions" : [enableResponse, giveDiscardCard]
+			"actions" : [enableResponse, giveDiscardCard, hideSelectResponseLabel]
 		},
 		{
 			"text" : "Perfect! In an actual Scenario, you would have drawn an extra card on your turn.",
-			"actions" : [enableClickable, performTutorialEventScenarioEffect]
+			"actions" : [enableClickable, performTutorialEventScenarioEffect, showSelectResponseLabel]
 		},
 		{
 			"text" : "Alright, that's enough foofing around here. Let's beat this scenario!",
@@ -283,12 +285,12 @@ func _ready() -> void:
 		},
 		{
 			"text" : "...Hold on, what is that?",
-			"actions" : [showCardbot]
+			"actions" : [prepareBattleScenario, showCardbot]
 		
 		},
 		{
 			"text" : "OH NO! IT'S CARDBOT! HE'S COME TO DESTROY YOU!",
-			"actions" : [enableClickable, prepareBattleScenario]
+			"actions" : [enableClickable]
 		},
 		{
 			"text" : "You'll have to play a Battle Scenario to beat him!",
@@ -316,19 +318,19 @@ func _ready() -> void:
 		},
 		{
 			"text" : "Instead of increasing your attributes, Battle Cards have a number of Damage and Targets.",
-			"actions" : [enableClickable]
+			"actions" : [enableClickable, battleCardEffects]
 		},
 		{
 			"text" : "The Damage shows how much it will reduce the chosen enemy's HP by, and the number of Targets shows how many times you can damage enemies after using it.",
-			"actions" : [enableClickable]
+			"actions" : [enableClickable, battleTargetDamage]
 		},
 		{
 			"text" : "Once a Battle Card is used, you'll enter Targeting Mode, and the number of targets you have left will be displayed a the top of the screen.",
-			"actions" : [enableClickable]
+			"actions" : [enableClickable, battleTargetingMode]
 		},
 		{
 			"text" : "Simply hover over the enemy you wish to damage and click on them to use one of your targets!",
-			"actions" : [enableClickable]
+			"actions" : [enableClickable, battleClickShow]
 		},
 		{
 			"text" : "You'll leave Targeting Mode once you use all of your targets, or all enemies have been defeated.",
@@ -336,7 +338,7 @@ func _ready() -> void:
 		},
 		{
 			"text" : "I've just given you a Battle Card. Try damaging Cardbot!",
-			"actions" : [giveBattleFreebie, enableResponse]
+			"actions" : [giveBattleFreebie, enableResponse, battleClickHide]
 		},
 		{
 			"text" : "Nice Job!",
@@ -382,6 +384,9 @@ func _ready() -> void:
 		{
 			"text" : "It's Psyche Against the Universe!",
 			"actions" : [enableClickable]
+		},
+		{
+			"actions" : [scenarioOutro]
 		}
 		
 		
@@ -408,8 +413,9 @@ func progressTutorial() -> void:
 			action.call()
 		
 	
-	#display the text of the current index
-	changeHeaderText(tutorialSteps[currentIndex]["text"])
+	if tutorialSteps[currentIndex].has("text") and tutorialSteps[currentIndex]["text"] != null:
+		#display the text of the current index
+		changeHeaderText(tutorialSteps[currentIndex]["text"])
 	
 	#increment tutorialIndex
 	currentIndex += 1
@@ -448,6 +454,11 @@ func _on_gui_animation_player_animation_finished(anim_name: StringName) -> void:
 		progressTutorial()
 	elif anim_name == "ShowCardbot":
 		progressTutorial()
+	elif anim_name == "ScenarioOutro":
+		get_tree().change_scene_to_file("res://Model/ScreenData/TitleScreen.tscn")
+		GameManager.restartGame()
+		
+		
 		
 func performScenarioEffect() -> void:
 	pass
@@ -606,6 +617,30 @@ func discardFinalHide() -> void:
 
 func hideAttributes() -> void:
 	UIAnimationPlayer.play_backwards("ShowAttribues")
+
+func showSelectResponseLabel() -> void:
+	selectResponseLabel.visible = true
+
+func hideSelectResponseLabel() -> void:
+	selectResponseLabel.visible = false
+	
+func battleCardEffects() -> void:
+	UIAnimationPlayer.play("BattleCardEffects")
+	
+func battleTargetDamage() -> void:
+	UIAnimationPlayer.play("BattleTargetDamage")
+	
+func battleTargetingMode() -> void:
+	UIAnimationPlayer.play("BattleTargetingMode")
+	
+func battleClickShow() -> void:
+	UIAnimationPlayer.play("BattleClickShow")
+	
+func battleClickHide() -> void:
+	UIAnimationPlayer.play("BattleClickHide")
+
+func scenarioOutro() -> void:
+	UIAnimationPlayer.play("ScenarioOutro")	
 
 
 func performBattleScenarioEffect() -> void:

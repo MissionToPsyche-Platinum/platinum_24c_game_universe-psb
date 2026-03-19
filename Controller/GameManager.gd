@@ -242,4 +242,11 @@ func rewardChosen(card) -> void:
 func restartGame() -> void:
 	playerInstantiated = false
 	
-	get_tree().change_scene_to_file("res://Model/Scenes/MainScene.tscn")
+	
+	tutorialScenario = null
+	
+	if !tutorialMode:
+		get_tree().change_scene_to_file("res://Model/Scenes/MainScene.tscn")
+	else:
+		tutorialMode = false
+	
