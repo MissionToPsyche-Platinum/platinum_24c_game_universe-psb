@@ -11,16 +11,16 @@
 size = Vector2(237, 153)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u2h6p"]
-size = Vector2(432, 20)
+size = Vector2(659, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4fwjh"]
-size = Vector2(20, 435)
+size = Vector2(20, 501)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w3j5p"]
-size = Vector2(21, 441)
+size = Vector2(21, 506)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pcsbl"]
-size = Vector2(432, 20)
+size = Vector2(658, 20)
 
 [node name="MiniGame" type="Node"]
 script = ExtResource("1_hhsjt")
@@ -36,7 +36,7 @@ repeat_size = Vector2(1920, 0)
 autoscroll = Vector2(-30, 0)
 
 [node name="BackgroundImage" type="Sprite2D" parent="Background/Parallax2D"]
-position = Vector2(734.25006, 337)
+position = Vector2(672.25006, 338)
 scale = Vector2(1.004948, 0.81203705)
 texture = ExtResource("2_dqcod")
 
@@ -63,43 +63,43 @@ obstacle_scene = ExtResource("6_arrel")
 [node name="Movement Box" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D(Top)" type="CollisionShape2D" parent="Movement Box"]
-position = Vector2(656, 119)
+position = Vector2(769.5, 119)
 shape = SubResource("RectangleShape2D_u2h6p")
 debug_color = Color(0, 0.6, 0.69803923, 1)
 
 [node name="CollisionShape2D(Left)" type="CollisionShape2D" parent="Movement Box"]
-position = Vector2(450, 332.5)
+position = Vector2(450, 365.5)
 shape = SubResource("RectangleShape2D_4fwjh")
 debug_color = Color(0, 0.6, 0.69803923, 1)
 
 [node name="CollisionShape2D(Right)" type="CollisionShape2D" parent="Movement Box"]
-position = Vector2(862, 329.5)
+position = Vector2(1091, 362)
 shape = SubResource("RectangleShape2D_w3j5p")
 debug_color = Color(0, 0.6, 0.69803923, 1)
 
 [node name="CollisionShape2D(Bottom)" type="CollisionShape2D" parent="Movement Box"]
-position = Vector2(656, 541)
+position = Vector2(769, 608)
 shape = SubResource("RectangleShape2D_pcsbl")
 debug_color = Color(0, 0.6, 0.69803923, 1)
 
 [node name="Polygon2D(Top)" type="Polygon2D" parent="Movement Box"]
-position = Vector2(-49571.875, -270.99997)
-scale = Vector2(108.2508, 3.3333333)
-polygon = PackedVector2Array(462, 114, 462, 120, 466, 120, 466, 114)
+position = Vector2(-75906.41, -270.99997)
+scale = Vector2(165.25194, 3.3333333)
+polygon = PackedVector2Array(462, 114, 462, 120, 466, 120, 466, 117.090805, 466, 114)
 
 [node name="Polygon2D(Left)" type="Polygon2D" parent="Movement Box"]
-position = Vector2(227.4074, -5569.0005)
-scale = Vector2(0.7407407, 17.000002)
+position = Vector2(227.4074, -6198.456)
+scale = Vector2(0.7407407, 18.8846)
 polygon = PackedVector2Array(287, 334, 287, 360, 314, 360, 314, 334)
 
 [node name="Polygon2D(Right)" type="Polygon2D" parent="Movement Box"]
-position = Vector2(628.7783, -5568.998)
-scale = Vector2(0.77777594, 16.999992)
+position = Vector2(857.7783, -6288.3706)
+scale = Vector2(0.77777594, 19.153805)
 polygon = PackedVector2Array(287, 334, 287, 346.97678, 287, 360, 314, 360, 314, 347.00015, 314, 334)
 
 [node name="Polygon2D(Bottom)" type="Polygon2D" parent="Movement Box"]
-position = Vector2(-19304.582, -799.00415)
-scale = Vector2(43.299526, 2.5000076)
+position = Vector2(-29746.95, -732.00415)
+scale = Vector2(66.199455, 2.5000076)
 polygon = PackedVector2Array(456, 532, 466, 532, 466.00006, 535.9828, 466, 540, 456, 540, 456, 535.96985)
 
 [node name="Polygon2D(Tail)" type="Polygon2D" parent="Movement Box"]

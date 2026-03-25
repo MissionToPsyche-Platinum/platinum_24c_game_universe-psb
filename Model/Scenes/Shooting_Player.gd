@@ -5,9 +5,7 @@ extends CharacterBody2D
 
 # Movement boundaries
 @export var min_x := 484
-@export var max_x := 829
-@export var min_y := 119
-@export var max_y := 541
+@export var max_x := 1060
 var hit := 0
 
 func _ready():
@@ -29,7 +27,6 @@ func _physics_process(delta):
 	move_and_slide()  
 	
 	position.x = clamp(position.x, min_x, max_x)
-	position.y = clamp(position.y, min_y, max_y)
 
 	if Input.is_action_just_pressed("ui_accept"):
 		shoot()

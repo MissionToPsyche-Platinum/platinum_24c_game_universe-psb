@@ -1,11 +1,12 @@
 extends CharacterBody2D
 
-@export var speed: float = 350.0
+@export var speed: float = 300.0
 var direction: Vector2
 var start_position: Vector2
 var is_active: bool = false
 
 func _ready():
+	randomize()
 	start_position = global_position
 	direction = Vector2(1, -1).normalized()
 
@@ -26,11 +27,12 @@ func _physics_process(delta):
 		if collider.has_method("destroy"):
 			collider.destroy()
 
-
 func launch_ball():
-	direction = Vector2(1, -1).normalized()
+	var random_x = randf_range(-0.8, 0.8)
+	direction = Vector2(random_x, -1).normalized()
 	is_active = true
 
 func reset_ball():
 	global_position = start_position
 	direction = Vector2(1, -1).normalized()
+	is_active = false

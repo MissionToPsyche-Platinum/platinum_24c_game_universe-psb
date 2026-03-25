@@ -9,9 +9,9 @@ func _ready():
 	place_bricks()
 
 func place_bricks():
-	var rows = 6
-	var columns = 5
-	var start_x = 515
+	var rows = 8
+	var columns = 9
+	var start_x = 490
 	var start_y = 150
 	var spacing_x = 70
 	var spacing_y = 40

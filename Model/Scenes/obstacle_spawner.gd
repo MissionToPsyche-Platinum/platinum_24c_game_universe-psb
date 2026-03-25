@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var obstacle_scene: PackedScene
-@export var spawn_width := 412
+@export var spawn_width := 612
 @export var spawn_y := -50
 @export var spawn_delay := 0.9
 

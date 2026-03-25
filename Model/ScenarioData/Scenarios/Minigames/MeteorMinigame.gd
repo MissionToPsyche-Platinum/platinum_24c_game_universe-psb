@@ -9,7 +9,6 @@ var won = false
 @onready var player = $Player
 
 func _ready():
-	# Make sure player is in a "player" group
 	player.add_to_group("player")
 
 func _process(delta: float) -> void:

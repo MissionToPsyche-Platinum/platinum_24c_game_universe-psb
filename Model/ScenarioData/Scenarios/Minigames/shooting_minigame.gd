@@ -6,6 +6,7 @@ var enemies_destroyed := 0
 
 func _ready():
 	await get_tree().process_frame
+	
 	for enemy in get_tree().get_nodes_in_group("UFO"):
 		enemy.destroyed.connect(_on_enemy_destroyed)
 		
