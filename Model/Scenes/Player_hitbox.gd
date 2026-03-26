@@ -16,7 +16,3 @@ func _on_body_entered(body):
 			main_player.setHullIntegrity(-hull_penalty_on_hit)
 		var Player = get_parent()
 		Player.hit += 1
-
-		if Player.hit >= 3:
-			Player.queue_free()
-			get_tree().change_scene_to_file("res://Model/ScreenData/LoseScreen.tscn")

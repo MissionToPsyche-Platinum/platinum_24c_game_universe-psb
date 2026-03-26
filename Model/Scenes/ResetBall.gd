@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var power_penalty_on_respawn: float = 20.0
+@export var power_penalty_on_respawn: float = 10.0
 
 func _on_body_entered(body):
 	if body.name == "Ball":

@@ -12,5 +12,5 @@ func _on_body_entered(body):
 		var enemy = get_parent()
 		enemy.hit += 1
 
-		if enemy.hit >= 3:
+		if enemy.hit >= 10:
 			enemy.eliminated()
