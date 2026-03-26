@@ -68,6 +68,10 @@ func getCardManager() -> CardManager:
 
 func change_scene_to_file(path: String) -> void:
 	get_tree().change_scene_to_file(path)
+
+func loseGame() -> void:
+	playerLost = true
+	change_scene_to_file("res://Model/ScreenData/LoseScreen.tscn")
 	
 func loadScenario(scenePath: String) -> void:
 	#first unload the current scenario if necessary

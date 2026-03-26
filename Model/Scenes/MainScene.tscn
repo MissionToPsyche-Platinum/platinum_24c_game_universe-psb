@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=4 uid="uid://b5aneqr63kcay"]
+[gd_scene load_steps=78 format=4 uid="uid://b5aneqr63kcay"]
 
 [ext_resource type="Script" uid="uid://bryyckfysnh62" path="res://Model/Scenes/mainScene.gd" id="1_6pwi0"]
 [ext_resource type="Script" uid="uid://lp0itw18h7mo" path="res://Model/Scenes/card_manager.gd" id="2_qb6nl"]
@@ -862,6 +862,9 @@ modulate_color = Color(0.972549, 0.62352943, 0, 1)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xetsj"]
 modulate_color = Color(0.972549, 0.62352943, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_t26e8"]
+font = ExtResource("11_wki3r")
+
 [node name="MainScene" type="Node2D" node_paths=PackedStringArray("player", "cardManager", "hullIntegrityLabel", "powerLabel", "velocityLabel", "rewardsHolder", "scenarioHeader", "scenarioEffectLabel", "scenarioWinConditionLabel", "hullIntegrityBar", "powerBar", "velocityBar", "animationPlayer", "handController", "drawCardPreview")]
 script = ExtResource("1_6pwi0")
 player = NodePath("Player")
@@ -1511,7 +1514,6 @@ icon = ExtResource("27_46vkd")
 
 [node name="SettingsMenu" type="CanvasLayer" parent="."]
 process_mode = 2
-visible = false
 
 [node name="Setting Screen" type="Control" parent="SettingsMenu"]
 layout_mode = 3
@@ -1550,6 +1552,39 @@ offset_top = 600.0
 offset_right = 48.0
 offset_bottom = 648.0
 icon = ExtResource("28_t26e8")
+
+[node name="VolLabel" type="Label" parent="SettingsMenu/Setting Screen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.5
+offset_top = -30.5
+offset_right = 23.5
+offset_bottom = -7.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Volume"
+label_settings = SubResource("LabelSettings_t26e8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="SettingsMenu/Setting Screen"]
+custom_minimum_size = Vector2(350, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -8.0
+offset_right = 4.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="gui_input" from="UI/Hand Container" to="UI/Hand Container" method="_on_gui_input"]
 [connection signal="gui_input" from="UI/Hand Container/Scenario Label/Scenario Label" to="." method="_on_scenario_label_gui_input"]

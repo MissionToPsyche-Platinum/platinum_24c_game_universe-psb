@@ -89,6 +89,7 @@ func setHullIntegrity(amount: float) -> void:
 	var add = amount
 	if hullIntegrity + amount <= 0:
 		GameManager.loseGame()
+		return
 	if hullIntegrity + amount >= HULL_INTEGRITY_MAX:
 		add = HULL_INTEGRITY_MAX - hullIntegrity
 
@@ -100,6 +101,7 @@ func setVelocity(amount: float) -> void:
 	var add = amount
 	if velocity + amount <= 0:
 		GameManager.loseGame()
+		return
 	if velocity + amount > VELOCITY_MAX:
 		add = VELOCITY_MAX - velocity
 
@@ -111,6 +113,7 @@ func setPower(amount: float) -> void:
 	var add = amount
 	if power + amount <= 0:
 		GameManager.loseGame()
+		return
 	if power + amount > POWER_MAX:
 		add = POWER_MAX - power
 

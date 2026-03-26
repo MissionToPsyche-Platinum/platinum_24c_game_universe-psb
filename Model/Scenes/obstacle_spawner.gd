@@ -4,9 +4,9 @@ extends Node2D
 @export var spawn_width := 612
 @export var spawn_y := -50
 @export var spawn_delay := 0.9
+@export var velocity_penalty_on_hit: float = 20.0
 
 var stopped := false
-@onready var minigame = get_parent()
 
 func _ready():
 	call_deferred("spawn_loop")
@@ -31,6 +31,7 @@ func spawn_obstacle():
 	obstacle.player_hit.connect(_on_player_hit)
 
 func _on_player_hit():
-	print("Player hit! Game Over!")
-	stop_spawning()
-	minigame.player.queue_free()
+	print("Player hit! Velocity reduced.")
+	var main_player = GameManager.getPlayer()
+	if main_player:
+		main_player.setVelocity(-velocity_penalty_on_hit)
