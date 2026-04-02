@@ -31,3 +31,6 @@ cardName = "SUPER AWESOME CARD"
 cardDescription = "Win."
 cardBehavior = Array[Resource]([SubResource("Resource_be7sx")])
 cardUseHeader = "THIS CARD IS SUPER AWESOME"
+extraInfoHeaderString = "This Card is Super Awesome"
+extraInfoBodyString = "Yayayayayayayayayayayayay"
+hasExtraInfo = true

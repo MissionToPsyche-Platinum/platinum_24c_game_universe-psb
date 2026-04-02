@@ -11,11 +11,25 @@ signal card_used(card)
 @export var cardBehavior: Array[Resource]
 @export var cardUseHeader: String
 @export var rewardsClickable: Control
+@export var cardInfoHolder: Control
 
 #references to card nodes
 @export var protocolCardName: Label 
 @export var protocolCardDescription: Label 
 @export var protocolCardSprite: Sprite2D 
+
+#reference to Extra Info Holder and related nodes
+@export var extraInfoHolder: Control
+@export var extraInfoButton: Sprite2D
+@export var extraInfoHeaderString: String
+@export var extraInfoBodyString: String
+@export var extraInfoHeader: Label
+@export var extraInfoBody: Label
+
+#extra info variables
+@export var hasExtraInfo : bool
+var showingExtraInfo := false
+
 
 signal rewardChosen(card)
 
@@ -25,6 +39,14 @@ func _ready() -> void:
 	protocolCardName.text = cardName
 	protocolCardDescription.text = cardDescription
 	protocolCardSprite.texture = cardSprite
+	
+	if hasExtraInfo:
+		extraInfoHeader.text = extraInfoHeaderString
+		extraInfoBody.text = extraInfoBodyString
+		extraInfoButton.visible = true 
+		showingExtraInfo = false
+		
+	
 	
 		
 func use() -> void:
@@ -76,3 +98,21 @@ func isCardPlayable() -> bool:
 		if (!behavior.isCardPlayable()):
 			return false
 	return true
+	
+	
+func toggleExtraInfo() -> void: 
+	if showingExtraInfo:
+		#are currently showing extra info, toggle card data
+		extraInfoHolder.visible = false
+		cardInfoHolder.visible = true
+		showingExtraInfo = false
+	else:
+		#currently not showing extra info, show it
+		extraInfoHolder.visible = true
+		cardInfoHolder.visible = false
+		showingExtraInfo = true
+	
+
+
+func _on_extra_info_button_pressed() -> void:
+	toggleExtraInfo()
