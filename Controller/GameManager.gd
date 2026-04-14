@@ -16,6 +16,8 @@ var playerInstantiated: bool = false
 #boolean to see if the player has lost
 var playerLost: bool = false
 
+#boolan to see if a default card win has happened
+var defaultCardWin: bool = false
 
 #references to UI elements
 var hullIntegrityLabel: Label
@@ -130,6 +132,12 @@ func endPlayerTurn() -> void:
 	if playerLost:
 		self.change_scene_to_file("res://Model/ScreenData/LoseScreen.tscn")
 		return
+		
+	#check if a default card has won the scenario	
+	if defaultCardWin:
+		defaultCardWin = false
+		endScenario()
+		return 
 	
 	#tween the header text back to the scenario 
 	var tween = create_tween()
@@ -258,5 +266,7 @@ func rewardChosen(card) -> void:
 		
 func restartGame() -> void:
 	playerInstantiated = false
+	
+	DefaultBehavior.chance = 32
 	
 	get_tree().change_scene_to_file("res://Model/Scenes/MainScene.tscn")

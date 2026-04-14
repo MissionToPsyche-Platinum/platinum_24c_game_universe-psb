@@ -6,6 +6,7 @@ var discards: Array[PackedScene] = []
 var hand: Array[PackedScene] = []
 
 
+
 #attributes:
 @export var HULL_INTEGRITY_MAX = 200
 @export var hullIntegrity: float = 100
@@ -17,6 +18,9 @@ var hand: Array[PackedScene] = []
 @export var power = 100
 
 @export var BEGINNING_DECK_SIZE = 5
+
+#reference to the default card scene 
+@export var defaultCard : PackedScene
 
 func instantiatePlayerDeck() -> void:
 	
@@ -33,20 +37,27 @@ func beginPlayerTurn() -> void:
 	drawCard(true)
 
 func drawCard(showPreview : bool) -> void:
-	if deck.is_empty():
-		print("Attempted to draw from empty deck!")
+	
+	#variable for holding card scene
+	var packed_scene
+	
+	if deck.is_empty() and hand.is_empty():
+		#if the deck and hand is empty, draw the default card
+		packed_scene = defaultCard
+	elif deck.is_empty():
+		#draw the default card
+		print("Attempted to draw an empty deck")
 		return
-
-	var packed_scene = deck.pop_back()
+	else:
+		packed_scene = deck.pop_front()
+		
+	
 	#add card to hand
 	hand.append(packed_scene)
 
-	
 	#show the drawn card to the player
 	if showPreview:
 		GameManager.drawCardPreview.drawCardPreview(packed_scene)
-	
-
 
 	#instantiate card to put on the UI
 	var card_instance = packed_scene.instantiate()
@@ -61,8 +72,12 @@ func drawCard(showPreview : bool) -> void:
 
 func discardCard(card_node: Node) -> void:
 	var packed_scene = card_node.get_meta("source_scene")
+	#if the packed scene exists
 	if packed_scene:
-		discards.append(packed_scene)
+		#check if the packed scene is not the default card
+		if packed_scene != defaultCard:
+			discards.append(packed_scene)
+			
 		hand.erase(packed_scene)
 
 	# tell HandController to remove the card’s wrapper
