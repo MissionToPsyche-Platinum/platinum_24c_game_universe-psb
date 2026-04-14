@@ -12,6 +12,7 @@ extends Node2D
 @export var powerLabel: Label
 @export var velocityLabel: Label
 @export var rewardsHolder: HBoxContainer
+@export var rewardEffectHolder: Label
 
 @export var scenarioHeader: Label
 @export var scenarioEffectLabel: Label
@@ -55,6 +56,7 @@ func _ready() -> void:
 	GameManager.powerBar = powerBar
 	GameManager.velocityBar = velocityBar
 	GameManager.rewardsHolder = rewardsHolder
+	GameManager.rewardEffectHolder = rewardEffectHolder
 	
 	#assign animation player references
 	GameManager.UIAnimationPlayer = animationPlayer
