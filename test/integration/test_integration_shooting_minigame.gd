@@ -1,6 +1,6 @@
 extends GutTest
 
-const SCENE = preload("res://Model/ScenarioData/Scenarios/ShootingMinigame.tscn")
+const SCENE = preload("res://Model/ScenarioData/Scenarios/MG_ShootingMinigame.tscn")
 
 var instance
 var signal_emitted := false
