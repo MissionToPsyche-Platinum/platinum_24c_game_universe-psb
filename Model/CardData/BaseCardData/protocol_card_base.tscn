@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://7wpt2pr8jwaa"]
+[gd_scene load_steps=10 format=3 uid="uid://7wpt2pr8jwaa"]
 
 [ext_resource type="Script" uid="uid://dbwvfr8urjpbn" path="res://Model/CardData/BaseCardData/protocol_card_base.gd" id="1_jce6x"]
 [ext_resource type="Texture2D" uid="uid://0yss2jchhn12" path="res://View/Assets/Sprites/card_filled.png" id="2_lon5y"]
 [ext_resource type="Texture2D" uid="uid://bh1yvmsi01mvl" path="res://View/Assets/Sprites/icon.svg" id="3_e7m50"]
 [ext_resource type="FontFile" uid="uid://cyuqcf4mpncuy" path="res://View/Assets/Themes/PixelOperator-Bold.ttf" id="3_evo7n"]
+[ext_resource type="Texture2D" uid="uid://mam6pmihulr5" path="res://View/Assets/Sprites/info_indicator_filled.png" id="3_l00ld"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_l00ld"]
 font = ExtResource("3_evo7n")
@@ -13,15 +14,29 @@ font_size = 40
 font = ExtResource("3_evo7n")
 font_size = 40
 
-[node name="Control" type="Control" node_paths=PackedStringArray("rewardsClickable", "protocolCardName", "protocolCardDescription", "protocolCardSprite")]
+[sub_resource type="LabelSettings" id="LabelSettings_vrhis"]
+font = ExtResource("3_evo7n")
+font_size = 40
+font_color = Color(0.8117647, 0.3019608, 0.34117648, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6nflw"]
+font = ExtResource("3_evo7n")
+font_size = 40
+
+[node name="Control" type="Control" node_paths=PackedStringArray("rewardsClickable", "cardInfoHolder", "protocolCardName", "protocolCardDescription", "protocolCardSprite", "extraInfoHolder", "extraInfoButton", "extraInfoHeader", "extraInfoBody")]
 layout_mode = 3
 anchors_preset = 0
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_jce6x")
 rewardsClickable = NodePath("CardBackground2/RewardClickable")
-protocolCardName = NodePath("CardBackground2/ProtocolCardName")
-protocolCardDescription = NodePath("CardBackground2/ProtocolCardDescription")
-protocolCardSprite = NodePath("CardBackground2/ProtocolCardSprite")
+cardInfoHolder = NodePath("CardBackground2/CardInfoHolder")
+protocolCardName = NodePath("CardBackground2/CardInfoHolder/ProtocolCardName")
+protocolCardDescription = NodePath("CardBackground2/CardInfoHolder/ProtocolCardDescription")
+protocolCardSprite = NodePath("CardBackground2/CardInfoHolder/ProtocolCardSprite")
+extraInfoHolder = NodePath("CardBackground2/ExtraInfoHolder")
+extraInfoButton = NodePath("CardBackground2/ExtraInfoIcon")
+extraInfoHeader = NodePath("CardBackground2/ExtraInfoHolder/Extra Info Header")
+extraInfoBody = NodePath("CardBackground2/ExtraInfoHolder/ExtraInfoBody")
 
 [node name="CardBackground2" type="TextureRect" parent="."]
 layout_mode = 0
@@ -31,29 +46,6 @@ offset_right = 282.0
 offset_bottom = 407.96802
 texture = ExtResource("2_lon5y")
 
-[node name="ProtocolCardDescription" type="Label" parent="CardBackground2"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.54564
-anchor_top = 0.38188472
-anchor_right = 0.54564
-anchor_bottom = 0.48567155
-offset_left = -242.81999
-offset_top = -4.283798
-offset_right = 189.18001
-offset_bottom = 339.7162
-text = "Protocol Card Description
-"
-label_settings = SubResource("LabelSettings_l00ld")
-horizontal_alignment = 1
-autowrap_mode = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="ProtocolCardSprite" type="Sprite2D" parent="CardBackground2"]
-position = Vector2(288, 187.99998)
-scale = Vector2(1.14, 1.11834)
-texture = ExtResource("3_e7m50")
-
 [node name="RewardClickable" type="Control" parent="CardBackground2"]
 layout_mode = 1
 anchors_preset = 15
@@ -62,7 +54,48 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ProtocolCardName" type="Label" parent="CardBackground2"]
+[node name="ExtraInfoIcon" type="Sprite2D" parent="CardBackground2"]
+visible = false
+position = Vector2(616, 806)
+scale = Vector2(1.1730781, 1.173078)
+texture = ExtResource("3_l00ld")
+
+[node name="ExtraInfoButton" type="Button" parent="CardBackground2/ExtraInfoIcon"]
+offset_left = -66.491745
+offset_top = -40.91798
+offset_right = 71.60649
+offset_bottom = 40.91802
+flat = true
+
+[node name="CardInfoHolder" type="Control" parent="CardBackground2"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ProtocolCardDescription" type="Label" parent="CardBackground2/CardInfoHolder"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.54564
+anchor_top = 0.38188472
+anchor_right = 0.54564
+anchor_bottom = 0.48567155
+offset_left = 45.27793
+offset_top = 289.75525
+offset_right = 477.27792
+offset_bottom = 633.75525
+text = "Protocol Card Description
+"
+label_settings = SubResource("LabelSettings_l00ld")
+horizontal_alignment = 1
+autowrap_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="ProtocolCardSprite" type="Sprite2D" parent="CardBackground2/CardInfoHolder"]
+position = Vector2(288, 187.99998)
+scale = Vector2(1.14, 1.11834)
+texture = ExtResource("3_e7m50")
+
+[node name="ProtocolCardName" type="Label" parent="CardBackground2/CardInfoHolder"]
 layout_mode = 0
 offset_left = 70.0
 offset_top = 28.0
@@ -72,4 +105,35 @@ text = "Protocol Card Title"
 label_settings = SubResource("LabelSettings_evo7n")
 horizontal_alignment = 1
 
+[node name="ExtraInfoHolder" type="Control" parent="CardBackground2"]
+visible = false
+anchors_preset = 0
+offset_left = 286.0
+offset_top = 402.0
+offset_right = 326.0
+offset_bottom = 442.0
+
+[node name="Extra Info Header" type="Label" parent="CardBackground2/ExtraInfoHolder"]
+layout_mode = 0
+offset_left = -264.0
+offset_top = -380.0
+offset_right = 260.0
+offset_bottom = -310.0
+text = "Extra Info Header"
+label_settings = SubResource("LabelSettings_vrhis")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExtraInfoBody" type="Label" parent="CardBackground2/ExtraInfoHolder"]
+layout_mode = 0
+offset_left = -260.0
+offset_top = -270.0
+offset_right = 258.0
+offset_bottom = 384.0
+text = "Extra Info Body"
+label_settings = SubResource("LabelSettings_6nflw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="gui_input" from="CardBackground2/RewardClickable" to="." method="_on_reward_clickable_gui_input"]
+[connection signal="pressed" from="CardBackground2/ExtraInfoIcon/ExtraInfoButton" to="." method="_on_extra_info_button_pressed"]
