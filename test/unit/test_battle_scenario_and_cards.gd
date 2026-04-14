@@ -1,8 +1,13 @@
 extends GutTest
 
 const AttackBehavior = preload("res://Model/CardData/CardBehaviorData/AttackBehavior.gd")
-const BattleScenario = preload("res://Model/ScenarioData/ScenarioBases/BattleScenario.gd")    
-const Scenario = preload("res://Model/ScenarioData/ScenarioBases/Scenario.gd")    
+const AttributeBehavior = preload("res://Model/CardData/CardBehaviorData/AttributeBehavior.gd")
+const AttributeEffect = preload("res://Model/CardData/CardBehaviorData/AttriubuteEffect.gd")
+const ProtocolCard = preload("res://Model/CardData/BaseCardData/protocol_card_base.gd")
+const BattleScenario = preload("res://Model/ScenarioData/ScenarioBases/BattleScenario.gd")
+const Scenario = preload("res://Model/ScenarioData/ScenarioBases/Scenario.gd")
+
+var _game_manager_player_backup: Player = null
 
 # -------------------------
 # Test doubles
@@ -50,6 +55,19 @@ class TestBattleScenario:
 		attributeWinConditions = []
 		affectedAttributes = []
 
+
+class TestPlayerStub:
+	extends Player
+
+	func setHullIntegrity(amount: float) -> void:
+		hullIntegrity = clampf(hullIntegrity + amount, 0.0, float(HULL_INTEGRITY_MAX))
+
+	func setPower(amount: float) -> void:
+		power = clampf(power + amount, 0.0, float(POWER_MAX))
+
+	func setVelocity(amount: float) -> void:
+		velocity = clampf(velocity + amount, 0.0, float(VELOCITY_MAX))
+
 # -------------------------
 # Helpers
 # -------------------------
@@ -84,6 +102,9 @@ func after_each():
 	TargetController.endTargeting()
 	GameManager.scenarioHeader = null
 	GameManager.scenario = null
+	if _game_manager_player_backup != null:
+		GameManager.player = _game_manager_player_backup
+		_game_manager_player_backup = null
 
 # =========================================================
 # SF-C-12: Battle behaviors only usable in Battle scenarios
@@ -106,6 +127,61 @@ func test_SF_C_12_attack_behavior_only_playable_in_battle_scenarios():
 
 	GameManager.scenario = battle
 	assert_true(attack.isCardPlayable())
+
+
+# =========================================================
+# SF-C-16: Only battle (attack) behaviors affect enemy HP; attribute cards do not.
+# Production code: damageEnemy is only invoked from AttackBehavior.onEnemyClicked.
+# =========================================================
+func test_SF_C_16_attribute_behavior_in_battle_does_not_affect_enemy_hp():
+	_game_manager_player_backup = GameManager.player
+	GameManager.player = TestPlayerStub.new()
+
+	var battle := TestBattleScenario.new()
+	var e := TestEnemy.new()
+	e.hp = 10
+	battle.enemyList = [e]
+	GameManager.scenario = battle
+
+	var effect := AttributeEffect.new()
+	effect.affectedAttribute = AttributeEffect.AttributeTypes.HULL_INTEGRITY
+	effect.amount = 5.0
+
+	var attr := AttributeBehavior.new()
+	attr.affectedAttributes = [effect]
+
+	assert_true(attr.isCardPlayable())
+	assert_true(attr.use())
+	assert_eq(e.hp, 10)
+	assert_eq(GameManager.player.hullIntegrity, 105.0)
+
+
+func test_SF_C_16_protocol_card_with_only_attribute_behaviors_does_not_affect_enemy_hp():
+	_game_manager_player_backup = GameManager.player
+	GameManager.player = TestPlayerStub.new()
+
+	var battle := TestBattleScenario.new()
+	var e := TestEnemy.new()
+	e.hp = 10
+	battle.enemyList = [e]
+	GameManager.scenario = battle
+
+	var effect := AttributeEffect.new()
+	effect.affectedAttribute = AttributeEffect.AttributeTypes.POWER
+	effect.amount = 3.0
+
+	var attr := AttributeBehavior.new()
+	attr.affectedAttributes = [effect]
+
+	var card := ProtocolCard.new()
+	card.cardBehavior = [attr]
+
+	assert_true(card.isCardPlayable())
+	await card.use()
+	assert_eq(e.hp, 10)
+	assert_eq(GameManager.player.power, 103.0)
+
+
 # =========================================================
 # SF-C-13: Using battle card enters targeting; clicking consumes target + damages
 # =========================================================

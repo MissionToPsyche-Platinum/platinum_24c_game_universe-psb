@@ -5,7 +5,7 @@ var instance
 var spawner
 
 func before_each():
-	scene = load("res://Model/ScenarioData/Scenarios/MeteorMinigame.tscn")
+	scene = load("res://Model/ScenarioData/Scenarios/MG_MeteorMinigame.tscn")
 	instance = scene.instantiate()
 	add_child(instance)
 

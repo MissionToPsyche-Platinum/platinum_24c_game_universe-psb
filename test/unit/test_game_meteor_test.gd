@@ -9,9 +9,9 @@ func before_each():
 func test_emits_player_hit():
 	watch_signals(obstacle)
 
-	var fake_player = Node.new()
+	var fake_player = CharacterBody2D.new()
 	fake_player.name = "Player"
 
-	obstacle.on_body_entered(fake_player)
+	obstacle._on_body_entered(fake_player)
 
 	assert_signal_emitted(obstacle, "player_hit")
