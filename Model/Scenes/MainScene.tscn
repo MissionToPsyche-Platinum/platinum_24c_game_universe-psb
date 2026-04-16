@@ -20,7 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://c5b6ep18mucxh" path="res://View/Assets/Card Hud/scenario_arrow.png" id="15_qatxi"]
 [ext_resource type="Texture2D" uid="uid://clkpqvj75twac" path="res://View/Assets/Card Hud/card_arrow_filled.png" id="16_k7non"]
 [ext_resource type="Script" uid="uid://7y010iwclveo" path="res://Controller/UI Scripts/discardButtonScrip.gd" id="20_j5y8d"]
-[ext_resource type="Script" path="res://Controller/UI Scripts/trashcanScript.gd" id="20_rxymg"]
+[ext_resource type="Script" uid="uid://d3pn7t3bl1oxr" path="res://Controller/UI Scripts/trashcanScript.gd" id="20_rxymg"]
 [ext_resource type="Script" uid="uid://bdio638up815l" path="res://Controller/UI Scripts/drawCardPreview.gd" id="21_rxymg"]
 [ext_resource type="Texture2D" uid="uid://dvn36rign71ly" path="res://View/Assets/Sprites/Gear.png" id="27_46vkd"]
 [ext_resource type="Texture2D" uid="uid://7t06ui4ivxhu" path="res://View/Assets/Sprites/Arrow.png" id="28_t26e8"]
@@ -905,6 +905,7 @@ font = ExtResource("11_wki3r")
 script = ExtResource("1_6pwi0")
 player = NodePath("Player")
 cardManager = NodePath("CardManager")
+stats = NodePath("")
 hullIntegrityLabel = NodePath("UI/Attribute Holder/AttributeLabels/HullIntegrityLabel")
 powerLabel = NodePath("UI/Attribute Holder/AttributeLabels/Power Label")
 velocityLabel = NodePath("UI/Attribute Holder/AttributeLabels/Velocity Label")
@@ -1494,6 +1495,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="RestartButton" type="Button" parent="PauseMenu/Pause Screen"]
+z_index = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.83500004
+anchor_top = 0.028
+anchor_right = 0.98300004
+anchor_bottom = 0.086
+offset_left = 0.079956055
+offset_top = -0.144001
+offset_right = -0.41601563
+offset_bottom = 0.27199936
+grow_horizontal = 0
+text = "Restart Game
+"
+metadata/_edit_use_anchors_ = true
+
 [node name="Panel" type="Panel" parent="PauseMenu/Pause Screen"]
 layout_mode = 1
 anchors_preset = 15
@@ -1501,6 +1519,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_35wlo")
 
 [node name="Label" type="Label" parent="PauseMenu/Pause Screen"]
@@ -1634,6 +1653,7 @@ grow_vertical = 2
 [connection signal="gui_input" from="UI/ContinueScenario" to="UI/Hand Container" method="_on_continue_scenario_gui_input"]
 [connection signal="animation_finished" from="UI/DrawCardPreview/PreviewHolder/DrawCardAnimationPlayer" to="UI/DrawCardPreview" method="_on_draw_card_animation_player_animation_finished"]
 [connection signal="animation_finished" from="UI/DrawCardPreview/PreviewHolder/DrawCardAnimationPlayer" to="UI/DrawCardPreview/PreviewHolder" method="_on_draw_card_animation_player_animation_finished"]
+[connection signal="pressed" from="PauseMenu/Pause Screen/RestartButton" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="PauseMenu/Pause Screen/Resume" to="." method="_on_Resume_pressed"]
 [connection signal="pressed" from="PauseMenu/Pause Screen/Settings" to="." method="_on_Settings_pressed"]
 [connection signal="pressed" from="SettingsMenu/Setting Screen/Back" to="." method="_on_SettingsBackButton_pressed"]

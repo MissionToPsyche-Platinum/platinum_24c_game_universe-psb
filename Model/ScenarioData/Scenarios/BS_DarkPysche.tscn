@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" uid="uid://bnq8wkiku4077" path="res://Model/ScenarioData/ScenarioBases/BattleScenario.gd" id="1_v5n8j"]
 [ext_resource type="Texture2D" uid="uid://damk48kf44hid" path="res://View/Assets/Backgrounds/background.png" id="2_qhjs1"]
-[ext_resource type="PackedScene" path="res://Model/ScenarioData/EnemyData/DarkPsycheEnemy.tscn" id="3_8xq2w"]
+[ext_resource type="PackedScene" uid="uid://c6fhtcd6o0aut" path="res://Model/ScenarioData/EnemyData/DarkPsycheEnemy.tscn" id="3_8xq2w"]
 [ext_resource type="Script" uid="uid://cda51huvrayd1" path="res://Model/CardData/CardBehaviorData/AttriubuteEffect.gd" id="3_er2kd"]
 
 [sub_resource type="Resource" id="Resource_v6jd1"]
 script = ExtResource("3_er2kd")
-amount = 15.0
+amount = -15.0
 metadata/_custom_type_script = "uid://cda51huvrayd1"
 
 [sub_resource type="Animation" id="Animation_qhjs1"]

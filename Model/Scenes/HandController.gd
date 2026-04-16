@@ -173,6 +173,9 @@ func _on_select_response_label_gui_input(event: InputEvent) -> void:
 		
 		await card.use()
 		
+		# Update player stats for cards used
+		GameManager.stats.use_card()
+		
 		# Tween out the scenario header label to replace its text
 		var tween = create_tween()
 		tween.tween_property(GameManager.scenarioHeader, "modulate", Color(1,1,1,0), 0.25)

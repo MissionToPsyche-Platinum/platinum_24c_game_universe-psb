@@ -6,7 +6,6 @@ class_name MapController
 @onready var scroll_button = $"Scroll Button"
 @onready var background = $"TextureRect"
 
-
 var model: MapModel
 var map_active := true
 var scrolled_up := false
@@ -27,6 +26,9 @@ func _ready():
 func _on_node_clicked(index: int):
 	if not map_active:
 		return
+	# Update player stats for total encounters
+	GameManager.stats.situation_encountered()
+	
 	map_active = false
 	self.visible = false
 	model.move_to(index)

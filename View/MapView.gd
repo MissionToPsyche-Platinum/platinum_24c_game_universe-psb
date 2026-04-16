@@ -35,6 +35,9 @@ func build(layout: MapLayout):
 
 func update_from_model(model: MapModel):
 	if model.has_won == true:
+		# Store final player attributes for score calculation
+		GameManager.stats.store_attributes()
+		
 		get_tree().change_scene_to_file("res://Model/ScreenData/WinScreen.tscn")
 	else:
 		for i in node_views.keys():

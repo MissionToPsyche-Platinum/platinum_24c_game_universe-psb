@@ -6,6 +6,7 @@ extends Node
 @export var card_manager: CardManager
 #@export var map: Map
 @export var map: MapController
+@export var stats: StatsController
 
 #UI root node
 var UI: Control
@@ -291,10 +292,17 @@ func rewardChosen(card) -> void:
 		
 		
 func restartGame() -> void:
+	# Ensure gameplay resumes after loading the new scene.
+	get_tree().paused = false
+	
+	# Reset persistent runtime state tracked by the singleton.
 	playerInstantiated = false
+	playerLost = false
+	defaultCardWin = false
+	rewards = []
 	
 	DefaultBehavior.chance = 32
-	
+	stats.reset_stats()
 	get_tree().change_scene_to_file("res://Model/Scenes/MainScene.tscn")
 	
 	tutorialScenario = null
