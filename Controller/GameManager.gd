@@ -6,6 +6,7 @@ extends Node
 @export var card_manager: CardManager
 #@export var map: Map
 @export var map: MapController
+@export var stats: StatsController
 
 #UI root node
 var UI: Control
@@ -24,6 +25,7 @@ var hullIntegrityLabel: Label
 var powerLabel: Label
 var veloctiyLabel: Label
 var rewardsHolder: HBoxContainer
+var rewardEffectHolder: Label
 
 var scenarioHeader: Label
 var scenarioEffectLabel: Label
@@ -185,6 +187,9 @@ func endScenario() -> void:
 		rewardInstance.scale.x = 0.49
 		rewardInstance.scale.y = 0.5
 		
+		#connect to the hover signal of reward
+		rewardInstance.connect("rewardsClickableHovered", Callable(self, "onRewardHovered"))
+		
 		#create a control wrapper with a specified minimun distance
 		var wrapper := Control.new()
 		wrapper.custom_minimum_size = Vector2(300, 0)
@@ -220,6 +225,23 @@ func endScenario() -> void:
 	else:
 		print("Warning: Map is not assigned or missing 'advance_position' method")
 	
+	
+	
+func onRewardHovered(card) -> void:
+	
+	#tween out the text
+	var tween = create_tween()
+	tween.tween_property(rewardEffectHolder, "modulate", Color(1,1,1,0), 0.25)
+	await tween.finished
+	
+	#set the new text
+	if card != null:
+		rewardEffectHolder.text = "EFFECT:\n" + card.getCardHint()
+	
+	#tween in the new text
+	tween = create_tween()
+	tween.tween_property(rewardEffectHolder, "modulate", Color(1,1,1,1), 0.25)
+
 
 func rewardChosen(card) -> void:
 	# Retrieve the packed scene
@@ -275,5 +297,5 @@ func restartGame() -> void:
 	rewards = []
 	
 	DefaultBehavior.chance = 32
-	
+	stats.reset_stats()
 	get_tree().change_scene_to_file("res://Model/Scenes/MainScene.tscn")

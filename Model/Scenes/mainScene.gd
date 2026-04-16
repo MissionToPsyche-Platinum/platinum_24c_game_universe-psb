@@ -3,7 +3,8 @@ extends Node2D
 @export var player: Player
 @export var scenario: Scenario
 @export var cardManager: CardManager
-@export var map: Map
+@export var map: MapController
+@export var stats: StatsController
 
 @export var hand: Control 
 
@@ -12,6 +13,7 @@ extends Node2D
 @export var powerLabel: Label
 @export var velocityLabel: Label
 @export var rewardsHolder: HBoxContainer
+@export var rewardEffectHolder: Label
 
 @export var scenarioHeader: Label
 @export var scenarioEffectLabel: Label
@@ -55,6 +57,7 @@ func _ready() -> void:
 	GameManager.powerBar = powerBar
 	GameManager.velocityBar = velocityBar
 	GameManager.rewardsHolder = rewardsHolder
+	GameManager.rewardEffectHolder = rewardEffectHolder
 	
 	#assign animation player references
 	GameManager.UIAnimationPlayer = animationPlayer
@@ -65,17 +68,26 @@ func _ready() -> void:
 	#assign draw card preview reference
 	GameManager.drawCardPreview = drawCardPreview
 	
+	# Assign stats reference
+	var statsScene = preload("res://Model/Scenes/StatsScene.tscn").instantiate()
+	#add_child(statsScene)
+	get_tree().root.add_child(statsScene)
+	GameManager.stats = statsScene
+
 	#load the scenario
 	#GameManager.loadScenario("res://Model/ScenarioData/Scenarios/Sc_DoubleDarkMatter.tscn")
 	#load the map
-	#var mapScene = preload("res://Model/Scenes/Map/Map.tscn").instantiate()
-	var mapScene = preload("res://Model/Scenes/Map/map_mvctest.tscn").instantiate()
+	var mapScene = preload("res://Model/Scenes/Map/map.tscn").instantiate()
 	add_child(mapScene)
 	GameManager.map = mapScene
-	GameManager.UI = $UI
+	
 	#hide scenario UI
+	GameManager.UI = $UI
 	GameManager.UI.visible = false
 	GameManager.UIAnimationPlayer.play("HideUI")
+	
+	# Hide settings menu
+	$SettingsMenu.visible = false
 
 
 func _on_response_label_gui_input(event: InputEvent) -> void:

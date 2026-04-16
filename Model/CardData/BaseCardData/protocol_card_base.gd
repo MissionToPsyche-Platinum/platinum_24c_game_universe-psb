@@ -4,6 +4,7 @@ class_name ProtocolCard
 
 #card signal variable
 signal card_used(card) 
+signal rewardsClickableHovered(card)
 #Settable card variables
 @export var cardName: String
 @export var cardSprite: Texture2D 
@@ -90,7 +91,6 @@ func disableRewardsClickable() -> void:
 
 func _on_reward_clickable_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		print("help")
 		emit_signal("rewardChosen", self)
 		
 func isCardPlayable() -> bool:
@@ -116,3 +116,7 @@ func toggleExtraInfo() -> void:
 
 func _on_extra_info_button_pressed() -> void:
 	toggleExtraInfo()
+
+
+func _on_reward_clickable_mouse_entered() -> void:
+	emit_signal("rewardsClickableHovered", self)

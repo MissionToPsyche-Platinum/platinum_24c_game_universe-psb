@@ -1,7 +1,8 @@
-[gd_scene load_steps=73 format=4 uid="uid://b5aneqr63kcay"]
+[gd_scene load_steps=75 format=4 uid="uid://b5aneqr63kcay"]
 
 [ext_resource type="Script" uid="uid://bryyckfysnh62" path="res://Model/Scenes/mainScene.gd" id="1_6pwi0"]
 [ext_resource type="Script" uid="uid://lp0itw18h7mo" path="res://Model/Scenes/card_manager.gd" id="2_qb6nl"]
+[ext_resource type="PackedScene" uid="uid://bndv7o1dhk3ki" path="res://Model/CardData/Cards/SUPER_AWESOME_CARD.tscn" id="3_06rge"]
 [ext_resource type="PackedScene" uid="uid://bhhb73esfp2pe" path="res://Model/CardData/Cards/SameRevolutionDeliver.tscn" id="7_qatxi"]
 [ext_resource type="PackedScene" uid="uid://ck52rgyii648y" path="res://Model/CardData/Cards/ForgotSomething.tscn" id="9_v5pj8"]
 [ext_resource type="PackedScene" uid="uid://7wpt2pr8jwaa" path="res://Model/CardData/BaseCardData/protocol_card_base.tscn" id="10_35wlo"]
@@ -388,6 +389,10 @@ font_size = 30
 font = ExtResource("11_wki3r")
 font_size = 40
 
+[sub_resource type="LabelSettings" id="LabelSettings_b1qgh"]
+font = ExtResource("11_wki3r")
+font_size = 40
+
 [sub_resource type="Animation" id="Animation_k7non"]
 resource_name = "DisplayCardGui"
 length = 0.22
@@ -676,6 +681,18 @@ tracks/10/keys = {
 "update": 0,
 "values": [Vector2(288, -105)]
 }
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("UI/RewardEffectLabel:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_b1qgh"]
 resource_name = "ScenarioEnd"
@@ -744,13 +761,25 @@ tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/path = NodePath("UI/RewardHBox:position")
-tracks/5/interp = 1
+tracks/5/interp = 2
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(2.2666667, 3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, -632.73), Vector2(0, 300.91998)]
+"values": [Vector2(0, -632.73), Vector2(0, 342)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("UI/RewardEffectLabel:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_rxymg"]
@@ -767,6 +796,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(220, 298), Vector2(150, 298), Vector2(2000, 298)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/RewardEffectLabel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_06rge"]
@@ -860,14 +901,16 @@ modulate_color = Color(0.972549, 0.62352943, 0, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_t26e8"]
 font = ExtResource("11_wki3r")
 
-[node name="MainScene" type="Node2D" node_paths=PackedStringArray("player", "cardManager", "hullIntegrityLabel", "powerLabel", "velocityLabel", "rewardsHolder", "scenarioHeader", "scenarioEffectLabel", "scenarioWinConditionLabel", "hullIntegrityBar", "powerBar", "velocityBar", "animationPlayer", "handController", "drawCardPreview")]
+[node name="MainScene" type="Node2D" node_paths=PackedStringArray("player", "cardManager", "hullIntegrityLabel", "powerLabel", "velocityLabel", "rewardsHolder", "rewardEffectHolder", "scenarioHeader", "scenarioEffectLabel", "scenarioWinConditionLabel", "hullIntegrityBar", "powerBar", "velocityBar", "animationPlayer", "handController", "drawCardPreview")]
 script = ExtResource("1_6pwi0")
 player = NodePath("Player")
 cardManager = NodePath("CardManager")
+stats = NodePath("")
 hullIntegrityLabel = NodePath("UI/Attribute Holder/AttributeLabels/HullIntegrityLabel")
 powerLabel = NodePath("UI/Attribute Holder/AttributeLabels/Power Label")
 velocityLabel = NodePath("UI/Attribute Holder/AttributeLabels/Velocity Label")
 rewardsHolder = NodePath("UI/RewardHBox")
+rewardEffectHolder = NodePath("UI/RewardEffectLabel")
 scenarioHeader = NodePath("UI/Scenario Header")
 scenarioEffectLabel = NodePath("UI/Scenario Effect Labels/Scenario Effect Label")
 scenarioWinConditionLabel = NodePath("UI/Scenario Effect Labels/Scenario Win Condition Label")
@@ -880,6 +923,7 @@ drawCardPreview = NodePath("UI/DrawCardPreview")
 
 [node name="CardManager" type="Node" parent="."]
 script = ExtResource("2_qb6nl")
+defaultDeck = Array[PackedScene]([ExtResource("3_06rge")])
 bank = Array[PackedScene]([ExtResource("7_qatxi"), SubResource("PackedScene_nmj4c"), ExtResource("9_v5pj8"), ExtResource("9_v5pj8")])
 rewardMinimumAmount = 3
 
@@ -924,7 +968,7 @@ anchor_right = -9.675
 anchor_bottom = -0.125
 offset_left = 1784.0
 offset_top = 188.0
-offset_right = 1783.991
+offset_right = 1783.9886
 offset_bottom = 188.0
 metadata/_edit_use_anchors_ = true
 
@@ -1412,11 +1456,22 @@ anchor_right = 29.025002
 anchor_bottom = 7.5230002
 offset_top = -300.92
 offset_right = 341.0
-offset_bottom = -293.92
+offset_bottom = -293.92038
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 alignment = 1
+
+[node name="RewardEffectLabel" type="Label" parent="UI"]
+visible = false
+layout_mode = 0
+offset_left = 112.0
+offset_top = 558.0
+offset_right = 1042.0
+offset_bottom = 605.0
+label_settings = SubResource("LabelSettings_b1qgh")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Psyche" type="Sprite2D" parent="."]
 position = Vector2(-217, 298)
