@@ -6,6 +6,7 @@ extends Node
 @export var card_manager: CardManager
 #@export var map: Map
 @export var map: MapController
+@export var stats: StatsController
 
 #UI root node
 var UI: Control
@@ -289,5 +290,5 @@ func restartGame() -> void:
 	playerInstantiated = false
 	
 	DefaultBehavior.chance = 32
-	
+	stats.reset_stats()
 	get_tree().change_scene_to_file("res://Model/Scenes/MainScene.tscn")
