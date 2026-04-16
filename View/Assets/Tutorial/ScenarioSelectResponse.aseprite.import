@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://ccgt8cepq05hd"
+path="res://.godot/imported/ScenarioSelectResponse.aseprite-9936b95441bfd01551830b8044628250.res"
+
+[deps]
+
+source_file="res://View/Assets/Tutorial/ScenarioSelectResponse.aseprite"
+dest_files=["res://.godot/imported/ScenarioSelectResponse.aseprite-9936b95441bfd01551830b8044628250.res"]
+
+[params]
+

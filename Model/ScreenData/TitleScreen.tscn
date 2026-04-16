@@ -31,4 +31,15 @@ offset_top = 0.27996826
 offset_right = -0.048034668
 offset_bottom = 0.11999512
 
+[node name="TutorialButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.007
+offset_left = 465.0
+offset_top = 401.0
+offset_right = 686.936
+offset_bottom = 457.0
+flat = true
+
 [connection signal="pressed" from="StartButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="TutorialButton" to="." method="_on_tutorial_button_pressed"]

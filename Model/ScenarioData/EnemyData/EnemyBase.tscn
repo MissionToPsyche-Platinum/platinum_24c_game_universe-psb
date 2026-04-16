@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://df5i2gsuui8n7"]
+[gd_scene load_steps=9 format=3 uid="uid://df5i2gsuui8n7"]
 
 [ext_resource type="Script" uid="uid://p75noca3rrwy" path="res://Model/ScenarioData/EnemyData/Enemy.gd" id="1_oqej4"]
 [ext_resource type="Texture2D" uid="uid://b6qhrnt10w205" path="res://View/Assets/Sprites/Enemies/aliens.png" id="1_v2m37"]
 [ext_resource type="Material" uid="uid://sr7jy46okfds" path="res://View/Assets/Materials/enemyOutlineMaterial.tres" id="2_e43fq"]
+[ext_resource type="Texture2D" uid="uid://chv57617bldww" path="res://View/Assets/Sprites/Attribute Bars/attribute_bar_mask.png" id="4_ydqg5"]
+[ext_resource type="Texture2D" uid="uid://86il4rq4uylj" path="res://View/Assets/Sprites/Attribute Bars/attribute_bar_transparent-filled.png" id="5_bf35b"]
 
 [sub_resource type="Animation" id="Animation_oqej4"]
 resource_name = "EnemyIdle"
@@ -42,7 +44,7 @@ _data = {
 &"RESET": SubResource("Animation_e43fq")
 }
 
-[node name="Enemy" type="Control" node_paths=PackedStringArray("sprite")]
+[node name="Enemy" type="Control" node_paths=PackedStringArray("healthBar", "sprite")]
 layout_mode = 3
 anchor_right = 0.34
 anchor_bottom = 0.356
@@ -51,6 +53,7 @@ offset_bottom = 0.31199646
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_oqej4")
+healthBar = NodePath("HealthBar")
 sprite = NodePath("EnemySprite")
 
 [node name="EnemySprite" type="TextureRect" parent="."]
@@ -65,6 +68,24 @@ texture = ExtResource("1_v2m37")
 libraries = {
 &"": SubResource("AnimationLibrary_xop6d")
 }
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.029239766
+anchor_top = 0.45436105
+anchor_right = 0.029239766
+anchor_bottom = 0.45436105
+offset_left = -7.0
+offset_top = 48.75862
+offset_right = 307.0
+offset_bottom = 91.75862
+mouse_filter = 2
+max_value = 200.0
+texture_over = ExtResource("4_ydqg5")
+texture_progress = ExtResource("5_bf35b")
+tint_progress = Color(0.6873869, 0.24107623, 0.2179296, 1)
+metadata/_edit_use_anchors_ = true
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

@@ -18,6 +18,9 @@ var playerLost: bool = false
 
 #boolan to see if a default card win has happened
 var defaultCardWin: bool = false
+#boolean to see if the player is in tutorial mode
+var tutorialMode = false
+var tutorialScenario : TutorialScenario
 
 #references to UI elements
 var hullIntegrityLabel: Label
@@ -138,6 +141,8 @@ func endPlayerTurn() -> void:
 	if defaultCardWin:
 		defaultCardWin = false
 		endScenario()
+	if tutorialMode:
+		tutorialScenario.progressTutorial()
 		return 
 	
 	#tween the header text back to the scenario 
@@ -291,3 +296,11 @@ func restartGame() -> void:
 	DefaultBehavior.chance = 32
 	
 	get_tree().change_scene_to_file("res://Model/Scenes/MainScene.tscn")
+	
+	tutorialScenario = null
+	
+	if !tutorialMode:
+		get_tree().change_scene_to_file("res://Model/Scenes/MainScene.tscn")
+	else:
+		tutorialMode = false
+	

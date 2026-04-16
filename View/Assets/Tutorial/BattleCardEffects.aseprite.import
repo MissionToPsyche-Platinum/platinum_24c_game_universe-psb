@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://coxy0f6xmp4jw"
+path="res://.godot/imported/BattleCardEffects.aseprite-5407c392378bf0919f724c94e29edf1a.res"
+
+[deps]
+
+source_file="res://View/Assets/Tutorial/BattleCardEffects.aseprite"
+dest_files=["res://.godot/imported/BattleCardEffects.aseprite-5407c392378bf0919f724c94e29edf1a.res"]
+
+[params]
+
