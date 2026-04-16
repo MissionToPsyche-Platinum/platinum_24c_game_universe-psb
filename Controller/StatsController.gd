@@ -19,7 +19,7 @@ func situation_encountered():
 func reset_stats():
 	model.cards_used = 0
 	model.total_encounters = 0
-	model._running = false
+	model.time_elapsed = 0.0
 
 # Helper function to store attributes from game manager 
 func store_attributes():
