@@ -26,16 +26,34 @@ func shoot_loop() -> void:
 		await get_tree().create_timer(shoot_interval).timeout
 		shoot_at_player()
 
+func _get_projectile_container() -> Node:
+	var tree := get_tree()
+	if tree == null:
+		return null
+	var c: Node = tree.current_scene
+	if c == null and is_inside_tree():
+		c = get_parent()
+	if c == null:
+		c = tree.root
+	return c
+
 func shoot_at_player():
 	if projectile_scene == null:
 		return
 
-	var player = get_tree().get_first_node_in_group("Player")
+	var tree := get_tree()
+	if tree == null:
+		return
+	var player = tree.get_first_node_in_group("Player")
 	if player == null:
 		return
 
 	var projectile = projectile_scene.instantiate()
-	get_tree().current_scene.add_child(projectile)
+	var container := _get_projectile_container()
+	if container == null:
+		projectile.queue_free()
+		return
+	container.add_child(projectile)
 
 	projectile.global_position = $Muzzle.global_position
 

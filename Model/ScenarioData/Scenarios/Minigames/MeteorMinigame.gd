@@ -21,6 +21,9 @@ func performScenarioEffect() -> void:
 	if won:
 		emit_signal("scenarioWon")
 		print("Won")
+		for child in spawner.get_children():
+			if child.is_in_group("obstacles"):
+				child.queue_free()
 		player.queue_free()
 		spawner.stop_spawning()
 
