@@ -6,6 +6,9 @@ var map: MapController
 func before_each():
 	var scene: PackedScene = load("res://Model/Scenes/Map/map.tscn")
 	map = scene.instantiate()
+	# Map_3Nodes: the first step from start lands on the node before the asteroid,
+	# which satisfies the "reached end" win check — psyche never moves and the map hides.
+	map.layout = load("res://Model/MapData/Maps/Map_8Nodes.tres")
 	add_child(map)
 
 	await get_tree().process_frame
