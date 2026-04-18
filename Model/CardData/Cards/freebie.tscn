@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://cbwqqgq4nhigj"]
+
+[ext_resource type="PackedScene" uid="uid://7wpt2pr8jwaa" path="res://Model/CardData/BaseCardData/protocol_card_base.tscn" id="1_bt1oi"]
+[ext_resource type="Script" uid="uid://cda51huvrayd1" path="res://Model/CardData/CardBehaviorData/AttriubuteEffect.gd" id="2_0sj8k"]
+[ext_resource type="Script" uid="uid://jvo5d8np0a4x" path="res://Model/CardData/CardBehaviorData/AttributeBehavior.gd" id="3_5c066"]
+
+[sub_resource type="Resource" id="Resource_7ebng"]
+script = ExtResource("2_0sj8k")
+affectedAttribute = 2
+amount = 15.0
+metadata/_custom_type_script = "uid://cda51huvrayd1"
+
+[sub_resource type="Resource" id="Resource_ou07i"]
+script = ExtResource("3_5c066")
+affectedAttributes = Array[ExtResource("2_0sj8k")]([SubResource("Resource_7ebng")])
+metadata/_custom_type_script = "uid://jvo5d8np0a4x"
+
+[node name="Control" instance=ExtResource("1_bt1oi")]
+cardName = "Freebie"
+cardDescription = "Use this card! It's not like you have another choice."
+cardBehavior = Array[Resource]([SubResource("Resource_ou07i")])
+cardUseHeader = "The thrill of free stuff propels you forward."

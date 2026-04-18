@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://ot6on8uxpgmm"
+path="res://.godot/imported/DiscardArrows.aseprite-4e5bb6894d6c5e3f956f1dbd0540699d.res"
+
+[deps]
+
+source_file="res://View/Assets/Tutorial/DiscardArrows.aseprite"
+dest_files=["res://.godot/imported/DiscardArrows.aseprite-4e5bb6894d6c5e3f956f1dbd0540699d.res"]
+
+[params]
+
