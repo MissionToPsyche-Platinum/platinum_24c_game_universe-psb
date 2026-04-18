@@ -48,6 +48,8 @@ func _ready() -> void:
 	
 	# initalize tutorial objects
 	tutorialPlayer = Player.new()
+	# Same fallback as MainScene Player when deck/hand are empty (needed after discarding all cards in tutorial).
+	tutorialPlayer.defaultCard = preload("res://Model/CardData/Cards/QuantumCoinFliptscn.tscn")
 	#set gamemanager objects
 	
 	GameManager.tutorialMode = true
@@ -68,6 +70,12 @@ func _ready() -> void:
 	GameManager.player =  tutorialPlayer
 	GameManager.card_manager = cardManager
 	GameManager.handController = handController
+	
+	# Title → Tutorial skips MainScene, which normally creates this for GameManager.
+	if GameManager.stats == null:
+		var stats_scene := preload("res://Model/Scenes/StatsScene.tscn").instantiate()
+		get_tree().root.add_child(stats_scene)
+		GameManager.stats = stats_scene
 	
 	GameManager.player.deck.append(freebieCard)
 	GameManager.player.drawCard(false)

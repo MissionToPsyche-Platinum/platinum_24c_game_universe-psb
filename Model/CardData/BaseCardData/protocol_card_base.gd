@@ -74,9 +74,9 @@ func use() -> void:
 func getCardHint() -> String:
 	var hint = ""
 	for behavior in cardBehavior:
-		hint += behavior.getBehaviorHint()
-		hint += "\n"
-		
+		if behavior is ICardBehavior:
+			hint += (behavior as ICardBehavior).getBehaviorHint()
+			hint += "\n"
 	return hint
 
 func getCardUseHeader() -> String:
@@ -95,7 +95,10 @@ func _on_reward_clickable_gui_input(event: InputEvent) -> void:
 		
 func isCardPlayable() -> bool:
 	for behavior in cardBehavior:
-		if (!behavior.isCardPlayable()):
+		if behavior is ICardBehavior:
+			if not (behavior as ICardBehavior).isCardPlayable():
+				return false
+		else:
 			return false
 	return true
 	

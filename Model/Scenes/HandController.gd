@@ -30,6 +30,9 @@ var holdingDiscards := {}
 #the header that is displayed when the discard button is used
 @export var discardUseHeader : String
 
+# Hand UI uses a high z_index; continue overlay must sit above it or clicks never reach it.
+const CONTINUE_OVERLAY_Z_INDEX := 10
+
 func _ready():
 	# In test mode, we manually assign nodes in tests, so skip lookups
 	if test_mode:
@@ -173,8 +176,9 @@ func _on_select_response_label_gui_input(event: InputEvent) -> void:
 		
 		await card.use()
 		
-		# Update player stats for cards used
-		GameManager.stats.use_card()
+		# Update player stats for cards used (optional: tutorial loads without MainScene)
+		if GameManager.stats:
+			GameManager.stats.use_card()
 		
 		# Tween out the scenario header label to replace its text
 		var tween = create_tween()
@@ -189,12 +193,12 @@ func _on_select_response_label_gui_input(event: InputEvent) -> void:
 		tween.tween_property(GameManager.scenarioHeader, "modulate", Color(1,1,1,1), 0.25)
 
 		# Allow the player to click anywhere on screen to continue the scenario
-		continueScenarioControl.visible = true
+		_show_continue_overlay()
 
 func _on_continue_scenario_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		# Disable the continue scenario control
-		continueScenarioControl.visible = false
+		_hide_continue_overlay()
 
 		#clear the holding discards
 		holdingDiscards.clear()
@@ -281,13 +285,21 @@ func _on_discard_button_pressed() -> void:
 	tween.tween_property(GameManager.scenarioHeader, "modulate", Color(1,1,1,1), 0.25)
 	
 	#let the player click anywhere to continue 
-	continueScenarioControl.visible = true
+	_show_continue_overlay()
 	
 	
 		
 func fadeOutUI(uiText : String) -> void:
 	# Hide the GUI
-		GameManager.UIAnimationPlayer.play("UseCard")
+	GameManager.UIAnimationPlayer.play("UseCard")
 
-		
-	
+func _show_continue_overlay() -> void:
+	if continueScenarioControl:
+		continueScenarioControl.z_as_relative = false
+		continueScenarioControl.z_index = CONTINUE_OVERLAY_Z_INDEX
+		continueScenarioControl.visible = true
+
+
+func _hide_continue_overlay() -> void:
+	if continueScenarioControl:
+		continueScenarioControl.visible = false

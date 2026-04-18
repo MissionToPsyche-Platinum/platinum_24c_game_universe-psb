@@ -302,7 +302,8 @@ func restartGame() -> void:
 	rewards = []
 	
 	DefaultBehavior.chance = 32
-	stats.reset_stats()
+	if stats:
+		stats.reset_stats()
 	get_tree().change_scene_to_file("res://Model/Scenes/MainScene.tscn")
 	
 	tutorialScenario = null
