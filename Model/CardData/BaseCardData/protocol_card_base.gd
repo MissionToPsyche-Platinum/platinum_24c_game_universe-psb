@@ -1,5 +1,4 @@
-
-extends Node
+extends Control
 class_name ProtocolCard
 
 #card signal variable
@@ -35,6 +34,22 @@ var showingExtraInfo := false
 signal rewardChosen(card)
 
 
+## Some card scenes embed behaviors as SubResources; they can fail `is ICardBehavior` at runtime
+## even though the script is attached and methods resolve correctly.
+func _behavior_is_icard_compatible(behavior: Variant) -> bool:
+	if behavior == null:
+		return false
+	if behavior is ICardBehavior:
+		return true
+	var o := behavior as Object
+	return o != null and o.has_method("use") and o.has_method("isCardPlayable") and o.has_method("getBehaviorHint")
+
+
+## Player assigns this when drawing the bailout card so behavior always runs (scene Array[Resource] exports often fail to bind).
+func apply_default_bailout_behavior() -> void:
+	cardBehavior = [DefaultBehavior.new()]
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	protocolCardName.text = cardName
@@ -53,29 +68,24 @@ func _ready() -> void:
 func use() -> void:
 	#first check if card is playable
 	for behavior in cardBehavior:
-		if behavior is ICardBehavior:
-			if (!behavior.isCardPlayable()):
-				print("Card is not playable!")
-				return 
-		else:
+		if not _behavior_is_icard_compatible(behavior):
 			push_error("Assigned behavior does not implement ICardBehavior!")
 			return
-			
+		if not (behavior as Object).isCardPlayable():
+			print("Card is not playable!")
+			return
+
 	#card is playable, play card
 	for behavior in cardBehavior:
-		#type checking like this is necessary in Godot because 
-		#declaring a variable of a specific type will only accept that type,
-		#not it's subclasses. 
-		if behavior is ICardBehavior:
-			await behavior.use()
+		await (behavior as Object).use()
 	#emit the signal that the card has been used
 	emit_signal("card_used", self)
 
 func getCardHint() -> String:
 	var hint = ""
 	for behavior in cardBehavior:
-		if behavior is ICardBehavior:
-			hint += (behavior as ICardBehavior).getBehaviorHint()
+		if _behavior_is_icard_compatible(behavior):
+			hint += (behavior as Object).getBehaviorHint()
 			hint += "\n"
 	return hint
 
@@ -95,10 +105,9 @@ func _on_reward_clickable_gui_input(event: InputEvent) -> void:
 		
 func isCardPlayable() -> bool:
 	for behavior in cardBehavior:
-		if behavior is ICardBehavior:
-			if not (behavior as ICardBehavior).isCardPlayable():
-				return false
-		else:
+		if not _behavior_is_icard_compatible(behavior):
+			return false
+		if not (behavior as Object).isCardPlayable():
 			return false
 	return true
 	

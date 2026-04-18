@@ -40,13 +40,15 @@ func drawCard(showPreview : bool) -> void:
 	
 	#variable for holding card scene
 	var packed_scene
-	
+	var inject_bailout_behavior := false
+
 	if deck.is_empty() and hand.is_empty():
 		#if the deck and hand is empty, draw the default card
 		packed_scene = defaultCard
 		if packed_scene == null:
 			push_error("Player.drawCard: defaultCard is not set (deck and hand are empty).")
 			return
+		inject_bailout_behavior = true
 	elif deck.is_empty():
 		#draw the default card
 		print("Attempted to draw an empty deck")
@@ -67,6 +69,12 @@ func drawCard(showPreview : bool) -> void:
 	
 	card_instance.set_meta("source_scene", packed_scene)
 
+	# Scene exports often omit behaviors; only this draw path uses the bailout card.
+	if inject_bailout_behavior:
+		var bailout := card_instance as ProtocolCard
+		if bailout:
+			bailout.apply_default_bailout_behavior()
+
 	# send card directly to the UI
 	GameManager.handController.addCard(card_instance)
 
@@ -77,8 +85,8 @@ func discardCard(card_node: Node) -> void:
 	var packed_scene = card_node.get_meta("source_scene")
 	#if the packed scene exists
 	if packed_scene:
-		#check if the packed scene is not the default card
-		if packed_scene != defaultCard:
+		# Same path as default bailout card (PackedScene identity can differ across loads).
+		if defaultCard == null or packed_scene.resource_path != defaultCard.resource_path:
 			discards.append(packed_scene)
 			
 		hand.erase(packed_scene)

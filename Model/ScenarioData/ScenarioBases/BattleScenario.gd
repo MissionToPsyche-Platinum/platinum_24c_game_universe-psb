@@ -156,6 +156,14 @@ func enemyDefeated(enemy : Enemy) -> void:
 	#update the scenario effects label
 	GameManager.scenarioEffectLabel.text = getAffectedAttributes()
 
+
+## Win via bailout (or any path where living enemies remain) — remove them so the outro / rewards UI is not blocked by the grid.
+func clear_remaining_enemies() -> void:
+	for position in enemyPositions:
+		for child in position.get_children():
+			child.queue_free()
+	enemyList.clear()
+
 func getAffectedAttributes() -> String:
 	var affectedAttributesString := ""
 	for attribute in affectedAttributes:

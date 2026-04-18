@@ -1,14 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bjgccrtsceylt"]
+[gd_scene load_steps=2 format=3 uid="uid://bjgccrtsceylt"]
 
 [ext_resource type="PackedScene" uid="uid://7wpt2pr8jwaa" path="res://Model/CardData/BaseCardData/protocol_card_base.tscn" id="1_fwgux"]
-[ext_resource type="Script" uid="uid://def3oj3g6yero" path="res://Model/CardData/CardBehaviorData/DefaultBehavior.gd" id="2_383n2"]
-
-[sub_resource type="Resource" id="Resource_fwgux"]
-script = ExtResource("2_383n2")
-metadata/_custom_type_script = "uid://def3oj3g6yero"
 
 [node name="Control" instance=ExtResource("1_fwgux")]
 cardName = "Quantum Coin Flip"
 cardDescription = "A 50/50 chance of fixing everything… or making it infinitely worse."
-cardBehavior = Array[Resource]([SubResource("Resource_fwgux")])
 cardUseHeader = "Let’s see where Psyche’s fate lies…"

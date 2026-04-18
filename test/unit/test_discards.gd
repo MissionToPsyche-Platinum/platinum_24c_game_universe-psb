@@ -119,7 +119,7 @@ func test_SF_M_01_toggle_adds_and_removes_selected_card():
 	assert_false(hand_controller.holdingDiscards.has(cards[1]))
 
 
-func test_SF_M_04_cannot_discard_all_cards_in_hand():
+func test_SF_M_04_discard_entire_hand_draws_replacements():
 	var cards := make_cards(3)
 	var player: FakePlayer = GameManager.player
 
@@ -128,9 +128,9 @@ func test_SF_M_04_cannot_discard_all_cards_in_hand():
 
 	hand_controller._on_discard_button_pressed()
 
-	assert_eq(player.discarded.size(), 0)
-	assert_eq(player.draw_calls, 0)
-	assert_eq(hand_controller.holdingDiscards.size(), 3) # unchanged
+	assert_eq(player.discarded.size(), 3)
+	assert_eq(player.draw_calls, 3)
+	assert_eq(hand_controller.holdingDiscards.size(), 0)
 
 
 func test_SF_M_03_discard_draws_same_amount_as_discarded():

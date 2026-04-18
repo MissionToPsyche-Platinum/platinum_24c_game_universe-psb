@@ -247,11 +247,8 @@ func _on_toggle_discard_button_pressed() -> void:
 func _on_discard_button_pressed() -> void:
 	#count how many cards are in the holding discard pile
 	var holdingDiscardCount = holdingDiscards.size()
-	#Player cannot discard every card in their hand, must have at least one to play
-	if holdingDiscardCount >= cards.size() and !GameManager.tutorialMode:
-		print("Cannot Discard all cards in your hand!")
-		return 
-		
+	# Discarding the whole hand is allowed: Player.drawCard refills from deck / default bailout card.
+
 	#remove all cards in the holdingDiscards from the player's hand
 	for card in holdingDiscards:
 		GameManager.player.discardCard(card)

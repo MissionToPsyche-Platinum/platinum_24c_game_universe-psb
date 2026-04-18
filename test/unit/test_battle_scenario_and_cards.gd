@@ -285,3 +285,16 @@ func test_SF_C_15_no_enemies_left_exits_targeting_early_and_scenario_wins_on_nex
 
 	battle.performScenarioEffect()
 	assert_true(won["v"])
+
+
+# Bailout card must get real DefaultBehavior at runtime (same as Player.drawCard for defaultCard).
+func test_quantum_default_card_scene_is_playable_with_hint():
+	var scene := preload("res://Model/CardData/Cards/QuantumCoinFliptscn.tscn")
+	var card := scene.instantiate() as ProtocolCard
+	assert_not_null(card)
+	card.apply_default_bailout_behavior()
+	assert_false(card.cardBehavior.is_empty())
+	assert_true(card.isCardPlayable())
+	var hint := card.getCardHint()
+	assert_true("beat" in hint.to_lower() or "/" in hint)
+	card.queue_free()

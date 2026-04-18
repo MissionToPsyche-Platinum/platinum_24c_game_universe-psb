@@ -138,10 +138,15 @@ func endPlayerTurn() -> void:
 		self.change_scene_to_file("res://Model/ScreenData/LoseScreen.tscn")
 		return
 		
-	#check if a default card has won the scenario	
+	# Bailout win: finish like a normal scenario win (rewards, etc.). Do not run performScenarioEffect —
+	# objectives were not met, so checkWinCondition() is still false and the scenario would apply damage / continue the turn.
 	if defaultCardWin:
 		defaultCardWin = false
-		endScenario()
+		await endScenario()
+		if tutorialMode:
+			tutorialScenario.progressTutorial()
+		return
+
 	if tutorialMode:
 		tutorialScenario.progressTutorial()
 		return 
@@ -176,6 +181,9 @@ func endScenarioTurn() -> void:
 	
 func endScenario() -> void:
 	print("Scenario Won!!!!")
+
+	if scenario is BattleScenario:
+		(scenario as BattleScenario).clear_remaining_enemies()
 	
 	# Get reward scenes
 	rewards = card_manager.getReward()
