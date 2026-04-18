@@ -4,7 +4,7 @@ var map: MapController
 
 
 func before_each():
-	var scene: PackedScene = load("res://Model/Scenes/Map/map_mvctest.tscn")
+	var scene: PackedScene = load("res://Model/Scenes/Map/map.tscn")
 	map = scene.instantiate()
 	add_child(map)
 
