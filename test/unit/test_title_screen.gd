@@ -18,5 +18,5 @@ func test_title_screen_loads():
 	assert_not_null(main_node, "TitleScreen should instantiate")
 
 func test_has_start_button():
-	var start_button = main_node.get_node_or_null("StartButton")
+	var start_button = main_node.get_node_or_null("MainMenu/StartGameLabel/StartButton")
 	assert_not_null(start_button, "Start button should exist on the title screen")

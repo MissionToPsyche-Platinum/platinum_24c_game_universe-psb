@@ -42,7 +42,8 @@ func after_each() -> void:
 
 
 func test_tutorial_can_be_played_from_title_screen() -> void:
-	var tutorial_button: Button = _title_root.get_node_or_null("TutorialButton")
+	var tutorial_button: Button = _title_root.get_node_or_null(
+		"MainMenu/TutorialLabel/TutorialButton")
 	assert_not_null(tutorial_button, "Title screen should expose a Tutorial button")
 
 	tutorial_button.emit_signal("pressed")

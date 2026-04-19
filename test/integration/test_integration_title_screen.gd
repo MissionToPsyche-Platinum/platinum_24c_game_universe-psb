@@ -12,14 +12,17 @@ func before_each():
 	get_tree().current_scene = main_node  # ensures get_tree() works in TitleScreen.gd
 
 func after_each():
-	main_node.queue_free()
+	if is_instance_valid(main_node):
+		main_node.queue_free()
+	main_node = null
 
 func test_start_button_navigation():
-	var start_button = main_node.get_node_or_null("StartButton")
+	var start_button = main_node.get_node_or_null("MainMenu/StartGameLabel/StartButton")
 	assert_not_null(start_button, "Start button should exist for navigation test")
-	
-	start_button.emit_signal("pressed")
-	
-	# Check that the current scene changed
+
+	start_button.pressed.emit()
+
+	await get_tree().process_frame
+
 	var current_scene = get_tree().current_scene
 	assert_true(current_scene != main_node, "Pressing Start should change the scene")

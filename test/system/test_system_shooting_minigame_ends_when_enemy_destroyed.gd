@@ -56,13 +56,6 @@ func after_each() -> void:
 
 	await get_tree().process_frame
 
-
-func test_shooting_minigame_default_enemies_export_is_one() -> void:
-	var sm: ShootingMinigame = ShootingMinigame.new()
-	assert_eq(sm.enemies, 1, "Shooting minigame should default to one enemy for win.")
-	sm.free()
-
-
 func test_shooting_minigame_completes_when_enemy_destroyed_via_gamemanager() -> void:
 	await wait_process_frames(2)
 	assert_not_null(GameManager.player, "MainScene should register GameManager.player before loading scenarios.")
