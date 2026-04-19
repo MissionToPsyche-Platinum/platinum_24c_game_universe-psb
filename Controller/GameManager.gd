@@ -138,11 +138,8 @@ func endPlayerTurn() -> void:
 		self.change_scene_to_file("res://Model/ScreenData/LoseScreen.tscn")
 		return
 		
-	# objectives were not met, so checkWinCondition() is still false and the scenario would apply damage / continue the turn.
 	if defaultCardWin:
 		defaultCardWin = false
-		await endScenario()
-		if tutorialMode:
 		endScenario()
 		return
 		
