@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dd4r1ex1u8lek"
-path="res://.godot/imported/Sprite-0002.png-1fd707255024dc4a052cbc5a88a37f97.ctex"
+uid="uid://c0j0eijqm6joc"
+path="res://.godot/imported/psyche_asteroid 1.png-d6c03fdf0d868564919a7c41b3a861ce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Model/CardData/BaseCardData/Sprite-0002.png"
-dest_files=["res://.godot/imported/Sprite-0002.png-1fd707255024dc4a052cbc5a88a37f97.ctex"]
+source_file="res://View/Assets/Title Screen/psyche_asteroid 1.png"
+dest_files=["res://.godot/imported/psyche_asteroid 1.png-d6c03fdf0d868564919a7c41b3a861ce.ctex"]
 
 [params]
 

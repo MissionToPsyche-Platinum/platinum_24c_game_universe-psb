@@ -138,15 +138,14 @@ func endPlayerTurn() -> void:
 		self.change_scene_to_file("res://Model/ScreenData/LoseScreen.tscn")
 		return
 		
-	# Bailout win: finish like a normal scenario win (rewards, etc.). Do not run performScenarioEffect —
 	# objectives were not met, so checkWinCondition() is still false and the scenario would apply damage / continue the turn.
 	if defaultCardWin:
 		defaultCardWin = false
 		await endScenario()
 		if tutorialMode:
-			tutorialScenario.progressTutorial()
+		endScenario()
 		return
-
+		
 	if tutorialMode:
 		tutorialScenario.progressTutorial()
 		return 

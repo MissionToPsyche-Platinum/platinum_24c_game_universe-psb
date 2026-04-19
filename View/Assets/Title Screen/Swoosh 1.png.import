@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://08lyw7jmve2c"
-path="res://.godot/imported/Sprite-0004.png-6065abe1b264a8dbf5f5d804d03f704f.ctex"
+uid="uid://dhgli1bvalrbr"
+path="res://.godot/imported/Swoosh 1.png-1270c9d40c9e49cc668bb99e2bb28e17.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://View/Assets/Sprites/Sprite-0004.png"
-dest_files=["res://.godot/imported/Sprite-0004.png-6065abe1b264a8dbf5f5d804d03f704f.ctex"]
+source_file="res://View/Assets/Title Screen/Swoosh 1.png"
+dest_files=["res://.godot/imported/Swoosh 1.png-1270c9d40c9e49cc668bb99e2bb28e17.ctex"]
 
 [params]
 

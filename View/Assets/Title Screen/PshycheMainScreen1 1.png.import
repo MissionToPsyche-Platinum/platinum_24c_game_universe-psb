@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccngsbbdmdrvh"
-path="res://.godot/imported/Sprite-0002.png-43692cb1cdd151efc293d3a31c95141b.ctex"
+uid="uid://crwhi7ct08fn0"
+path="res://.godot/imported/PshycheMainScreen1 1.png-ad4eb558482e08f64e695a11eb8617ec.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://View/Assets/Sprites/Sprite-0002.png"
-dest_files=["res://.godot/imported/Sprite-0002.png-43692cb1cdd151efc293d3a31c95141b.ctex"]
+source_file="res://View/Assets/Title Screen/PshycheMainScreen1 1.png"
+dest_files=["res://.godot/imported/PshycheMainScreen1 1.png-ad4eb558482e08f64e695a11eb8617ec.ctex"]
 
 [params]
 
