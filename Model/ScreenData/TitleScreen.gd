@@ -10,14 +10,23 @@ extends Control
 
 @export var creditsAnimationPlayer : AnimationPlayer
 
+#plays the leadup + loop
+@export var mainMenuMusicIntroPlayer : AudioStreamPlayer
+#plays the loop only
+@export var mainMenuMusicLoopPlayer : AudioStreamPlayer
+
 func _ready():
+	#label settings are a shared resource, need to duplicate them to edit them seperately 
 	startGameLabel.label_settings = startGameLabel.label_settings.duplicate()
 	tutorialLabel.label_settings = startGameLabel.label_settings.duplicate()
 	aboutLabel.label_settings = startGameLabel.label_settings.duplicate()
 	creditsLabel.label_settings = startGameLabel.label_settings.duplicate()
 	backLabel.label_settings = startGameLabel.label_settings.duplicate()
 	
-
+	#play the music
+	mainMenuMusicIntroPlayer.play()
+	
+	
 func _on_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Model/Scenes/MainScene.tscn")
 
@@ -74,3 +83,7 @@ func _on_back_button_mouse_exited() -> void:
 
 func _on_credits_button_pressed() -> void:
 	creditsAnimationPlayer.play("showCredits")
+
+
+func _on_intro_music_player_finished() -> void:
+	mainMenuMusicLoopPlayer.play()

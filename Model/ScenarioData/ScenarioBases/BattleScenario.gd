@@ -17,8 +17,27 @@ class_name BattleScenario
 var enemyList : Array[Enemy]
 
 
+#music
+@onready var battleScenarioIntroMusic : AudioStreamPlayer = $BattleScenarioIntroMusic
+@onready var battleScenarioLoopMusic : AudioStreamPlayer = $BattleScenarioLoopMusic
+
+
 func _ready() -> void:
+	print("Script is on node: ", self.name)
+	print("Full path of self: ", get_path())
+	print("Has intro music child? ", has_node("BattleScenarioIntroMusic"))
+	print("Has loop music child? ", has_node("BattleScenarioLoopMusic"))
+	print("Intro ref: ", battleScenarioIntroMusic)
+	print("Loop ref: ", battleScenarioLoopMusic)
+
 	initializeBattleScenario()
+
+	if battleScenarioIntroMusic == null:
+		push_error("Intro music is null from node " + str(get_path()))
+		return
+
+	battleScenarioIntroMusic.play()
+	
 	
 func initializeBattleScenario() -> void:
 	#clear old enemies
@@ -180,3 +199,7 @@ func getAffectedAttributes() -> String:
 		affectedAttributesString += "\n"
 	
 	return affectedAttributesString
+	
+
+func _on_battle_scenario_intro_music_finished() -> void:
+	battleScenarioLoopMusic.play()

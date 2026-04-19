@@ -38,7 +38,9 @@ var tutorialEventScenario : EventScenario
 var tutorialBattleScenario : BattleScenario
 var tutorialPlayer : Player
 
-
+#music
+@onready var tutorialScenarioIntroPlayer : AudioStreamPlayer = $TutorialScenarioIntroPlayer
+@onready var tutorialScenarioLoopPlayer : AudioStreamPlayer = $TutorialScenarioLoopPlayer
 	
 
 var tutorialSteps = []
@@ -86,7 +88,7 @@ func _ready() -> void:
 	tutorialSteps= [
 		{
 			"text": "Welcome to Psyche Against the Universe!",
-			"actions": [enableClickable]
+			"actions": [enableClickable, playMusic]
 		},
 		{
 			"text": "In this game, you play as the Psyche Spacecraft!",
@@ -665,3 +667,9 @@ func _on_scenario_label_gui_input(event: InputEvent) -> void:
 		UIAnimationPlayer.play("HideCardGui")
 		
 	
+func playMusic() -> void:
+	tutorialScenarioIntroPlayer.play()
+
+
+func _on_tutorial_scenario_intro_player_finished() -> void:
+	tutorialScenarioLoopPlayer.play()

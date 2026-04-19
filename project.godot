@@ -23,6 +23,7 @@ TargetController="*res://Controller/TargetController.gd"
 [display]
 
 window/stretch/mode="viewport"
+window/stretch/scale_mode="integer"
 
 [editor_plugins]
 

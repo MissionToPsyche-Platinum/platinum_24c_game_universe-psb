@@ -42,15 +42,16 @@ func drawCard(showPreview : bool) -> void:
 	var packed_scene
 	var inject_bailout_behavior := false
 
-	if deck.is_empty() and hand.is_empty():
+	if deck.is_empty() and hand.is_empty() and not GameManager.tutorialMode:
 		#if the deck and hand is empty, draw the default card
 		packed_scene = defaultCard
 		if packed_scene == null:
 			push_error("Player.drawCard: defaultCard is not set (deck and hand are empty).")
 			return
 		inject_bailout_behavior = true
+		
 	elif deck.is_empty():
-		#draw the default card
+
 		print("Attempted to draw an empty deck")
 		return
 	else:

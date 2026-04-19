@@ -84,6 +84,8 @@ func loadScenario(scenePath: String) -> void:
 	#first unload the current scenario if necessary
 	if scenario:
 		scenario.queue_free()
+		await get_tree().process_frame
+		scenario = null
 		
 	#ensure the player has been instantiated properly
 	if !playerInstantiated:
@@ -96,6 +98,7 @@ func loadScenario(scenePath: String) -> void:
 	
 	#add scenario to scene tree
 	add_child(scenario)
+	await get_tree().process_frame
 	
 	# hard reset scenario animations
 	UIAnimationPlayer.stop()

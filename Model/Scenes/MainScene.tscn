@@ -1,8 +1,9 @@
-[gd_scene load_steps=75 format=4 uid="uid://b5aneqr63kcay"]
+[gd_scene load_steps=76 format=4 uid="uid://b5aneqr63kcay"]
 
 [ext_resource type="Script" uid="uid://bryyckfysnh62" path="res://Model/Scenes/mainScene.gd" id="1_6pwi0"]
 [ext_resource type="Script" uid="uid://lp0itw18h7mo" path="res://Model/Scenes/card_manager.gd" id="2_qb6nl"]
 [ext_resource type="PackedScene" uid="uid://bndv7o1dhk3ki" path="res://Model/CardData/Cards/SUPER_AWESOME_CARD.tscn" id="3_06rge"]
+[ext_resource type="PackedScene" uid="uid://cwqy5leds1y2y" path="res://Model/CardData/Cards/HyperEvolvedGoldfish.tscn" id="4_oeksu"]
 [ext_resource type="PackedScene" uid="uid://bhhb73esfp2pe" path="res://Model/CardData/Cards/SameRevolutionDeliver.tscn" id="7_qatxi"]
 [ext_resource type="PackedScene" uid="uid://ck52rgyii648y" path="res://Model/CardData/Cards/ForgotSomething.tscn" id="9_v5pj8"]
 [ext_resource type="PackedScene" uid="uid://7wpt2pr8jwaa" path="res://Model/CardData/BaseCardData/protocol_card_base.tscn" id="10_35wlo"]
@@ -923,7 +924,7 @@ drawCardPreview = NodePath("UI/DrawCardPreview")
 
 [node name="CardManager" type="Node" parent="."]
 script = ExtResource("2_qb6nl")
-defaultDeck = Array[PackedScene]([ExtResource("3_06rge")])
+defaultDeck = Array[PackedScene]([ExtResource("3_06rge"), ExtResource("4_oeksu")])
 bank = Array[PackedScene]([ExtResource("7_qatxi"), SubResource("PackedScene_nmj4c"), ExtResource("9_v5pj8"), ExtResource("9_v5pj8")])
 rewardMinimumAmount = 3
 

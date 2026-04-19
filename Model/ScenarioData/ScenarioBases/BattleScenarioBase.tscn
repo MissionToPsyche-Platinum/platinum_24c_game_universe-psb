@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ccs4ryghtb0bf"]
+[gd_scene load_steps=8 format=3 uid="uid://ccs4ryghtb0bf"]
 
 [ext_resource type="Script" uid="uid://bnq8wkiku4077" path="res://Model/ScenarioData/ScenarioBases/BattleScenario.gd" id="1_sriu2"]
 [ext_resource type="Texture2D" uid="uid://damk48kf44hid" path="res://View/Assets/Backgrounds/background.png" id="2_qhjs1"]
+[ext_resource type="AudioStream" uid="uid://cvds34by83wph" path="res://View/Assets/Music/PATU Battle Scenario (Full Song).wav" id="3_ehyr3"]
+[ext_resource type="AudioStream" uid="uid://djipvfu8pnif1" path="res://View/Assets/Music/PATU Battle Scenario (Loop).wav" id="4_mi5e1"]
 
 [sub_resource type="Animation" id="Animation_qhjs1"]
 length = 0.001
@@ -110,3 +112,11 @@ offset_top = 155.0
 offset_right = 408.0
 offset_bottom = 195.0
 mouse_filter = 2
+
+[node name="BattleScenarioIntroMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ehyr3")
+
+[node name="BattleScenarioLoopMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_mi5e1")
+
+[connection signal="finished" from="BattleScenarioIntroMusic" to="." method="_on_battle_scenario_intro_music_finished"]
