@@ -44,6 +44,70 @@ func _on_start_button_mouse_exited() -> void:
 	startGameLabel.label_settings.font_color = Color('#fff')
 	
 
+func _on_start_game_label_mouse_entered() -> void:
+	_on_start_button_mouse_entered()
+
+
+func _on_start_game_label_mouse_exited() -> void:
+	_on_start_button_mouse_exited()
+
+
+func _on_start_button_focus_entered() -> void:
+	_on_start_button_mouse_entered()
+
+
+func _on_start_game_label_focus_exited() -> void:
+	_on_start_button_mouse_exited()
+
+
+func _on_tutorial_label_mouse_entered() -> void:
+	_on_tutorial_button_mouse_entered()
+
+
+func _on_tutorial_label_mouse_exited() -> void:
+	_on_tutorial_button_mouse_exited()
+
+
+func _on_tutorial_label_focus_entered() -> void:
+	_on_tutorial_button_mouse_entered()
+
+
+func _on_tutorial_label_focus_exited() -> void:
+	_on_tutorial_button_mouse_exited()
+
+
+func _on_about_label_mouse_entered() -> void:
+	_on_about_button_mouse_entered()
+
+
+func _on_about_label_mouse_exited() -> void:
+	_on_about_button_mouse_exited()
+
+
+func _on_about_label_focus_entered() -> void:
+	_on_about_button_mouse_entered()
+
+
+func _on_about_label_focus_exited() -> void:
+	_on_about_button_mouse_exited()
+
+
+func _on_credits_label_mouse_entered() -> void:
+	_on_credits_button_mouse_entered()
+
+
+func _on_credits_label_mouse_exited() -> void:
+	_on_credits_button_mouse_exited()
+
+
+func _on_credits_label_focus_entered() -> void:
+	_on_credits_button_mouse_entered()
+
+
+func _on_credits_label_focus_exited() -> void:
+	_on_credits_button_mouse_exited()
+
+
 func _on_tutorial_button_mouse_entered() -> void:
 	tutorialLabel.label_settings.font_color = Color('#f89f00')
 	menuHoverSound.play()

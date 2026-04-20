@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://6tlbd3mgplpq"]
+
+[ext_resource type="Script" uid="uid://dfv6irl1f7wlx" path="res://test/integration/test_integration_pause_menu.gd" id="1_pause"]
+
+[node name="IntegrationPauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_pause")

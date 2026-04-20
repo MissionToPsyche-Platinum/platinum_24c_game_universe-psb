@@ -19,7 +19,9 @@ scale = Vector2(1.004948, 0.81203705)
 texture = ExtResource("2_uphp0")
 
 [node name="EventScenarioIntroMusic" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
 
 [node name="EventScenarioLoopMusic" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
 
 [connection signal="finished" from="EventScenarioIntroMusic" to="." method="_on_event_scenario_intro_music_finished"]

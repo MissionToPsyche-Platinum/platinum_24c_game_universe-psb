@@ -17,7 +17,7 @@
 [sub_resource type="LabelSettings" id="LabelSettings_bm6xk"]
 font = ExtResource("4_mutsb")
 font_size = 90
-font_color = Color(0.6392157, 0.24705882, 0.35686275, 1)
+font_color = Color(0.92, 0.52, 0.64, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_3aps1"]
 font = ExtResource("4_mutsb")
@@ -36,22 +36,22 @@ font_color = Color(0.9254902, 0.47058824, 0.19607843, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_35spm"]
 font = ExtResource("4_mutsb")
 font_size = 40
-font_color = Color(0.6392157, 0.24705882, 0.35686275, 1)
+font_color = Color(0.92, 0.52, 0.64, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_c3nkw"]
 font = ExtResource("4_mutsb")
 font_size = 40
-font_color = Color(0.6392157, 0.24705882, 0.35686275, 1)
+font_color = Color(0.92, 0.52, 0.64, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_mc46l"]
 font = ExtResource("4_mutsb")
 font_size = 40
-font_color = Color(0.6392157, 0.24705882, 0.35686275, 1)
+font_color = Color(0.92, 0.52, 0.64, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_hy4uc"]
 font = ExtResource("4_mutsb")
 font_size = 40
-font_color = Color(0.6392157, 0.24705882, 0.35686275, 1)
+font_color = Color(0.92, 0.52, 0.64, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_bin81"]
 font = ExtResource("4_mutsb")
@@ -61,7 +61,7 @@ font_color = Color(0.9254902, 0.47058824, 0.19607843, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_wa2ll"]
 font = ExtResource("4_mutsb")
 font_size = 40
-font_color = Color(0.6392157, 0.24705882, 0.35686275, 1)
+font_color = Color(0.92, 0.52, 0.64, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_p68lx"]
 font = ExtResource("4_mutsb")
@@ -70,7 +70,7 @@ font_size = 30
 [sub_resource type="LabelSettings" id="LabelSettings_cj8ug"]
 font = ExtResource("4_mutsb")
 font_size = 40
-font_color = Color(0.6392157, 0.24705882, 0.35686275, 1)
+font_color = Color(0.92, 0.52, 0.64, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_pfksk"]
 font = ExtResource("4_mutsb")
@@ -84,7 +84,7 @@ font_color = Color(0.9254902, 0.47058824, 0.19607843, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_n4354"]
 font = ExtResource("4_mutsb")
 font_size = 40
-font_color = Color(0.6392157, 0.24705882, 0.35686275, 1)
+font_color = Color(0.92, 0.52, 0.64, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_kk3hr"]
 font = ExtResource("4_mutsb")
@@ -655,9 +655,11 @@ autoplay = "MainMenu"
 
 [node name="IntroMusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_35spm")
+bus = &"Music"
 
 [node name="LoopMusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_c3nkw")
+bus = &"Music"
 
 [connection signal="focus_exited" from="MainMenu/StartGameLabel" to="." method="_on_start_game_label_focus_exited"]
 [connection signal="mouse_entered" from="MainMenu/StartGameLabel" to="." method="_on_start_game_label_mouse_entered"]

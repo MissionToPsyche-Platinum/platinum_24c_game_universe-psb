@@ -115,8 +115,10 @@ mouse_filter = 2
 
 [node name="BattleScenarioIntroMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_ehyr3")
+bus = &"Music"
 
 [node name="BattleScenarioLoopMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_mi5e1")
+bus = &"Music"
 
 [connection signal="finished" from="BattleScenarioIntroMusic" to="." method="_on_battle_scenario_intro_music_finished"]

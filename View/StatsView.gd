@@ -48,43 +48,64 @@ const GRADE_TABLE = [
 	{ "min": 0, "grade": "F" },
 ]
 
-# Table for grade colors (psyche palette)
+# Table for grade colors (psyche palette). Values chosen so text is at least 4.5:1 vs near-black UI.
 const GRADE_COLORS = {
-	"P": "#FFFFFF", # white
-	"S": "#F9A000", # yellow
-	"A": "#F47D33", # orange
-	"B": "#EF5965", # light pink
-	"C": "#A5405C", # dark pink
-	"D": "#5A2752", # light purple
-	"F": "#312146", # dark purple
+	"P": "#FFFFFF",
+	"S": "#F9C84A",
+	"A": "#FFB070",
+	"B": "#FF8A9E",
+	"C": "#E87090",
+	"D": "#D0A8C8",
+	"F": "#C8C0E0",
 }
 
 # Constant used to calculate attribute %
 const MAXATTRIBUTE = 600
+
+
+func _get_stats_model() -> StatsModel:
+	if GameManager.stats == null or GameManager.stats.model == null:
+		return null
+	return GameManager.stats.model
+
+
+func _set_placeholder_stats_view() -> void:
+	cardsLabel.text = "0"
+	encountersLabel.text = "0"
+	attributeLabel.text = "0.00%"
+	scoreLabel.text = "0"
+	gradeLabel.text = "-"
+	if gradeLabel.label_settings != null:
+		gradeLabel.label_settings.font_color = Color.WHITE
+
 
 func _ready():
 	update_view()
 
 # Retrieve and update stats, score and grade labels
 func update_view():
-	# Stats
-	var stats = GameManager.stats
-	
-	cardsLabel.text = str(stats.model.cards_used)
-	encountersLabel.text = str(stats.model.total_encounters)
-	attributeLabel.text = get_attrib_percent() 
-	
+	var sm := _get_stats_model()
+	if sm == null:
+		_set_placeholder_stats_view()
+		return
+
+	cardsLabel.text = str(sm.cards_used)
+	encountersLabel.text = str(sm.total_encounters)
+	attributeLabel.text = get_attrib_percent()
+
 	# Score and grade
-	var score = calc_score()
+	var score := calc_score()
 	scoreLabel.text = str(score)
-	
-	var grade = get_grade(score)
+
+	var grade := get_grade(score)
 	gradeLabel.text = grade
 	gradeLabel.label_settings.font_color = Color(GRADE_COLORS[grade])
 
 # Helper to calculate score
 func calc_score() -> int:
-	var stats = GameManager.stats.model
+	var stats := _get_stats_model()
+	if stats == null:
+		return 0
 	var encounters = stats.total_encounters
 	var cards_used = stats.cards_used
 	var attribute_sum = stats.hullIntegrity + stats.power + stats.velocity
@@ -118,7 +139,9 @@ func get_score_from_table(value, table) -> int:
 
 # Helper to calculate and format attribute percentage
 func get_attrib_percent() -> String:
-	var stats = GameManager.stats.model
+	var stats := _get_stats_model()
+	if stats == null:
+		return "0.00%"
 	var attribute_sum = stats.hullIntegrity + stats.power + stats.velocity
 	var attribute_percent = float(attribute_sum) / MAXATTRIBUTE * 100.0
 	return "%.2f%%" % attribute_percent

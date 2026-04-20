@@ -21,3 +21,6 @@ cardSprite = ExtResource("2_l0c6e")
 cardDescription = "Whoops, Psyche left the rest of it's hull back on the launchpad - can we swing back and grab it real fast?"
 cardBehavior = Array[Resource]([SubResource("Resource_phwe3")])
 cardUseHeader = "Good news: Psyche got it. Bad news: It cost hundreds of millions of dollars and mission control is not pleased. "
+extraInfoHeaderString = "Psyche mission inspiration"
+extraInfoBodyString = "This card references the NASA Psyche mission and its spacecraft; use the icon to read optional mission context."
+hasExtraInfo = true

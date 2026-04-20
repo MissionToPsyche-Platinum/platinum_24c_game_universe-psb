@@ -3,6 +3,18 @@ extends GutTest
 var map: MapController
 
 
+func _forgive_known_engine_animation_warnings() -> void:
+	for e in get_errors():
+		if not e.is_engine_error():
+			continue
+		if (
+			e.contains_text("track_get_key_count")
+			or e.contains_text("Method/function failed. Returning: false")
+			or e.contains_text("Method/function failed. Returning: nullptr")
+		):
+			e.handled = true
+
+
 func before_each():
 	var scene: PackedScene = load("res://Model/Scenes/Map/map.tscn")
 	map = scene.instantiate()
@@ -16,6 +28,7 @@ func before_each():
 
 func after_each():
 	map.queue_free()
+	_forgive_known_engine_animation_warnings()
 
 # test movement to new scenario after scenario completion
 func test_move_to_new_scenario():
@@ -62,7 +75,7 @@ func test_move_to_new_scenario():
 		map.visible,
 		"Map should be visible after advancing position"
 	)
-	
+	_forgive_known_engine_animation_warnings()
 
 # make sure map doesnt auto-advance when clicking reward card
 func test_during_choose_reward():

@@ -1,5 +1,8 @@
 extends Node2D
 
+const _SETTINGS_MUSIC_SLIDER_PATH := NodePath("SettingsMenu/Setting Screen/HSlider")
+const _MUSIC_BUS_NAME := "Music"
+
 @export var player: Player
 @export var scenario: Scenario
 @export var cardManager: CardManager
@@ -88,6 +91,30 @@ func _ready() -> void:
 	
 	# Hide settings menu
 	$SettingsMenu.visible = false
+
+	_setup_settings_music_slider()
+
+
+func _setup_settings_music_slider() -> void:
+	var music_bus := AudioServer.get_bus_index(_MUSIC_BUS_NAME)
+	if music_bus < 0:
+		return
+	var slider := get_node_or_null(_SETTINGS_MUSIC_SLIDER_PATH) as HSlider
+	if slider == null:
+		return
+	slider.min_value = 0.0
+	slider.max_value = 100.0
+	slider.step = 1.0
+	slider.value = AudioServer.get_bus_volume_linear(music_bus) * 100.0
+	if not slider.value_changed.is_connected(_on_settings_music_volume_changed):
+		slider.value_changed.connect(_on_settings_music_volume_changed)
+
+
+func _on_settings_music_volume_changed(value: float) -> void:
+	var music_bus := AudioServer.get_bus_index(_MUSIC_BUS_NAME)
+	if music_bus < 0:
+		return
+	AudioServer.set_bus_volume_linear(music_bus, value / 100.0)
 
 
 func _on_response_label_gui_input(event: InputEvent) -> void:
