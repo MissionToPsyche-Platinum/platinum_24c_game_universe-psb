@@ -9,7 +9,7 @@
 [sub_resource type="Resource" id="Resource_a4ypw"]
 script = ExtResource("3_23dcj")
 affectedAttribute = 2
-amount = 30.0
+amount = 25.0
 metadata/_custom_type_script = "uid://cda51huvrayd1"
 
 [sub_resource type="Resource" id="Resource_vq4ld"]
