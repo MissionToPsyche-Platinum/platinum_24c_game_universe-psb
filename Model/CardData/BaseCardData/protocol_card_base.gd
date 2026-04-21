@@ -29,7 +29,7 @@ signal rewardsClickableHovered(card)
 #extra info variables
 @export var hasExtraInfo : bool
 var showingExtraInfo := false
-
+@export var extraInfoLink : String
 
 signal rewardChosen(card)
 
@@ -132,3 +132,7 @@ func _on_extra_info_button_pressed() -> void:
 
 func _on_reward_clickable_mouse_entered() -> void:
 	emit_signal("rewardsClickableHovered", self)
+
+
+func _on_link_button_pressed() -> void:
+	OS.shell_open(extraInfoLink)

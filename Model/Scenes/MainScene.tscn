@@ -1,55 +1,79 @@
-[gd_scene load_steps=76 format=4 uid="uid://b5aneqr63kcay"]
+[gd_scene load_steps=122 format=4 uid="uid://b5aneqr63kcay"]
 
 [ext_resource type="Script" uid="uid://bryyckfysnh62" path="res://Model/Scenes/mainScene.gd" id="1_6pwi0"]
 [ext_resource type="Script" uid="uid://lp0itw18h7mo" path="res://Model/Scenes/card_manager.gd" id="2_qb6nl"]
-[ext_resource type="PackedScene" uid="uid://bndv7o1dhk3ki" path="res://Model/CardData/Cards/SUPER_AWESOME_CARD.tscn" id="3_06rge"]
+[ext_resource type="PackedScene" uid="uid://crwupex5uugc0" path="res://Model/CardData/Cards/InvisbilityCloack.tscn" id="3_h6lqa"]
+[ext_resource type="PackedScene" uid="uid://byh027hbsrs8k" path="res://Model/CardData/Cards/Documentation.tscn" id="4_m6kxi"]
 [ext_resource type="PackedScene" uid="uid://cwqy5leds1y2y" path="res://Model/CardData/Cards/HyperEvolvedGoldfish.tscn" id="4_oeksu"]
+[ext_resource type="PackedScene" uid="uid://hwg3p28jd0c6" path="res://Model/CardData/Cards/Bribery.tscn" id="5_va1io"]
+[ext_resource type="PackedScene" uid="uid://qk6pgcfiad3l" path="res://Model/CardData/Cards/SpaceSlug.tscn" id="6_kk7rv"]
+[ext_resource type="PackedScene" uid="uid://l5cgjlfmp7q3" path="res://Model/CardData/Cards/KnowThyself.tscn" id="7_buwyi"]
 [ext_resource type="PackedScene" uid="uid://bhhb73esfp2pe" path="res://Model/CardData/Cards/SameRevolutionDeliver.tscn" id="7_qatxi"]
+[ext_resource type="PackedScene" uid="uid://dsjr6pca0yksj" path="res://Model/CardData/Cards/BrightsAreOn.tscn" id="8_syhfs"]
+[ext_resource type="PackedScene" uid="uid://dwkhx7445ygpu" path="res://Model/CardData/Cards/GravitationalWifi.tscn" id="9_hsxrn"]
 [ext_resource type="PackedScene" uid="uid://ck52rgyii648y" path="res://Model/CardData/Cards/ForgotSomething.tscn" id="9_v5pj8"]
-[ext_resource type="PackedScene" uid="uid://7wpt2pr8jwaa" path="res://Model/CardData/BaseCardData/protocol_card_base.tscn" id="10_35wlo"]
+[ext_resource type="PackedScene" uid="uid://17imtoq1ypop" path="res://Model/CardData/Cards/LuckyPeanuts.tscn" id="10_1p2x4"]
 [ext_resource type="PackedScene" uid="uid://bjgccrtsceylt" path="res://Model/CardData/Cards/QuantumCoinFliptscn.tscn" id="10_b1qgh"]
 [ext_resource type="Script" uid="uid://2liaka0mg74s" path="res://Model/Scenes/Player.gd" id="10_xfpm0"]
-[ext_resource type="Texture2D" uid="uid://bnhxgu0f1ye4y" path="res://View/Assets/Sprites/dummyPsyche.jpg" id="11_46vkd"]
+[ext_resource type="PackedScene" uid="uid://dthqm8sjhfdxw" path="res://Model/CardData/Cards/ExtremelyEnthusiasticintern.tscn" id="11_3ygrc"]
 [ext_resource type="Texture2D" uid="uid://chv57617bldww" path="res://View/Assets/Sprites/Attribute Bars/attribute_bar_mask.png" id="11_d184y"]
 [ext_resource type="FontFile" uid="uid://cyuqcf4mpncuy" path="res://View/Assets/Themes/PixelOperator-Bold.ttf" id="11_wki3r"]
-[ext_resource type="Script" uid="uid://cda51huvrayd1" path="res://Model/CardData/CardBehaviorData/AttriubuteEffect.gd" id="12_t26e8"]
+[ext_resource type="PackedScene" uid="uid://ceefa6gaempns" path="res://Model/CardData/Cards/ BagOfBolts.tscn" id="12_va6y7"]
 [ext_resource type="Texture2D" uid="uid://86il4rq4uylj" path="res://View/Assets/Sprites/Attribute Bars/attribute_bar_transparent-filled.png" id="12_wki3r"]
-[ext_resource type="Script" uid="uid://jvo5d8np0a4x" path="res://Model/CardData/CardBehaviorData/AttributeBehavior.gd" id="13_xetsj"]
+[ext_resource type="PackedScene" uid="uid://dsxwedna7mb7f" path="res://Model/CardData/Cards/AlienMalwareScan.tscn" id="13_cb7l3"]
+[ext_resource type="PackedScene" uid="uid://kxnsv2fy86u7" path="res://Model/CardData/Cards/AlienNetLauncher.tscn" id="14_7g70d"]
 [ext_resource type="Texture2D" uid="uid://dch647kaox1wi" path="res://View/Assets/Sprites/psyche.png" id="14_m84t2"]
 [ext_resource type="Texture2D" uid="uid://c11b3adcxqv2r" path="res://View/Assets/Card Hud/hud_filled.png" id="14_t7g2w"]
 [ext_resource type="Script" uid="uid://by8v8y3hmupv4" path="res://Model/Scenes/HandController.gd" id="14_v5pj8"]
+[ext_resource type="PackedScene" uid="uid://ca1kwu4pjg3if" path="res://Model/CardData/Cards/AlienRepellant.tscn" id="15_egsrh"]
 [ext_resource type="Texture2D" uid="uid://c5b6ep18mucxh" path="res://View/Assets/Card Hud/scenario_arrow.png" id="15_qatxi"]
+[ext_resource type="PackedScene" uid="uid://bst6vvfo1ouis" path="res://Model/CardData/Cards/BorrowedTime.tscn" id="16_b4wbc"]
 [ext_resource type="Texture2D" uid="uid://clkpqvj75twac" path="res://View/Assets/Card Hud/card_arrow_filled.png" id="16_k7non"]
+[ext_resource type="PackedScene" uid="uid://16ywhntkjqvr" path="res://Model/CardData/Cards/BruteForceCalculation.tscn" id="17_1db31"]
+[ext_resource type="PackedScene" uid="uid://bs4hiwrslk8nq" path="res://Model/CardData/Cards/CosmicChatroom.tscn" id="18_3wyjq"]
+[ext_resource type="PackedScene" uid="uid://nmdloph0hs40" path="res://Model/CardData/Cards/CosmicDuctTape.tscn" id="19_bd6ev"]
 [ext_resource type="Script" uid="uid://7y010iwclveo" path="res://Controller/UI Scripts/discardButtonScrip.gd" id="20_j5y8d"]
-[ext_resource type="Script" uid="uid://d3pn7t3bl1oxr" path="res://Controller/UI Scripts/trashcanScript.gd" id="20_rxymg"]
+[ext_resource type="PackedScene" uid="uid://o4bext6cdikb" path="res://Model/CardData/Cards/DeepSpaceBlaster.tscn" id="20_liucg"]
+[ext_resource type="Script" path="res://Controller/UI Scripts/trashcanScript.gd" id="20_rxymg"]
+[ext_resource type="PackedScene" uid="uid://dyodd41l1yhkr" path="res://Model/CardData/Cards/DeepSpaceHotline.tscn" id="21_roc15"]
 [ext_resource type="Script" uid="uid://bdio638up815l" path="res://Controller/UI Scripts/drawCardPreview.gd" id="21_rxymg"]
+[ext_resource type="PackedScene" uid="uid://bgiv34qukhndx" path="res://Model/CardData/Cards/DeepSpaceMetalDetector.tscn" id="22_th1ls"]
+[ext_resource type="PackedScene" uid="uid://pixdoyovlve4" path="res://Model/CardData/Cards/DrumKit.tscn" id="23_omv2v"]
+[ext_resource type="PackedScene" uid="uid://b24542odiort7" path="res://Model/CardData/Cards/FrisbeeOfDoom.tscn" id="25_tk215"]
+[ext_resource type="PackedScene" uid="uid://seg7h6mf4b4q" path="res://Model/CardData/Cards/GasPedal.tscn" id="26_mxbek"]
 [ext_resource type="Texture2D" uid="uid://dvn36rign71ly" path="res://View/Assets/Sprites/Gear.png" id="27_46vkd"]
+[ext_resource type="PackedScene" uid="uid://bxfgdjdrs0u13" path="res://Model/CardData/Cards/JovianFastball.tscn" id="28_ewf08"]
 [ext_resource type="Texture2D" uid="uid://7t06ui4ivxhu" path="res://View/Assets/Sprites/Arrow.png" id="28_t26e8"]
-
-[sub_resource type="Resource" id="Resource_7ptv6"]
-script = ExtResource("12_t26e8")
-affectedAttribute = 2
-amount = 30.0
-metadata/_custom_type_script = "uid://cda51huvrayd1"
-
-[sub_resource type="Resource" id="Resource_yixv0"]
-script = ExtResource("13_xetsj")
-affectedAttributes = Array[ExtResource("12_t26e8")]([SubResource("Resource_7ptv6")])
-metadata/_custom_type_script = "uid://jvo5d8np0a4x"
-
-[sub_resource type="PackedScene" id="PackedScene_nmj4c"]
-_bundled = {
-"base_scene": 0,
-"conn_count": 0,
-"conns": PackedInt32Array(),
-"editable_instances": [],
-"names": PackedStringArray("ProtocolCardBase", "cardName", "cardSprite", "cardDescription", "cardBehavior", "cardUseHeader"),
-"node_count": 1,
-"node_paths": [],
-"nodes": PackedInt32Array(-1, -1, 2147483647, 0, -1, 5, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 0),
-"variants": [ExtResource("10_35wlo"), "The Gas Pedal ", ExtResource("11_46vkd"), "It's not actually hooked up to anything, but the engineers say that flooring it and shouting \"VROOOOOOM\" makes you FEEL faster. ", Array[Resource]([SubResource("Resource_yixv0")]), "Hey, that DOES feel faster! VROOOOM!!"],
-"version": 3
-}
+[ext_resource type="PackedScene" uid="uid://bmat5uyfty1t2" path="res://Model/CardData/Cards/LaserGraffiti.tscn" id="29_f68i0"]
+[ext_resource type="PackedScene" uid="uid://b0komic1skp5d" path="res://Model/CardData/Cards/LazerEyes.tscn" id="30_cw1jt"]
+[ext_resource type="PackedScene" uid="uid://db4yjtexohrki" path="res://Model/CardData/Cards/MagneticSheild.tscn" id="31_v5ayf"]
+[ext_resource type="PackedScene" uid="uid://b4mujnqw1r7jw" path="res://Model/CardData/Cards/Magometer.tscn" id="32_i2g57"]
+[ext_resource type="PackedScene" uid="uid://q4u0qbfcx75v" path="res://Model/CardData/Cards/MultiSpectralSelfieStick.tscn" id="33_3d4g0"]
+[ext_resource type="PackedScene" uid="uid://q38kvlhnhv62" path="res://Model/CardData/Cards/MysteriousMartian.tscn" id="34_ipt0d"]
+[ext_resource type="PackedScene" uid="uid://d2ddwbsrofvao" path="res://Model/CardData/Cards/NoFlyZone.tscn" id="35_bgdkc"]
+[ext_resource type="PackedScene" uid="uid://bixsi6540nmxp" path="res://Model/CardData/Cards/PlanetarySwing.tscn" id="36_wqg0k"]
+[ext_resource type="PackedScene" uid="uid://us7n02cubxd7" path="res://Model/CardData/Cards/PrematurePowers.tscn" id="37_jnh14"]
+[ext_resource type="PackedScene" uid="uid://bmbb0hmc6e4bu" path="res://Model/CardData/Cards/PsycheCannonball.tscn" id="38_y1dmq"]
+[ext_resource type="PackedScene" uid="uid://b37fh2toktqxg" path="res://Model/CardData/Cards/RealityRewritingRay.tscn" id="39_1lsax"]
+[ext_resource type="PackedScene" uid="uid://ba3anonls50oq" path="res://Model/CardData/Cards/RedshiftAccelerator.tscn" id="40_tf330"]
+[ext_resource type="PackedScene" uid="uid://dpbrwrnhljytj" path="res://Model/CardData/Cards/RedundantEngineering.tscn" id="41_v7gr0"]
+[ext_resource type="PackedScene" uid="uid://bhjad8l4x5deq" path="res://Model/CardData/Cards/ReverseThePolarity.tscn" id="42_jjhdc"]
+[ext_resource type="PackedScene" uid="uid://i75l5l5knoxk" path="res://Model/CardData/Cards/ShamelessPlug.tscn" id="44_fh7q5"]
+[ext_resource type="PackedScene" uid="uid://c4mq56txagfua" path="res://Model/CardData/Cards/SolarElectricPropulsion.tscn" id="45_4ehjt"]
+[ext_resource type="PackedScene" uid="uid://brwon0h4pnd8b" path="res://Model/CardData/Cards/SolarPanelNunchucks.tscn" id="46_3lmcm"]
+[ext_resource type="PackedScene" uid="uid://bwwk3ftdw6b5a" path="res://Model/CardData/Cards/SolarPanelOrigami.tscn" id="47_guelh"]
+[ext_resource type="PackedScene" uid="uid://dryl4bum6djn3" path="res://Model/CardData/Cards/SolarPoweredShockTrap.tscn" id="48_8kein"]
+[ext_resource type="PackedScene" uid="uid://c77ahjw4k417n" path="res://Model/CardData/Cards/SpaceBureaucracy.tscn" id="49_f0gj0"]
+[ext_resource type="PackedScene" uid="uid://cxruuexyvtdft" path="res://Model/CardData/Cards/SpectrometerOfTruth.tscn" id="50_q1o7j"]
+[ext_resource type="PackedScene" uid="uid://ssqjfpqco2g2" path="res://Model/CardData/Cards/SThrusters.tscn" id="51_lth22"]
+[ext_resource type="PackedScene" uid="uid://cf0vtpba0pceu" path="res://Model/CardData/Cards/SuspiciouslyHelpfulAI.tscn" id="52_6mxbc"]
+[ext_resource type="PackedScene" uid="uid://b7k2h63b6bjqd" path="res://Model/CardData/Cards/SystemsEngineering.tscn" id="53_c2p3y"]
+[ext_resource type="PackedScene" uid="uid://bhjci4hsxeb21" path="res://Model/CardData/Cards/TheAlcubirereManuver.tscn" id="54_p13ks"]
+[ext_resource type="PackedScene" uid="uid://bdl6agntdhtcp" path="res://Model/CardData/Cards/TheEggCracks.tscn" id="55_eqdxn"]
+[ext_resource type="PackedScene" uid="uid://dtfla6nq8glnn" path="res://Model/CardData/Cards/TinCan.tscn" id="56_k2l46"]
+[ext_resource type="PackedScene" uid="uid://do21kike7ohr6" path="res://Model/CardData/Cards/TitaniumRepairKit.tscn" id="57_hitg7"]
+[ext_resource type="PackedScene" uid="uid://d3ihj301cuc1h" path="res://Model/CardData/Cards/TooBigToFail.tscn" id="58_0yjnd"]
+[ext_resource type="PackedScene" uid="uid://c8t2avcd1qkcy" path="res://Model/CardData/Cards/TurnEverythingOffAndBackOn.tscn" id="59_fly8i"]
 
 [sub_resource type="Theme" id="Theme_d184y"]
 
@@ -924,8 +948,8 @@ drawCardPreview = NodePath("UI/DrawCardPreview")
 
 [node name="CardManager" type="Node" parent="."]
 script = ExtResource("2_qb6nl")
-defaultDeck = Array[PackedScene]([ExtResource("3_06rge"), ExtResource("4_oeksu")])
-bank = Array[PackedScene]([ExtResource("7_qatxi"), SubResource("PackedScene_nmj4c"), ExtResource("9_v5pj8"), ExtResource("9_v5pj8")])
+defaultDeck = Array[PackedScene]([ExtResource("3_h6lqa"), ExtResource("4_m6kxi"), ExtResource("5_va1io"), ExtResource("6_kk7rv"), ExtResource("7_buwyi"), ExtResource("8_syhfs"), ExtResource("9_hsxrn"), ExtResource("10_1p2x4"), ExtResource("10_1p2x4"), ExtResource("11_3ygrc")])
+bank = Array[PackedScene]([ExtResource("12_va6y7"), ExtResource("13_cb7l3"), ExtResource("14_7g70d"), ExtResource("15_egsrh"), ExtResource("16_b4wbc"), ExtResource("8_syhfs"), ExtResource("17_1db31"), ExtResource("18_3wyjq"), ExtResource("19_bd6ev"), ExtResource("20_liucg"), ExtResource("21_roc15"), ExtResource("22_th1ls"), ExtResource("23_omv2v"), ExtResource("9_v5pj8"), ExtResource("25_tk215"), ExtResource("26_mxbek"), ExtResource("4_oeksu"), ExtResource("28_ewf08"), ExtResource("29_f68i0"), ExtResource("30_cw1jt"), ExtResource("31_v5ayf"), ExtResource("32_i2g57"), ExtResource("33_3d4g0"), ExtResource("34_ipt0d"), ExtResource("35_bgdkc"), ExtResource("36_wqg0k"), ExtResource("37_jnh14"), ExtResource("38_y1dmq"), ExtResource("39_1lsax"), ExtResource("40_tf330"), ExtResource("41_v7gr0"), ExtResource("42_jjhdc"), ExtResource("7_qatxi"), ExtResource("44_fh7q5"), ExtResource("45_4ehjt"), ExtResource("46_3lmcm"), ExtResource("47_guelh"), ExtResource("48_8kein"), ExtResource("49_f0gj0"), ExtResource("50_q1o7j"), ExtResource("51_lth22"), ExtResource("52_6mxbc"), ExtResource("53_c2p3y"), ExtResource("54_p13ks"), ExtResource("55_eqdxn"), ExtResource("56_k2l46"), ExtResource("57_hitg7"), ExtResource("58_0yjnd"), ExtResource("59_fly8i")])
 rewardMinimumAmount = 3
 
 [node name="Player" type="Node" parent="."]

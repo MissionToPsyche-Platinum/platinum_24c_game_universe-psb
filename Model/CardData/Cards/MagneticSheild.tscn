@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://db4yjtexohrki"]
+
+[ext_resource type="PackedScene" uid="uid://7wpt2pr8jwaa" path="res://Model/CardData/BaseCardData/protocol_card_base.tscn" id="1_qbtlm"]
+[ext_resource type="Script" uid="uid://csm0y40wfj4uj" path="res://Model/CardData/CardBehaviorData/AttackBehavior.gd" id="2_o7xrd"]
+[ext_resource type="Texture2D" uid="uid://gjtq0gdt8xy3" path="res://View/Assets/Sprites/Card Sprites/AnomolousCard.png" id="3_aybcq"]
+
+[sub_resource type="Resource" id="Resource_x0y43"]
+script = ExtResource("2_o7xrd")
+targets = 4
+damage = 10
+metadata/_custom_type_script = "uid://csm0y40wfj4uj"
+
+[node name="Control" instance=ExtResource("1_qbtlm")]
+cardName = "Magnetic Shield"
+cardDescription = "This magnetometer isn't just looking for ancient fields- it's on high alert, using magnetic forces to keep space debris and intruders at bay."
+cardBehavior = Array[Resource]([SubResource("Resource_x0y43")])
+cardUseHeader = "The amazing and mysterious power of magnetism wards off the intruders!"
+extraInfoHeaderString = "Magnetometer"
+extraInfoBodyString = "Psyche's Magnetometer will detect and measure the remanent magnetic field of the Psyche asteroid using two identical high-sensitivity magnetic field sensors located on the middle and outer end of a 6-foot (2-meter) boom."
+hasExtraInfo = true
+extraInfoLink = "https://psyche.ssl.berkeley.edu/gallery/meet-nasas-psyche-team-who-will-measure-the-asteroids-magnetic-field/"
+
+[node name="CardBackground2" parent="." index="0"]
+texture = ExtResource("3_aybcq")

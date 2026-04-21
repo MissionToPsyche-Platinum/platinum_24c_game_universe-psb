@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://ba3anonls50oq"]
+[gd_scene load_steps=8 format=3 uid="uid://ba3anonls50oq"]
 
 [ext_resource type="PackedScene" uid="uid://7wpt2pr8jwaa" path="res://Model/CardData/BaseCardData/protocol_card_base.tscn" id="1_2miws"]
 [ext_resource type="Texture2D" uid="uid://bnhxgu0f1ye4y" path="res://View/Assets/Sprites/dummyPsyche.jpg" id="2_pw5ty"]
 [ext_resource type="Script" uid="uid://cda51huvrayd1" path="res://Model/CardData/CardBehaviorData/AttriubuteEffect.gd" id="3_ln20d"]
 [ext_resource type="Script" uid="uid://jvo5d8np0a4x" path="res://Model/CardData/CardBehaviorData/AttributeBehavior.gd" id="4_13348"]
+[ext_resource type="Texture2D" uid="uid://di2vrl7ihcl5g" path="res://View/Assets/Sprites/Card Sprites/BasicCard.png" id="5_mhpi7"]
 
 [sub_resource type="Resource" id="Resource_8skws"]
 script = ExtResource("3_ln20d")
@@ -22,3 +23,10 @@ cardSprite = ExtResource("2_pw5ty")
 cardDescription = "By cleverly manipulating the spectrometer, Psyche amplifies an object's redshift, convincing the universe it's already in rapid retreat. The result? Psyche takes off at incredible speed!"
 cardBehavior = Array[Resource]([SubResource("Resource_msoos")])
 cardUseHeader = "You successfuly convice the universe to let you speed up - and Newton rolls over in his grave."
+extraInfoHeaderString = "Spectrometer"
+extraInfoBodyString = "Psyche's Gamma-Ray and Neutron Spectrometer is designed to measure and map the Psyche asteroid's elemental composition. It is mounted on a 6-foot (2-meter) boom to maximize field of view and distance the sensors from the background radiation created by energetic particles interacting with the spacecraft."
+hasExtraInfo = true
+extraInfoLink = "https://psyche.ssl.berkeley.edu/gallery/meet-the-nasa-psyche-team-who-will-map-psyches-elemental-composition/"
+
+[node name="CardBackground2" parent="." index="0"]
+texture = ExtResource("5_mhpi7")

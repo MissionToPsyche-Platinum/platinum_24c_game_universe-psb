@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://byh027hbsrs8k"]
+
+[ext_resource type="PackedScene" uid="uid://7wpt2pr8jwaa" path="res://Model/CardData/BaseCardData/protocol_card_base.tscn" id="1_qc2ve"]
+[ext_resource type="Texture2D" uid="uid://caf3r8htu6qgf" path="res://View/Assets/Sprites/Card Sprites/Documentation.png" id="2_i4hns"]
+[ext_resource type="Script" uid="uid://csm0y40wfj4uj" path="res://Model/CardData/CardBehaviorData/AttackBehavior.gd" id="3_fsump"]
+[ext_resource type="Texture2D" uid="uid://di2vrl7ihcl5g" path="res://View/Assets/Sprites/Card Sprites/BasicCard.png" id="4_cqfqd"]
+
+[sub_resource type="Resource" id="Resource_w7du1"]
+script = ExtResource("3_fsump")
+targets = 4
+damage = 5
+metadata/_custom_type_script = "uid://csm0y40wfj4uj"
+
+[node name="Control" instance=ExtResource("1_qc2ve")]
+cardName = "Documentation"
+cardSprite = ExtResource("2_i4hns")
+cardDescription = "Well, the answer's in the documentation somewhere, I'm sure. We did make sure to document everything... right?"
+cardBehavior = Array[Resource]([SubResource("Resource_w7du1")])
+cardUseHeader = "Presenting your dense technical documentation makes the enemies quiver with fear. Even attempting to comprehend it is enough to make anyone's HP deplete."
+
+[node name="CardBackground2" parent="." index="0"]
+texture = ExtResource("4_cqfqd")
