@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3jpwhesmikf3"]
+[gd_scene load_steps=6 format=3 uid="uid://b3jpwhesmikf3"]
 
 [ext_resource type="PackedScene" uid="uid://q4t6l2sq7g66" path="res://Model/ScenarioData/ScenarioBases/EventScenarioBase.tscn" id="1_xtoki"]
 [ext_resource type="Script" uid="uid://cda51huvrayd1" path="res://Model/CardData/CardBehaviorData/AttriubuteEffect.gd" id="2_jabcu"]
+[ext_resource type="Texture2D" uid="uid://dhty1x8jfvhs0" path="res://View/Assets/Sprites/18_NASAGramReels.png" id="3_2mbwh"]
 
 [sub_resource type="Resource" id="Resource_2mbwh"]
 script = ExtResource("2_jabcu")
@@ -19,3 +20,8 @@ metadata/_custom_type_script = "uid://cda51huvrayd1"
 affectedAttributes = Array[ExtResource("2_jabcu")]([SubResource("Resource_2mbwh")])
 attributeWinConditions = Array[ExtResource("2_jabcu")]([SubResource("Resource_jvgru")])
 scenarioText = "The Psyche spacecraft has appeared to grow bored over its long journey and has started using much needed power stores to scroll NASAGram Reels! We need more excitement before it drains all of its battery!"
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
+position = Vector2(850, 350)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_2mbwh")

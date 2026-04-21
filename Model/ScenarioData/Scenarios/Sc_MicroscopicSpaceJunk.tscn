@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://daxcgqmhsx8dw"]
+[gd_scene load_steps=6 format=3 uid="uid://daxcgqmhsx8dw"]
 
 [ext_resource type="PackedScene" uid="uid://daqtccsrkuw38" path="res://Model/ScenarioData/ScenarioBases/scenario_base.tscn" id="1_fag4n"]
 [ext_resource type="Script" uid="uid://cda51huvrayd1" path="res://Model/CardData/CardBehaviorData/AttriubuteEffect.gd" id="2_bjocv"]
+[ext_resource type="Texture2D" uid="uid://d22rxvtkivxg4" path="res://View/Assets/Sprites/4_MicroscopicSpaceJunk.png" id="3_bjocv"]
 
 [sub_resource type="Resource" id="Resource_byvet"]
 script = ExtResource("2_bjocv")
@@ -18,3 +19,8 @@ metadata/_custom_type_script = "uid://cda51huvrayd1"
 affectedAttributes = Array[ExtResource("2_bjocv")]([SubResource("Resource_byvet")])
 attributeWinConditions = Array[ExtResource("2_bjocv")]([SubResource("Resource_fpsow")])
 scenarioText = "A bunch of tiny space junk starts ramming into Psyche, causing it to slow down. It needs some thicker skin before it stops completely!"
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
+position = Vector2(850, 350)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_bjocv")

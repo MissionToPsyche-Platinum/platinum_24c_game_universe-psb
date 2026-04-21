@@ -1,19 +1,20 @@
 [gd_scene load_steps=3 format=3 uid="uid://crglusv5hy7xv"]
 
 [ext_resource type="PackedScene" uid="uid://df5i2gsuui8n7" path="res://Model/ScenarioData/EnemyData/EnemyBase.tscn" id="1_oqo7v"]
-[ext_resource type="Texture2D" uid="uid://dch647kaox1wi" path="res://View/Assets/Sprites/psyche.png" id="2_bjrh5"]
+[ext_resource type="Texture2D" uid="uid://c1n3vysirmswq" path="res://View/Assets/Sprites/36_DarkPsyche.png" id="2_mwtxl"]
 
 [node name="Enemy" instance=ExtResource("1_oqo7v")]
 
 [node name="EnemySprite" parent="." index="0"]
-offset_bottom = 335.0
-texture = ExtResource("2_bjrh5")
-flip_h = true
+offset_bottom = 617.0
+texture = ExtResource("2_mwtxl")
 
 [node name="HealthBar" parent="." index="2"]
+anchor_left = 0.011000001
 anchor_top = 0.0
 anchor_right = 0.81200004
 anchor_bottom = 0.0
-offset_top = 153.71603
+offset_left = 0.14998817
+offset_top = 268.71603
 offset_right = 0.15795898
-offset_bottom = 196.71603
+offset_bottom = 311.71603
