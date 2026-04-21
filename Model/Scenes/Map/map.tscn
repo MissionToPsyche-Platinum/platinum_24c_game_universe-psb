@@ -1,9 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://l5bls356gnis"]
+[gd_scene load_steps=26 format=3 uid="uid://l5bls356gnis"]
 
 [ext_resource type="Script" uid="uid://bxwswjf8gv2si" path="res://Controller/MapController.gd" id="1_0li6s"]
-[ext_resource type="Resource" uid="uid://cncjei2duhnqf" path="res://Model/MapData/Maps/Map_3Nodes.tres" id="2_0li6s"]
+[ext_resource type="Resource" uid="uid://dnwr3xh5c00fn" path="res://Model/MapData/Maps/Map_Easy.tres" id="2_y5reu"]
 [ext_resource type="Texture2D" uid="uid://damk48kf44hid" path="res://View/Assets/Backgrounds/background.png" id="3_0li6s"]
+[ext_resource type="Resource" uid="uid://wkvyuncn20x6" path="res://Model/MapData/Maps/Map_Medium.tres" id="3_y5reu"]
 [ext_resource type="FontFile" uid="uid://cyuqcf4mpncuy" path="res://View/Assets/Themes/PixelOperator-Bold.ttf" id="4_d4m7o"]
+[ext_resource type="Resource" uid="uid://du01028njv25s" path="res://Model/MapData/Maps/Map_Hard.tres" id="4_y5reu"]
 [ext_resource type="Script" uid="uid://elf5ysvy7ssy" path="res://View/MapView.gd" id="5_jw7hu"]
 [ext_resource type="PackedScene" uid="uid://brf8psrjkpbsh" path="res://Model/MapData/scenario.tscn" id="6_thtja"]
 [ext_resource type="PackedScene" uid="uid://bhmwabijgly1l" path="res://Model/MapData/unknown_scenario.tscn" id="7_8645b"]
@@ -24,36 +26,61 @@ outline_color = Color(0, 0, 0, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_om4mg"]
 size = Vector2(274, 39)
 
-[node name="Map" type="Node2D" node_paths=PackedStringArray("view")]
-script = ExtResource("1_0li6s")
-layout = ExtResource("2_0li6s")
-view = NodePath("MapView")
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d4m7o"]
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jw7hu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_thtja"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8645b"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3wq78"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_y5reu"]
+font = ExtResource("4_d4m7o")
+font_size = 30
+font_color = Color(0.9764706, 0.78431374, 0.2901961, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_d4m7o"]
+font = ExtResource("4_d4m7o")
+font_size = 30
+font_color = Color(1, 0.6901961, 0.4392157, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jw7hu"]
+font = ExtResource("4_d4m7o")
+font_size = 30
+font_color = Color(1, 0.5411765, 0.61960787, 1)
+
+[node name="Map" type="Node2D" node_paths=PackedStringArray("view", "top_label", "easy_desc_label", "med_desc_label", "hard_desc_label", "scroll_button", "difficulty_buttons")]
+script = ExtResource("1_0li6s")
+easy_layout = ExtResource("2_y5reu")
+medium_layout = ExtResource("3_y5reu")
+hard_layout = ExtResource("4_y5reu")
+view = NodePath("MapView")
+top_label = NodePath("Top Text")
+easy_desc_label = NodePath("Difficulty Select/Easy Button/Easy Desc")
+med_desc_label = NodePath("Difficulty Select/Medium Button/Med Desc")
+hard_desc_label = NodePath("Difficulty Select/Hard Button/Hard Desc")
+scroll_button = NodePath("Scroll Button")
+difficulty_buttons = NodePath("Difficulty Select")
+
+[node name="Background" type="TextureRect" parent="."]
 offset_right = 1920.0
 offset_bottom = 1080.0
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("3_0li6s")
 
-[node name="Map Text Control" type="Control" parent="."]
-z_index = 100
-layout_mode = 3
-anchors_preset = 0
-offset_right = 1152.0
-offset_bottom = 88.0
-mouse_filter = 2
-
-[node name="InstructionText" type="Label" parent="Map Text Control"]
-layout_mode = 1
+[node name="Top Text" type="Label" parent="."]
+z_index = 10
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -275.0
-offset_top = -15.5
-offset_right = 275.0
-offset_bottom = 15.5
+offset_left = 301.0
+offset_top = 28.5
+offset_right = 851.0
+offset_bottom = 59.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "Select a highlighted scenario to advance."
@@ -83,6 +110,120 @@ shape = SubResource("RectangleShape2D_om4mg")
 
 [node name="Node2D" type="Node2D" parent="Scroll Button"]
 
+[node name="Difficulty Select" type="HBoxContainer" parent="."]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 275.0
+offset_top = 311.0
+offset_right = 895.0
+offset_bottom = 352.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+theme_override_constants/separation = 150
+
+[node name="Easy Button" type="Button" parent="Difficulty Select"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9764706, 0.78431374, 0.2901961, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_d4m7o")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_d4m7o")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_jw7hu")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_thtja")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_8645b")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3wq78")
+text = "Easy"
+
+[node name="Easy Desc" type="Label" parent="Difficulty Select/Easy Button"]
+visible = false
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_left = -51.5
+offset_top = 58.0
+offset_right = 48.5
+offset_bottom = 157.0
+grow_horizontal = 2
+label_settings = SubResource("LabelSettings_y5reu")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Medium Button" type="Button" parent="Difficulty Select"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.6901961, 0.4392157, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_d4m7o")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_d4m7o")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_jw7hu")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_thtja")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_8645b")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3wq78")
+text = "Medium"
+
+[node name="Med Desc" type="Label" parent="Difficulty Select/Medium Button"]
+visible = false
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_left = -51.5
+offset_top = 58.0
+offset_right = 48.5
+offset_bottom = 157.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.6901961, 0.4392157, 1)
+label_settings = SubResource("LabelSettings_d4m7o")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Hard Button" type="Button" parent="Difficulty Select"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.5411765, 0.61960787, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_d4m7o")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_d4m7o")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_jw7hu")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_thtja")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_8645b")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3wq78")
+text = "Hard"
+
+[node name="Hard Desc" type="Label" parent="Difficulty Select/Hard Button"]
+visible = false
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_left = -51.5
+offset_top = 58.0
+offset_right = 48.5
+offset_bottom = 157.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.5411765, 0.61960787, 1)
+label_settings = SubResource("LabelSettings_jw7hu")
+horizontal_alignment = 1
+autowrap_mode = 2
+
 [connection signal="input_event" from="Scroll Button" to="." method="_on_scroll_button_input_event"]
 [connection signal="mouse_entered" from="Scroll Button" to="Scroll Button" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Scroll Button" to="Scroll Button" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Difficulty Select/Easy Button" to="." method="_on_easy_button_mouse_entered"]
+[connection signal="mouse_exited" from="Difficulty Select/Easy Button" to="." method="_on_easy_button_mouse_exited"]
+[connection signal="pressed" from="Difficulty Select/Easy Button" to="." method="_on_easy_button_pressed"]
+[connection signal="mouse_entered" from="Difficulty Select/Medium Button" to="." method="_on_medium_button_mouse_entered"]
+[connection signal="mouse_exited" from="Difficulty Select/Medium Button" to="." method="_on_medium_button_mouse_exited"]
+[connection signal="pressed" from="Difficulty Select/Medium Button" to="." method="_on_medium_button_pressed"]
+[connection signal="mouse_entered" from="Difficulty Select/Hard Button" to="." method="_on_hard_button_mouse_entered"]
+[connection signal="mouse_exited" from="Difficulty Select/Hard Button" to="." method="_on_hard_button_mouse_exited"]
+[connection signal="pressed" from="Difficulty Select/Hard Button" to="." method="_on_hard_button_pressed"]
