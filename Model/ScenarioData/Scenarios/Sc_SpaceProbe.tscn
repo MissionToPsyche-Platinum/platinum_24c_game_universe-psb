@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ccey5jwf4hpy6"]
+[gd_scene load_steps=6 format=3 uid="uid://moso7qawfre8"]
 
 [ext_resource type="PackedScene" uid="uid://q4t6l2sq7g66" path="res://Model/ScenarioData/ScenarioBases/EventScenarioBase.tscn" id="1_kpphp"]
 [ext_resource type="Script" uid="uid://cda51huvrayd1" path="res://Model/CardData/CardBehaviorData/AttriubuteEffect.gd" id="2_8bove"]
@@ -20,7 +20,6 @@ affectedAttributes = Array[ExtResource("2_8bove")]([SubResource("Resource_5hf7v"
 attributeWinConditions = Array[ExtResource("2_8bove")]([SubResource("Resource_l60xo")])
 scenarioText = "A rogue space probe is attempting to annex you and drill into you for rare Earth metals. Perhaps a nice little shock will send him back home. "
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
-position = Vector2(850, 350)
-scale = Vector2(0.5, 0.5)
+[node name="EventScenarioSprite" parent="." index="3"]
+scale = Vector2(0.58411574, 0.58411574)
 texture = ExtResource("3_8bove")

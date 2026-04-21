@@ -1,13 +1,17 @@
 extends Scenario
 class_name EventScenario
 
-@export var eventScenarioIntroMusic : AudioStreamPlayer
-@export var eventScenarioLoopoMusic : AudioStreamPlayer
 
+@onready var eventScenarioIntroMusic : AudioStreamPlayer = $EventScenarioIntroMusic
+@onready var eventScenarioLoopMusic : AudioStreamPlayer = $EventScenarioLoopMusic
 
 func _ready():
-	#play the music 
-	#eventScenarioIntroMusic.play()
+	#play the music
+	
+	while eventScenarioIntroMusic == null and eventScenarioLoopMusic == null:
+		await get_tree().process_frame
+	 
+	eventScenarioIntroMusic.play()
 	pass
 
 func performScenarioEffect() -> void:
@@ -62,4 +66,4 @@ func getWinCondition() -> String:
 					
 
 func _on_event_scenario_intro_music_finished() -> void:
-	eventScenarioLoopoMusic.play()
+	eventScenarioLoopMusic.play()

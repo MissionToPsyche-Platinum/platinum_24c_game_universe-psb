@@ -248,7 +248,7 @@ func onRewardHovered(card) -> void:
 	
 	#set the new text
 	if card != null:
-		rewardEffectHolder.text = "EFFECT:\n" + card.getCardHint()
+		rewardEffectHolder.text = "EFFECT:\n" + card.getCardHint().replace('\n', ' ')
 	
 	#tween in the new text
 	tween = create_tween()

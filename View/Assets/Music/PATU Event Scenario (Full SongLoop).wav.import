@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dmjx4xu51t5k3"
+path="res://.godot/imported/PATU Event Scenario (Full SongLoop).wav-d342c4953a4ed6e6cf22d74e5dde932d.sample"
+
+[deps]
+
+source_file="res://View/Assets/Music/PATU Event Scenario (Full SongLoop).wav"
+dest_files=["res://.godot/imported/PATU Event Scenario (Full SongLoop).wav-d342c4953a4ed6e6cf22d74e5dde932d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

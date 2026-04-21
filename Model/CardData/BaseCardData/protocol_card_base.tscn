@@ -107,6 +107,7 @@ offset_bottom = 97.0
 text = "Protocol Card Title"
 label_settings = SubResource("LabelSettings_evo7n")
 horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="ExtraInfoHolder" type="Control" parent="CardBackground2"]
 visible = false
@@ -132,7 +133,7 @@ layout_mode = 0
 offset_left = -260.0
 offset_top = -270.0
 offset_right = 258.0
-offset_bottom = 300.0
+offset_bottom = 258.0
 text = "Extra Info Body"
 label_settings = SubResource("LabelSettings_6nflw")
 horizontal_alignment = 1
@@ -142,11 +143,11 @@ autowrap_mode = 3
 [node name="LinkButton" type="LinkButton" parent="CardBackground2/ExtraInfoHolder"]
 layout_mode = 0
 offset_left = -218.0
-offset_top = 324.0
+offset_top = 272.0
 offset_right = 223.0
-offset_bottom = 380.0
+offset_bottom = 328.0
 theme = SubResource("Theme_e7m50")
-theme_override_colors/font_color = Color(0.8117647, 0.3019608, 0.34117648, 1)
+theme_override_colors/font_color = Color(0.2941049, 0.49414623, 0.82246536, 1)
 theme_override_font_sizes/font_size = 40
 text = "Click here to learn more!"
 

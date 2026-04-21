@@ -1,27 +1,25 @@
 [gd_scene load_steps=6 format=3 uid="uid://deeletb3f4xjx"]
 
-[ext_resource type="PackedScene" uid="uid://daqtccsrkuw38" path="res://Model/ScenarioData/ScenarioBases/scenario_base.tscn" id="1_psfb2"]
+[ext_resource type="PackedScene" uid="uid://q4t6l2sq7g66" path="res://Model/ScenarioData/ScenarioBases/EventScenarioBase.tscn" id="1_b4et1"]
 [ext_resource type="Script" uid="uid://cda51huvrayd1" path="res://Model/CardData/CardBehaviorData/AttriubuteEffect.gd" id="2_3k4yb"]
 [ext_resource type="Texture2D" uid="uid://qtsq8414h1av" path="res://View/Assets/Sprites/2_DoubleDarkMatter.png" id="3_b4et1"]
 
-[sub_resource type="Resource" id="Resource_b4et1"]
+[sub_resource type="Resource" id="Resource_g1w15"]
 script = ExtResource("2_3k4yb")
-affectedAttribute = 1
 amount = -20.0
 metadata/_custom_type_script = "uid://cda51huvrayd1"
 
-[sub_resource type="Resource" id="Resource_g1w15"]
+[sub_resource type="Resource" id="Resource_qtjmx"]
 script = ExtResource("2_3k4yb")
 affectedAttribute = 2
 amount = 150.0
 metadata/_custom_type_script = "uid://cda51huvrayd1"
 
-[node name="ScenarioBase" instance=ExtResource("1_psfb2")]
-affectedAttributes = Array[ExtResource("2_3k4yb")]([SubResource("Resource_b4et1")])
-attributeWinConditions = Array[ExtResource("2_3k4yb")]([SubResource("Resource_g1w15")])
+[node name="ScenarioBase" instance=ExtResource("1_b4et1")]
+affectedAttributes = Array[ExtResource("2_3k4yb")]([SubResource("Resource_g1w15")])
+attributeWinConditions = Array[ExtResource("2_3k4yb")]([SubResource("Resource_qtjmx")])
 scenarioText = "The amount of dark energy just doubled, and the universe is expanding twice as fast! Psyche needs to speed up - divert all power to propulsion!"
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
-position = Vector2(850, 350)
-scale = Vector2(0.5, 0.5)
+[node name="EventScenarioSprite" parent="." index="3"]
+scale = Vector2(0.9069953, 0.90699524)
 texture = ExtResource("3_b4et1")

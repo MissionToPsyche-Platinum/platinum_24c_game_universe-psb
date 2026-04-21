@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b625bvp2xgl6p"]
+[gd_scene load_steps=16 format=3 uid="uid://b625bvp2xgl6p"]
 
 [ext_resource type="Script" uid="uid://bqgg65agkmona" path="res://Model/ScenarioData/Scenarios/Minigames/shooting_minigame.gd" id="1_8w5t2"]
 [ext_resource type="Texture2D" uid="uid://damk48kf44hid" path="res://View/Assets/Backgrounds/background.png" id="2_2fd1w"]
@@ -6,8 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://chye4k5n4cwp1" path="res://Model/Scenes/Projectile.tscn" id="4_ca4h5"]
 [ext_resource type="Texture2D" uid="uid://c3iq4tbrlyyx3" path="res://View/Assets/Sprites/MiniPsyche.png" id="5_2lgeh"]
 [ext_resource type="Script" uid="uid://dbaa0xgtu8bfm" path="res://Model/Scenes/Player_hitbox.gd" id="6_y7ad3"]
-[ext_resource type="Script" uid="uid://hn14cp77nx3c" path="res://Model/Scenes/UFOSpawner.gd" id="7_r2dru"]
+[ext_resource type="Script" path="res://Model/Scenes/UFOSpawner.gd" id="7_r2dru"]
 [ext_resource type="PackedScene" uid="uid://bn27xkqw3riwh" path="res://Model/Scenes/UFO.tscn" id="8_3ekcj"]
+[ext_resource type="AudioStream" uid="uid://dhhdkxltcaa21" path="res://View/Assets/Music/PATU Event Mingame (Full Song Loop).wav" id="9_jswkn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7d8pj"]
 size = Vector2(47, 29)
@@ -120,3 +121,8 @@ polygon = PackedVector2Array(440, 493, 440, 460, 386, 426)
 position = Vector2(-29746.95, -732.00415)
 scale = Vector2(66.199455, 2.5000076)
 polygon = PackedVector2Array(456, 532, 466, 532, 466.00006, 535.9828, 466, 540, 456, 540, 456, 535.96985)
+
+[node name="MinigameMusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_jswkn")
+
+[connection signal="finished" from="MinigameMusicPlayer" to="." method="_on_minigame_music_player_finished"]

@@ -8,8 +8,11 @@ var won = false
 @onready var spawner = $ObstacleSpawner
 @onready var player = $Player
 
+@onready var minigameMusicPlayer : AudioStreamPlayer = $MinigameMusicPlayer
+
 func _ready():
 	player.add_to_group("player")
+	minigameMusicPlayer.play()
 
 func _process(delta: float) -> void:
 	elapsed += delta
@@ -29,3 +32,7 @@ func performScenarioEffect() -> void:
 
 func getWinCondition() -> String:
 	return "Survive for %d seconds." % survival_time
+
+
+func _on_minigame_music_player_finished() -> void:
+	minigameMusicPlayer.play()

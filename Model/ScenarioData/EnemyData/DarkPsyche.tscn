@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://crglusv5hy7xv"]
+[gd_scene load_steps=3 format=3 uid="uid://bittdgdyi73ji"]
 
 [ext_resource type="PackedScene" uid="uid://df5i2gsuui8n7" path="res://Model/ScenarioData/EnemyData/EnemyBase.tscn" id="1_oqo7v"]
 [ext_resource type="Texture2D" uid="uid://c1n3vysirmswq" path="res://View/Assets/Sprites/36_DarkPsyche.png" id="2_mwtxl"]
 
 [node name="Enemy" instance=ExtResource("1_oqo7v")]
+MAX_HEALTH = 5
 
 [node name="EnemySprite" parent="." index="0"]
 offset_bottom = 617.0

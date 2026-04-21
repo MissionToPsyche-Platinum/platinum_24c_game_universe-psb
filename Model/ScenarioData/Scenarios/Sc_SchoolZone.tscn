@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://rkhalu57ftek"]
+[gd_scene load_steps=6 format=3 uid="uid://cvouef65d81p"]
 
 [ext_resource type="PackedScene" uid="uid://q4t6l2sq7g66" path="res://Model/ScenarioData/ScenarioBases/EventScenarioBase.tscn" id="1_53mw8"]
 [ext_resource type="Script" uid="uid://cda51huvrayd1" path="res://Model/CardData/CardBehaviorData/AttriubuteEffect.gd" id="2_0c3n1"]
@@ -20,7 +20,6 @@ affectedAttributes = Array[ExtResource("2_0c3n1")]([SubResource("Resource_h886v"
 attributeWinConditions = Array[ExtResource("2_0c3n1")]([SubResource("Resource_tccs5")])
 scenarioText = "The Gliflorpian board of Civil Affairs states that it’s illegal to go over 25000 mph in a Gliflorpian school zone. It also states that spacecraft travelling under 25000 mph are eligible to be scrapped for parts. Keep your hull intact!"
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
-position = Vector2(850, 350)
-scale = Vector2(0.5, 0.5)
+[node name="EventScenarioSprite" parent="." index="3"]
+scale = Vector2(0.42878097, 0.42878094)
 texture = ExtResource("3_h886v")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://baurn8abmfm3q"]
+[gd_scene load_steps=13 format=3 uid="uid://baurn8abmfm3q"]
 
 [ext_resource type="Script" uid="uid://bxr1kd0m58uk2" path="res://Model/ScenarioData/Scenarios/Minigames/MeteorMinigame.gd" id="1_hhsjt"]
 [ext_resource type="Texture2D" uid="uid://damk48kf44hid" path="res://View/Assets/Backgrounds/background.png" id="2_dqcod"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c3iq4tbrlyyx3" path="res://View/Assets/Sprites/MiniPsyche.png" id="4_h6auf"]
 [ext_resource type="Script" uid="uid://buexmjw3sbpst" path="res://Model/Scenes/obstacle_spawner.gd" id="5_kgu73"]
 [ext_resource type="PackedScene" uid="uid://carqfabi83euw" path="res://Model/Scenes/Obstacle.tscn" id="6_arrel"]
+[ext_resource type="AudioStream" uid="uid://dhhdkxltcaa21" path="res://View/Assets/Music/PATU Event Mingame (Full Song Loop).wav" id="7_48fw8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_33mjn"]
 size = Vector2(237, 153)
@@ -106,3 +107,8 @@ polygon = PackedVector2Array(456, 532, 466, 532, 466.00006, 535.9828, 466, 540, 
 position = Vector2(-912.59204, -838.83435)
 scale = Vector2(3.074073, 2.701489)
 polygon = PackedVector2Array(440, 493, 440, 460, 386, 426)
+
+[node name="MinigameMusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_48fw8")
+
+[connection signal="finished" from="MinigameMusicPlayer" to="." method="_on_minigame_music_player_finished"]

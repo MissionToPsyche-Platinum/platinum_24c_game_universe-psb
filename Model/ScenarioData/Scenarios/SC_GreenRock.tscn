@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dx20ho31u5rlx"]
+[gd_scene load_steps=6 format=3 uid="uid://dxbvrkffmu5yc"]
 
 [ext_resource type="PackedScene" uid="uid://q4t6l2sq7g66" path="res://Model/ScenarioData/ScenarioBases/EventScenarioBase.tscn" id="1_n004s"]
 [ext_resource type="Script" uid="uid://cda51huvrayd1" path="res://Model/CardData/CardBehaviorData/AttriubuteEffect.gd" id="2_csh5r"]
@@ -20,7 +20,6 @@ affectedAttributes = Array[ExtResource("2_csh5r")]([SubResource("Resource_0qljq"
 attributeWinConditions = Array[ExtResource("2_csh5r")]([SubResource("Resource_hpqi3")])
 scenarioText = "Some rare, mysterious green rock is clinging to the hull of the probe. The onboard tools can remove it safely, but it will take some time to build the power needed to chip away at it. Maybe you can find some way to supercharge them?"
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
-position = Vector2(850, 350)
-scale = Vector2(0.5, 0.5)
+[node name="EventScenarioSprite" parent="." index="3"]
+scale = Vector2(0.6260745, 0.6260745)
 texture = ExtResource("3_csh5r")

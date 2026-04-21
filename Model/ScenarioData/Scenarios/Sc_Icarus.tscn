@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://c1pktnfg88b5y"]
 
-[ext_resource type="PackedScene" uid="uid://daqtccsrkuw38" path="res://Model/ScenarioData/ScenarioBases/scenario_base.tscn" id="1_bky4j"]
+[ext_resource type="PackedScene" uid="uid://q4t6l2sq7g66" path="res://Model/ScenarioData/ScenarioBases/EventScenarioBase.tscn" id="1_evfqp"]
 [ext_resource type="Script" uid="uid://cda51huvrayd1" path="res://Model/CardData/CardBehaviorData/AttriubuteEffect.gd" id="2_evfqp"]
 [ext_resource type="Texture2D" uid="uid://dw0f1tagf3i3d" path="res://View/Assets/Sprites/3_Icarus.png" id="3_evfqp"]
 
@@ -15,12 +15,14 @@ affectedAttribute = 2
 amount = 150.0
 metadata/_custom_type_script = "uid://cda51huvrayd1"
 
-[node name="ScenarioBase" instance=ExtResource("1_bky4j")]
+[node name="ScenarioBase" instance=ExtResource("1_evfqp")]
 affectedAttributes = Array[ExtResource("2_evfqp")]([SubResource("Resource_bn5gu")])
 attributeWinConditions = Array[ExtResource("2_evfqp")]([SubResource("Resource_gx5fk")])
-scenarioText = "Hey, that star's pretty big! Oh wait, it's just really close... OH NO! THATS SUPER CLOSE! FLY BEFORE YOU MELT!"
+scenarioText = "Hey, that star's pretty big! Oh wait, it's just really close... OH NO! THAT’S SUPER CLOSE! FLY BEFORE YOU MELT!"
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
-position = Vector2(927, 425)
-scale = Vector2(0.5, 0.5)
+[node name="EventScenarioSprite" parent="." index="3"]
+scale = Vector2(0.587626, 0.587626)
 texture = ExtResource("3_evfqp")
+
+[node name="SpriteAnimationPlayer" parent="EventScenarioSprite" index="0"]
+autoplay = ""

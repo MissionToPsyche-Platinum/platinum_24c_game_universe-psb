@@ -1,7 +1,47 @@
-[gd_scene load_steps=3 format=3 uid="uid://q4t6l2sq7g66"]
+[gd_scene load_steps=8 format=3 uid="uid://q4t6l2sq7g66"]
 
 [ext_resource type="Script" uid="uid://ci8rwothrjp43" path="res://Model/ScenarioData/ScenarioBases/EventScenario.gd" id="1_wmm3l"]
 [ext_resource type="Texture2D" uid="uid://damk48kf44hid" path="res://View/Assets/Backgrounds/background.png" id="2_uphp0"]
+[ext_resource type="AudioStream" uid="uid://dmjx4xu51t5k3" path="res://View/Assets/Music/PATU Event Scenario (Full SongLoop).wav" id="3_cdjk3"]
+[ext_resource type="Texture2D" uid="uid://bh1yvmsi01mvl" path="res://View/Assets/Sprites/icon.svg" id="4_7lwuy"]
+
+[sub_resource type="Animation" id="Animation_yap8c"]
+resource_name = "EventScenarioSpriteAnimation"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5.02),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(821, 305), Vector2(821, 380)]
+}
+
+[sub_resource type="Animation" id="Animation_h1b7m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(821, 305)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mphlr"]
+_data = {
+&"EventScenarioSpriteAnimation": SubResource("Animation_yap8c"),
+&"RESET": SubResource("Animation_h1b7m")
+}
 
 [node name="ScenarioBase" type="Node2D"]
 script = ExtResource("1_wmm3l")
@@ -19,9 +59,21 @@ scale = Vector2(1.004948, 0.81203705)
 texture = ExtResource("2_uphp0")
 
 [node name="EventScenarioIntroMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_cdjk3")
 bus = &"Music"
 
 [node name="EventScenarioLoopMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_cdjk3")
 bus = &"Music"
+
+[node name="EventScenarioSprite" type="Sprite2D" parent="."]
+position = Vector2(821, 305)
+texture = ExtResource("4_7lwuy")
+
+[node name="SpriteAnimationPlayer" type="AnimationPlayer" parent="EventScenarioSprite"]
+libraries = {
+&"": SubResource("AnimationLibrary_mphlr")
+}
+autoplay = "EventScenarioSpriteAnimation"
 
 [connection signal="finished" from="EventScenarioIntroMusic" to="." method="_on_event_scenario_intro_music_finished"]

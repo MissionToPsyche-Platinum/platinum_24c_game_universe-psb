@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bl4c7wujxpl8f"]
+[gd_scene load_steps=6 format=3 uid="uid://b3qfsiabjp6jw"]
 
 [ext_resource type="PackedScene" uid="uid://q4t6l2sq7g66" path="res://Model/ScenarioData/ScenarioBases/EventScenarioBase.tscn" id="1_yb8hb"]
 [ext_resource type="Script" uid="uid://cda51huvrayd1" path="res://Model/CardData/CardBehaviorData/AttriubuteEffect.gd" id="2_rq6v3"]
@@ -21,7 +21,6 @@ affectedAttributes = Array[ExtResource("2_rq6v3")]([SubResource("Resource_p8kfk"
 attributeWinConditions = Array[ExtResource("2_rq6v3")]([SubResource("Resource_crh38")])
 scenarioText = "Psyche has begun betting its batteries in high-stakes games of Space Poker. You could tell it to run, but… You’re only 32 games of poker away from being a billionaire, so LET IT RIDE! "
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
-position = Vector2(850, 350)
-scale = Vector2(0.5, 0.5)
+[node name="EventScenarioSprite" parent="." index="3"]
+scale = Vector2(0.58359134, 0.58359134)
 texture = ExtResource("3_p8kfk")

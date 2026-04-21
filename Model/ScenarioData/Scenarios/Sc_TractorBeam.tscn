@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dtf87eef6ye2v"]
+[gd_scene load_steps=6 format=3 uid="uid://mar0m4cc8ic7"]
 
 [ext_resource type="PackedScene" uid="uid://q4t6l2sq7g66" path="res://Model/ScenarioData/ScenarioBases/EventScenarioBase.tscn" id="1_v6nqa"]
 [ext_resource type="Script" uid="uid://cda51huvrayd1" path="res://Model/CardData/CardBehaviorData/AttriubuteEffect.gd" id="2_pc784"]
@@ -21,7 +21,6 @@ affectedAttributes = Array[ExtResource("2_pc784")]([SubResource("Resource_ev8h4"
 attributeWinConditions = Array[ExtResource("2_pc784")]([SubResource("Resource_ikdu7")])
 scenarioText = "That’s no moon! You are caught in an enemy tractor beam and you are trying to escape but you're losing speed. You’ll need to jump into hyperspace before it's too late..."
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
-position = Vector2(850, 350)
-scale = Vector2(0.5, 0.5)
+[node name="EventScenarioSprite" parent="." index="3"]
+scale = Vector2(0.5602564, 0.56025636)
 texture = ExtResource("3_ev8h4")

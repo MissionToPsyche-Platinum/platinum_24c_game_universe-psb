@@ -2,11 +2,13 @@ extends MiniGames
 class_name DestroyerMinigame
 
 @onready var brick_scene = preload("res://Model/Scenes/Brick.tscn")
+@onready var minigameMusicPlayer : AudioStreamPlayer = $MinigameMusicPlayer
 
 var remaining_bricks: int = 0
 
 func _ready():
 	place_bricks()
+	minigameMusicPlayer.play()
 
 func place_bricks():
 	var rows = 8
@@ -41,3 +43,7 @@ func performScenarioEffect() -> void:
 
 func getWinCondition() -> String:
 	return "Destroy The Bricks"
+
+
+func _on_minigame_music_player_finished() -> void:
+	minigameMusicPlayer.play()

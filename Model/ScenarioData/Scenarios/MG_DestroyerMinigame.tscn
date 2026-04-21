@@ -1,11 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://cl18i6vu11p1g"]
+[gd_scene load_steps=13 format=3 uid="uid://cl18i6vu11p1g"]
 
 [ext_resource type="Script" uid="uid://cdd3x52rwy75m" path="res://Model/ScenarioData/Scenarios/Minigames/Destroyer_minigame.gd" id="1_rmixt"]
 [ext_resource type="Texture2D" uid="uid://damk48kf44hid" path="res://View/Assets/Backgrounds/background.png" id="2_5f5sr"]
-[ext_resource type="Script" uid="uid://gvu1oxogrdct" path="res://Model/Scenes/Destroyerplayer.gd" id="3_kh0nn"]
+[ext_resource type="Script" path="res://Model/Scenes/Destroyerplayer.gd" id="3_kh0nn"]
 [ext_resource type="Texture2D" uid="uid://c3iq4tbrlyyx3" path="res://View/Assets/Sprites/MiniPsyche.png" id="4_tf0wu"]
 [ext_resource type="PackedScene" uid="uid://bcjcdsyq1u72e" path="res://Model/Scenes/Ball.tscn" id="5_1ln3u"]
 [ext_resource type="Script" uid="uid://dr5vhyexxmm22" path="res://Model/Scenes/ResetBall.gd" id="6_b64cb"]
+[ext_resource type="AudioStream" uid="uid://dhhdkxltcaa21" path="res://View/Assets/Music/PATU Event Mingame (Full Song Loop).wav" id="7_kibw2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tr506"]
 size = Vector2(59, 38)
@@ -104,4 +105,8 @@ script = ExtResource("6_b64cb")
 position = Vector2(774.5, 575)
 shape = SubResource("RectangleShape2D_y078s")
 
+[node name="MinigameMusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_kibw2")
+
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="finished" from="MinigameMusicPlayer" to="." method="_on_minigame_music_player_finished"]

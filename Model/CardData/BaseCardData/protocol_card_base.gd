@@ -62,7 +62,10 @@ func _ready() -> void:
 		extraInfoButton.visible = true 
 		showingExtraInfo = false
 		
-	
+	await fit_text_to_label(protocolCardName)
+	await fit_text_to_label(protocolCardDescription)
+	await fit_text_to_label(extraInfoHeader)
+	await fit_text_to_label(extraInfoBody)
 	
 		
 func use() -> void:
@@ -124,6 +127,40 @@ func toggleExtraInfo() -> void:
 		cardInfoHolder.visible = false
 		showingExtraInfo = true
 	
+
+#helper function to ensure the text of all labels fit within their boundaries 
+func fit_text_to_label(label: Label, min_font_size: int = 10) -> void:
+	if label == null:
+		return
+	
+	label.autowrap_mode = TextServer.AUTOWRAP_WORD
+	
+	await get_tree().process_frame
+	
+	if label.label_settings != null:
+		label.label_settings = label.label_settings.duplicate()
+	else:
+		label.label_settings = LabelSettings.new()
+	
+	var original_size := label.label_settings.font_size
+	if original_size <= 0:
+		original_size = 16
+	
+	var font_size := original_size
+	
+	while font_size >= min_font_size:
+		label.label_settings.font_size = font_size
+		await get_tree().process_frame
+		
+		var text_size := label.get_minimum_size()
+		var bounds := label.size
+		
+		if text_size.x <= bounds.x and text_size.y <= bounds.y:
+			return
+		
+		font_size -= 1
+
+
 
 
 func _on_extra_info_button_pressed() -> void:
