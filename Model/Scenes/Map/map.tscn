@@ -1,10 +1,11 @@
-[gd_scene load_steps=25 format=3 uid="uid://l5bls356gnis"]
+[gd_scene load_steps=26 format=3 uid="uid://l5bls356gnis"]
 
 [ext_resource type="Script" uid="uid://bxwswjf8gv2si" path="res://Controller/MapController.gd" id="1_0li6s"]
 [ext_resource type="Resource" uid="uid://dnwr3xh5c00fn" path="res://Model/MapData/Maps/Map_Easy.tres" id="2_y5reu"]
 [ext_resource type="Texture2D" uid="uid://damk48kf44hid" path="res://View/Assets/Backgrounds/background.png" id="3_0li6s"]
 [ext_resource type="Resource" uid="uid://wkvyuncn20x6" path="res://Model/MapData/Maps/Map_Medium.tres" id="3_y5reu"]
 [ext_resource type="FontFile" uid="uid://cyuqcf4mpncuy" path="res://View/Assets/Themes/PixelOperator-Bold.ttf" id="4_d4m7o"]
+[ext_resource type="Resource" uid="uid://du01028njv25s" path="res://Model/MapData/Maps/Map_Hard.tres" id="4_y5reu"]
 [ext_resource type="Script" uid="uid://elf5ysvy7ssy" path="res://View/MapView.gd" id="5_jw7hu"]
 [ext_resource type="PackedScene" uid="uid://brf8psrjkpbsh" path="res://Model/MapData/scenario.tscn" id="6_thtja"]
 [ext_resource type="PackedScene" uid="uid://bhmwabijgly1l" path="res://Model/MapData/unknown_scenario.tscn" id="7_8645b"]
@@ -54,7 +55,7 @@ font_color = Color(1, 0.5411765, 0.61960787, 1)
 script = ExtResource("1_0li6s")
 easy_layout = ExtResource("2_y5reu")
 medium_layout = ExtResource("3_y5reu")
-hard_layout = ExtResource("3_y5reu")
+hard_layout = ExtResource("4_y5reu")
 view = NodePath("MapView")
 top_label = NodePath("Top Text")
 easy_desc_label = NodePath("Difficulty Select/Easy Button/Easy Desc")
