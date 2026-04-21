@@ -1,4 +1,4 @@
-[gd_scene load_steps=122 format=4 uid="uid://b5aneqr63kcay"]
+[gd_scene load_steps=127 format=4 uid="uid://b5aneqr63kcay"]
 
 [ext_resource type="Script" uid="uid://bryyckfysnh62" path="res://Model/Scenes/mainScene.gd" id="1_6pwi0"]
 [ext_resource type="Script" uid="uid://lp0itw18h7mo" path="res://Model/Scenes/card_manager.gd" id="2_qb6nl"]
@@ -74,6 +74,11 @@
 [ext_resource type="PackedScene" uid="uid://do21kike7ohr6" path="res://Model/CardData/Cards/TitaniumRepairKit.tscn" id="57_hitg7"]
 [ext_resource type="PackedScene" uid="uid://d3ihj301cuc1h" path="res://Model/CardData/Cards/TooBigToFail.tscn" id="58_0yjnd"]
 [ext_resource type="PackedScene" uid="uid://c8t2avcd1qkcy" path="res://Model/CardData/Cards/TurnEverythingOffAndBackOn.tscn" id="59_fly8i"]
+[ext_resource type="AudioStream" uid="uid://qva8kbwf30dq" path="res://View/Assets/Sounds/TrashcanOpen.wav.wav" id="75_syhfs"]
+[ext_resource type="AudioStream" uid="uid://ouebixu84qxs" path="res://View/Assets/Sounds/TrashcanClose.wav.wav" id="76_hsxrn"]
+[ext_resource type="AudioStream" uid="uid://b5rpkqmcyb560" path="res://View/Assets/Sounds/MenuOpen.wav" id="77_1p2x4"]
+[ext_resource type="AudioStream" uid="uid://dwn2bv5aoyde8" path="res://View/Assets/Sounds/MenuClose.wav" id="78_3ygrc"]
+[ext_resource type="AudioStream" uid="uid://dm8uxkn7rg0ly" path="res://View/Assets/Sounds/Card.wav.wav" id="79_va6y7"]
 
 [sub_resource type="Theme" id="Theme_d184y"]
 
@@ -926,11 +931,10 @@ modulate_color = Color(0.972549, 0.62352943, 0, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_t26e8"]
 font = ExtResource("11_wki3r")
 
-[node name="MainScene" type="Node2D" node_paths=PackedStringArray("player", "cardManager", "hullIntegrityLabel", "powerLabel", "velocityLabel", "rewardsHolder", "rewardEffectHolder", "scenarioHeader", "scenarioEffectLabel", "scenarioWinConditionLabel", "hullIntegrityBar", "powerBar", "velocityBar", "animationPlayer", "handController", "drawCardPreview")]
+[node name="MainScene" type="Node2D" node_paths=PackedStringArray("player", "cardManager", "hullIntegrityLabel", "powerLabel", "velocityLabel", "rewardsHolder", "rewardEffectHolder", "scenarioHeader", "scenarioEffectLabel", "scenarioWinConditionLabel", "hullIntegrityBar", "powerBar", "velocityBar", "animationPlayer", "handController", "drawCardPreview", "openMenuSFX", "closeMenuSFX")]
 script = ExtResource("1_6pwi0")
 player = NodePath("Player")
 cardManager = NodePath("CardManager")
-stats = NodePath("")
 hullIntegrityLabel = NodePath("UI/Attribute Holder/AttributeLabels/HullIntegrityLabel")
 powerLabel = NodePath("UI/Attribute Holder/AttributeLabels/Power Label")
 velocityLabel = NodePath("UI/Attribute Holder/AttributeLabels/Velocity Label")
@@ -945,6 +949,8 @@ velocityBar = NodePath("UI/Attribute Holder/Player Attribute Bars/Velocity Bar")
 animationPlayer = NodePath("GUIAnimationPlayer")
 handController = NodePath("UI/Hand Container")
 drawCardPreview = NodePath("UI/DrawCardPreview")
+openMenuSFX = NodePath("MenuOpenSFX")
+closeMenuSFX = NodePath("MenuCloseSFX")
 
 [node name="CardManager" type="Node" parent="."]
 script = ExtResource("2_qb6nl")
@@ -1136,7 +1142,7 @@ label_settings = SubResource("LabelSettings_6pwi0")
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Hand Container" type="Control" parent="UI" node_paths=PackedStringArray("cardEffectLabel", "continueScenarioControl", "discardCardButtonAnimationPlayer", "trashcanAnimationPlayer")]
+[node name="Hand Container" type="Control" parent="UI" node_paths=PackedStringArray("cardEffectLabel", "continueScenarioControl", "discardCardButtonAnimationPlayer", "trashcanAnimationPlayer", "trashCanOpenSFX", "trashCanCloseSFX", "cardSFX")]
 z_index = 2
 z_as_relative = false
 anchors_preset = 0
@@ -1152,6 +1158,9 @@ discardLabel = "You toss your cards into the solar wind, hoping for better draws
 discardCardButtonAnimationPlayer = NodePath("DiscardButtonHolder/DiscardButtonAnimationPlayer")
 trashcanAnimationPlayer = NodePath("TrashCanHolder/TrashCanAnimationPlayer")
 discardUseHeader = "You toss your cards into the solar wind, hoping for better luck in the future..."
+trashCanOpenSFX = NodePath("../../TrashCanOpenSFX")
+trashCanCloseSFX = NodePath("../../TrashCanCloseSFX")
+cardSFX = NodePath("../../CardSFX")
 
 [node name="Hud Image" type="Sprite2D" parent="UI/Hand Container"]
 position = Vector2(-10.621529, 612.656)
@@ -1664,6 +1673,21 @@ offset_right = 4.0
 offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="TrashCanOpenSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("75_syhfs")
+
+[node name="TrashCanCloseSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("76_hsxrn")
+
+[node name="MenuOpenSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("77_1p2x4")
+
+[node name="MenuCloseSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("78_3ygrc")
+
+[node name="CardSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("79_va6y7")
 
 [connection signal="gui_input" from="UI/Hand Container" to="UI/Hand Container" method="_on_gui_input"]
 [connection signal="gui_input" from="UI/Hand Container/Scenario Label/Scenario Label" to="." method="_on_scenario_label_gui_input"]

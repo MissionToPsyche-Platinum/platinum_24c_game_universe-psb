@@ -42,6 +42,11 @@ var tutorialPlayer : Player
 @onready var tutorialScenarioIntroPlayer : AudioStreamPlayer = $TutorialScenarioIntroPlayer
 @onready var tutorialScenarioLoopPlayer : AudioStreamPlayer = $TutorialScenarioLoopPlayer
 	
+	
+#sounds 
+@export var openMenuSFX : AudioStreamPlayer
+@export var closeMenuSFX : AudioStreamPlayer
+
 
 var tutorialSteps = []
 var currentIndex:= 0
@@ -660,11 +665,13 @@ func performBattleScenarioEffect() -> void:
 func _on_response_label_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		UIAnimationPlayer.play("DisplayCardGui")
+		openMenuSFX.play()
 
 
 func _on_scenario_label_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		UIAnimationPlayer.play("HideCardGui")
+		closeMenuSFX.play()
 		
 	
 func playMusic() -> void:
