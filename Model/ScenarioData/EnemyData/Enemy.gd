@@ -9,7 +9,7 @@ signal clicked(enemy : Enemy)
 @export var MAX_HEALTH : int
 #reference to the enemy's health bar
 @export var healthBar : TextureProgressBar
-
+@export var healthLabel : Label
 #referecence to the enemySprite for shader control
 @export var sprite  : TextureRect
 
@@ -39,7 +39,8 @@ func _ready() -> void:
 	custom_minimum_size.x = sprite.size.x * sprite.scale.x
 	custom_minimum_size.y = sprite.size.y * sprite.scale.y
 	
-	
+	#set health label
+	healthLabel.text = str(MAX_HEALTH) + "/" + str(MAX_HEALTH)
 
 
 func damageEnemy(amt : int) -> void:
@@ -47,6 +48,9 @@ func damageEnemy(amt : int) -> void:
 	
 	#change healthBar
 	healthBar.value = health
+	
+	#change health label
+	healthLabel.text = str(health) + "/" + str(MAX_HEALTH)
 	
 	#check for death
 	if health <= 0:

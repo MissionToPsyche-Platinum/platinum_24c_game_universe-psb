@@ -22,7 +22,12 @@ scenarioText = "Hey, that star's pretty big! Oh wait, it's just really close... 
 
 [node name="EventScenarioSprite" parent="." index="3"]
 scale = Vector2(0.587626, 0.587626)
-texture = ExtResource("3_evfqp")
+texture = null
 
 [node name="SpriteAnimationPlayer" parent="EventScenarioSprite" index="0"]
 autoplay = ""
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="4"]
+position = Vector2(909.99994, 419.99997)
+scale = Vector2(0.5425532, 0.5425532)
+texture = ExtResource("3_evfqp")

@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://df5i2gsuui8n7"]
+[gd_scene load_steps=11 format=3 uid="uid://df5i2gsuui8n7"]
 
 [ext_resource type="Script" uid="uid://p75noca3rrwy" path="res://Model/ScenarioData/EnemyData/Enemy.gd" id="1_oqej4"]
 [ext_resource type="Texture2D" uid="uid://b6qhrnt10w205" path="res://View/Assets/Sprites/Enemies/aliens.png" id="1_v2m37"]
 [ext_resource type="Material" uid="uid://sr7jy46okfds" path="res://View/Assets/Materials/enemyOutlineMaterial.tres" id="2_e43fq"]
 [ext_resource type="Texture2D" uid="uid://chv57617bldww" path="res://View/Assets/Sprites/Attribute Bars/attribute_bar_mask.png" id="4_ydqg5"]
 [ext_resource type="Texture2D" uid="uid://86il4rq4uylj" path="res://View/Assets/Sprites/Attribute Bars/attribute_bar_transparent-filled.png" id="5_bf35b"]
+[ext_resource type="FontFile" uid="uid://cyuqcf4mpncuy" path="res://View/Assets/Themes/PixelOperator-Bold.ttf" id="6_bf35b"]
 
 [sub_resource type="Animation" id="Animation_oqej4"]
 resource_name = "EnemyIdle"
@@ -44,7 +45,11 @@ _data = {
 &"RESET": SubResource("Animation_e43fq")
 }
 
-[node name="Enemy" type="Control" node_paths=PackedStringArray("healthBar", "sprite")]
+[sub_resource type="LabelSettings" id="LabelSettings_h6bk4"]
+font = ExtResource("6_bf35b")
+font_size = 40
+
+[node name="Enemy" type="Control" node_paths=PackedStringArray("healthBar", "healthLabel", "sprite")]
 layout_mode = 3
 anchor_right = 0.34
 anchor_bottom = 0.356
@@ -54,6 +59,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_oqej4")
 healthBar = NodePath("HealthBar")
+healthLabel = NodePath("HealthLabel")
 sprite = NodePath("EnemySprite")
 
 [node name="EnemySprite" type="TextureRect" parent="."]
@@ -86,6 +92,16 @@ texture_over = ExtResource("4_ydqg5")
 texture_progress = ExtResource("5_bf35b")
 tint_progress = Color(0.6873869, 0.24107623, 0.2179296, 1)
 metadata/_edit_use_anchors_ = true
+
+[node name="HealthLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 200.0
+offset_right = 250.0
+offset_bottom = 247.0
+text = "x/x"
+label_settings = SubResource("LabelSettings_h6bk4")
+horizontal_alignment = 1
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
