@@ -13,12 +13,12 @@ texture = ExtResource("2_jpqm1")
 
 [node name="HealthBar" parent="." index="2"]
 offset_left = 63.0
-offset_top = 368.75864
+offset_top = 174.75864
 offset_right = 377.0
-offset_bottom = 411.75867
+offset_bottom = 217.75867
 
 [node name="HealthLabel" parent="." index="3"]
 offset_left = 154.0
-offset_top = 520.0
+offset_top = 326.00003
 offset_right = 320.0
-offset_bottom = 567.0
+offset_bottom = 373.00003
