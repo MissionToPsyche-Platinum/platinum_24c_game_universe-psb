@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://dx20ho31u5rlx"]
+
+[ext_resource type="PackedScene" uid="uid://q4t6l2sq7g66" path="res://Model/ScenarioData/ScenarioBases/EventScenarioBase.tscn" id="1_n004s"]
+[ext_resource type="Script" uid="uid://cda51huvrayd1" path="res://Model/CardData/CardBehaviorData/AttriubuteEffect.gd" id="2_csh5r"]
+
+[sub_resource type="Resource" id="Resource_0qljq"]
+script = ExtResource("2_csh5r")
+amount = -20.0
+metadata/_custom_type_script = "uid://cda51huvrayd1"
+
+[sub_resource type="Resource" id="Resource_hpqi3"]
+script = ExtResource("2_csh5r")
+affectedAttribute = 1
+amount = 170.0
+metadata/_custom_type_script = "uid://cda51huvrayd1"
+
+[node name="ScenarioBase" instance=ExtResource("1_n004s")]
+affectedAttributes = Array[ExtResource("2_csh5r")]([SubResource("Resource_0qljq")])
+attributeWinConditions = Array[ExtResource("2_csh5r")]([SubResource("Resource_hpqi3")])
+scenarioText = "Some rare, mysterious green rock is clinging to the hull of the probe. The onboard tools can remove it safely, but it will take some time to build the power needed to chip away at it. Maybe you can find some way to supercharge them?"

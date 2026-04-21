@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://cv1kdo2ifkfqm"]
+
+[ext_resource type="PackedScene" uid="uid://q4t6l2sq7g66" path="res://Model/ScenarioData/ScenarioBases/EventScenarioBase.tscn" id="1_hmr61"]
+[ext_resource type="Script" uid="uid://cda51huvrayd1" path="res://Model/CardData/CardBehaviorData/AttriubuteEffect.gd" id="2_6voo4"]
+
+[sub_resource type="Resource" id="Resource_slkae"]
+script = ExtResource("2_6voo4")
+affectedAttribute = 2
+amount = -10.0
+metadata/_custom_type_script = "uid://cda51huvrayd1"
+
+[sub_resource type="Resource" id="Resource_cw4vu"]
+script = ExtResource("2_6voo4")
+affectedAttribute = 2
+amount = 150.0
+metadata/_custom_type_script = "uid://cda51huvrayd1"
+
+[node name="ScenarioBase" instance=ExtResource("1_hmr61")]
+affectedAttributes = Array[ExtResource("2_6voo4")]([SubResource("Resource_slkae")])
+attributeWinConditions = Array[ExtResource("2_6voo4")]([SubResource("Resource_cw4vu")])
+scenarioText = "You tried to take a shortcut through an asteroid field but sadly, you didn’t think of the local fauna that might be living there so now you have a group of spaceworms hot on your trail."

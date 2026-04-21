@@ -20,10 +20,6 @@ config/icon="res://View/Assets/Sprites/icon.svg"
 GameManager="*res://Controller/GameManager.gd"
 TargetController="*res://Controller/TargetController.gd"
 
-[audio]
-
-buses/default_bus_layout="res://default_bus_layout.tres"
-
 [display]
 
 window/stretch/mode="viewport"
