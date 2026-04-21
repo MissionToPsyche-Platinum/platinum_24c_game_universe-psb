@@ -1,96 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://dgrj7orpptr5g"]
+[gd_scene load_steps=5 format=3 uid="uid://dgrj7orpptr5g"]
 
-[ext_resource type="Script" uid="uid://bnq8wkiku4077" path="res://Model/ScenarioData/ScenarioBases/BattleScenario.gd" id="1_v5n8j"]
-[ext_resource type="Texture2D" uid="uid://damk48kf44hid" path="res://View/Assets/Backgrounds/background.png" id="2_qhjs1"]
-[ext_resource type="PackedScene" uid="uid://c6fhtcd6o0aut" path="res://Model/ScenarioData/EnemyData/DarkPsycheEnemy.tscn" id="3_8xq2w"]
+[ext_resource type="PackedScene" uid="uid://ccs4ryghtb0bf" path="res://Model/ScenarioData/ScenarioBases/BattleScenarioBase.tscn" id="1_v5n8j"]
+[ext_resource type="PackedScene" uid="uid://crglusv5hy7xv" path="res://Model/ScenarioData/EnemyData/DarkPsyche.tscn" id="2_rl81y"]
 [ext_resource type="Script" uid="uid://cda51huvrayd1" path="res://Model/CardData/CardBehaviorData/AttriubuteEffect.gd" id="3_er2kd"]
 
-[sub_resource type="Resource" id="Resource_v6jd1"]
+[sub_resource type="Resource" id="Resource_w2wcn"]
 script = ExtResource("3_er2kd")
 amount = -15.0
 metadata/_custom_type_script = "uid://cda51huvrayd1"
 
-[sub_resource type="Animation" id="Animation_qhjs1"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1505, 232)]
-}
-
-[sub_resource type="Animation" id="Animation_sriu2"]
-resource_name = "ShowGrid"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1550, 130), Vector2(471, 130)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ehyr3"]
-_data = {
-&"RESET": SubResource("Animation_qhjs1"),
-&"ShowGrid": SubResource("Animation_sriu2")
-}
-
-[node name="BsDarkPysche" type="Node2D" node_paths=PackedStringArray("enemyContainer", "enemyPositions", "enemyContainerAnimationPlayer")]
-script = ExtResource("1_v5n8j")
-enemyContainer = NodePath("EnemyContainer")
+[node name="BattleScenarioBase" node_paths=PackedStringArray("enemyPositions") instance=ExtResource("1_v5n8j")]
 enemyPositions = [NodePath("EnemyContainer/EnemyPlacement 1")]
-enemyContainerAnimationPlayer = NodePath("EnemyContainer/AnimationPlayer")
-enemyScenes = Array[PackedScene]([ExtResource("3_8xq2w")])
-scenarioType = 1
-affectedAttributes = Array[ExtResource("3_er2kd")]([SubResource("Resource_v6jd1")])
+enemyScenes = Array[PackedScene]([ExtResource("2_rl81y")])
+affectedAttributes = Array[ExtResource("3_er2kd")]([SubResource("Resource_w2wcn")])
 scenarioText = "Your evil twin, Dark Psyche, has come to challenge you in glorious combat. Show this faker who the true spacecraft is!"
-metadata/_custom_type_script = "uid://bnq8wkiku4077"
-
-[node name="Background" type="Node2D" parent="."]
-
-[node name="Parallax2D" type="Parallax2D" parent="Background"]
-scroll_scale = Vector2(3, 3)
-repeat_size = Vector2(1920, 0)
-autoscroll = Vector2(-30, 0)
-
-[node name="BackgroundImage" type="Sprite2D" parent="Background/Parallax2D"]
-position = Vector2(734.25006, 337)
-scale = Vector2(1.004948, 0.81203705)
-texture = ExtResource("2_qhjs1")
-
-[node name="EnemyContainer" type="Control" parent="."]
-custom_minimum_size = Vector2(682, 519)
-layout_mode = 3
-anchors_preset = 0
-offset_left = 1505.0
-offset_top = 232.0
-offset_right = 2187.001
-offset_bottom = 751.0
-mouse_filter = 2
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="EnemyContainer"]
-libraries = {
-&"": SubResource("AnimationLibrary_ehyr3")
-}
-
-[node name="EnemyPlacement 1" type="Control" parent="EnemyContainer"]
-layout_mode = 1
-anchor_left = -0.07917877
-anchor_right = -0.07917877
-offset_left = 330.0
-offset_top = 95.0
-offset_right = 370.0
-offset_bottom = 135.0
-mouse_filter = 2
