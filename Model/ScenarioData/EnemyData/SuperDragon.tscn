@@ -14,3 +14,7 @@ texture = ExtResource("2_j7px8")
 [node name="HealthBar" parent="." index="2"]
 anchor_top = 1.7833654
 anchor_bottom = 1.7833654
+
+[node name="HealthLabel" parent="." index="3"]
+offset_top = 504.0
+offset_bottom = 551.0

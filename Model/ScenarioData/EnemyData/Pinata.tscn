@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://b111b4fx0qrn7"]
+
+[ext_resource type="PackedScene" uid="uid://df5i2gsuui8n7" path="res://Model/ScenarioData/EnemyData/EnemyBase.tscn" id="1_p2kwx"]
+[ext_resource type="Texture2D" uid="uid://b7jpmtpo5wsh3" path="res://View/Assets/Sprites/35_SpacePinata.png" id="2_mf82t"]
+
+[node name="Enemy" instance=ExtResource("1_p2kwx")]
+MAX_HEALTH = 40
+
+[node name="EnemySprite" parent="." index="0"]
+offset_right = 747.0
+offset_bottom = 673.0
+texture = ExtResource("2_mf82t")
+
+[node name="HealthBar" parent="." index="2"]
+anchor_top = 0.9305516
+anchor_bottom = 0.9305516
+offset_top = 37.75862
+offset_bottom = 80.75862
+
+[node name="HealthLabel" parent="." index="3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.029
+anchor_top = 0.454
+anchor_right = 0.029
+anchor_bottom = 0.454
+offset_top = 246.0
+offset_bottom = 287.0

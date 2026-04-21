@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://u16j5x7hoabi"]
+
+[ext_resource type="PackedScene" uid="uid://ccs4ryghtb0bf" path="res://Model/ScenarioData/ScenarioBases/BattleScenarioBase.tscn" id="1_nj6g8"]
+[ext_resource type="PackedScene" uid="uid://dq1kv2xv0w1v2" path="res://Model/ScenarioData/EnemyData/PopUp.tscn" id="2_cedb7"]
+[ext_resource type="Script" uid="uid://cda51huvrayd1" path="res://Model/CardData/CardBehaviorData/AttriubuteEffect.gd" id="3_1ovs7"]
+
+[sub_resource type="Resource" id="Resource_vvbqu"]
+script = ExtResource("3_1ovs7")
+affectedAttribute = 2
+amount = -5.0
+metadata/_custom_type_script = "uid://cda51huvrayd1"
+
+[node name="BattleScenarioBase" instance=ExtResource("1_nj6g8")]
+enemyScenes = Array[PackedScene]([ExtResource("2_cedb7"), ExtResource("2_cedb7"), ExtResource("2_cedb7"), ExtResource("2_cedb7")])
+affectedAttributes = Array[ExtResource("3_1ovs7")]([SubResource("Resource_vvbqu")])
+scenarioText = "Even in the vast emptiness of space, you cannot escape intrusive advertising. Close all of the (alien) pop-up holograms obstructing your path before you get off course!"
+
+[node name="EnemyPlacement 1" parent="EnemyContainer" index="1"]
+offset_left = 244.0
+offset_top = 119.0
+offset_right = 284.0
+offset_bottom = 159.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Enemy Placement 2" parent="EnemyContainer" index="2"]
+offset_left = 589.0
+offset_top = 119.0
+offset_right = 629.0
+offset_bottom = 159.0
+
+[node name="EnemyPlacement 3" parent="EnemyContainer" index="3"]
+offset_left = 112.0
+offset_top = 315.0
+offset_right = 152.0
+offset_bottom = 355.0
+
+[node name="Enemy Placement 4" parent="EnemyContainer" index="4"]
+offset_left = 457.0
+offset_top = 315.0
+offset_right = 497.0
+offset_bottom = 355.0

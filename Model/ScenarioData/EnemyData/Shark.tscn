@@ -20,3 +20,7 @@ offset_left = 4.4619884
 offset_top = 153.71603
 offset_right = -24.930054
 offset_bottom = 196.71603
+
+[node name="HealthLabel" parent="." index="3"]
+offset_top = 230.0
+offset_bottom = 277.0
