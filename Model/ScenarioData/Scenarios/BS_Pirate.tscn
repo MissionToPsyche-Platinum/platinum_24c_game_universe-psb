@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://fp1unjvtmyuk"]
+
+[ext_resource type="PackedScene" uid="uid://ccs4ryghtb0bf" path="res://Model/ScenarioData/ScenarioBases/BattleScenarioBase.tscn" id="1_7ytcl"]
+[ext_resource type="PackedScene" uid="uid://b58sumxqm3lvx" path="res://Model/ScenarioData/EnemyData/Pirate.tscn" id="2_7op48"]
+[ext_resource type="Script" uid="uid://cda51huvrayd1" path="res://Model/CardData/CardBehaviorData/AttriubuteEffect.gd" id="3_ea833"]
+
+[sub_resource type="Resource" id="Resource_4giwg"]
+script = ExtResource("3_ea833")
+affectedAttribute = 1
+amount = -10.0
+metadata/_custom_type_script = "uid://cda51huvrayd1"
+
+[node name="BattleScenarioBase" node_paths=PackedStringArray("enemyPositions") instance=ExtResource("1_7ytcl")]
+enemyPositions = [NodePath("EnemyContainer/EnemyPlacement 1")]
+enemyScenes = Array[PackedScene]([ExtResource("2_7op48")])
+affectedAttributes = Array[ExtResource("3_ea833")]([SubResource("Resource_4giwg")])
+scenarioText = "Out of nowhere, a ship full of spacesuit-wearing pirates speeds toward you! Do something before they plunder all of your solar panels!"
+
+[node name="EnemyPlacement 1" parent="EnemyContainer" index="1"]
+offset_left = 394.0
+offset_top = 171.0
+offset_right = 434.0
+offset_bottom = 211.0

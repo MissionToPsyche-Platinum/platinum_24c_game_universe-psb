@@ -11,5 +11,15 @@ offset_bottom = 598.0
 texture = ExtResource("2_34py7")
 
 [node name="HealthBar" parent="." index="2"]
-anchor_top = 0.8786034
-anchor_bottom = 0.8786034
+anchor_top = 0.92622244
+anchor_bottom = 0.92622244
+
+[node name="HealthLabel" parent="." index="3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.029
+anchor_top = 0.926
+anchor_right = 0.029
+anchor_bottom = 0.926
+offset_top = 90.899994
+offset_bottom = 137.90002

@@ -35,6 +35,10 @@ const _MUSIC_BUS_NAME := "Music"
 #draw card preview reference
 @export var drawCardPreview : DrawCardPreview
 
+#sound
+@export var openMenuSFX : AudioStreamPlayer
+@export var closeMenuSFX : AudioStreamPlayer
+
 
 
 # Called when the node enters the scene tree for the first time.
@@ -122,6 +126,7 @@ func _on_response_label_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 				animationPlayer.play("DisplayCardGui")
+				openMenuSFX.play()
 
 
 func _on_scenario_label_gui_input(event: InputEvent) -> void:
@@ -129,6 +134,7 @@ func _on_scenario_label_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 				animationPlayer.play("HideCardGui")
+				closeMenuSFX.play()
 
 
 func _on_button_pressed() -> void:

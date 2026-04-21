@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0hfj8dahvxy5"]
+
+[ext_resource type="PackedScene" uid="uid://df5i2gsuui8n7" path="res://Model/ScenarioData/EnemyData/EnemyBase.tscn" id="1_065up"]
+[ext_resource type="Texture2D" uid="uid://bk1q1wn10i3mt" path="res://View/Assets/Sprites/33_GiantSpaceOctopus.png" id="2_jfckl"]
+
+[node name="Enemy" instance=ExtResource("1_065up")]
+MAX_HEALTH = 100
+
+[node name="EnemySprite" parent="." index="0"]
+offset_right = 905.0
+offset_bottom = 800.0
+texture = ExtResource("2_jfckl")
+
+[node name="HealthBar" parent="." index="2"]
+offset_top = 219.75864
+offset_bottom = 262.75864
+
+[node name="HealthLabel" parent="." index="3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.029
+anchor_top = 0.454
+anchor_right = 0.029
+anchor_bottom = 0.454
+offset_top = 265.0
+offset_bottom = 306.0

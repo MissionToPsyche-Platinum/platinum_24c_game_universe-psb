@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://ca7bimqnf4cv"]
+
+[ext_resource type="PackedScene" uid="uid://df5i2gsuui8n7" path="res://Model/ScenarioData/EnemyData/EnemyBase.tscn" id="1_gfdc4"]
+[ext_resource type="Texture2D" uid="uid://c6c5qfkr3youx" path="res://View/Assets/Sprites/31_KaijuRobot.png" id="2_jpqm1"]
+
+[node name="Enemy2" instance=ExtResource("1_gfdc4")]
+MAX_HEALTH = 100
+
+[node name="EnemySprite" parent="." index="0"]
+offset_right = 950.0
+offset_bottom = 902.0
+texture = ExtResource("2_jpqm1")
+
+[node name="HealthBar" parent="." index="2"]
+offset_left = 63.0
+offset_top = 174.75864
+offset_right = 377.0
+offset_bottom = 217.75867
+
+[node name="HealthLabel" parent="." index="3"]
+offset_left = 154.0
+offset_top = 326.00003
+offset_right = 320.0
+offset_bottom = 373.00003

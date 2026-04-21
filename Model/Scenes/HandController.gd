@@ -33,6 +33,17 @@ var holdingDiscards := {}
 # Hand UI uses a high z_index; continue overlay must sit above it or clicks never reach it.
 const CONTINUE_OVERLAY_Z_INDEX := 10
 
+
+
+
+#AudioStreamPlayers for Sound
+@export var trashCanOpenSFX : AudioStreamPlayer
+@export var trashCanCloseSFX : AudioStreamPlayer 
+@export var cardSFX: AudioStreamPlayer
+
+
+
+
 func _ready():
 	# In test mode, we manually assign nodes in tests, so skip lookups
 	if test_mode:
@@ -148,6 +159,10 @@ func updateLayout() -> void:
 			trashcanAnimationPlayer.play("Close")
 			trashCanOpened = false
 
+	#play card sound
+	if cardSFX != null:
+		cardSFX.play()
+	
 func _on_right_arrow_button_pressed() -> void:
 	rotateRight()
 
@@ -226,12 +241,14 @@ func _on_toggle_discard_button_pressed() -> void:
 		holdingDiscards.erase(cards[selectedIndex])
 		if not test_mode:
 			trashcanAnimationPlayer.play("Close")
+			trashCanCloseSFX.play()
 		trashCanOpened = false
 	else:
 		#fuckin weird ass syntax for adding something to a Dictonary 
 		holdingDiscards[cards[selectedIndex]] = true
 		if not test_mode:
 			trashcanAnimationPlayer.play("Open")
+			trashCanOpenSFX.play()
 		trashCanOpened = true
 	
 	#after which check if the discard button needs to be shown 
