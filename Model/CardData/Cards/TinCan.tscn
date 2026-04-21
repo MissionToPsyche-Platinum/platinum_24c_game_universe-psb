@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://dtfla6nq8glnn"]
+
+[ext_resource type="PackedScene" uid="uid://7wpt2pr8jwaa" path="res://Model/CardData/BaseCardData/protocol_card_base.tscn" id="1_hmj3i"]
+[ext_resource type="Script" uid="uid://csm0y40wfj4uj" path="res://Model/CardData/CardBehaviorData/AttackBehavior.gd" id="2_wueb1"]
+[ext_resource type="Texture2D" uid="uid://di2vrl7ihcl5g" path="res://View/Assets/Sprites/Card Sprites/BasicCard.png" id="3_6cndi"]
+
+[sub_resource type="Resource" id="Resource_uoa30"]
+script = ExtResource("2_wueb1")
+targets = 2
+damage = 5
+metadata/_custom_type_script = "uid://csm0y40wfj4uj"
+
+[node name="Control" instance=ExtResource("1_hmj3i")]
+cardName = "A Tin Can"
+cardDescription = "Just floating around in space."
+cardBehavior = Array[Resource]([SubResource("Resource_uoa30")])
+cardUseHeader = "The peculiarity of this random space can distracts the intruders for a moment!"
+
+[node name="CardBackground2" parent="." index="0"]
+texture = ExtResource("3_6cndi")

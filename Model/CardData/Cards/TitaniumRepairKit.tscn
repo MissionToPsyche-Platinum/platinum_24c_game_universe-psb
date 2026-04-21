@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://do21kike7ohr6"]
+
+[ext_resource type="PackedScene" uid="uid://7wpt2pr8jwaa" path="res://Model/CardData/BaseCardData/protocol_card_base.tscn" id="1_nod5k"]
+[ext_resource type="Script" uid="uid://cda51huvrayd1" path="res://Model/CardData/CardBehaviorData/AttriubuteEffect.gd" id="2_abhq1"]
+[ext_resource type="Script" uid="uid://jvo5d8np0a4x" path="res://Model/CardData/CardBehaviorData/AttributeBehavior.gd" id="3_6edo6"]
+[ext_resource type="Texture2D" uid="uid://cvi8jwwt5b1tr" path="res://View/Assets/Sprites/Card Sprites/SingularityCard.png" id="4_2wxf0"]
+
+[sub_resource type="Resource" id="Resource_lse4y"]
+script = ExtResource("2_abhq1")
+amount = 100.0
+metadata/_custom_type_script = "uid://cda51huvrayd1"
+
+[sub_resource type="Resource" id="Resource_8j8s3"]
+script = ExtResource("3_6edo6")
+affectedAttributes = Array[ExtResource("2_abhq1")]([SubResource("Resource_lse4y")])
+metadata/_custom_type_script = "uid://jvo5d8np0a4x"
+
+[node name="Control" instance=ExtResource("1_nod5k")]
+cardName = "Titanium Repair Kit"
+cardDescription = "Using the tough, lightweight Ti6Al4V components made by Maxar, Psyche can quickly repair or reinforce parts of itself during the journey. These strut-truss structures bring strength, lightness, and flexibility- ideal for repairing a damaged part or reinforcing the spacecraft mid-flight."
+cardBehavior = Array[Resource]([SubResource("Resource_8j8s3")])
+cardUseHeader = "Psyche is feeling as good as new! "
+extraInfoHeaderString = "Ti6Al4V components"
+extraInfoBodyString = "While NASA's Jet Propulsion Laboratory (JPL) in Southern California created Psyche's main computer, flight software, and most of its telecommunications systems, a Palo Alto, California, division of Colorado-based Maxar Technologies provided the spacecraft's main body as well as most of its engineering hardware systems."
+hasExtraInfo = true
+extraInfoLink = "https://www.jpl.nasa.gov/press-kits/psyche/mission/spacecraft/"
+
+[node name="CardBackground2" parent="." index="0"]
+texture = ExtResource("4_2wxf0")

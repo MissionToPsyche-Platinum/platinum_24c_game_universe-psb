@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0komic1skp5d"]
+
+[ext_resource type="PackedScene" uid="uid://7wpt2pr8jwaa" path="res://Model/CardData/BaseCardData/protocol_card_base.tscn" id="1_3mo2f"]
+[ext_resource type="Script" uid="uid://csm0y40wfj4uj" path="res://Model/CardData/CardBehaviorData/AttackBehavior.gd" id="2_rxx7m"]
+[ext_resource type="Texture2D" uid="uid://di2vrl7ihcl5g" path="res://View/Assets/Sprites/Card Sprites/BasicCard.png" id="3_pdg5a"]
+
+[sub_resource type="Resource" id="Resource_07vbv"]
+script = ExtResource("2_rxx7m")
+targets = 1
+damage = 10
+metadata/_custom_type_script = "uid://csm0y40wfj4uj"
+
+[node name="Control" instance=ExtResource("1_3mo2f")]
+cardName = "Laser Eyes (DSOC)"
+cardDescription = "Unfortunately does not shoot lasers, but can send cat videos."
+cardBehavior = Array[Resource]([SubResource("Resource_07vbv")])
+cardUseHeader = "During transmission you detect someone or something saying \"aww...\""
+extraInfoHeaderString = "Deep Space Optical Comm laser"
+extraInfoBodyString = "Psyche is equipped with sophisticated new Deep Space Optical Communication (DSOC) laser technology that encodes data in photons rather than radio waves in order to communicate more data in less time between a probe in deep space and Earth."
+hasExtraInfo = true
+extraInfoLink = "https://www.youtube.com/watch?v=VsKgYmQS-Kw"
+
+[node name="CardBackground2" parent="." index="0"]
+texture = ExtResource("3_pdg5a")

@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://brwon0h4pnd8b"]
+
+[ext_resource type="PackedScene" uid="uid://7wpt2pr8jwaa" path="res://Model/CardData/BaseCardData/protocol_card_base.tscn" id="1_i6p5d"]
+[ext_resource type="Script" uid="uid://csm0y40wfj4uj" path="res://Model/CardData/CardBehaviorData/AttackBehavior.gd" id="2_um8xa"]
+[ext_resource type="Texture2D" uid="uid://cvi8jwwt5b1tr" path="res://View/Assets/Sprites/Card Sprites/SingularityCard.png" id="3_dm0jn"]
+
+[sub_resource type="Resource" id="Resource_bwyxs"]
+script = ExtResource("2_um8xa")
+targets = 3
+damage = 30
+metadata/_custom_type_script = "uid://csm0y40wfj4uj"
+
+[node name="Control" instance=ExtResource("1_i6p5d")]
+cardName = "Solar Panel Nunchucks"
+cardDescription = "Fold 'em, snap 'em, and now Psyche's massive solar arrays are deadly in the right hands. Great for generating power and taking down space bandits."
+cardBehavior = Array[Resource]([SubResource("Resource_bwyxs")])
+cardUseHeader = "In a photovoltaic fury, Psyche unleashes several years worth of pre-flight martial arts training in mere seconds!"
+
+[node name="CardBackground2" parent="." index="0"]
+texture = ExtResource("3_dm0jn")

@@ -1,0 +1,28 @@
+[gd_scene load_steps=8 format=3 uid="uid://pixdoyovlve4"]
+
+[ext_resource type="PackedScene" uid="uid://7wpt2pr8jwaa" path="res://Model/CardData/BaseCardData/protocol_card_base.tscn" id="1_xtpib"]
+[ext_resource type="Texture2D" uid="uid://cs47gj2see8uo" path="res://View/Assets/Sprites/Card Sprites/Drumkit.png" id="2_5a6p5"]
+[ext_resource type="Script" uid="uid://cda51huvrayd1" path="res://Model/CardData/CardBehaviorData/AttriubuteEffect.gd" id="3_5gsof"]
+[ext_resource type="Script" uid="uid://jvo5d8np0a4x" path="res://Model/CardData/CardBehaviorData/AttributeBehavior.gd" id="4_lp1cm"]
+[ext_resource type="Texture2D" uid="uid://di2vrl7ihcl5g" path="res://View/Assets/Sprites/Card Sprites/BasicCard.png" id="5_vh5o1"]
+
+[sub_resource type="Resource" id="Resource_3vsqg"]
+script = ExtResource("3_5gsof")
+affectedAttribute = 2
+amount = 10.0
+metadata/_custom_type_script = "uid://cda51huvrayd1"
+
+[sub_resource type="Resource" id="Resource_n1d4r"]
+script = ExtResource("4_lp1cm")
+affectedAttributes = Array[ExtResource("3_5gsof")]([SubResource("Resource_3vsqg")])
+metadata/_custom_type_script = "uid://jvo5d8np0a4x"
+
+[node name="Control" instance=ExtResource("1_xtpib")]
+cardName = "Drum Kit"
+cardSprite = ExtResource("2_5a6p5")
+cardDescription = "Bang on the reaction wheels, tap the solar array panels, and turn the high-gain antenna into a cymbal. If comms are down, at least you can signal with sick beats."
+cardBehavior = Array[Resource]([SubResource("Resource_n1d4r")])
+cardUseHeader = "While it may not be practically useful, music does help shake things up on any long journey."
+
+[node name="CardBackground2" parent="." index="0"]
+texture = ExtResource("5_vh5o1")

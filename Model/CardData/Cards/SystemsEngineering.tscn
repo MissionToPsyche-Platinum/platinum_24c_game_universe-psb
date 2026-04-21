@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://b7k2h63b6bjqd"]
+
+[ext_resource type="PackedScene" uid="uid://7wpt2pr8jwaa" path="res://Model/CardData/BaseCardData/protocol_card_base.tscn" id="1_757dn"]
+[ext_resource type="Script" uid="uid://csm0y40wfj4uj" path="res://Model/CardData/CardBehaviorData/AttackBehavior.gd" id="2_spwlb"]
+[ext_resource type="Texture2D" uid="uid://gjtq0gdt8xy3" path="res://View/Assets/Sprites/Card Sprites/AnomolousCard.png" id="3_3yexu"]
+
+[sub_resource type="Resource" id="Resource_vatil"]
+script = ExtResource("2_spwlb")
+targets = 4
+damage = 10
+metadata/_custom_type_script = "uid://csm0y40wfj4uj"
+
+[node name="Control" instance=ExtResource("1_757dn")]
+cardName = "Systems Engineering"
+cardDescription = "When in doubt, throw a flowchart at it. With enough requirements, trade studies, and design reviews, even an alien invasion can be designed out of existence."
+cardBehavior = Array[Resource]([SubResource("Resource_vatil")])
+cardUseHeader = "After a rigorous engineering process, you throw several binders worth of system requirements and related documentation at the threat! Plots scatter and so do your foes."
+
+[node name="CardBackground2" parent="." index="0"]
+texture = ExtResource("3_3yexu")

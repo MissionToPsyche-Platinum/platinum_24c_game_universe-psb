@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://us7n02cubxd7"]
+
+[ext_resource type="PackedScene" uid="uid://7wpt2pr8jwaa" path="res://Model/CardData/BaseCardData/protocol_card_base.tscn" id="1_x3gvf"]
+[ext_resource type="Script" uid="uid://csm0y40wfj4uj" path="res://Model/CardData/CardBehaviorData/AttackBehavior.gd" id="2_7ujfy"]
+[ext_resource type="Texture2D" uid="uid://gjtq0gdt8xy3" path="res://View/Assets/Sprites/Card Sprites/AnomolousCard.png" id="3_oc33x"]
+
+[sub_resource type="Resource" id="Resource_hxd0f"]
+script = ExtResource("2_7ujfy")
+targets = 2
+damage = 20
+metadata/_custom_type_script = "uid://csm0y40wfj4uj"
+
+[node name="Control" instance=ExtResource("1_x3gvf")]
+cardName = "Premature Powers"
+cardDescription = "The spacecraft confidently taps into the mighty forces of asteroid Psyche- despite being millions of miles away. Maybe it's psychic? Maybe it's just wishful thinking? Either way, with a Massachusetts-sized metal asteroid as its imaginary power source, Psyche is feeling unstoppable."
+cardBehavior = Array[Resource]([SubResource("Resource_hxd0f")])
+cardUseHeader = "Even if it's just placebo, the raw power of the Psyche asteroid emanates off of you."
+
+[node name="CardBackground2" parent="." index="0"]
+texture = ExtResource("3_oc33x")

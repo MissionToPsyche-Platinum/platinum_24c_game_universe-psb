@@ -1,0 +1,25 @@
+[gd_scene load_steps=7 format=3 uid="uid://ca1kwu4pjg3if"]
+
+[ext_resource type="PackedScene" uid="uid://7wpt2pr8jwaa" path="res://Model/CardData/BaseCardData/protocol_card_base.tscn" id="1_hb4hg"]
+[ext_resource type="Script" uid="uid://cda51huvrayd1" path="res://Model/CardData/CardBehaviorData/AttriubuteEffect.gd" id="2_mvqhd"]
+[ext_resource type="Script" uid="uid://jvo5d8np0a4x" path="res://Model/CardData/CardBehaviorData/AttributeBehavior.gd" id="3_3hbqh"]
+[ext_resource type="Texture2D" uid="uid://di2vrl7ihcl5g" path="res://View/Assets/Sprites/Card Sprites/BasicCard.png" id="4_u7fa6"]
+
+[sub_resource type="Resource" id="Resource_bgs3t"]
+script = ExtResource("2_mvqhd")
+amount = 10.0
+metadata/_custom_type_script = "uid://cda51huvrayd1"
+
+[sub_resource type="Resource" id="Resource_rm5k8"]
+script = ExtResource("3_3hbqh")
+affectedAttributes = Array[ExtResource("2_mvqhd")]([SubResource("Resource_bgs3t")])
+metadata/_custom_type_script = "uid://jvo5d8np0a4x"
+
+[node name="Control" instance=ExtResource("1_hb4hg")]
+cardName = "Alien Repellant"
+cardDescription = "According to the back of the bottle, spraying this evenly on Psyche's hull should help keep aliens at bay. But what is that skull and crossbones symbol for?"
+cardBehavior = Array[Resource]([SubResource("Resource_rm5k8")])
+cardUseHeader = "Psyche is now alien-proof! Unfortunately it doesn't look like this spray has an effectiveness rating that accounts for traveling at speeds measured in miles per second..."
+
+[node name="CardBackground2" parent="." index="0"]
+texture = ExtResource("4_u7fa6")

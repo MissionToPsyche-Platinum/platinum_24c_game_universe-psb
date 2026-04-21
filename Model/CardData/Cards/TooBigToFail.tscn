@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3ihj301cuc1h"]
+
+[ext_resource type="PackedScene" uid="uid://7wpt2pr8jwaa" path="res://Model/CardData/BaseCardData/protocol_card_base.tscn" id="1_mhh5y"]
+[ext_resource type="Script" uid="uid://csm0y40wfj4uj" path="res://Model/CardData/CardBehaviorData/AttackBehavior.gd" id="2_qppuu"]
+[ext_resource type="Texture2D" uid="uid://d3kgx105pqijg" path="res://View/Assets/Sprites/Card Sprites/NebulousCard.png" id="3_dvqro"]
+
+[sub_resource type="Resource" id="Resource_a87j2"]
+script = ExtResource("2_qppuu")
+targets = 5
+damage = 10
+metadata/_custom_type_script = "uid://csm0y40wfj4uj"
+
+[node name="Control" instance=ExtResource("1_mhh5y")]
+cardName = "Too Big to Fail"
+cardDescription = "With its solar panels deployed, Psyche stretches 81 feet- about the size of a tennis court. Great for collecting sunlight, terrible for fitting into tight spaces. If something needs swatting, though... we've got reach."
+cardBehavior = Array[Resource]([SubResource("Resource_a87j2")])
+cardUseHeader = "Psyche swats away the intruders as if they were merely a swarm of annoying space flies!"
+extraInfoHeaderString = "Psyche spacecraft"
+extraInfoBodyString = "Including its solar panels, the Psyche spacecraft is about the size of a singles tennis court, and the bus (body) itself is slightly larger than a small van."
+hasExtraInfo = true
+extraInfoLink = "https://psyche.ssl.berkeley.edu/mission/the-spacecraft/"
+
+[node name="CardBackground2" parent="." index="0"]
+texture = ExtResource("3_dvqro")

@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=3 uid="uid://q4u0qbfcx75v"]
+
+[ext_resource type="PackedScene" uid="uid://7wpt2pr8jwaa" path="res://Model/CardData/BaseCardData/protocol_card_base.tscn" id="1_4i5yi"]
+[ext_resource type="Script" uid="uid://cda51huvrayd1" path="res://Model/CardData/CardBehaviorData/AttriubuteEffect.gd" id="2_umxlu"]
+[ext_resource type="Script" uid="uid://jvo5d8np0a4x" path="res://Model/CardData/CardBehaviorData/AttributeBehavior.gd" id="3_s05vy"]
+[ext_resource type="Texture2D" uid="uid://gjtq0gdt8xy3" path="res://View/Assets/Sprites/Card Sprites/AnomolousCard.png" id="4_x0xn4"]
+
+[sub_resource type="Resource" id="Resource_h1cfr"]
+script = ExtResource("2_umxlu")
+affectedAttribute = 1
+amount = 30.0
+metadata/_custom_type_script = "uid://cda51huvrayd1"
+
+[sub_resource type="Resource" id="Resource_7t44e"]
+script = ExtResource("3_s05vy")
+affectedAttributes = Array[ExtResource("2_umxlu")]([SubResource("Resource_h1cfr")])
+metadata/_custom_type_script = "uid://jvo5d8np0a4x"
+
+[node name="Control" instance=ExtResource("1_4i5yi")]
+cardName = "Multispectral Selfie Stick"
+cardDescription = "Why settle for a regular photo when you can capture your asteroid adventure in every wavelength? Perfect for revealing hidden secrets- or just finding out if Psyche looks better in infrared."
+cardBehavior = Array[Resource]([SubResource("Resource_7t44e")])
+cardUseHeader = "No secrets, but the infrared selfie did get Psyche's good side."
+extraInfoHeaderString = "Multispectral imager"
+extraInfoBodyString = "Psyche's Multispectral Imager gathers geological, compositional, and topographic data about the Psyche asteroid by capturing high-resolution images using filters to discriminate between metallic and silicate constituents. "
+hasExtraInfo = true
+extraInfoLink = "https://www.youtube.com/watch?v=gCmIZ_sZbEM"
+
+[node name="CardBackground2" parent="." index="0"]
+texture = ExtResource("4_x0xn4")

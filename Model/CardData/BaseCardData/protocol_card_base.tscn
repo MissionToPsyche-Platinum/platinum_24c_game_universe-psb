@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://7wpt2pr8jwaa"]
+[gd_scene load_steps=11 format=3 uid="uid://7wpt2pr8jwaa"]
 
 [ext_resource type="Script" uid="uid://dbwvfr8urjpbn" path="res://Model/CardData/BaseCardData/protocol_card_base.gd" id="1_jce6x"]
 [ext_resource type="Texture2D" uid="uid://0yss2jchhn12" path="res://View/Assets/Sprites/card_filled.png" id="2_lon5y"]
@@ -22,6 +22,9 @@ font_color = Color(0.8117647, 0.3019608, 0.34117648, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_6nflw"]
 font = ExtResource("3_evo7n")
 font_size = 40
+
+[sub_resource type="Theme" id="Theme_e7m50"]
+default_font = ExtResource("3_evo7n")
 
 [node name="Control" type="Control" node_paths=PackedStringArray("rewardsClickable", "cardInfoHolder", "protocolCardName", "protocolCardDescription", "protocolCardSprite", "extraInfoHolder", "extraInfoButton", "extraInfoHeader", "extraInfoBody")]
 layout_mode = 3
@@ -129,12 +132,25 @@ layout_mode = 0
 offset_left = -260.0
 offset_top = -270.0
 offset_right = 258.0
-offset_bottom = 384.0
+offset_bottom = 300.0
 text = "Extra Info Body"
 label_settings = SubResource("LabelSettings_6nflw")
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="LinkButton" type="LinkButton" parent="CardBackground2/ExtraInfoHolder"]
+layout_mode = 0
+offset_left = -218.0
+offset_top = 324.0
+offset_right = 223.0
+offset_bottom = 380.0
+theme = SubResource("Theme_e7m50")
+theme_override_colors/font_color = Color(0.8117647, 0.3019608, 0.34117648, 1)
+theme_override_font_sizes/font_size = 40
+text = "Click here to learn more!"
 
 [connection signal="gui_input" from="CardBackground2/RewardClickable" to="." method="_on_reward_clickable_gui_input"]
 [connection signal="mouse_entered" from="CardBackground2/RewardClickable" to="." method="_on_reward_clickable_mouse_entered"]
 [connection signal="pressed" from="CardBackground2/ExtraInfoIcon/ExtraInfoButton" to="." method="_on_extra_info_button_pressed"]
+[connection signal="pressed" from="CardBackground2/ExtraInfoHolder/LinkButton" to="." method="_on_link_button_pressed"]
