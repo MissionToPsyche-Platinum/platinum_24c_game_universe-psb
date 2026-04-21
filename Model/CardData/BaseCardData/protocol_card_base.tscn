@@ -71,7 +71,6 @@ offset_bottom = 40.91802
 flat = true
 
 [node name="CardInfoHolder" type="Control" parent="CardBackground2"]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -113,6 +112,7 @@ horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="ExtraInfoHolder" type="Control" parent="CardBackground2"]
+visible = false
 anchors_preset = 0
 offset_left = 286.0
 offset_top = 402.0
