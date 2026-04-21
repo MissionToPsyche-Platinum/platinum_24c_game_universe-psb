@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c817njnbhik2t"]
+[gd_scene load_steps=5 format=3 uid="uid://c817njnbhik2t"]
 
 [ext_resource type="PackedScene" uid="uid://ccs4ryghtb0bf" path="res://Model/ScenarioData/ScenarioBases/BattleScenarioBase.tscn" id="1_3p41v"]
 [ext_resource type="PackedScene" uid="uid://bi2lyujx0fyv2" path="res://Model/ScenarioData/EnemyData/SpaceTimeShareSalesman.tscn" id="2_vtdix"]
@@ -10,17 +10,10 @@ affectedAttribute = 1
 amount = -5.0
 metadata/_custom_type_script = "uid://cda51huvrayd1"
 
-[sub_resource type="Resource" id="Resource_vqgkk"]
-script = ExtResource("3_vtdix")
-affectedAttribute = 1
-amount = -5.0
-metadata/_custom_type_script = "uid://cda51huvrayd1"
-
 [node name="BattleScenarioBase" node_paths=PackedStringArray("enemyPositions") instance=ExtResource("1_3p41v")]
 enemyPositions = [NodePath("EnemyContainer/EnemyPlacement 1")]
 enemyScenes = Array[PackedScene]([ExtResource("2_vtdix")])
 affectedAttributes = Array[ExtResource("3_vtdix")]([SubResource("Resource_25fbf")])
-attributeWinConditions = Array[ExtResource("3_vtdix")]([SubResource("Resource_vqgkk")])
 scenarioText = "Coming bearing gifts, pamphlets, and coupons, the salesman attempts to convince Psyche to abandon its path, and sign a 30-year contract for a time share on Jupiter! Sure, it’s a bit out of the way, but when he puts it like that, it really is a great deal…"
 
 [node name="EnemyPlacement 1" parent="EnemyContainer" index="1"]

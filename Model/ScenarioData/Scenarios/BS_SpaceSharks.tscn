@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bu5fs71a6pnut"]
+[gd_scene load_steps=5 format=3 uid="uid://bu5fs71a6pnut"]
 
 [ext_resource type="PackedScene" uid="uid://ccs4ryghtb0bf" path="res://Model/ScenarioData/ScenarioBases/BattleScenarioBase.tscn" id="1_y0xom"]
 [ext_resource type="Script" uid="uid://cda51huvrayd1" path="res://Model/CardData/CardBehaviorData/AttriubuteEffect.gd" id="2_dejx0"]
@@ -9,16 +9,10 @@ script = ExtResource("2_dejx0")
 amount = -5.0
 metadata/_custom_type_script = "uid://cda51huvrayd1"
 
-[sub_resource type="Resource" id="Resource_fl8hg"]
-script = ExtResource("2_dejx0")
-amount = -5.0
-metadata/_custom_type_script = "uid://cda51huvrayd1"
-
 [node name="BattleScenarioBase" node_paths=PackedStringArray("enemyPositions") instance=ExtResource("1_y0xom")]
 enemyPositions = [NodePath("EnemyContainer/EnemyPlacement 1"), NodePath("EnemyContainer/Enemy Placement 2"), NodePath("EnemyContainer/EnemyPlacement 3")]
 enemyScenes = Array[PackedScene]([ExtResource("2_fl8hg"), ExtResource("2_fl8hg"), ExtResource("2_fl8hg")])
 affectedAttributes = Array[ExtResource("2_dejx0")]([SubResource("Resource_cjmo3")])
-attributeWinConditions = Array[ExtResource("2_dejx0")]([SubResource("Resource_fl8hg")])
 scenarioText = "A shiver of sharks approaches through the stars. They seem interested in snacking on the hull, which should probably be dealt with. "
 
 [node name="EnemyPlacement 1" parent="EnemyContainer" index="1"]
