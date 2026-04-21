@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://brhgp3li1pfeo"]
+
+[ext_resource type="PackedScene" uid="uid://df5i2gsuui8n7" path="res://Model/ScenarioData/EnemyData/EnemyBase.tscn" id="1_4xs5g"]
+[ext_resource type="Texture2D" uid="uid://bwha8wiuu40ir" path="res://View/Assets/Sprites/26_Catphish.png" id="2_0m78m"]
+
+[node name="Enemy" instance=ExtResource("1_4xs5g")]
+MAX_HEALTH = 50
+
+[node name="EnemySprite" parent="." index="0"]
+offset_right = 870.0
+offset_bottom = 633.0
+texture = ExtResource("2_0m78m")
+
+[node name="HealthBar" parent="." index="2"]
+anchor_top = 0.9868286
+anchor_bottom = 0.9868286

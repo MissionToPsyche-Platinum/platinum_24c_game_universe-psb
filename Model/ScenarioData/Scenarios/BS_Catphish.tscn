@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://csl85aooav4yk"]
+
+[ext_resource type="PackedScene" uid="uid://ccs4ryghtb0bf" path="res://Model/ScenarioData/ScenarioBases/BattleScenarioBase.tscn" id="1_7ctxp"]
+[ext_resource type="PackedScene" uid="uid://brhgp3li1pfeo" path="res://Model/ScenarioData/EnemyData/Catphish.tscn" id="2_e3jfb"]
+[ext_resource type="Script" uid="uid://cda51huvrayd1" path="res://Model/CardData/CardBehaviorData/AttriubuteEffect.gd" id="3_prvge"]
+
+[sub_resource type="Resource" id="Resource_al446"]
+script = ExtResource("3_prvge")
+affectedAttribute = 2
+amount = -30.0
+metadata/_custom_type_script = "uid://cda51huvrayd1"
+
+[sub_resource type="Resource" id="Resource_0bxpw"]
+script = ExtResource("3_prvge")
+affectedAttribute = 2
+amount = -30.0
+metadata/_custom_type_script = "uid://cda51huvrayd1"
+
+[node name="BattleScenarioBase" node_paths=PackedStringArray("enemyPositions") instance=ExtResource("1_7ctxp")]
+enemyPositions = [NodePath("EnemyContainer/EnemyPlacement 1")]
+enemyScenes = Array[PackedScene]([ExtResource("2_e3jfb")])
+affectedAttributes = Array[ExtResource("3_prvge")]([SubResource("Resource_al446")])
+attributeWinConditions = Array[ExtResource("3_prvge")]([SubResource("Resource_0bxpw")])
+scenarioText = "A beautiful shuttle comes forth to trick Psyche, nearly stopping it in its tracks. But something seems suspicious…"
+
+[node name="EnemyPlacement 1" parent="EnemyContainer" index="1"]
+offset_left = 301.0
+offset_top = 174.0
+offset_right = 341.0
+offset_bottom = 214.0

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://ofmrywreflyx"]
+
+[ext_resource type="PackedScene" uid="uid://df5i2gsuui8n7" path="res://Model/ScenarioData/EnemyData/EnemyBase.tscn" id="1_gpfai"]
+[ext_resource type="Texture2D" uid="uid://dudr6aij4wtcs" path="res://View/Assets/Sprites/23_SupernovaSpaceDragon.png" id="2_j7px8"]
+
+[node name="Enemy" instance=ExtResource("1_gpfai")]
+MAX_HEALTH = 50
+
+[node name="EnemySprite" parent="." index="0"]
+offset_right = 1052.0
+offset_bottom = 875.0
+texture = ExtResource("2_j7px8")
+
+[node name="HealthBar" parent="." index="2"]
+anchor_top = 1.7833654
+anchor_bottom = 1.7833654

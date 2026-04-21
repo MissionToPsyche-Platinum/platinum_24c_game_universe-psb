@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3tqd8gvvm6tw"]
+
+[ext_resource type="PackedScene" uid="uid://df5i2gsuui8n7" path="res://Model/ScenarioData/EnemyData/EnemyBase.tscn" id="1_j1nen"]
+[ext_resource type="Texture2D" uid="uid://bqxmmb861rwfh" path="res://View/Assets/Sprites/25_SpaceSchoolbus.png" id="2_f7ylr"]
+
+[node name="Enemy" instance=ExtResource("1_j1nen")]
+MAX_HEALTH = 30
+
+[node name="EnemySprite" parent="." index="0"]
+offset_bottom = 449.0
+texture = ExtResource("2_f7ylr")
+
+[node name="HealthBar" parent="." index="2"]
+anchor_top = 0.8309845
+anchor_bottom = 0.8309845
