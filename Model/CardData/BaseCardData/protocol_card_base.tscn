@@ -71,21 +71,23 @@ offset_bottom = 40.91802
 flat = true
 
 [node name="CardInfoHolder" type="Control" parent="CardBackground2"]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="ProtocolCardDescription" type="Label" parent="CardBackground2/CardInfoHolder"]
+custom_minimum_size = Vector2(432, 414.969)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.54564
-anchor_top = 0.38188472
-anchor_right = 0.54564
-anchor_bottom = 0.48567155
-offset_left = 45.27793
-offset_top = 289.75525
-offset_right = 477.27792
-offset_bottom = 633.75525
+anchor_left = 1.6780001
+anchor_top = 7.6260004
+anchor_right = 12.478001
+anchor_bottom = 18.000446
+offset_left = -0.016471863
+offset_top = -0.0093688965
+offset_right = -0.01651001
+offset_bottom = -0.0178833
 text = "Protocol Card Description
 "
 label_settings = SubResource("LabelSettings_l00ld")
@@ -99,6 +101,7 @@ scale = Vector2(1.14, 1.11834)
 texture = ExtResource("3_e7m50")
 
 [node name="ProtocolCardName" type="Label" parent="CardBackground2/CardInfoHolder"]
+custom_minimum_size = Vector2(433, 69)
 layout_mode = 0
 offset_left = 70.0
 offset_top = 28.0
@@ -110,7 +113,6 @@ horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="ExtraInfoHolder" type="Control" parent="CardBackground2"]
-visible = false
 anchors_preset = 0
 offset_left = 286.0
 offset_top = 402.0
@@ -118,6 +120,7 @@ offset_right = 326.0
 offset_bottom = 442.0
 
 [node name="Extra Info Header" type="Label" parent="CardBackground2/ExtraInfoHolder"]
+custom_minimum_size = Vector2(524, 70)
 layout_mode = 0
 offset_left = -264.0
 offset_top = -380.0
@@ -129,11 +132,12 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ExtraInfoBody" type="Label" parent="CardBackground2/ExtraInfoHolder"]
+custom_minimum_size = Vector2(518, 510)
 layout_mode = 0
 offset_left = -260.0
 offset_top = -270.0
 offset_right = 258.0
-offset_bottom = 258.0
+offset_bottom = 240.0
 text = "Extra Info Body"
 label_settings = SubResource("LabelSettings_6nflw")
 horizontal_alignment = 1

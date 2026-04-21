@@ -146,19 +146,18 @@ func fit_text_to_label(label: Label, min_font_size: int = 10) -> void:
 	if original_size <= 0:
 		original_size = 16
 	
+	
+	
 	var font_size := original_size
 	
-	while font_size >= min_font_size:
-		label.label_settings.font_size = font_size
+	var LabelHeight = label.custom_minimum_size.y
+		
+	while label.label_settings.font.get_multiline_string_size(label.text, HORIZONTAL_ALIGNMENT_CENTER, label.size.x, font_size, -1).y > LabelHeight:
+		
 		await get_tree().process_frame
-		
-		var text_size := label.get_minimum_size()
-		var bounds := label.size
-		
-		if text_size.x <= bounds.x and text_size.y <= bounds.y:
-			return
-		
 		font_size -= 1
+		
+	label.label_settings.font_size = font_size
 
 
 
