@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://v52f2itrn0vh"]
+
+[ext_resource type="PackedScene" uid="uid://ccs4ryghtb0bf" path="res://Model/ScenarioData/ScenarioBases/BattleScenarioBase.tscn" id="1_nw2jx"]
+[ext_resource type="Script" uid="uid://cda51huvrayd1" path="res://Model/CardData/CardBehaviorData/AttriubuteEffect.gd" id="2_eqxp5"]
+[ext_resource type="PackedScene" uid="uid://b0jfatw5j3y27" path="res://Model/ScenarioData/EnemyData/Dentist.tscn" id="2_vcsn6"]
+[ext_resource type="PackedScene" uid="uid://d3alyou1lm8wv" path="res://Model/ScenarioData/EnemyData/DentalAssistant.tscn" id="3_bmf7d"]
+
+[sub_resource type="Resource" id="Resource_v6jbx"]
+script = ExtResource("2_eqxp5")
+amount = -10.0
+metadata/_custom_type_script = "uid://cda51huvrayd1"
+
+[node name="BattleScenarioBase" node_paths=PackedStringArray("enemyPositions") instance=ExtResource("1_nw2jx")]
+enemyPositions = [NodePath("EnemyContainer/EnemyPlacement 1"), NodePath("EnemyContainer/Enemy Placement 2")]
+enemyScenes = Array[PackedScene]([ExtResource("2_vcsn6"), ExtResource("3_bmf7d")])
+affectedAttributes = Array[ExtResource("2_eqxp5")]([SubResource("Resource_v6jbx")])
+scenarioText = "Harbingers of agony, they approach brandishing tools of dissection and various drills, all aimed at your hull. “It’ll just be a pinch…”"
+
+[node name="EnemyPlacement 1" parent="EnemyContainer" index="1"]
+offset_left = 206.0
+offset_top = 200.0
+offset_right = 246.0
+offset_bottom = 240.0
+
+[node name="Enemy Placement 2" parent="EnemyContainer" index="2"]
+offset_left = 551.0
+offset_top = 200.0
+offset_right = 591.0
+offset_bottom = 240.0
