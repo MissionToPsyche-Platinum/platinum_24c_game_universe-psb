@@ -36,7 +36,9 @@ func _ready() -> void:
 	print("help")
 	
 	#set custom minimum size
-	custom_minimum_size = sprite.size
+	custom_minimum_size.x = sprite.size.x * sprite.scale.x
+	custom_minimum_size.y = sprite.size.y * sprite.scale.y
+	
 	
 
 

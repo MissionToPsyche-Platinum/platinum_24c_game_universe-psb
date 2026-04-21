@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ccs4ryghtb0bf" path="res://Model/ScenarioData/ScenarioBases/BattleScenarioBase.tscn" id="1_y0xom"]
 [ext_resource type="Script" uid="uid://cda51huvrayd1" path="res://Model/CardData/CardBehaviorData/AttriubuteEffect.gd" id="2_dejx0"]
-[ext_resource type="PackedScene" path="res://Model/ScenarioData/EnemyData/Shark.tscn" id="2_fl8hg"]
+[ext_resource type="PackedScene" uid="uid://b12r4af5di0q5" path="res://Model/ScenarioData/EnemyData/Shark.tscn" id="2_fl8hg"]
 
 [sub_resource type="Resource" id="Resource_fl8hg"]
 script = ExtResource("2_dejx0")

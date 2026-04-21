@@ -93,7 +93,7 @@ func loadScenario(scenePath: String) -> void:
 		playerInstantiated = true
 	
 	#get the scene from the file path
-	var scenarioScene = load('res://Model/ScenarioData/Scenarios/BS_DarkPysche.tscn')
+	var scenarioScene = load('res://Model/ScenarioData/Scenarios/BS_SpaceSharks.tscn')
 	scenario = scenarioScene.instantiate()
 	
 	#add scenario to scene tree
