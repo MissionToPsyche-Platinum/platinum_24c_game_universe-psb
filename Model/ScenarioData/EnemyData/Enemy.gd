@@ -35,6 +35,9 @@ func _ready() -> void:
 	mat.set_shader_parameter("color", Color(1,1,0,0))
 	print("help")
 	
+	#set custom minimum size
+	custom_minimum_size = sprite.size
+	
 
 
 func damageEnemy(amt : int) -> void:

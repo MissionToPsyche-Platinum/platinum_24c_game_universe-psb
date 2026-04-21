@@ -4,14 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://chv57617bldww" path="res://View/Assets/Sprites/Attribute Bars/attribute_bar_mask.png" id="2_xk248"]
 [ext_resource type="Texture2D" uid="uid://86il4rq4uylj" path="res://View/Assets/Sprites/Attribute Bars/attribute_bar_transparent-filled.png" id="3_vl7f4"]
 
-[node name="Enemy" node_paths=PackedStringArray("healthBar") instance=ExtResource("1_c2nfw")]
+[node name="Enemy" instance=ExtResource("1_c2nfw")]
 custom_minimum_size = Vector2(259, 116)
 anchor_right = 0.286
 anchor_bottom = 0.289
 offset_right = 107.527985
 offset_bottom = 77.728
 MAX_HEALTH = 3
-healthBar = NodePath("HealthBar")
 
 [node name="EnemySprite" parent="." index="0"]
 offset_right = 650.0
@@ -19,7 +18,7 @@ offset_bottom = 308.0
 mouse_filter = 2
 expand_mode = 1
 
-[node name="HealthBar" type="TextureProgressBar" parent="." index="2"]
+[node name="HealthBar2" type="TextureProgressBar" parent="." index="2"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.029239766

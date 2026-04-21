@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dgrj7orpptr5g"]
 
 [ext_resource type="PackedScene" uid="uid://ccs4ryghtb0bf" path="res://Model/ScenarioData/ScenarioBases/BattleScenarioBase.tscn" id="1_v5n8j"]
-[ext_resource type="PackedScene" uid="uid://crglusv5hy7xv" path="res://Model/ScenarioData/EnemyData/DarkPsyche.tscn" id="2_rl81y"]
+[ext_resource type="PackedScene" uid="uid://bittdgdyi73ji" path="res://Model/ScenarioData/EnemyData/DarkPsyche.tscn" id="2_rl81y"]
 [ext_resource type="Script" uid="uid://cda51huvrayd1" path="res://Model/CardData/CardBehaviorData/AttriubuteEffect.gd" id="3_er2kd"]
 
 [sub_resource type="Resource" id="Resource_w2wcn"]

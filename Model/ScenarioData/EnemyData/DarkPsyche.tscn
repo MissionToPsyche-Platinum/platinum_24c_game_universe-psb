@@ -3,7 +3,16 @@
 [ext_resource type="PackedScene" uid="uid://df5i2gsuui8n7" path="res://Model/ScenarioData/EnemyData/EnemyBase.tscn" id="1_oqo7v"]
 [ext_resource type="Texture2D" uid="uid://c1n3vysirmswq" path="res://View/Assets/Sprites/36_DarkPsyche.png" id="2_mwtxl"]
 
-[node name="Enemy" instance=ExtResource("1_oqo7v")]
+[node name="Control" instance=ExtResource("1_oqo7v")]
+custom_minimum_size = Vector2(367, 311)
+anchor_left = -0.148
+anchor_top = -0.298
+anchor_right = -0.148
+anchor_bottom = -0.298
+offset_left = 170.496
+offset_top = 193.104
+offset_right = 537.496
+offset_bottom = 504.104
 MAX_HEALTH = 5
 
 [node name="EnemySprite" parent="." index="0"]
