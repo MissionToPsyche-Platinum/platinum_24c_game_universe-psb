@@ -1,4 +1,4 @@
-[gd_scene load_steps=128 format=4 uid="uid://b5aneqr63kcay"]
+[gd_scene load_steps=130 format=4 uid="uid://b5aneqr63kcay"]
 
 [ext_resource type="Script" uid="uid://bryyckfysnh62" path="res://Model/Scenes/mainScene.gd" id="1_6pwi0"]
 [ext_resource type="Script" uid="uid://lp0itw18h7mo" path="res://Model/Scenes/card_manager.gd" id="2_qb6nl"]
@@ -69,11 +69,13 @@
 [ext_resource type="PackedScene" uid="uid://cf0vtpba0pceu" path="res://Model/CardData/Cards/SuspiciouslyHelpfulAI.tscn" id="52_6mxbc"]
 [ext_resource type="PackedScene" uid="uid://b7k2h63b6bjqd" path="res://Model/CardData/Cards/SystemsEngineering.tscn" id="53_c2p3y"]
 [ext_resource type="PackedScene" uid="uid://bhjci4hsxeb21" path="res://Model/CardData/Cards/TheAlcubirereManuver.tscn" id="54_p13ks"]
+[ext_resource type="PackedScene" uid="uid://b2s4573m24uxf" path="res://Model/CardData/Cards/TapOut.tscn" id="55_1p2x4"]
 [ext_resource type="PackedScene" uid="uid://bdl6agntdhtcp" path="res://Model/CardData/Cards/TheEggCracks.tscn" id="55_eqdxn"]
 [ext_resource type="PackedScene" uid="uid://dtfla6nq8glnn" path="res://Model/CardData/Cards/TinCan.tscn" id="56_k2l46"]
 [ext_resource type="PackedScene" uid="uid://do21kike7ohr6" path="res://Model/CardData/Cards/TitaniumRepairKit.tscn" id="57_hitg7"]
 [ext_resource type="PackedScene" uid="uid://d3ihj301cuc1h" path="res://Model/CardData/Cards/TooBigToFail.tscn" id="58_0yjnd"]
 [ext_resource type="PackedScene" uid="uid://c8t2avcd1qkcy" path="res://Model/CardData/Cards/TurnEverythingOffAndBackOn.tscn" id="59_fly8i"]
+[ext_resource type="PackedScene" uid="uid://big2yewebtt28" path="res://Model/CardData/Cards/TimeTraveller.tscn" id="62_3ygrc"]
 [ext_resource type="AudioStream" uid="uid://qva8kbwf30dq" path="res://View/Assets/Sounds/TrashcanOpen.wav.wav" id="75_syhfs"]
 [ext_resource type="AudioStream" uid="uid://ouebixu84qxs" path="res://View/Assets/Sounds/TrashcanClose.wav.wav" id="76_hsxrn"]
 [ext_resource type="AudioStream" uid="uid://b5rpkqmcyb560" path="res://View/Assets/Sounds/MenuOpen.wav" id="77_1p2x4"]
@@ -932,7 +934,7 @@ modulate_color = Color(0.972549, 0.62352943, 0, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_t26e8"]
 font = ExtResource("11_wki3r")
 
-[node name="MainScene" type="Node2D" node_paths=PackedStringArray("player", "cardManager", "hullIntegrityLabel", "powerLabel", "velocityLabel", "rewardsHolder", "rewardEffectHolder", "scenarioHeader", "scenarioEffectLabel", "scenarioWinConditionLabel", "hullIntegrityBar", "powerBar", "velocityBar", "animationPlayer", "handController", "drawCardPreview", "openMenuSFX", "closeMenuSFX", "winSFX", "loseSFX")]
+[node name="MainScene" type="Node2D" node_paths=PackedStringArray("player", "cardManager", "hullIntegrityLabel", "powerLabel", "velocityLabel", "rewardsHolder", "rewardEffectHolder", "scenarioHeader", "scenarioEffectLabel", "scenarioWinConditionLabel", "hullIntegrityBar", "powerBar", "velocityBar", "animationPlayer", "handController", "drawCardPreview", "openMenuSFX", "closeMenuSFX", "winSFX")]
 script = ExtResource("1_6pwi0")
 player = NodePath("Player")
 cardManager = NodePath("CardManager")
@@ -953,12 +955,11 @@ drawCardPreview = NodePath("UI/DrawCardPreview")
 openMenuSFX = NodePath("MenuOpenSFX")
 closeMenuSFX = NodePath("MenuCloseSFX")
 winSFX = NodePath("WinSFX")
-loseSFX = NodePath("")
 
 [node name="CardManager" type="Node" parent="."]
 script = ExtResource("2_qb6nl")
 defaultDeck = Array[PackedScene]([ExtResource("3_h6lqa"), ExtResource("5_va1io"), ExtResource("8_syhfs"), ExtResource("4_m6kxi"), ExtResource("11_3ygrc"), ExtResource("9_hsxrn"), ExtResource("7_buwyi"), ExtResource("10_1p2x4"), ExtResource("6_kk7rv"), ExtResource("40_tf330"), ExtResource("7_qatxi")])
-bank = Array[PackedScene]([ExtResource("12_va6y7"), ExtResource("13_cb7l3"), ExtResource("14_7g70d"), ExtResource("15_egsrh"), ExtResource("16_b4wbc"), ExtResource("8_syhfs"), ExtResource("17_1db31"), ExtResource("18_3wyjq"), ExtResource("19_bd6ev"), ExtResource("20_liucg"), ExtResource("21_roc15"), ExtResource("22_th1ls"), ExtResource("23_omv2v"), ExtResource("9_v5pj8"), ExtResource("25_tk215"), ExtResource("26_mxbek"), ExtResource("4_oeksu"), ExtResource("28_ewf08"), ExtResource("29_f68i0"), ExtResource("30_cw1jt"), ExtResource("31_v5ayf"), ExtResource("32_i2g57"), ExtResource("33_3d4g0"), ExtResource("34_ipt0d"), ExtResource("35_bgdkc"), ExtResource("36_wqg0k"), ExtResource("37_jnh14"), ExtResource("38_y1dmq"), ExtResource("39_1lsax"), ExtResource("40_tf330"), ExtResource("41_v7gr0"), ExtResource("42_jjhdc"), ExtResource("7_qatxi"), ExtResource("44_fh7q5"), ExtResource("45_4ehjt"), ExtResource("46_3lmcm"), ExtResource("47_guelh"), ExtResource("48_8kein"), ExtResource("49_f0gj0"), ExtResource("50_q1o7j"), ExtResource("51_lth22"), ExtResource("52_6mxbc"), ExtResource("53_c2p3y"), ExtResource("54_p13ks"), ExtResource("55_eqdxn"), ExtResource("56_k2l46"), ExtResource("57_hitg7"), ExtResource("58_0yjnd"), ExtResource("59_fly8i")])
+bank = Array[PackedScene]([ExtResource("12_va6y7"), ExtResource("13_cb7l3"), ExtResource("14_7g70d"), ExtResource("15_egsrh"), ExtResource("16_b4wbc"), ExtResource("5_va1io"), ExtResource("8_syhfs"), ExtResource("17_1db31"), ExtResource("18_3wyjq"), ExtResource("19_bd6ev"), ExtResource("20_liucg"), ExtResource("21_roc15"), ExtResource("22_th1ls"), ExtResource("4_m6kxi"), ExtResource("23_omv2v"), ExtResource("11_3ygrc"), ExtResource("9_v5pj8"), ExtResource("25_tk215"), ExtResource("26_mxbek"), ExtResource("9_hsxrn"), ExtResource("4_oeksu"), ExtResource("3_h6lqa"), ExtResource("28_ewf08"), ExtResource("7_buwyi"), ExtResource("29_f68i0"), ExtResource("30_cw1jt"), ExtResource("10_1p2x4"), ExtResource("31_v5ayf"), ExtResource("32_i2g57"), ExtResource("33_3d4g0"), ExtResource("34_ipt0d"), ExtResource("35_bgdkc"), ExtResource("36_wqg0k"), ExtResource("37_jnh14"), ExtResource("38_y1dmq"), ExtResource("10_b1qgh"), ExtResource("39_1lsax"), ExtResource("40_tf330"), ExtResource("41_v7gr0"), ExtResource("42_jjhdc"), ExtResource("7_qatxi"), ExtResource("44_fh7q5"), ExtResource("45_4ehjt"), ExtResource("46_3lmcm"), ExtResource("47_guelh"), ExtResource("48_8kein"), ExtResource("49_f0gj0"), ExtResource("6_kk7rv"), ExtResource("50_q1o7j"), ExtResource("51_lth22"), ExtResource("52_6mxbc"), ExtResource("53_c2p3y"), ExtResource("55_1p2x4"), ExtResource("54_p13ks"), ExtResource("55_eqdxn"), ExtResource("56_k2l46"), ExtResource("57_hitg7"), ExtResource("58_0yjnd"), ExtResource("59_fly8i"), ExtResource("62_3ygrc")])
 rewardMinimumAmount = 3
 
 [node name="Player" type="Node" parent="."]
