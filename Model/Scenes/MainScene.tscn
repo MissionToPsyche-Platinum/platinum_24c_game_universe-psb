@@ -34,9 +34,9 @@
 [ext_resource type="PackedScene" uid="uid://nmdloph0hs40" path="res://Model/CardData/Cards/CosmicDuctTape.tscn" id="19_bd6ev"]
 [ext_resource type="Script" uid="uid://7y010iwclveo" path="res://Controller/UI Scripts/discardButtonScrip.gd" id="20_j5y8d"]
 [ext_resource type="PackedScene" uid="uid://o4bext6cdikb" path="res://Model/CardData/Cards/DeepSpaceBlaster.tscn" id="20_liucg"]
-[ext_resource type="Script" uid="uid://d3pn7t3bl1oxr" path="res://Controller/UI Scripts/trashcanScript.gd" id="20_rxymg"]
+[ext_resource type="Script" path="res://Controller/UI Scripts/trashcanScript.gd" id="20_rxymg"]
 [ext_resource type="PackedScene" uid="uid://dyodd41l1yhkr" path="res://Model/CardData/Cards/DeepSpaceHotline.tscn" id="21_roc15"]
-[ext_resource type="Script" path="res://Controller/UI Scripts/drawCardPreview.gd" id="21_rxymg"]
+[ext_resource type="Script" uid="uid://bdio638up815l" path="res://Controller/UI Scripts/drawCardPreview.gd" id="21_rxymg"]
 [ext_resource type="PackedScene" uid="uid://bgiv34qukhndx" path="res://Model/CardData/Cards/DeepSpaceMetalDetector.tscn" id="22_th1ls"]
 [ext_resource type="PackedScene" uid="uid://pixdoyovlve4" path="res://Model/CardData/Cards/DrumKit.tscn" id="23_omv2v"]
 [ext_resource type="PackedScene" uid="uid://b24542odiort7" path="res://Model/CardData/Cards/FrisbeeOfDoom.tscn" id="25_tk215"]
@@ -934,7 +934,7 @@ modulate_color = Color(0.972549, 0.62352943, 0, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_t26e8"]
 font = ExtResource("11_wki3r")
 
-[node name="MainScene" type="Node2D" node_paths=PackedStringArray("player", "cardManager", "hullIntegrityLabel", "powerLabel", "velocityLabel", "rewardsHolder", "rewardEffectHolder", "scenarioHeader", "scenarioEffectLabel", "scenarioWinConditionLabel", "hullIntegrityBar", "powerBar", "velocityBar", "animationPlayer", "handController", "drawCardPreview", "openMenuSFX", "closeMenuSFX", "winSFX")]
+[node name="MainScene" type="Node2D" node_paths=PackedStringArray("player", "cardManager", "hullIntegrityLabel", "powerLabel", "velocityLabel", "rewardsHolder", "rewardEffectHolder", "scenarioHeader", "scenarioEffectLabel", "scenarioWinConditionLabel", "hullIntegrityBar", "powerBar", "velocityBar", "animationPlayer", "handController", "drawCardPreview")]
 script = ExtResource("1_6pwi0")
 player = NodePath("Player")
 cardManager = NodePath("CardManager")
@@ -952,9 +952,6 @@ velocityBar = NodePath("UI/Attribute Holder/Player Attribute Bars/Velocity Bar")
 animationPlayer = NodePath("GUIAnimationPlayer")
 handController = NodePath("UI/Hand Container")
 drawCardPreview = NodePath("UI/DrawCardPreview")
-openMenuSFX = NodePath("MenuOpenSFX")
-closeMenuSFX = NodePath("MenuCloseSFX")
-winSFX = NodePath("WinSFX")
 
 [node name="CardManager" type="Node" parent="."]
 script = ExtResource("2_qb6nl")
@@ -1146,7 +1143,7 @@ label_settings = SubResource("LabelSettings_6pwi0")
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Hand Container" type="Control" parent="UI" node_paths=PackedStringArray("cardEffectLabel", "continueScenarioControl", "discardCardButtonAnimationPlayer", "trashcanAnimationPlayer", "trashCanOpenSFX", "trashCanCloseSFX", "cardSFX")]
+[node name="Hand Container" type="Control" parent="UI" node_paths=PackedStringArray("cardEffectLabel", "continueScenarioControl", "discardCardButtonAnimationPlayer", "trashcanAnimationPlayer")]
 z_index = 2
 z_as_relative = false
 anchors_preset = 0
@@ -1162,9 +1159,6 @@ discardLabel = "You toss your cards into the solar wind, hoping for better draws
 discardCardButtonAnimationPlayer = NodePath("DiscardButtonHolder/DiscardButtonAnimationPlayer")
 trashcanAnimationPlayer = NodePath("TrashCanHolder/TrashCanAnimationPlayer")
 discardUseHeader = "You toss your cards into the solar wind, hoping for better luck in the future..."
-trashCanOpenSFX = NodePath("../../TrashCanOpenSFX")
-trashCanCloseSFX = NodePath("../../TrashCanCloseSFX")
-cardSFX = NodePath("../../CardSFX")
 
 [node name="Hud Image" type="Sprite2D" parent="UI/Hand Container"]
 position = Vector2(-10.621529, 612.656)
