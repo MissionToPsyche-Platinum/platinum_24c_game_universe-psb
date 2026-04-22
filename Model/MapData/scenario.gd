@@ -17,6 +17,9 @@ signal interacted
 func _ready() -> void:
 	choose_random_scenario()
 	set_sprite()
+	#debug stuff
+	print("all_scenarios size: ", all_scenarios.size())
+	print("available_scenarios size: ", available_scenarios.size())
 
 
 # Selects random scenario from Scenarios folder and assigns it to this node
@@ -39,7 +42,7 @@ func choose_random_scenario():
 	
 func load_scenario_list():
 	#fill available scenarios list w all scenarios
-	available_scenarios = all_scenarios
+	available_scenarios = all_scenarios.duplicate()
 	
 	if available_scenarios.size() == 0:
 		print("No scenarios found!")
