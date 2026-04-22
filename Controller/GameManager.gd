@@ -49,6 +49,9 @@ var drawCardPreview : DrawCardPreview
 #array to hold the rewards from beeating the scenario
 var rewards
 
+#victory sound
+var victorySFX : AudioStreamPlayer
+
 @export var hand: Control
 
 func _set_response_label_enabled(enabled: bool) -> void:
@@ -138,7 +141,16 @@ func endPlayerTurn() -> void:
 	print("Ending player turn")
 	#check if the player lost on their turn
 	if playerLost:
-		self.change_scene_to_file("res://Model/ScreenData/LoseScreen.tscn")
+		
+		#free the scenario
+		scenario.queue_free()
+		
+		await get_tree().process_frame
+	
+		#change scene to lose screen
+		self.change_scene_to_file("res://Model/ScreenData/LoseScreen.tscn")	
+		
+		
 		return
 		
 	if defaultCardWin:
@@ -167,7 +179,14 @@ func endScenarioTurn() -> void:
 	print("scenario turn ended") 
 	#check if the player lost on scenario turn
 	if playerLost:
+		#free the scenario
+		scenario.queue_free()	
+		
+		await  get_tree().process_frame
+		
+		#change scene to lose screen
 		self.change_scene_to_file("res://Model/ScreenData/LoseScreen.tscn")
+		
 		return
 	#have the player do what they need to do on the beginning of their turn
 	player.beginPlayerTurn()
@@ -217,6 +236,9 @@ func endScenario() -> void:
 		
 		#add wrapper to hbox
 		rewardsHolder.add_child(wrapper)
+		
+		#play the victory sound
+		victorySFX.play()
 	
 	#play end of scenario animation
 	UIAnimationPlayer.play("ScenarioEnd")

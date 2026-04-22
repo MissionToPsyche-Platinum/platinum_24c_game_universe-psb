@@ -20,6 +20,11 @@ func performScenarioEffect() -> void:
 		#win condition has been met, emit signal and return from function 
 		print("Scenario has been defeated!")
 		emit_signal("scenarioWon")
+		
+		#stop playing music
+		eventScenarioIntroMusic.stop()
+		eventScenarioLoopMusic.stop()
+		
 		return 
 	
 	for effect in affectedAttributes:

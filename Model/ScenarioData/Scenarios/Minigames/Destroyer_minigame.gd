@@ -40,6 +40,9 @@ func performScenarioEffect() -> void:
 	print("Won")
 	$Player.queue_free()
 	$Ball.queue_free()
+	
+	#stop playing music 
+	minigameMusicPlayer.stop()
 
 func getWinCondition() -> String:
 	return "Destroy The Bricks"

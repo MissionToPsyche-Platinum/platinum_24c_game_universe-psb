@@ -29,6 +29,9 @@ func performScenarioEffect() -> void:
 				child.queue_free()
 		player.queue_free()
 		spawner.stop_spawning()
+		
+		#stop playing music
+		minigameMusicPlayer.stop()
 
 func getWinCondition() -> String:
 	return "Survive for %d seconds." % survival_time

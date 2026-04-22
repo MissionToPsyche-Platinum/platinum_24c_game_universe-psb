@@ -1,4 +1,4 @@
-[gd_scene load_steps=127 format=4 uid="uid://b5aneqr63kcay"]
+[gd_scene load_steps=128 format=4 uid="uid://b5aneqr63kcay"]
 
 [ext_resource type="Script" uid="uid://bryyckfysnh62" path="res://Model/Scenes/mainScene.gd" id="1_6pwi0"]
 [ext_resource type="Script" uid="uid://lp0itw18h7mo" path="res://Model/Scenes/card_manager.gd" id="2_qb6nl"]
@@ -79,6 +79,7 @@
 [ext_resource type="AudioStream" uid="uid://b5rpkqmcyb560" path="res://View/Assets/Sounds/MenuOpen.wav" id="77_1p2x4"]
 [ext_resource type="AudioStream" uid="uid://dwn2bv5aoyde8" path="res://View/Assets/Sounds/MenuClose.wav" id="78_3ygrc"]
 [ext_resource type="AudioStream" uid="uid://dm8uxkn7rg0ly" path="res://View/Assets/Sounds/Card.wav.wav" id="79_va6y7"]
+[ext_resource type="AudioStream" uid="uid://dxu7vfgcp0g3y" path="res://View/Assets/Sounds/PATU Reward Screen (Good Score).wav" id="80_hsxrn"]
 
 [sub_resource type="Theme" id="Theme_d184y"]
 
@@ -931,7 +932,7 @@ modulate_color = Color(0.972549, 0.62352943, 0, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_t26e8"]
 font = ExtResource("11_wki3r")
 
-[node name="MainScene" type="Node2D" node_paths=PackedStringArray("player", "cardManager", "hullIntegrityLabel", "powerLabel", "velocityLabel", "rewardsHolder", "rewardEffectHolder", "scenarioHeader", "scenarioEffectLabel", "scenarioWinConditionLabel", "hullIntegrityBar", "powerBar", "velocityBar", "animationPlayer", "handController", "drawCardPreview", "openMenuSFX", "closeMenuSFX")]
+[node name="MainScene" type="Node2D" node_paths=PackedStringArray("player", "cardManager", "hullIntegrityLabel", "powerLabel", "velocityLabel", "rewardsHolder", "rewardEffectHolder", "scenarioHeader", "scenarioEffectLabel", "scenarioWinConditionLabel", "hullIntegrityBar", "powerBar", "velocityBar", "animationPlayer", "handController", "drawCardPreview", "openMenuSFX", "closeMenuSFX", "winSFX", "loseSFX")]
 script = ExtResource("1_6pwi0")
 player = NodePath("Player")
 cardManager = NodePath("CardManager")
@@ -951,10 +952,12 @@ handController = NodePath("UI/Hand Container")
 drawCardPreview = NodePath("UI/DrawCardPreview")
 openMenuSFX = NodePath("MenuOpenSFX")
 closeMenuSFX = NodePath("MenuCloseSFX")
+winSFX = NodePath("WinSFX")
+loseSFX = NodePath("")
 
 [node name="CardManager" type="Node" parent="."]
 script = ExtResource("2_qb6nl")
-defaultDeck = Array[PackedScene]([ExtResource("3_h6lqa"), ExtResource("5_va1io"), ExtResource("8_syhfs"), ExtResource("4_m6kxi"), ExtResource("11_3ygrc"), ExtResource("9_hsxrn"), ExtResource("7_buwyi"), ExtResource("10_1p2x4"), ExtResource("6_kk7rv"), ExtResource("40_tf330")])
+defaultDeck = Array[PackedScene]([ExtResource("3_h6lqa"), ExtResource("5_va1io"), ExtResource("8_syhfs"), ExtResource("4_m6kxi"), ExtResource("11_3ygrc"), ExtResource("9_hsxrn"), ExtResource("7_buwyi"), ExtResource("10_1p2x4"), ExtResource("6_kk7rv"), ExtResource("40_tf330"), ExtResource("7_qatxi")])
 bank = Array[PackedScene]([ExtResource("12_va6y7"), ExtResource("13_cb7l3"), ExtResource("14_7g70d"), ExtResource("15_egsrh"), ExtResource("16_b4wbc"), ExtResource("8_syhfs"), ExtResource("17_1db31"), ExtResource("18_3wyjq"), ExtResource("19_bd6ev"), ExtResource("20_liucg"), ExtResource("21_roc15"), ExtResource("22_th1ls"), ExtResource("23_omv2v"), ExtResource("9_v5pj8"), ExtResource("25_tk215"), ExtResource("26_mxbek"), ExtResource("4_oeksu"), ExtResource("28_ewf08"), ExtResource("29_f68i0"), ExtResource("30_cw1jt"), ExtResource("31_v5ayf"), ExtResource("32_i2g57"), ExtResource("33_3d4g0"), ExtResource("34_ipt0d"), ExtResource("35_bgdkc"), ExtResource("36_wqg0k"), ExtResource("37_jnh14"), ExtResource("38_y1dmq"), ExtResource("39_1lsax"), ExtResource("40_tf330"), ExtResource("41_v7gr0"), ExtResource("42_jjhdc"), ExtResource("7_qatxi"), ExtResource("44_fh7q5"), ExtResource("45_4ehjt"), ExtResource("46_3lmcm"), ExtResource("47_guelh"), ExtResource("48_8kein"), ExtResource("49_f0gj0"), ExtResource("50_q1o7j"), ExtResource("51_lth22"), ExtResource("52_6mxbc"), ExtResource("53_c2p3y"), ExtResource("54_p13ks"), ExtResource("55_eqdxn"), ExtResource("56_k2l46"), ExtResource("57_hitg7"), ExtResource("58_0yjnd"), ExtResource("59_fly8i")])
 rewardMinimumAmount = 3
 
@@ -1688,6 +1691,9 @@ stream = ExtResource("78_3ygrc")
 
 [node name="CardSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("79_va6y7")
+
+[node name="WinSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("80_hsxrn")
 
 [connection signal="gui_input" from="UI/Hand Container" to="UI/Hand Container" method="_on_gui_input"]
 [connection signal="gui_input" from="UI/Hand Container/Scenario Label/Scenario Label" to="." method="_on_scenario_label_gui_input"]

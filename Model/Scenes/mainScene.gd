@@ -38,6 +38,8 @@ const _MUSIC_BUS_NAME := "Music"
 #sound
 @export var openMenuSFX : AudioStreamPlayer
 @export var closeMenuSFX : AudioStreamPlayer
+@export var winSFX: AudioStreamPlayer
+@export var loseSFX : AudioStreamPlayer
 
 
 
@@ -74,6 +76,9 @@ func _ready() -> void:
 	
 	#assign draw card preview reference
 	GameManager.drawCardPreview = drawCardPreview
+	
+	GameManager.victorySFX = winSFX
+	
 	
 	# Assign stats reference
 	var statsScene = preload("res://Model/Scenes/StatsScene.tscn").instantiate()

@@ -32,6 +32,10 @@ func performScenarioEffect() -> void:
 	if enemies_destroyed >= enemies:
 		emit_signal("scenarioWon")
 		$Player.queue_free()
+		
+		#stop playing music
+		minigameMusicPlayer.stop()
+		
 		return
 
 func getWinCondition() -> String:
