@@ -10,9 +10,8 @@ affectedAttribute = 2
 amount = -10.0
 metadata/_custom_type_script = "uid://cda51huvrayd1"
 
-[node name="BattleScenarioBase" node_paths=PackedStringArray("enemyPositions") instance=ExtResource("1_sidhv")]
-enemyPositions = [NodePath("EnemyContainer/EnemyPlacement 1"), NodePath("EnemyContainer/Enemy Placement 2"), NodePath("EnemyContainer/EnemyPlacement 3"), NodePath("EnemyContainer/Enemy Placement 4"), NodePath("EnemyContainer/EnemyPlacement 1")]
-enemyScenes = Array[PackedScene]([ExtResource("2_o4j6t"), ExtResource("2_o4j6t"), ExtResource("2_o4j6t"), ExtResource("2_o4j6t"), ExtResource("2_o4j6t")])
+[node name="BattleScenarioBase" instance=ExtResource("1_sidhv")]
+enemyScenes = Array[PackedScene]([ExtResource("2_o4j6t"), ExtResource("2_o4j6t"), ExtResource("2_o4j6t"), ExtResource("2_o4j6t")])
 affectedAttributes = Array[ExtResource("3_dteqi")]([SubResource("Resource_t34ar")])
 scenarioText = "Passive, but obstructive. It’s a shame this Amoeba can’t be peacefully convinced to move (it lacks a brain). Psyche will need to clear a path to continue."
 
