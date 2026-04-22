@@ -1,7 +1,41 @@
-[gd_scene load_steps=4 format=3 uid="uid://brf8psrjkpbsh"]
+[gd_scene load_steps=38 format=3 uid="uid://brf8psrjkpbsh"]
 
 [ext_resource type="Script" uid="uid://chmudwc1ytdlq" path="res://Model/MapData/scenario.gd" id="1_klwqe"]
 [ext_resource type="Texture2D" uid="uid://65wbpo7vyc15" path="res://View/Assets/Sprites/Map/ufo_scenario_icon_white.png" id="2_jhy8r"]
+[ext_resource type="PackedScene" uid="uid://mjkwhxw440sb" path="res://Model/ScenarioData/Scenarios/BS_Amoeba.tscn" id="2_pgnas"]
+[ext_resource type="PackedScene" uid="uid://csl85aooav4yk" path="res://Model/ScenarioData/Scenarios/BS_Catphish.tscn" id="3_hbat0"]
+[ext_resource type="PackedScene" uid="uid://dgrj7orpptr5g" path="res://Model/ScenarioData/Scenarios/BS_DarkPysche.tscn" id="4_8eppj"]
+[ext_resource type="PackedScene" uid="uid://btgqase3hyy5m" path="res://Model/ScenarioData/Scenarios/BS_Ghost.tscn" id="5_ebjjo"]
+[ext_resource type="PackedScene" uid="uid://jbixbg82ftfy" path="res://Model/ScenarioData/Scenarios/Bs_GiantKaiju.tscn" id="6_8cskl"]
+[ext_resource type="PackedScene" uid="uid://cr6666gdlkhbv" path="res://Model/ScenarioData/Scenarios/BS_Octopus.tscn" id="7_1lui8"]
+[ext_resource type="PackedScene" uid="uid://dxm0lr1e4l6jw" path="res://Model/ScenarioData/Scenarios/BS_Pinata.tscn" id="8_tp6wf"]
+[ext_resource type="PackedScene" uid="uid://fp1unjvtmyuk" path="res://Model/ScenarioData/Scenarios/BS_Pirate.tscn" id="9_akosr"]
+[ext_resource type="PackedScene" uid="uid://u16j5x7hoabi" path="res://Model/ScenarioData/Scenarios/BS_PopUp.tscn" id="10_euhl4"]
+[ext_resource type="PackedScene" uid="uid://dt8lqowykpxrq" path="res://Model/ScenarioData/Scenarios/BS_SchoolBus.tscn" id="11_je1pt"]
+[ext_resource type="PackedScene" uid="uid://v52f2itrn0vh" path="res://Model/ScenarioData/Scenarios/BS_SpaceDentist.tscn" id="12_62i2g"]
+[ext_resource type="PackedScene" uid="uid://lgp0ambv7dg4" path="res://Model/ScenarioData/Scenarios/BS_SpacePuppy.tscn" id="13_8nwxu"]
+[ext_resource type="PackedScene" uid="uid://bu5fs71a6pnut" path="res://Model/ScenarioData/Scenarios/BS_SpaceSharks.tscn" id="14_upxu0"]
+[ext_resource type="PackedScene" uid="uid://c817njnbhik2t" path="res://Model/ScenarioData/Scenarios/BS_SpaceTimeShareSalesman.tscn" id="15_48ncw"]
+[ext_resource type="PackedScene" uid="uid://yky2dppk2n3o" path="res://Model/ScenarioData/Scenarios/BS_SuperNovaDragon.tscn" id="16_xixni"]
+[ext_resource type="PackedScene" uid="uid://cl18i6vu11p1g" path="res://Model/ScenarioData/Scenarios/MG_DestroyerMinigame.tscn" id="17_1ip7y"]
+[ext_resource type="PackedScene" uid="uid://baurn8abmfm3q" path="res://Model/ScenarioData/Scenarios/MG_MeteorMinigame.tscn" id="18_hdt5j"]
+[ext_resource type="PackedScene" uid="uid://b625bvp2xgl6p" path="res://Model/ScenarioData/Scenarios/MG_ShootingMinigame.tscn" id="19_wjms4"]
+[ext_resource type="PackedScene" uid="uid://baphpy6oa32bq" path="res://Model/ScenarioData/Scenarios/Sc_AlienFungus.tscn" id="20_ci70o"]
+[ext_resource type="PackedScene" uid="uid://deeletb3f4xjx" path="res://Model/ScenarioData/Scenarios/Sc_DoubleDarkMatter.tscn" id="21_v8psu"]
+[ext_resource type="PackedScene" uid="uid://sevl87qtcfxt" path="res://Model/ScenarioData/Scenarios/Sc_GreekPsyche.tscn" id="22_3cf4f"]
+[ext_resource type="PackedScene" uid="uid://dxbvrkffmu5yc" path="res://Model/ScenarioData/Scenarios/SC_GreenRock.tscn" id="23_5j1tl"]
+[ext_resource type="PackedScene" uid="uid://c1pktnfg88b5y" path="res://Model/ScenarioData/Scenarios/Sc_Icarus.tscn" id="24_doyaf"]
+[ext_resource type="PackedScene" uid="uid://b3qfsiabjp6jw" path="res://Model/ScenarioData/Scenarios/Sc_LFGGambling.tscn" id="25_vxtre"]
+[ext_resource type="PackedScene" uid="uid://dp1dhlxxrwstt" path="res://Model/ScenarioData/Scenarios/Sc_Malware.tscn" id="26_ngk8e"]
+[ext_resource type="PackedScene" uid="uid://dwh32iy76vxhb" path="res://Model/ScenarioData/Scenarios/Sc_MicroscopicSpaceJunk..tscn" id="27_isydx"]
+[ext_resource type="PackedScene" uid="uid://daxcgqmhsx8dw" path="res://Model/ScenarioData/Scenarios/Sc_MicroscopicSpaceJunk.tscn" id="28_8plql"]
+[ext_resource type="PackedScene" uid="uid://csl64vc66tkic" path="res://Model/ScenarioData/Scenarios/Sc_NASAGram.tscn" id="29_rcho0"]
+[ext_resource type="PackedScene" uid="uid://cvouef65d81p" path="res://Model/ScenarioData/Scenarios/Sc_SchoolZone.tscn" id="30_wgjin"]
+[ext_resource type="PackedScene" uid="uid://cqoyhtg1jfi8a" path="res://Model/ScenarioData/Scenarios/Sc_SpaceDoku.tscn" id="31_kwyrj"]
+[ext_resource type="PackedScene" uid="uid://moso7qawfre8" path="res://Model/ScenarioData/Scenarios/Sc_SpaceProbe.tscn" id="32_grabj"]
+[ext_resource type="PackedScene" uid="uid://cgm38s768d6rw" path="res://Model/ScenarioData/Scenarios/Sc_TheWorms.tscn" id="33_l48e7"]
+[ext_resource type="PackedScene" uid="uid://mar0m4cc8ic7" path="res://Model/ScenarioData/Scenarios/Sc_TractorBeam.tscn" id="34_o7ub1"]
+[ext_resource type="PackedScene" uid="uid://k7tnt61m4xu8" path="res://Model/ScenarioData/Scenarios/Sc_UnknownObjectAttached.tscn" id="35_cxf6d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ppkxm"]
 size = Vector2(185, 185)
@@ -9,6 +43,7 @@ size = Vector2(185, 185)
 [node name="Clickable Scenario" type="Area2D"]
 scale = Vector2(0.6, 0.6)
 script = ExtResource("1_klwqe")
+all_scenarios = Array[PackedScene]([ExtResource("2_pgnas"), ExtResource("3_hbat0"), ExtResource("4_8eppj"), ExtResource("5_ebjjo"), ExtResource("6_8cskl"), ExtResource("7_1lui8"), ExtResource("8_tp6wf"), ExtResource("9_akosr"), ExtResource("10_euhl4"), ExtResource("11_je1pt"), ExtResource("12_62i2g"), ExtResource("13_8nwxu"), ExtResource("14_upxu0"), ExtResource("15_48ncw"), ExtResource("16_xixni"), ExtResource("17_1ip7y"), ExtResource("18_hdt5j"), ExtResource("19_wjms4"), ExtResource("20_ci70o"), ExtResource("21_v8psu"), ExtResource("22_3cf4f"), ExtResource("23_5j1tl"), ExtResource("24_doyaf"), ExtResource("25_vxtre"), ExtResource("26_ngk8e"), ExtResource("27_isydx"), ExtResource("28_8plql"), ExtResource("29_rcho0"), ExtResource("30_wgjin"), ExtResource("31_kwyrj"), ExtResource("32_grabj"), ExtResource("33_l48e7"), ExtResource("34_o7ub1"), ExtResource("35_cxf6d")])
 
 [node name="Battle Scenario" type="Sprite2D" parent="."]
 texture = ExtResource("2_jhy8r")
