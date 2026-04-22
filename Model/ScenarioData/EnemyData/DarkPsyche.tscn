@@ -13,7 +13,7 @@ offset_left = 170.496
 offset_top = 193.104
 offset_right = 537.496
 offset_bottom = 504.104
-MAX_HEALTH = 5
+MAX_HEALTH = 100
 
 [node name="EnemySprite" parent="." index="0"]
 offset_bottom = 617.0
