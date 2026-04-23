@@ -30,16 +30,23 @@ func find_node_recursive(root: Node, name: String) -> Node:
 	return null
 
 # Test: pressing "PlayAgainButton" changes the scene
-func test_Retry_button_navigation():
-	var Retry_Button = find_node_recursive(main_node, "RetryButton")
-	assert_not_null(Retry_Button, "Retry Button should exist for navigation test")
+func test_play_again_button_navigation():
+	var play_again_button = find_node_recursive(main_node, "PlayAgainButton")
+	assert_not_null(play_again_button, "PlayAgainButton should exist for navigation test")
 
-	# Safely emit the button pressed signal
-	Retry_Button.emit_signal("pressed")
+	assert_true(play_again_button is BaseButton, "PlayAgainButton must be a BaseButton")
 
-	# Allow the scene change to process in the next idle frame
+	# Simulate button press
+	play_again_button.pressed.emit()
+
+	# Allow scene transition to process
+	await get_tree().process_frame
 	await get_tree().process_frame
 
-	# Verify that the current scene has changed
+	# Verify scene changed
 	var current_scene = get_tree().current_scene
-	assert_true(current_scene != main_node, "Pressing Play Again should change the scene")
+	assert_ne(
+		current_scene,
+		main_node,
+		"Pressing PlayAgainButton should change the scene"
+	)

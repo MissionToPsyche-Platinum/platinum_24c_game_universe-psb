@@ -6,6 +6,7 @@ var map: MapController
 func before_each():
 	var scene: PackedScene = load("res://Model/Scenes/Map/map.tscn")
 	map = scene.instantiate()
+	map.layout = load("res://Model/MapData/Maps/Extra/Map_12Nodes_Scroll.tres")
 	add_child(map)
 
 	await get_tree().process_frame

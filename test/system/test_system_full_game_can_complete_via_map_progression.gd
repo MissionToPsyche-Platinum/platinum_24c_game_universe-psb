@@ -4,7 +4,7 @@ extends GutTest
 ## from start toward the end node, which should transition to WinScreen.
 
 const MAP_SCENE := preload("res://Model/Scenes/Map/map.tscn")
-const MAP_LAYOUT := preload("res://Model/MapData/Maps/Map_8Nodes.tres")
+const MAP_LAYOUT := preload("res://Model/MapData/Maps/Extra/Map_8Nodes.tres")
 const WIN_SCREEN_PATH := "res://Model/ScreenData/WinScreen.tscn"
 
 var _map: MapController
@@ -12,11 +12,16 @@ var _stats: StatsController
 var _player: Player
 
 
+# -----------------------------
+# SETUP
+# -----------------------------
 func before_each() -> void:
 	_map = MAP_SCENE.instantiate()
-	_map.layout = MAP_LAYOUT
 	get_tree().root.add_child(_map)
 	get_tree().current_scene = _map
+
+	# CRITICAL FIX: bypass difficulty gate safely
+	_map.initialize_with_layout(MAP_LAYOUT)
 
 	_stats = StatsController.new()
 	get_tree().root.add_child(_stats)
@@ -29,8 +34,12 @@ func before_each() -> void:
 	GameManager.map = _map
 
 	await get_tree().process_frame
+	await get_tree().process_frame
 
 
+# -----------------------------
+# TEARDOWN
+# -----------------------------
 func after_each() -> void:
 	var current_scene := get_tree().current_scene
 
@@ -40,6 +49,7 @@ func after_each() -> void:
 		_stats.queue_free()
 	if is_instance_valid(_map):
 		_map.queue_free()
+
 	if is_instance_valid(current_scene) and current_scene.scene_file_path == WIN_SCREEN_PATH:
 		current_scene.queue_free()
 
@@ -50,46 +60,67 @@ func after_each() -> void:
 	await get_tree().process_frame
 
 
+# -----------------------------
+# TEST
+# -----------------------------
 func test_full_game_can_be_completed_via_map_scenario_progression() -> void:
-	var model := _map.model
-	assert_not_null(model, "Map should initialize a model in _ready.")
+	var model: MapModel = _map.model
+	assert_not_null(model, "Map should initialize a model via test initializer.")
 	assert_false(model.has_won, "Game should not start in a won state.")
 
 	var path_to_finish := _path_to_pre_end_node(_map.layout)
-	assert_gt(path_to_finish.size(), 0, "Map layout should contain a route from start toward end.")
+	assert_gt(path_to_finish.size(), 0, "Map layout should contain a valid route.")
 
 	for next_index in path_to_finish:
 		_map.map_active = true
 		var previous_index := model.current_index
 
 		_map._on_node_clicked(next_index)
-		assert_eq(model.psyche_anticipated_index, next_index,
-			"Clicking active neighbor should set anticipated move.")
+
+		assert_eq(
+			model.psyche_anticipated_index,
+			next_index,
+			"Clicking active neighbor should set anticipated move."
+		)
 
 		_map.advance_position()
 		await wait_process_frames(2)
 
-		assert_eq(model.current_index, next_index,
-			"Completing a scenario should advance Psyche along the route.")
-		assert_ne(model.current_index, previous_index,
-			"Current map index should change after scenario completion.")
+		assert_eq(
+			model.current_index,
+			next_index,
+			"Scenario completion should advance Psyche."
+		)
 
-	assert_true(model.has_won,
-		"Reaching the node before the end should mark the map as won.")
+		assert_ne(
+			model.current_index,
+			previous_index,
+			"Map index should change after move."
+		)
 
-	var went_to_win_screen: bool = await wait_until(
+	assert_true(
+		model.has_won,
+		"Reaching final node should mark game as won."
+	)
+
+	# FIXED: no explicit bool typing (prevents Variant inference error)
+	var went_to_win_screen = await wait_until(
 		func() -> bool:
 			return (
 				get_tree().current_scene != null
 				and get_tree().current_scene.scene_file_path == WIN_SCREEN_PATH
 			),
-		5.0,
-		0.05,
-		"Completing map progression should transition to WinScreen."
+			5.0,
+			0.05,
+			"Waiting for WinScreen transition."
 	)
-	assert_true(went_to_win_screen, "Timed out waiting for transition to WinScreen.")
+
+	assert_true(went_to_win_screen, "Timed out waiting for WinScreen transition.")
 
 
+# -----------------------------
+# PATH HELPERS
+# -----------------------------
 func _path_to_pre_end_node(layout: MapLayout) -> Array[int]:
 	var target_nodes := {}
 	for predecessor in _get_preceding_neighbors(layout.end_index, layout.connections):
@@ -101,6 +132,7 @@ func _path_to_pre_end_node(layout: MapLayout) -> Array[int]:
 
 	while queue.size() > 0 and found_target == -1:
 		var current := queue.pop_front()
+
 		if target_nodes.has(current):
 			found_target = current
 			break
@@ -116,6 +148,7 @@ func _path_to_pre_end_node(layout: MapLayout) -> Array[int]:
 
 	var reverse_path: Array[int] = []
 	var cursor := found_target
+
 	while cursor != layout.start_index:
 		reverse_path.append(cursor)
 		cursor = parents[cursor]
