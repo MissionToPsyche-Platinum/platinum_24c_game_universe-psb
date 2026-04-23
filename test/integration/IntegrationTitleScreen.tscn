@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://ctvljuh4cnuvi"]
-
-[ext_resource type="Script" uid="uid://cgby44ldsgjvr" path="res://test/integration/test_integration_title_screen.gd" id="1_sjpvx"]
-
-[node name="IntegrationTitleScreen" type="Control"]
-layout_mode = 3
-anchors_preset = 0
-script = ExtResource("1_sjpvx")

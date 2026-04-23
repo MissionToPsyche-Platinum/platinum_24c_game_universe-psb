@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cc0l081jobp75"]
-
-[ext_resource type="Script" uid="uid://c6rnyk1h0ipne" path="res://test/unit/test_game_card.gd" id="1_ru01i"]
-
-[node name="GameCardTest" type="Control"]
-layout_mode = 3
-anchors_preset = 0
-script = ExtResource("1_ru01i")

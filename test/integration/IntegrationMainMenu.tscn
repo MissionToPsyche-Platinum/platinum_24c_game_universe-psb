@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://djwibr8a38qha"]
-
-[ext_resource type="Script" uid="uid://dfwaqck42efqg" path="res://test/integration/test_integration_main_menu.gd" id="1_cwfss"]
-
-[node name="IntegrationMainMenu" type="Control"]
-layout_mode = 3
-anchors_preset = 0
-script = ExtResource("1_cwfss")
