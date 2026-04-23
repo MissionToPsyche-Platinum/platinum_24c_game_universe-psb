@@ -15,42 +15,26 @@ func _forgive_known_engine_animation_warnings() -> void:
 			e.handled = true
 
 
-# -------------------------
-# SETUP
-# -------------------------
 func before_each():
 	var scene: PackedScene = load("res://Model/Scenes/Map/map.tscn")
 	map = scene.instantiate()
-	add_child_autofree(map)
+	# Map_3Nodes: the first step from start lands on the node before the asteroid,
+	# which satisfies the "reached end" win check — psyche never moves and the map hides.
+	map.layout = load("res://Model/MapData/Maps/Map_8Nodes.tres")
+	add_child(map)
 
-	map.initialize_with_layout(
-		load("res://Model/MapData/Maps/Extra/Map_3Nodes.tres")
-	)
-
-	await get_tree().process_frame
 	await get_tree().process_frame
 
 
-# -------------------------
-# TEARDOWN
-# -------------------------
 func after_each():
-	if map:
-		map.queue_free()
-		await get_tree().process_frame
-		await get_tree().process_frame
-		map = null
-
+	map.queue_free()
 	_forgive_known_engine_animation_warnings()
 
-
-# -------------------------
-# TEST 1: movement
-# -------------------------
+# test movement to new scenario after scenario completion
 func test_move_to_new_scenario():
 	var model := map.model
 	var view := map.view
-
+	
 	var start_index := model.current_index
 	var neighbors := model.get_proceeding_neighbors(start_index)
 
@@ -58,18 +42,19 @@ func test_move_to_new_scenario():
 
 	var target_index := neighbors[0]
 
+	# Simulate clicking node via controller
 	map.map_active = true
 	map._on_node_clicked(target_index)
 
+	# Model should anticipate move
 	assert_eq(
 		model.psyche_anticipated_index,
 		target_index,
 		"Model should anticipate movement"
 	)
 
+	# Simulate returning from scenario
 	map.advance_position()
-
-	await get_tree().process_frame
 	await get_tree().process_frame
 
 	assert_eq(
@@ -78,12 +63,11 @@ func test_move_to_new_scenario():
 		"Model should update current index"
 	)
 
-	# ✅ FIX: DO NOT convert coordinates
-	var actual_pos: Vector2 = view.psyche_view.position
-	var expected_pos: Vector2 = model.layout.node_positions[target_index]
-
-	assert_true(
-		actual_pos.is_equal_approx(expected_pos),
+	# Psyche view position should match layout position
+	var expected_pos := model.layout.node_positions[target_index]
+	assert_eq(
+		view.psyche_view.position,
+		expected_pos,
 		"Psyche view should move to target node"
 	)
 
@@ -91,13 +75,9 @@ func test_move_to_new_scenario():
 		map.visible,
 		"Map should be visible after advancing position"
 	)
-
 	_forgive_known_engine_animation_warnings()
 
-
-# -------------------------
-# TEST 2: inactive interaction
-# -------------------------
+# make sure map doesnt auto-advance when clicking reward card
 func test_during_choose_reward():
 	var model := map.model
 
@@ -124,3 +104,4 @@ func test_during_choose_reward():
 		map.visible,
 		"Map should remain invisible"
 	)
+	
