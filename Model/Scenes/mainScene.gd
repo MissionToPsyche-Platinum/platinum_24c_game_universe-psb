@@ -36,9 +36,9 @@ const _MUSIC_BUS_NAME := "Music"
 @export var drawCardPreview : DrawCardPreview
 
 #sound
-@export var openMenuSFX : AudioStreamPlayer
-@export var closeMenuSFX : AudioStreamPlayer
-@export var winSFX: AudioStreamPlayer
+@onready var openMenuSFX : AudioStreamPlayer = $MenuOpenSFX
+@onready var closeMenuSFX : AudioStreamPlayer = $MenuCloseSFX
+@onready var winSFX: AudioStreamPlayer = $WinSFX
 @export var loseSFX : AudioStreamPlayer
 
 

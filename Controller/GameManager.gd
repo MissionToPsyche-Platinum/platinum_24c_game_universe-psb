@@ -1,6 +1,5 @@
 extends Node
 
-
 @export var player: Player
 @export var scenario: Scenario
 @export var card_manager: CardManager
@@ -83,7 +82,7 @@ func loseGame() -> void:
 	playerLost = true
 	change_scene_to_file("res://Model/ScreenData/LoseScreen.tscn")
 	
-func loadScenario(scenePath: String) -> void:
+func loadScenario(scenarioScene: PackedScene) -> void:
 	#first unload the current scenario if necessary
 	if scenario:
 		scenario.queue_free()
@@ -95,8 +94,7 @@ func loadScenario(scenePath: String) -> void:
 		player.instantiatePlayerDeck()
 		playerInstantiated = true
 	
-	#get the scene from the file path
-	var scenarioScene = load(scenePath)
+	#get the scene
 	scenario = scenarioScene.instantiate()
 	
 	#add scenario to scene tree

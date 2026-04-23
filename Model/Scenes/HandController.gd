@@ -37,9 +37,9 @@ const CONTINUE_OVERLAY_Z_INDEX := 10
 
 
 #AudioStreamPlayers for Sound
-@export var trashCanOpenSFX : AudioStreamPlayer
-@export var trashCanCloseSFX : AudioStreamPlayer 
-@export var cardSFX: AudioStreamPlayer
+@onready var trashCanOpenSFX : AudioStreamPlayer = $TrashCanOpenSFX
+@onready var trashCanCloseSFX : AudioStreamPlayer = $TrashCanCloseSFX
+@onready var cardSFX: AudioStreamPlayer = $CardSFX
 
 
 

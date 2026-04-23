@@ -4,9 +4,11 @@ extends Area2D
 
 enum ScenarioType { EVENT, BATTLE, MINIGAME }
 var type : ScenarioType
-var scenario_path : String
+var scenario : PackedScene
 
-static var available_scenarios := []
+#static var available_scenarios := []
+@export var all_scenarios: Array[PackedScene] = []
+var available_scenarios: Array[PackedScene]
 
 var is_disabled := false
 signal interacted
@@ -15,6 +17,9 @@ signal interacted
 func _ready() -> void:
 	choose_random_scenario()
 	set_sprite()
+	#debug stuff
+	print("all_scenarios size: ", all_scenarios.size())
+	print("available_scenarios size: ", available_scenarios.size())
 
 
 # Selects random scenario from Scenarios folder and assigns it to this node
@@ -23,35 +28,21 @@ func choose_random_scenario():
 		load_scenario_list() # refill
 	#assign random scenario to this node
 	var index = randi() % available_scenarios.size()
-	scenario_path = available_scenarios[index]
+	scenario = available_scenarios[index]
 	#remove so no repeats
 	available_scenarios.remove_at(index)
 	
-	#load scenario scene to get scenarioType
-	var packed_scene := load(scenario_path) as PackedScene
-	if packed_scene:
-		var instance = packed_scene.instantiate()
+	#get scenarioType
+	if scenario:
+		var instance = scenario.instantiate()
 		type = instance.scenarioType
 		instance.queue_free()
 	else:
 		print("Failed to load scenario scene.")
 	
 func load_scenario_list():
-	# Access Scenarios directory
-	var dir = DirAccess.open("res://Model/ScenarioData/Scenarios/")
-	if dir == null:
-		print("Failed to open scenario folder")
-		return
-	
-	# gather scenario filenames into list
-	dir.list_dir_begin()
-	available_scenarios = []
-	var filename = dir.get_next()
-	while filename != "":
-		if filename.ends_with(".tscn"):
-			available_scenarios.append("res://Model/ScenarioData/Scenarios/" + filename)
-		filename = dir.get_next()
-	dir.list_dir_end()
+	#fill available scenarios list w all scenarios
+	available_scenarios = all_scenarios.duplicate()
 	
 	if available_scenarios.size() == 0:
 		print("No scenarios found!")
@@ -70,18 +61,16 @@ func set_sprite():
 
 func _on_mouse_entered() -> void:
 	sprite.modulate = Color("ffffff")
-	print("Mouse entered sprite")
 
 func _on_mouse_exited() -> void:
 	sprite.modulate = Color("f89f00")
-	print("Mouse exited sprite")
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			print("Clicked on sprite")
 			emit_signal("interacted", self)
-			GameManager.loadScenario(scenario_path)
+			GameManager.loadScenario(scenario)
 			#get_tree().change_scene_to_file("res://Model/ScenarioData/Scenarios/MiniGame.tscn")
 			print("Changed scene to scenario")
 
