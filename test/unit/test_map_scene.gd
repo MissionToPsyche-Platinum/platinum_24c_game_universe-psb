@@ -16,6 +16,9 @@ func after_each():
 
 # test if scroll button works for scrollable maps
 func test_scroll_button_behavior():
+	# Ensure a concrete layout exists for this test path (difficulty not selected by default).
+	if map.layout == null:
+		map.layout = (map.easy_layout.duplicate(true) as MapLayout)
 	# Ensure layout is scrollable
 	map.layout.is_scrollable = true
 	

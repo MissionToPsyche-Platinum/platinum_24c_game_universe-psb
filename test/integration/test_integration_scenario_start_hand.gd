@@ -6,7 +6,7 @@ extends GutTest
 const HandControllerScript = preload("res://Model/Scenes/HandController.gd")
 const ProtocolCard = preload("res://Model/CardData/BaseCardData/protocol_card_base.gd")
 
-const SCENARIO_PATH := "res://Model/ScenarioData/Scenarios/Sc_DoubleDarkMatter.tscn"
+const SCENARIO_PATH: PackedScene = preload("res://Model/ScenarioData/Scenarios/Sc_DoubleDarkMatter.tscn")
 
 const CARD_A := preload("res://Model/CardData/Cards/SUPER_AWESOME_CARD.tscn")
 const CARD_B := preload("res://Model/CardData/Cards/HyperEvolvedGoldfish.tscn")

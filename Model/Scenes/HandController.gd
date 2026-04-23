@@ -37,9 +37,9 @@ const CONTINUE_OVERLAY_Z_INDEX := 10
 
 
 #AudioStreamPlayers for Sound
-@onready var trashCanOpenSFX : AudioStreamPlayer = $TrashCanOpenSFX
-@onready var trashCanCloseSFX : AudioStreamPlayer = $TrashCanCloseSFX
-@onready var cardSFX: AudioStreamPlayer = $CardSFX
+@onready var trashCanOpenSFX: AudioStreamPlayer = get_node_or_null("TrashCanOpenSFX")
+@onready var trashCanCloseSFX: AudioStreamPlayer = get_node_or_null("TrashCanCloseSFX")
+@onready var cardSFX: AudioStreamPlayer = get_node_or_null("CardSFX")
 
 
 
@@ -51,6 +51,14 @@ func _ready():
 
 	# Normal behavior
 	card_container = get_node(card_container_path)
+
+func _play_animation_if_available(player: AnimationPlayer, animation_name: String) -> void:
+	if player != null:
+		player.play(animation_name)
+
+func _play_sfx_if_available(player: AudioStreamPlayer) -> void:
+	if player != null:
+		player.play()
 
 func addCard(card_node: Control) -> void:
 	## Old card settup where Control Wrappers were needed 
@@ -150,18 +158,17 @@ func updateLayout() -> void:
 	if holdingDiscards.has(cards[selectedIndex]):
 		#if yes, check if we need to show that it is
 		if !trashCanOpened:
-			trashcanAnimationPlayer.play("Open")
+			_play_animation_if_available(trashcanAnimationPlayer, "Open")
 			trashCanOpened = true
 			
 	else:
 		#if it is not, check if we need to close the can
 		if trashCanOpened:
-			trashcanAnimationPlayer.play("Close")
+			_play_animation_if_available(trashcanAnimationPlayer, "Close")
 			trashCanOpened = false
 
 	#play card sound
-	if cardSFX != null:
-		cardSFX.play()
+	_play_sfx_if_available(cardSFX)
 	
 func _on_right_arrow_button_pressed() -> void:
 	rotateRight()
@@ -219,7 +226,7 @@ func _on_continue_scenario_gui_input(event: InputEvent) -> void:
 		holdingDiscards.clear()
 
 		#play the hide animation for the discard button
-		discardCardButtonAnimationPlayer.play("Hide")
+		_play_animation_if_available(discardCardButtonAnimationPlayer, "Hide")
 		# End the player's turn
 		GameManager.endPlayerTurn()
 		
@@ -240,24 +247,24 @@ func _on_toggle_discard_button_pressed() -> void:
 	if holdingDiscards.has(cards[selectedIndex]):
 		holdingDiscards.erase(cards[selectedIndex])
 		if not test_mode:
-			trashcanAnimationPlayer.play("Close")
-			trashCanCloseSFX.play()
+			_play_animation_if_available(trashcanAnimationPlayer, "Close")
+			_play_sfx_if_available(trashCanCloseSFX)
 		trashCanOpened = false
 	else:
 		#fuckin weird ass syntax for adding something to a Dictonary 
 		holdingDiscards[cards[selectedIndex]] = true
 		if not test_mode:
-			trashcanAnimationPlayer.play("Open")
-			trashCanOpenSFX.play()
+			_play_animation_if_available(trashcanAnimationPlayer, "Open")
+			_play_sfx_if_available(trashCanOpenSFX)
 		trashCanOpened = true
 	
 	#after which check if the discard button needs to be shown 
 	if numberOfDiscardsBeforeToggle == 0 and holdingDiscards.size() == 1:
 		if not test_mode:
-			discardCardButtonAnimationPlayer.play("Startup")
+			_play_animation_if_available(discardCardButtonAnimationPlayer, "Startup")
 	elif holdingDiscards.size() == 0:
 		if not test_mode:
-			discardCardButtonAnimationPlayer.play("Hide")
+			_play_animation_if_available(discardCardButtonAnimationPlayer, "Hide")
 	
 
 
@@ -305,7 +312,8 @@ func _on_discard_button_pressed() -> void:
 		
 func fadeOutUI(uiText : String) -> void:
 	# Hide the GUI
-	GameManager.UIAnimationPlayer.play("UseCard")
+	if GameManager.UIAnimationPlayer:
+		GameManager.UIAnimationPlayer.play("UseCard")
 
 func _show_continue_overlay() -> void:
 	if continueScenarioControl:

@@ -141,9 +141,10 @@ func endPlayerTurn() -> void:
 	if playerLost:
 		
 		#free the scenario
-		scenario.queue_free()
-		
-		await get_tree().process_frame
+		if scenario != null and is_instance_valid(scenario):
+			scenario.queue_free()
+			await get_tree().process_frame
+			scenario = null
 	
 		#change scene to lose screen
 		self.change_scene_to_file("res://Model/ScreenData/LoseScreen.tscn")	
@@ -178,9 +179,10 @@ func endScenarioTurn() -> void:
 	#check if the player lost on scenario turn
 	if playerLost:
 		#free the scenario
-		scenario.queue_free()	
-		
-		await  get_tree().process_frame
+		if scenario != null and is_instance_valid(scenario):
+			scenario.queue_free()
+			await  get_tree().process_frame
+			scenario = null
 		
 		#change scene to lose screen
 		self.change_scene_to_file("res://Model/ScreenData/LoseScreen.tscn")

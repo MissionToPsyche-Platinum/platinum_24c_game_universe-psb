@@ -82,8 +82,10 @@ func performScenarioEffect() -> void:
 		emit_signal("scenarioWon")
 		
 		#stop playing music
-		battleScenarioIntroMusic.stop()
-		battleScenarioLoopMusic.stop()
+		if battleScenarioIntroMusic != null:
+			battleScenarioIntroMusic.stop()
+		if battleScenarioLoopMusic != null:
+			battleScenarioLoopMusic.stop()
 		
 		return 
 	
@@ -207,4 +209,5 @@ func getAffectedAttributes() -> String:
 	
 
 func _on_battle_scenario_intro_music_finished() -> void:
-	battleScenarioLoopMusic.play()
+	if battleScenarioLoopMusic != null:
+		battleScenarioLoopMusic.play()

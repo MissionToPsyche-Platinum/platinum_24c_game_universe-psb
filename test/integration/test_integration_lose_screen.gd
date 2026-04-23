@@ -31,11 +31,13 @@ func find_node_recursive(root: Node, name: String) -> Node:
 
 # Test: pressing "PlayAgainButton" changes the scene
 func test_Retry_button_navigation():
-	var Retry_Button = find_node_recursive(main_node, "RetryButton")
-	assert_not_null(Retry_Button, "Retry Button should exist for navigation test")
+	var retry_button := find_node_recursive(main_node, "PlayAgainButton")
+	assert_not_null(retry_button, "Play Again button should exist for navigation test")
+	if retry_button == null:
+		return
 
 	# Safely emit the button pressed signal
-	Retry_Button.emit_signal("pressed")
+	retry_button.emit_signal("pressed")
 
 	# Allow the scene change to process in the next idle frame
 	await get_tree().process_frame

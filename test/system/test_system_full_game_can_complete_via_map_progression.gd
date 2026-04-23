@@ -4,7 +4,7 @@ extends GutTest
 ## from start toward the end node, which should transition to WinScreen.
 
 const MAP_SCENE := preload("res://Model/Scenes/Map/map.tscn")
-const MAP_LAYOUT := preload("res://Model/MapData/Maps/Map_8Nodes.tres")
+const MAP_LAYOUT := preload("res://Model/MapData/Maps/Extra/Map_8Nodes.tres")
 const WIN_SCREEN_PATH := "res://Model/ScreenData/WinScreen.tscn"
 
 var _map: MapController
@@ -14,7 +14,7 @@ var _player: Player
 
 func before_each() -> void:
 	_map = MAP_SCENE.instantiate()
-	_map.layout = MAP_LAYOUT
+	_map.easy_layout = MAP_LAYOUT
 	get_tree().root.add_child(_map)
 	get_tree().current_scene = _map
 
@@ -28,6 +28,8 @@ func before_each() -> void:
 	GameManager.player = _player
 	GameManager.map = _map
 
+	await get_tree().process_frame
+	_map._on_easy_button_pressed()
 	await get_tree().process_frame
 
 

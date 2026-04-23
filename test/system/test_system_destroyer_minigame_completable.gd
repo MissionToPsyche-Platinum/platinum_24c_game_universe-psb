@@ -4,7 +4,7 @@ extends GutTest
 ## and can be won by clearing all bricks.
 
 const MAIN_SCENE := preload("res://Model/Scenes/MainScene.tscn")
-const DESTROYER_SCENARIO := "res://Model/ScenarioData/Scenarios/MG_DestroyerMinigame.tscn"
+const DESTROYER_SCENARIO: PackedScene = preload("res://Model/ScenarioData/Scenarios/MG_DestroyerMinigame.tscn")
 
 var _main: Node2D
 var _scenario_won: bool

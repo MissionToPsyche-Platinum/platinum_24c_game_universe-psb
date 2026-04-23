@@ -5,7 +5,7 @@ extends GutTest
 ## Engine.time_scale accelerates in-game time so the test finishes quickly.
 
 const MAIN_SCENE := preload("res://Model/Scenes/MainScene.tscn")
-const METEOR_SCENARIO := "res://Model/ScenarioData/Scenarios/MG_MeteorMinigame.tscn"
+const METEOR_SCENARIO: PackedScene = preload("res://Model/ScenarioData/Scenarios/MG_MeteorMinigame.tscn")
 
 var _main: Node2D
 var _scenario_won: bool

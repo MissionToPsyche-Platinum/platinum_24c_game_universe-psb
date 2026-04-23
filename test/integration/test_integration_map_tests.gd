@@ -1,6 +1,7 @@
 extends GutTest
 
 var map: MapController
+var _saved_stats: StatsController
 
 
 func _forgive_known_engine_animation_warnings() -> void:
@@ -16,17 +17,25 @@ func _forgive_known_engine_animation_warnings() -> void:
 
 
 func before_each():
+	_saved_stats = GameManager.stats
+	var stats := StatsController.new()
+	add_child(stats)
+	GameManager.stats = stats
+
 	var scene: PackedScene = load("res://Model/Scenes/Map/map.tscn")
 	map = scene.instantiate()
 	# Map_3Nodes: the first step from start lands on the node before the asteroid,
 	# which satisfies the "reached end" win check — psyche never moves and the map hides.
-	map.layout = load("res://Model/MapData/Maps/Map_8Nodes.tres")
+	map.easy_layout = load("res://Model/MapData/Maps/Extra/Map_8Nodes.tres")
 	add_child(map)
 
+	await get_tree().process_frame
+	map._on_easy_button_pressed()
 	await get_tree().process_frame
 
 
 func after_each():
+	GameManager.stats = _saved_stats if is_instance_valid(_saved_stats) else null
 	map.queue_free()
 	_forgive_known_engine_animation_warnings()
 

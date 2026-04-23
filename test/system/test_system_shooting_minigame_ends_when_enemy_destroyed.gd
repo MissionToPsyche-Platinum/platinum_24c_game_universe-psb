@@ -4,7 +4,7 @@ extends GutTest
 ## completes when the UFO enemy is destroyed (scenarioWon).
 
 const MAIN_SCENE := preload("res://Model/Scenes/MainScene.tscn")
-const SHOOTING_SCENARIO := "res://Model/ScenarioData/Scenarios/MG_ShootingMinigame.tscn"
+const SHOOTING_SCENARIO: PackedScene = preload("res://Model/ScenarioData/Scenarios/MG_ShootingMinigame.tscn")
 
 var _main: Node2D
 var _scenario_won: bool
