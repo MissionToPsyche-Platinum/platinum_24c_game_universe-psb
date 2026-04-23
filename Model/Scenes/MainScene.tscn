@@ -1423,6 +1423,12 @@ offset_bottom = 720.0
 mouse_filter = 2
 color = Color(0, 0, 0, 0.69411767)
 
+[node name="TrashCanOpenSFX" type="AudioStreamPlayer" parent="UI/Hand Container"]
+stream = ExtResource("75_syhfs")
+
+[node name="TrashCanCloseSFX" type="AudioStreamPlayer" parent="UI/Hand Container"]
+stream = ExtResource("76_hsxrn")
+
 [node name="ContinueScenario" type="Control" parent="UI"]
 visible = false
 anchors_preset = 0
@@ -1672,15 +1678,6 @@ offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TrashCanOpenSFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("75_syhfs")
-
-[node name="TrashCanCloseSFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("76_hsxrn")
-
-[node name="MenuOpenSFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("77_1p2x4")
-
 [node name="MenuCloseSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("78_3ygrc")
 
@@ -1689,6 +1686,9 @@ stream = ExtResource("79_va6y7")
 
 [node name="WinSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("80_hsxrn")
+
+[node name="MenuOpenSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("77_1p2x4")
 
 [connection signal="gui_input" from="UI/Hand Container" to="UI/Hand Container" method="_on_gui_input"]
 [connection signal="gui_input" from="UI/Hand Container/Scenario Label/Scenario Label" to="." method="_on_scenario_label_gui_input"]
