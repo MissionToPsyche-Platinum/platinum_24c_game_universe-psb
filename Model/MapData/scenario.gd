@@ -37,7 +37,7 @@ func choose_random_scenario():
 	#first get list of available scenarios
 	#load list if empty (can no longer avoid repeats)
 	var total_encounters = GameManager.stats.model.total_encounters
-	if available_scenarios.is_empty():
+	if available_scenarios.is_empty() or total_encounters == 0:
 		load_scenario_list(total_encounters)
 	#update list if player crossed difficulty threshold
 	update_scenario_list(total_encounters)
