@@ -22,5 +22,5 @@ cardDescription = "\"Low on power? We here at StarDeliveries.com pride oursevles
 cardBehavior = Array[Resource]([SubResource("Resource_4t5fm")])
 cardUseHeader = "The package was brusied, burnt, had a bite taken out of it, and arrived a year late. At least the batteries were actually in it."
 
-[node name="CardBackground2" parent="." index="0"]
+[node name="CardBackground" parent="." index="0"]
 texture = ExtResource("4_ha501")

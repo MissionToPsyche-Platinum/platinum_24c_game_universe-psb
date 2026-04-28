@@ -16,5 +16,5 @@ cardDescription = "It's not very big, but even if it doesn't manage to catch any
 cardBehavior = Array[Resource]([SubResource("Resource_smb2s")])
 cardUseHeader = "Time for some serious alien hunting!"
 
-[node name="CardBackground2" parent="." index="0"]
+[node name="CardBackground" parent="." index="0"]
 texture = ExtResource("3_frj66")

@@ -18,5 +18,5 @@ cardDescription = "Well, the answer's in the documentation somewhere, I'm sure. 
 cardBehavior = Array[Resource]([SubResource("Resource_w7du1")])
 cardUseHeader = "Presenting your dense technical documentation makes the enemies quiver with fear. Even attempting to comprehend it is enough to make anyone's HP deplete."
 
-[node name="CardBackground2" parent="." index="0"]
+[node name="CardBackground" parent="." index="0"]
 texture = ExtResource("4_cqfqd")

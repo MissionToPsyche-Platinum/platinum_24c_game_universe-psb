@@ -16,5 +16,5 @@ cardDescription = "Offer the intruder some redundant spacecraft parts and pray t
 cardBehavior = Array[Resource]([SubResource("Resource_oc0b7")])
 cardUseHeader = "Seems like whatever you pried off appeased them a little bit. Hopefully it wasn't anything mission critical..."
 
-[node name="CardBackground2" parent="." index="0"]
+[node name="CardBackground" parent="." index="0"]
 texture = ExtResource("3_00uf0")

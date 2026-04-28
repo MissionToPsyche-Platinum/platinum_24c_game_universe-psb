@@ -28,5 +28,5 @@ extraInfoBodyString = "As a part of the Psyche mission, Psyche's Hall thrusters 
 hasExtraInfo = true
 extraInfoLink = "https://www.jpl.nasa.gov/images/pia24030-psyches-hall-thruster/"
 
-[node name="CardBackground2" parent="." index="0"]
+[node name="CardBackground" parent="." index="0"]
 texture = ExtResource("5_0y57k")

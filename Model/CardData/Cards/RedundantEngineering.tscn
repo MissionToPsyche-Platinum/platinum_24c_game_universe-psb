@@ -23,5 +23,5 @@ cardDescription = "Hey, is that a second hull underneath your first one?"
 cardBehavior = Array[Resource]([SubResource("Resource_fxxnx")])
 cardUseHeader = "Turns out, it was! Much like a chick hatching from an egg, Psyche shakes off it's broken outer hull to reveal it's shiny inner one."
 
-[node name="CardBackground2" parent="." index="0"]
+[node name="CardBackground" parent="." index="0"]
 texture = ExtResource("5_wnxdv")

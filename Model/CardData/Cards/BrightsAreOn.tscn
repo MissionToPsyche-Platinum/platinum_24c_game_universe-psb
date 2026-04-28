@@ -16,5 +16,5 @@ cardDescription = "If you tilt Psyche's solar panels just right, it's possible t
 cardBehavior = Array[Resource]([SubResource("Resource_2uajy")])
 cardUseHeader = "Sunlight unfiltered by any atmosphere somehow still isn't quite as bright as aftermarket headlights."
 
-[node name="CardBackground2" parent="." index="0"]
+[node name="CardBackground" parent="." index="0"]
 texture = ExtResource("3_b07qx")

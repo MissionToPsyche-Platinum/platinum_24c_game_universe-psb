@@ -24,5 +24,5 @@ cardDescription = "Is life too hard? You bet it is! Time to avoid responsibility
 cardBehavior = Array[Resource]([SubResource("Resource_vq4ld")])
 cardUseHeader = "When the going gets tough, the tough get going. "
 
-[node name="CardBackground2" parent="." index="0"]
+[node name="CardBackground" parent="." index="0"]
 texture = ExtResource("5_q44qw")

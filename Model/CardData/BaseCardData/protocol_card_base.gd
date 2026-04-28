@@ -33,6 +33,9 @@ var showingExtraInfo := false
 
 signal rewardChosen(card)
 
+@export var discardOverlay : TextureRect
+var showingDiscardOverlay = false
+
 
 ## Some card scenes embed behaviors as SubResources; they can fail `is ICardBehavior` at runtime
 ## even though the script is attached and methods resolve correctly.
@@ -160,6 +163,16 @@ func fit_text_to_label(label: Label, min_font_size: int = 10) -> void:
 	label.label_settings.font_size = font_size
 
 
+func toggleDiscardOverlay() -> void:
+	if showingDiscardOverlay:
+		#toggle it off
+		showingDiscardOverlay = false
+		discardOverlay.visible = false
+	else:
+		#toggle it on
+		showingDiscardOverlay = true
+		discardOverlay.visible = true
+		
 
 
 func _on_extra_info_button_pressed() -> void:

@@ -16,5 +16,5 @@ cardDescription = "Good thing Psyche brought a bag of miscellaneous spare parts 
 cardBehavior = Array[Resource]([SubResource("Resource_k8fk7")])
 cardUseHeader = "Loose screws and washers scatter out and sparkle in the sunlight. It's so pretty that for a moment the enemies almost forget that they're trying to stop you!"
 
-[node name="CardBackground2" parent="." index="0"]
+[node name="CardBackground" parent="." index="0"]
 texture = ExtResource("3_jspgd")

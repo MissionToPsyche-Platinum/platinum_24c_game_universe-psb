@@ -16,5 +16,5 @@ cardDescription = "By tracking tiny shifts in radio waves, we can map Psyche's g
 cardBehavior = Array[Resource]([SubResource("Resource_dr55x")])
 cardUseHeader = "After patiently measuring and analyzing radio waves, you eventually detect some sneaky foes!"
 
-[node name="CardBackground2" parent="." index="0"]
+[node name="CardBackground" parent="." index="0"]
 texture = ExtResource("3_42c56")

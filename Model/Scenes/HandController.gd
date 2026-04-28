@@ -33,7 +33,8 @@ var holdingDiscards := {}
 # Hand UI uses a high z_index; continue overlay must sit above it or clicks never reach it.
 const CONTINUE_OVERLAY_Z_INDEX := 10
 
-
+#card number label
+@export var cardNumberLabel : Label
 
 
 #AudioStreamPlayers for Sound
@@ -166,9 +167,14 @@ func updateLayout() -> void:
 		if trashCanOpened:
 			_play_animation_if_available(trashcanAnimationPlayer, "Close")
 			trashCanOpened = false
+			
+			
 
 	#play card sound
 	_play_sfx_if_available(cardSFX)
+	
+	#update the card number display
+	cardNumberLabel.text = "In Hand: " + str(cards.size()) + "\nIn Deck: " + str(GameManager.player.deck.size())
 	
 func _on_right_arrow_button_pressed() -> void:
 	rotateRight()
@@ -250,6 +256,7 @@ func _on_toggle_discard_button_pressed() -> void:
 			_play_animation_if_available(trashcanAnimationPlayer, "Close")
 			_play_sfx_if_available(trashCanCloseSFX)
 		trashCanOpened = false
+		
 	else:
 		#fuckin weird ass syntax for adding something to a Dictonary 
 		holdingDiscards[cards[selectedIndex]] = true
@@ -257,6 +264,9 @@ func _on_toggle_discard_button_pressed() -> void:
 			_play_animation_if_available(trashcanAnimationPlayer, "Open")
 			_play_sfx_if_available(trashCanOpenSFX)
 		trashCanOpened = true
+		
+	#toggle the discard overlay
+	cards[selectedIndex].toggleDiscardOverlay()
 	
 	#after which check if the discard button needs to be shown 
 	if numberOfDiscardsBeforeToggle == 0 and holdingDiscards.size() == 1:

@@ -16,5 +16,5 @@ cardDescription = "Just floating around in space."
 cardBehavior = Array[Resource]([SubResource("Resource_uoa30")])
 cardUseHeader = "The peculiarity of this random space can distracts the intruders for a moment!"
 
-[node name="CardBackground2" parent="." index="0"]
+[node name="CardBackground" parent="." index="0"]
 texture = ExtResource("3_6cndi")

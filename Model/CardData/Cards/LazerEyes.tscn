@@ -20,5 +20,5 @@ extraInfoBodyString = "Psyche is equipped with sophisticated new Deep Space Opti
 hasExtraInfo = true
 extraInfoLink = "https://www.youtube.com/watch?v=VsKgYmQS-Kw"
 
-[node name="CardBackground2" parent="." index="0"]
+[node name="CardBackground" parent="." index="0"]
 texture = ExtResource("3_pdg5a")

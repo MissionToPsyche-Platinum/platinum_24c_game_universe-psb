@@ -22,5 +22,5 @@ cardDescription = "Fold and reshape the solar arrays into giant paper cranes. No
 cardBehavior = Array[Resource]([SubResource("Resource_p4x2b")])
 cardUseHeader = "You find yourself feeling inspired by the strange beauty of the massive solar panel cranes."
 
-[node name="CardBackground2" parent="." index="0"]
+[node name="CardBackground" parent="." index="0"]
 texture = ExtResource("4_tfec1")

@@ -22,5 +22,5 @@ cardDescription = "Knows nothing, but has lots of energy. May cause unintended b
 cardBehavior = Array[Resource]([SubResource("Resource_2ia72")])
 cardUseHeader = "Their enthusiasm is contagious!"
 
-[node name="CardBackground2" parent="." index="0"]
+[node name="CardBackground" parent="." index="0"]
 texture = ExtResource("4_u7cnf")

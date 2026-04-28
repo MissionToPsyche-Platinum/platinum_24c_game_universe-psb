@@ -21,5 +21,5 @@ cardDescription = "Claims it doesn't want to take over the ship. Probably lying.
 cardBehavior = Array[Resource]([SubResource("Resource_ds67v")])
 cardUseHeader = "Seems like it refactored the code for *something*... Hopefully one of the engineers double checks that."
 
-[node name="CardBackground2" parent="." index="0"]
+[node name="CardBackground" parent="." index="0"]
 texture = ExtResource("4_a4m6g")
