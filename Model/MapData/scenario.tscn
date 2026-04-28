@@ -43,7 +43,9 @@ size = Vector2(185, 185)
 [node name="Clickable Scenario" type="Area2D"]
 scale = Vector2(0.6, 0.6)
 script = ExtResource("1_klwqe")
-all_scenarios = Array[PackedScene]([ExtResource("2_pgnas"), ExtResource("3_hbat0"), ExtResource("4_8eppj"), ExtResource("5_ebjjo"), ExtResource("6_8cskl"), ExtResource("7_1lui8"), ExtResource("8_tp6wf"), ExtResource("9_akosr"), ExtResource("10_euhl4"), ExtResource("11_je1pt"), ExtResource("12_62i2g"), ExtResource("13_8nwxu"), ExtResource("14_upxu0"), ExtResource("15_48ncw"), ExtResource("16_xixni"), ExtResource("17_1ip7y"), ExtResource("18_hdt5j"), ExtResource("19_wjms4"), ExtResource("20_ci70o"), ExtResource("21_v8psu"), ExtResource("22_3cf4f"), ExtResource("23_5j1tl"), ExtResource("24_doyaf"), ExtResource("25_vxtre"), ExtResource("26_ngk8e"), ExtResource("27_isydx"), ExtResource("28_8plql"), ExtResource("29_rcho0"), ExtResource("30_wgjin"), ExtResource("31_kwyrj"), ExtResource("32_grabj"), ExtResource("33_l48e7"), ExtResource("34_o7ub1"), ExtResource("35_cxf6d")])
+easy_scenarios = Array[PackedScene]([ExtResource("2_pgnas"), ExtResource("10_euhl4"), ExtResource("13_8nwxu"), ExtResource("22_3cf4f"), ExtResource("30_wgjin"), ExtResource("31_kwyrj"), ExtResource("17_1ip7y"), ExtResource("18_hdt5j"), ExtResource("19_wjms4")])
+med_scenarios = Array[PackedScene]([ExtResource("3_hbat0"), ExtResource("5_ebjjo"), ExtResource("8_tp6wf"), ExtResource("9_akosr"), ExtResource("11_je1pt"), ExtResource("12_62i2g"), ExtResource("14_upxu0"), ExtResource("15_48ncw"), ExtResource("16_xixni"), ExtResource("20_ci70o"), ExtResource("21_v8psu"), ExtResource("23_5j1tl"), ExtResource("24_doyaf"), ExtResource("25_vxtre"), ExtResource("26_ngk8e"), ExtResource("27_isydx"), ExtResource("28_8plql"), ExtResource("29_rcho0"), ExtResource("32_grabj"), ExtResource("33_l48e7"), ExtResource("34_o7ub1"), ExtResource("35_cxf6d")])
+hard_scenarios = Array[PackedScene]([ExtResource("4_8eppj"), ExtResource("6_8cskl"), ExtResource("7_1lui8")])
 
 [node name="Battle Scenario" type="Sprite2D" parent="."]
 texture = ExtResource("2_jhy8r")
