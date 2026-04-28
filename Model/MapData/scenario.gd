@@ -15,8 +15,9 @@ signal interacted
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	choose_random_scenario()
-	set_sprite()
+	if !is_disabled:
+		choose_random_scenario()
+		set_sprite()
 	#debug stuff
 	print("all_scenarios size: ", all_scenarios.size())
 	print("available_scenarios size: ", available_scenarios.size())

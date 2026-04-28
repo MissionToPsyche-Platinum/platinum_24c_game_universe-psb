@@ -18,6 +18,12 @@ enum ScenarioType  {EVENT, BATTLE, MINIGAME}
 #the text that will appear at the top of the screen while in the scenario
 @export var scenarioText : String 
 
+#defines what levels of scenario difficulty can exist
+enum ScenarioDifficulty  {EASY, MEDIUM, HARD}
+
+#the difficulty level of the scenario
+@export var scenarioDifficulty : ScenarioDifficulty
+
 #signal to signifiy the end of the scenario turn
 signal endScenarioTurn
 
