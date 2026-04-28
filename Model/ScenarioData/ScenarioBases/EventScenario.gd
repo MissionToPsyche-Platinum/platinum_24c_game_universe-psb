@@ -22,8 +22,10 @@ func performScenarioEffect() -> void:
 		emit_signal("scenarioWon")
 		
 		#stop playing music
-		eventScenarioIntroMusic.stop()
-		eventScenarioLoopMusic.stop()
+		if eventScenarioIntroMusic != null:
+			eventScenarioIntroMusic.stop()
+		if eventScenarioLoopMusic != null:
+			eventScenarioLoopMusic.stop()
 		
 		return 
 	
