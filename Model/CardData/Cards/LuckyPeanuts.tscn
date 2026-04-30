@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://17imtoq1ypop"]
 
 [ext_resource type="PackedScene" uid="uid://7wpt2pr8jwaa" path="res://Model/CardData/BaseCardData/protocol_card_base.tscn" id="1_pj608"]
-[ext_resource type="Texture2D" uid="uid://bnhxgu0f1ye4y" path="res://View/Assets/Sprites/dummyPsyche.jpg" id="2_dq7pe"]
+[ext_resource type="Texture2D" uid="uid://rgaki58jjhen" path="res://View/Assets/Sprites/Card Sprites/LuckyPeanuts.png" id="2_wia88"]
 [ext_resource type="Script" uid="uid://cda51huvrayd1" path="res://Model/CardData/CardBehaviorData/AttriubuteEffect.gd" id="3_ykj22"]
 [ext_resource type="Script" uid="uid://jvo5d8np0a4x" path="res://Model/CardData/CardBehaviorData/AttributeBehavior.gd" id="4_g461a"]
 [ext_resource type="Texture2D" uid="uid://di2vrl7ihcl5g" path="res://View/Assets/Sprites/Card Sprites/BasicCard.png" id="5_wia88"]
@@ -19,7 +19,7 @@ metadata/_custom_type_script = "uid://jvo5d8np0a4x"
 
 [node name="ProtocolCardBase" instance=ExtResource("1_pj608")]
 cardName = "Lucky Peanuts "
-cardSprite = ExtResource("2_dq7pe")
+cardSprite = ExtResource("2_wia88")
 cardDescription = "Feeling like a snack? You're in luck - the good folks over at the JPL made sure to send up some of their famous peanuts with you!"
 cardBehavior = Array[Resource]([SubResource("Resource_kxoqy")])
 cardUseHeader = "In addition to the dispersion of energy, these peanuts make for a great snack for spacecrafts such as yourself!"

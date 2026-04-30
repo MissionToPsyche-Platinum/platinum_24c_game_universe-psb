@@ -26,5 +26,5 @@ extraInfoBodyString = "Psyche transmits data and receives comands through NASA's
 hasExtraInfo = true
 extraInfoLink = "https://science.nasa.gov/mission/psyche/spacecraft/"
 
-[node name="CardBackground2" parent="." index="0"]
+[node name="CardBackground" parent="." index="0"]
 texture = ExtResource("4_8qe7l")

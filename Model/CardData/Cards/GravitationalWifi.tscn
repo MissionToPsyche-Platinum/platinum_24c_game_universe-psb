@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dwkhx7445ygpu"]
+[gd_scene load_steps=6 format=3 uid="uid://dwkhx7445ygpu"]
 
 [ext_resource type="PackedScene" uid="uid://7wpt2pr8jwaa" path="res://Model/CardData/BaseCardData/protocol_card_base.tscn" id="1_dh6th"]
+[ext_resource type="Texture2D" uid="uid://dqualy00smuop" path="res://View/Assets/Sprites/Card Sprites/wifi.png" id="2_42c56"]
 [ext_resource type="Script" uid="uid://csm0y40wfj4uj" path="res://Model/CardData/CardBehaviorData/AttackBehavior.gd" id="2_sos0m"]
 [ext_resource type="Texture2D" uid="uid://di2vrl7ihcl5g" path="res://View/Assets/Sprites/Card Sprites/BasicCard.png" id="3_42c56"]
 
@@ -12,6 +13,7 @@ metadata/_custom_type_script = "uid://csm0y40wfj4uj"
 
 [node name="Control" instance=ExtResource("1_dh6th")]
 cardName = "Gravitational Wi-Fi"
+cardSprite = ExtResource("2_42c56")
 cardDescription = "By tracking tiny shifts in radio waves, we can map Psyche's gravity, mass, and rotation- basically using deep-space Wi-Fi to weigh an asteroid. Also handy for detecting invisible forces... like sneaky aliens."
 cardBehavior = Array[Resource]([SubResource("Resource_dr55x")])
 cardUseHeader = "After patiently measuring and analyzing radio waves, you eventually detect some sneaky foes!"

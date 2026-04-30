@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dthqm8sjhfdxw"]
+[gd_scene load_steps=8 format=3 uid="uid://dthqm8sjhfdxw"]
 
 [ext_resource type="PackedScene" uid="uid://7wpt2pr8jwaa" path="res://Model/CardData/BaseCardData/protocol_card_base.tscn" id="1_gp7d1"]
 [ext_resource type="Script" uid="uid://cda51huvrayd1" path="res://Model/CardData/CardBehaviorData/AttriubuteEffect.gd" id="2_m6id1"]
+[ext_resource type="Texture2D" uid="uid://d4fkherpdwbmy" path="res://View/Assets/Sprites/Card Sprites/SuperEnthusiasticIntern.png" id="2_r0g7x"]
 [ext_resource type="Script" uid="uid://jvo5d8np0a4x" path="res://Model/CardData/CardBehaviorData/AttributeBehavior.gd" id="3_r0g7x"]
 [ext_resource type="Texture2D" uid="uid://di2vrl7ihcl5g" path="res://View/Assets/Sprites/Card Sprites/BasicCard.png" id="4_u7cnf"]
 
@@ -18,6 +19,7 @@ metadata/_custom_type_script = "uid://jvo5d8np0a4x"
 
 [node name="Control" instance=ExtResource("1_gp7d1")]
 cardName = "Extremely Enthusiastic Intern"
+cardSprite = ExtResource("2_r0g7x")
 cardDescription = "Knows nothing, but has lots of energy. May cause unintended breakthroughs."
 cardBehavior = Array[Resource]([SubResource("Resource_2ia72")])
 cardUseHeader = "Their enthusiasm is contagious!"

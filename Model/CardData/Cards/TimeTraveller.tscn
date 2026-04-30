@@ -23,5 +23,5 @@ cardDescription = "They've seen the future, lived the past, and charge way too m
 cardBehavior = Array[Resource]([SubResource("Resource_ab66g")])
 cardUseHeader = "You're unsure whether it's foresight or hindsight, but the time-traveler helpfully points out a few critically damaged parts of your chassis!"
 
-[node name="CardBackground2" parent="." index="0"]
+[node name="CardBackground" parent="." index="0"]
 texture = ExtResource("5_ruhah")

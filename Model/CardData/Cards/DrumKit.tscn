@@ -26,3 +26,6 @@ cardUseHeader = "While it may not be practically useful, music does help shake t
 
 [node name="CardBackground" parent="." index="0"]
 texture = ExtResource("5_vh5o1")
+
+[node name="ProtocolCardSprite" parent="CardBackground/CardInfoHolder" index="1"]
+texture = ExtResource("2_5a6p5")

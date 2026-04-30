@@ -8,5 +8,5 @@ cardName = "Quantum Coin Flip"
 cardDescription = "A 50/50 chance of fixing everything… or making it infinitely worse."
 cardUseHeader = "Let’s see where Psyche’s fate lies…"
 
-[node name="CardBackground2" parent="." index="0"]
+[node name="CardBackground" parent="." index="0"]
 texture = ExtResource("2_fwgux")

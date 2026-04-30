@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://b4mujnqw1r7jw"]
+[gd_scene load_steps=8 format=3 uid="uid://b4mujnqw1r7jw"]
 
 [ext_resource type="PackedScene" uid="uid://7wpt2pr8jwaa" path="res://Model/CardData/BaseCardData/protocol_card_base.tscn" id="1_fk4s2"]
+[ext_resource type="Texture2D" uid="uid://cx3rs45a72jr4" path="res://View/Assets/Sprites/Card Sprites/Magometer.png" id="2_mcupt"]
 [ext_resource type="Script" uid="uid://cda51huvrayd1" path="res://Model/CardData/CardBehaviorData/AttriubuteEffect.gd" id="2_x55au"]
 [ext_resource type="Script" uid="uid://jvo5d8np0a4x" path="res://Model/CardData/CardBehaviorData/AttributeBehavior.gd" id="3_mcupt"]
-[ext_resource type="Texture2D" uid="uid://gjtq0gdt8xy3" path="res://Model/CardData/Cards/AnomolousCard.png" id="4_osyw7"]
+[ext_resource type="Texture2D" uid="uid://gjtq0gdt8xy3" path="res://View/Assets/Sprites/Card Sprites/AnomolousCard.png" id="4_osyw7"]
 
 [sub_resource type="Resource" id="Resource_dhbcf"]
 script = ExtResource("2_x55au")
@@ -17,6 +18,7 @@ metadata/_custom_type_script = "uid://jvo5d8np0a4x"
 
 [node name="Control" instance=ExtResource("1_fk4s2")]
 cardName = "Magnetometer"
+cardSprite = ExtResource("2_mcupt")
 cardDescription = "Whether it's Psyche's ancient magnetic field or a rogue piece of space junk, this trusty sensor will sniff it out."
 cardBehavior = Array[Resource]([SubResource("Resource_6f1sv")])
 cardUseHeader = "The magnetometer was able to detect some space junk that had gotten jammed into Psyche's chassis!"
@@ -25,5 +27,5 @@ extraInfoBodyString = "Psyche's Magnetometer will detect and measure the remanen
 hasExtraInfo = true
 extraInfoLink = "https://psyche.ssl.berkeley.edu/gallery/meet-nasas-psyche-team-who-will-measure-the-asteroids-magnetic-field/"
 
-[node name="CardBackground2" parent="." index="0"]
+[node name="CardBackground" parent="." index="0"]
 texture = ExtResource("4_osyw7")

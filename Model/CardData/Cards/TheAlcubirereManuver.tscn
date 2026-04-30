@@ -22,5 +22,5 @@ cardDescription = "Who needs fuel when you can just bend spacetime? Engage the w
 cardBehavior = Array[Resource]([SubResource("Resource_fxjm1")])
 cardUseHeader = "You speed up immensely as you try not to think about the scientific implications of what you just did."
 
-[node name="CardBackground2" parent="." index="0"]
+[node name="CardBackground" parent="." index="0"]
 texture = ExtResource("3_erhw2")

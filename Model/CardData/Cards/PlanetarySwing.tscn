@@ -26,5 +26,5 @@ extraInfoBodyString = "In May 2026, Psyche mostly turned off its thrusters and f
 hasExtraInfo = true
 extraInfoLink = "https://www.jpl.nasa.gov/press-kits/psyche/mission/"
 
-[node name="CardBackground2" parent="." index="0"]
+[node name="CardBackground" parent="." index="0"]
 texture = ExtResource("4_xh06m")

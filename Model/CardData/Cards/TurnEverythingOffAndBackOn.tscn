@@ -22,5 +22,5 @@ cardDescription = "The ancient IT wisdom applies even in space."
 cardBehavior = Array[Resource]([SubResource("Resource_63xe0")])
 cardUseHeader = "You swear you had already tried it..."
 
-[node name="CardBackground2" parent="." index="0"]
+[node name="CardBackground" parent="." index="0"]
 texture = ExtResource("4_5xbdn")

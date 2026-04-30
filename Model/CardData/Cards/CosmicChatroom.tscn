@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bs4hiwrslk8nq"]
+[gd_scene load_steps=6 format=3 uid="uid://bs4hiwrslk8nq"]
 
 [ext_resource type="PackedScene" uid="uid://7wpt2pr8jwaa" path="res://Model/CardData/BaseCardData/protocol_card_base.tscn" id="1_x3kqf"]
 [ext_resource type="Script" uid="uid://csm0y40wfj4uj" path="res://Model/CardData/CardBehaviorData/AttackBehavior.gd" id="2_bpkmv"]
+[ext_resource type="Texture2D" uid="uid://bfghojeiv3qma" path="res://View/Assets/Sprites/Card Sprites/CosmicChatroom.png" id="2_uga11"]
 [ext_resource type="Texture2D" uid="uid://di2vrl7ihcl5g" path="res://View/Assets/Sprites/Card Sprites/BasicCard.png" id="3_bpkmv"]
 
 [sub_resource type="Resource" id="Resource_uga11"]
@@ -12,6 +13,7 @@ metadata/_custom_type_script = "uid://csm0y40wfj4uj"
 
 [node name="Control" instance=ExtResource("1_x3kqf")]
 cardName = "Cosmic Chatroom"
+cardSprite = ExtResource("2_uga11")
 cardDescription = "Using Psyche's antennas and NASA's Deep Space Network, this system sends messages not just to Earth, but to the farthest reaches of space. Whether it's science data or chatting with aliens, Psyche's got you covered- unless it's spam."
 cardBehavior = Array[Resource]([SubResource("Resource_uga11")])
 cardUseHeader = "By transmitting random signals you're able to waste some time by filling the spacecraft's space comm inbox with junk data!"
