@@ -238,6 +238,18 @@ func _ready() -> void:
 			"actions" : [enableClickable]
 		},
 		{
+			"text" : "But if you run out of cards in both your hand and your deck, you will be provided with a default card.",
+			"actions" : [enableClickable]	
+		},
+		{
+			"text" : "The default card can be used to win any scenario, if you're lucky enough.",
+			"actions" : [enableClickable]	
+		},
+		{
+			"text" : "If you think you cant win a scenario with the deck you've built, or you're being conserative to not run out of cards, don't be. The default card has you covered!",
+			"actions" : [enableClickable]
+		},
+		{
 			"text" : "However, not all cards can be used in Event Scenarios. That's where Discarding comes into play!",
 			"actions" : [enableClickable]
 		},
@@ -256,6 +268,10 @@ func _ready() -> void:
 		{
 			"text" : "You can then use the arrows to choose more cards to discard if you want.",
 			"actions" : [enableClickable, discardArrows]
+		},
+		{
+			"text" : "You can discard as many cards as you'd like!",
+			"actions" : [enableClickable]
 		},
 		{
 			"text" : "If you change your mind about discarding a card, simply click the trashcan again. This will untoggle it from discarding.",
@@ -382,6 +398,38 @@ func _ready() -> void:
 		{
 			"text" : "We think you'll have more fun discovering those on your own.",
 			"actions" : [enableClickable]
+		},
+		{
+			"text" : "All you need to know about those ones is that you control them with the arrow keys, and occasionally the space bar.",
+			"actions" : [enableClickable],
+		},
+		{
+			"text" : "One more quick thing though.",
+			"actions" : [enableClickable]	
+		},
+		{
+			"text" : "You'll notice throughout your journey that some cards have these little \"i\" icons in the corner.",
+			"actions" : [enableClickable, extraInfoStart]
+		},
+		{
+			"text" : "That means that these cards contain direct references to the Psyche mission or other NASA things!",
+			"actions" : [enableClickable]
+		},
+		{
+			"text" : "By clicking on the icon, you'll be able to learn more about them!",
+			"actions" : [enableClickable, extraInfoInfo]
+		},
+		{
+			"text" : "There's even a link at the bottom that will bring you to an actual NASA webstie to learn more!",
+			"actions" : [enableClickable, extraInfoLink]	
+		},
+		{
+			"text" : "Don't worry, the game will still be waiting for you in another tab. Take all the time you need to learn!",
+			"actions" : [enableClickable]
+		},
+		{
+			"text" : "Of course, if you hate learning, you can click thie \"i\" icon again to see the card text again.",
+			"actions" : [enableClickable, extraInfoFinish],
 		},
 		{
 			"text" : "You're as ready as you'll ever be for your journey - it's time you start heading towards the Psyche Asteroid!",
@@ -680,3 +728,15 @@ func playMusic() -> void:
 
 func _on_tutorial_scenario_intro_player_finished() -> void:
 	tutorialScenarioLoopPlayer.play()
+
+func extraInfoStart() -> void:
+	UIAnimationPlayer.play("ExtraInfoStart")
+	
+func extraInfoInfo() -> void:
+	UIAnimationPlayer.play("ExtraInfoInfo")
+
+func extraInfoLink() -> void:
+	UIAnimationPlayer.play("ExtraInfoLink")
+
+func extraInfoFinish() -> void:
+	UIAnimationPlayer.play("ExtraInfoFinish")
