@@ -88,6 +88,8 @@
 [sub_resource type="LabelSettings" id="LabelSettings_qb6nl"]
 font = ExtResource("11_wki3r")
 font_size = 32
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_d184y"]
 font = ExtResource("11_wki3r")
@@ -109,6 +111,8 @@ font_size = 20
 font = ExtResource("11_wki3r")
 font_size = 40
 font_color = Color(0.972549, 0.62352943, 0, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_v5pj8"]
 font = ExtResource("11_wki3r")
@@ -429,10 +433,14 @@ font_size = 30
 [sub_resource type="LabelSettings" id="LabelSettings_j5y8d"]
 font = ExtResource("11_wki3r")
 font_size = 40
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_b1qgh"]
 font = ExtResource("11_wki3r")
 font_size = 40
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_k7non"]
 resource_name = "DisplayCardGui"
