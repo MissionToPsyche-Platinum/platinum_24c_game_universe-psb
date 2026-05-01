@@ -27,9 +27,13 @@ class FakePlayer:
 class TestCard:
 	extends Control
 	var id: String
+	var discard_toggled := false
 
 	func _init(_id: String = ""):
 		id = _id
+	
+	func toggleDiscardOverlay():
+		discard_toggled = !discard_toggled
 
 # -----------------------------
 # Setup / Teardown
