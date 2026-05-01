@@ -21,5 +21,5 @@ cardDescription = "According to the back of the bottle, spraying this evenly on 
 cardBehavior = Array[Resource]([SubResource("Resource_rm5k8")])
 cardUseHeader = "Psyche is now alien-proof! Unfortunately it doesn't look like this spray has an effectiveness rating that accounts for traveling at speeds measured in miles per second..."
 
-[node name="CardBackground2" parent="." index="0"]
+[node name="CardBackground" parent="." index="0"]
 texture = ExtResource("4_u7fa6")

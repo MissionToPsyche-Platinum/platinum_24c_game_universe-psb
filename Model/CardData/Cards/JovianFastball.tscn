@@ -18,5 +18,5 @@ cardDescription = "With reckless ingenuity and no regard for orbital mechanics, 
 cardBehavior = Array[Resource]([SubResource("Resource_bxoew")])
 cardUseHeader = "The moon you threw barrels straight into the threat! Which moon? Who knows, it was rolling too fast to tell. Oh well, Jupiter has plenty to spare."
 
-[node name="CardBackground2" parent="." index="0"]
+[node name="CardBackground" parent="." index="0"]
 texture = ExtResource("4_kelfq")

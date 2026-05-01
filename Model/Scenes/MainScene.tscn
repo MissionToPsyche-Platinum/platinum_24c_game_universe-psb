@@ -1,4 +1,4 @@
-[gd_scene load_steps=130 format=4 uid="uid://b5aneqr63kcay"]
+[gd_scene load_steps=132 format=4 uid="uid://b5aneqr63kcay"]
 
 [ext_resource type="Script" uid="uid://bryyckfysnh62" path="res://Model/Scenes/mainScene.gd" id="1_6pwi0"]
 [ext_resource type="Script" uid="uid://lp0itw18h7mo" path="res://Model/Scenes/card_manager.gd" id="2_qb6nl"]
@@ -280,6 +280,14 @@ _data = {
 &"IdleOpen": SubResource("Animation_6wt4v"),
 &"Open": SubResource("Animation_0uxo7")
 }
+
+[sub_resource type="LabelSettings" id="LabelSettings_3ygrc"]
+font = ExtResource("11_wki3r")
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_va6y7"]
+font = ExtResource("11_wki3r")
+font_size = 30
 
 [sub_resource type="Animation" id="Animation_6rofx"]
 resource_name = "DrawCard"
@@ -1143,7 +1151,7 @@ label_settings = SubResource("LabelSettings_6pwi0")
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Hand Container" type="Control" parent="UI" node_paths=PackedStringArray("cardEffectLabel", "continueScenarioControl", "discardCardButtonAnimationPlayer", "trashcanAnimationPlayer")]
+[node name="Hand Container" type="Control" parent="UI" node_paths=PackedStringArray("cardEffectLabel", "continueScenarioControl", "discardCardButtonAnimationPlayer", "trashcanAnimationPlayer", "cardNumberLabel")]
 z_index = 2
 z_as_relative = false
 anchors_preset = 0
@@ -1159,6 +1167,7 @@ discardLabel = "You toss your cards into the solar wind, hoping for better draws
 discardCardButtonAnimationPlayer = NodePath("DiscardButtonHolder/DiscardButtonAnimationPlayer")
 trashcanAnimationPlayer = NodePath("TrashCanHolder/TrashCanAnimationPlayer")
 discardUseHeader = "You toss your cards into the solar wind, hoping for better luck in the future..."
+cardNumberLabel = NodePath("CardsContainer/CARDSNumberHolder")
 
 [node name="Hud Image" type="Sprite2D" parent="UI/Hand Container"]
 position = Vector2(-10.621529, 612.656)
@@ -1416,10 +1425,10 @@ libraries = {
 [node name="ColorRect" type="ColorRect" parent="UI/Hand Container"]
 z_index = -2
 layout_mode = 0
-offset_left = -580.0
+offset_left = -600.0
 offset_top = 75.0
-offset_right = 567.0
-offset_bottom = 720.0
+offset_right = 596.0
+offset_bottom = 759.0
 mouse_filter = 2
 color = Color(0, 0, 0, 0.69411767)
 
@@ -1428,6 +1437,30 @@ stream = ExtResource("75_syhfs")
 
 [node name="TrashCanCloseSFX" type="AudioStreamPlayer" parent="UI/Hand Container"]
 stream = ExtResource("76_hsxrn")
+
+[node name="CardsContainer" type="Control" parent="UI/Hand Container"]
+anchors_preset = 0
+offset_left = 300.0
+offset_top = 473.0
+offset_right = 340.0
+offset_bottom = 513.0
+
+[node name="CARDS_" type="Label" parent="UI/Hand Container/CardsContainer"]
+layout_mode = 0
+offset_left = 121.0
+offset_top = 61.0
+offset_right = 207.0
+offset_bottom = 92.0
+text = "CARDS:"
+label_settings = SubResource("LabelSettings_3ygrc")
+
+[node name="CARDSNumberHolder" type="Label" parent="UI/Hand Container/CardsContainer"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 126.0
+offset_right = 247.0
+offset_bottom = 230.0
+label_settings = SubResource("LabelSettings_va6y7")
 
 [node name="ContinueScenario" type="Control" parent="UI"]
 visible = false

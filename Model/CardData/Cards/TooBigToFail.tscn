@@ -20,5 +20,5 @@ extraInfoBodyString = "Including its solar panels, the Psyche spacecraft is abou
 hasExtraInfo = true
 extraInfoLink = "https://psyche.ssl.berkeley.edu/mission/the-spacecraft/"
 
-[node name="CardBackground2" parent="." index="0"]
+[node name="CardBackground" parent="." index="0"]
 texture = ExtResource("3_dvqro")

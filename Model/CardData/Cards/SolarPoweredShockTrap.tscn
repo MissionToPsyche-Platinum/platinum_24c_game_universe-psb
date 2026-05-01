@@ -20,5 +20,5 @@ extraInfoBodyString = "As of Psyche's launch in 2023, Psyche's 800 square foot (
 hasExtraInfo = true
 extraInfoLink = "https://www.nasa.gov/missions/psyche-mission/huge-solar-arrays-permanently-installed-on-nasas-psyche-spacecraft/"
 
-[node name="CardBackground2" parent="." index="0"]
+[node name="CardBackground" parent="." index="0"]
 texture = ExtResource("3_vyxe8")

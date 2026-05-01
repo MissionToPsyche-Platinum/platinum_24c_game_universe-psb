@@ -22,5 +22,5 @@ cardDescription = "They will take centuries to process your distress call, but h
 cardBehavior = Array[Resource]([SubResource("Resource_ingyq")])
 cardUseHeader = "You waited so long on hold that an unknown spacetime anomaly occured while you were too bored to notice!"
 
-[node name="CardBackground2" parent="." index="0"]
+[node name="CardBackground" parent="." index="0"]
 texture = ExtResource("4_npvr0")

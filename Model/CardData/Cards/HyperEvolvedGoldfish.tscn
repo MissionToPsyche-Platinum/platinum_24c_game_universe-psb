@@ -18,5 +18,5 @@ cardDescription = "A tiny fish in a floating water sphere who somehow understand
 cardBehavior = Array[Resource]([SubResource("Resource_b2kxi")])
 cardUseHeader = "Somehow this goldfish also understands diplomacy better than you do. You're left feeling simultaneously grateful and confused."
 
-[node name="CardBackground2" parent="." index="0"]
+[node name="CardBackground" parent="." index="0"]
 texture = ExtResource("4_b2kxi")

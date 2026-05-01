@@ -23,5 +23,5 @@ cardDescription = "Slow-moving but full of wisdom. Check their planetary allianc
 cardBehavior = Array[Resource]([SubResource("Resource_p7iwm")])
 cardUseHeader = "They impart the ancient, sacred wisdom to you- and also a little bit of slime."
 
-[node name="CardBackground2" parent="." index="0"]
+[node name="CardBackground" parent="." index="0"]
 texture = ExtResource("4_wx246")

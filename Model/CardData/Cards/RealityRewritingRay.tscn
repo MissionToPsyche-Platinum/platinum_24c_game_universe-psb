@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://b37fh2toktqxg"]
+[gd_scene load_steps=8 format=3 uid="uid://b37fh2toktqxg"]
 
 [ext_resource type="PackedScene" uid="uid://7wpt2pr8jwaa" path="res://Model/CardData/BaseCardData/protocol_card_base.tscn" id="1_iyvmq"]
 [ext_resource type="Script" uid="uid://cda51huvrayd1" path="res://Model/CardData/CardBehaviorData/AttriubuteEffect.gd" id="2_78c4s"]
+[ext_resource type="Texture2D" uid="uid://c7vijxy6gxmer" path="res://View/Assets/Sprites/RealityRewiringBay.png" id="2_iyvmq"]
 [ext_resource type="Script" uid="uid://jvo5d8np0a4x" path="res://Model/CardData/CardBehaviorData/AttributeBehavior.gd" id="3_5abis"]
 [ext_resource type="Texture2D" uid="uid://d3kgx105pqijg" path="res://View/Assets/Sprites/Card Sprites/NebulousCard.png" id="4_dxwa3"]
 
@@ -18,9 +19,10 @@ metadata/_custom_type_script = "uid://jvo5d8np0a4x"
 
 [node name="Control" instance=ExtResource("1_iyvmq")]
 cardName = "Reality Rewiring Bay"
+cardSprite = ExtResource("2_iyvmq")
 cardDescription = "Adjusts the fundamental laws of physics... for better or worse. Who needs gravity all the time, anyway?"
 cardBehavior = Array[Resource]([SubResource("Resource_r5mdj")])
 cardUseHeader = "Violating all three fundamental laws of motion, you somehow manage to harness the chaos and get a massive speed boost! "
 
-[node name="CardBackground2" parent="." index="0"]
+[node name="CardBackground" parent="." index="0"]
 texture = ExtResource("4_dxwa3")

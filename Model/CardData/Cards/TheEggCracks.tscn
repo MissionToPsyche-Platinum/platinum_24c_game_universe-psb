@@ -18,5 +18,5 @@ cardDescription = "Turns out Psyche wasn't just a metal asteroid- it was an egg,
 cardBehavior = Array[Resource]([SubResource("Resource_plgqh")])
 cardUseHeader = "The space creature stomps and gnaws through your foes!"
 
-[node name="CardBackground2" parent="." index="0"]
+[node name="CardBackground" parent="." index="0"]
 texture = ExtResource("3_gvk7f")

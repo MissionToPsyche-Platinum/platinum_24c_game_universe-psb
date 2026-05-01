@@ -21,5 +21,5 @@ cardDescription = "If it can't fix it, then the problem is truly unsolvable."
 cardBehavior = Array[Resource]([SubResource("Resource_rmhkx")])
 cardUseHeader = "You make to secure the tape to the chassis with zip ties."
 
-[node name="CardBackground2" parent="." index="0"]
+[node name="CardBackground" parent="." index="0"]
 texture = ExtResource("4_cna73")

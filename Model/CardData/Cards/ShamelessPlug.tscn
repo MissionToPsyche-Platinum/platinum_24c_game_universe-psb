@@ -22,5 +22,5 @@ extraInfoBodyString = "The @MissionToPsyche Instagram posts real-time updates an
 hasExtraInfo = true
 extraInfoLink = "https://www.instagram.com/missiontopsyche/"
 
-[node name="CardBackground2" parent="." index="0"]
+[node name="CardBackground" parent="." index="0"]
 texture = ExtResource("3_5tysp")

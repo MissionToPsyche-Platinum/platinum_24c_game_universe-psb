@@ -25,5 +25,5 @@ extraInfoBodyString = "While NASA's Jet Propulsion Laboratory (JPL) in Southern 
 hasExtraInfo = true
 extraInfoLink = "https://www.jpl.nasa.gov/press-kits/psyche/mission/spacecraft/"
 
-[node name="CardBackground2" parent="." index="0"]
+[node name="CardBackground" parent="." index="0"]
 texture = ExtResource("4_2wxf0")
