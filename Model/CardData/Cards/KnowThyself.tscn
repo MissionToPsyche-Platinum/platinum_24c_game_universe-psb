@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://l5cgjlfmp7q3"]
+[gd_scene load_steps=8 format=3 uid="uid://l5cgjlfmp7q3"]
 
 [ext_resource type="PackedScene" uid="uid://7wpt2pr8jwaa" path="res://Model/CardData/BaseCardData/protocol_card_base.tscn" id="1_dqlg5"]
 [ext_resource type="Script" uid="uid://cda51huvrayd1" path="res://Model/CardData/CardBehaviorData/AttriubuteEffect.gd" id="2_b0iqd"]
+[ext_resource type="Texture2D" uid="uid://chexixhx67dt4" path="res://View/Assets/Sprites/Card Sprites/KnowThyself.png" id="2_sv4kt"]
 [ext_resource type="Script" uid="uid://jvo5d8np0a4x" path="res://Model/CardData/CardBehaviorData/AttributeBehavior.gd" id="3_sv4kt"]
 [ext_resource type="Texture2D" uid="uid://di2vrl7ihcl5g" path="res://View/Assets/Sprites/Card Sprites/BasicCard.png" id="4_jvujb"]
 
@@ -17,6 +18,7 @@ metadata/_custom_type_script = "uid://jvo5d8np0a4x"
 
 [node name="Control" instance=ExtResource("1_dqlg5")]
 cardName = "Know Thyself"
+cardSprite = ExtResource("2_sv4kt")
 cardDescription = "Although Psyche's spectrometer was originally designed to analyze asteroids, turning it inward could lead to profound philosophical insights."
 cardBehavior = Array[Resource]([SubResource("Resource_ieq1x")])
 cardUseHeader = "Your newfound awareness brings with it a sense of peace and security never before thought possible for a 3 ton spacecraft."

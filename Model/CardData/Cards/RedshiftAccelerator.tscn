@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://ba3anonls50oq"]
 
 [ext_resource type="PackedScene" uid="uid://7wpt2pr8jwaa" path="res://Model/CardData/BaseCardData/protocol_card_base.tscn" id="1_2miws"]
-[ext_resource type="Texture2D" uid="uid://bnhxgu0f1ye4y" path="res://View/Assets/Sprites/dummyPsyche.jpg" id="2_pw5ty"]
+[ext_resource type="Texture2D" uid="uid://cqubpeuqeup3h" path="res://View/Assets/Sprites/Card Sprites/RedshiftAccelerator.png" id="2_mhpi7"]
 [ext_resource type="Script" uid="uid://cda51huvrayd1" path="res://Model/CardData/CardBehaviorData/AttriubuteEffect.gd" id="3_ln20d"]
 [ext_resource type="Script" uid="uid://jvo5d8np0a4x" path="res://Model/CardData/CardBehaviorData/AttributeBehavior.gd" id="4_13348"]
 [ext_resource type="Texture2D" uid="uid://di2vrl7ihcl5g" path="res://View/Assets/Sprites/Card Sprites/BasicCard.png" id="5_mhpi7"]
@@ -19,7 +19,7 @@ metadata/_custom_type_script = "uid://jvo5d8np0a4x"
 
 [node name="ProtocolCardBase" instance=ExtResource("1_2miws")]
 cardName = "Redshift Accelerator "
-cardSprite = ExtResource("2_pw5ty")
+cardSprite = ExtResource("2_mhpi7")
 cardDescription = "By cleverly manipulating the spectrometer, Psyche amplifies an object's redshift, convincing the universe it's already in rapid retreat. The result? Psyche takes off at incredible speed!"
 cardBehavior = Array[Resource]([SubResource("Resource_msoos")])
 cardUseHeader = "You successfuly convice the universe to let you speed up - and Newton rolls over in his grave."
