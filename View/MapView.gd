@@ -34,15 +34,15 @@ func build(layout: MapLayout):
 		node_views[i] = placeholder
 
 func update_from_model(model: MapModel):
-	if model.has_won == true:
+	if model.has_won == true: #check win condition
 		# Store final player attributes for score calculation
 		GameManager.stats.store_attributes()
 		
 		get_tree().change_scene_to_file("res://Model/ScreenData/WinScreen.tscn")
 	else:
-		for i in node_views.keys():
+		for i in node_views.keys(): #iterate through map nodes
+			#set node scene based on index
 			var scene: PackedScene = null
-
 			if i == model.layout.start_index:
 				scene = earth_scene
 			elif i == model.layout.end_index:
@@ -55,21 +55,21 @@ func update_from_model(model: MapModel):
 			else:
 				scene = unknown_scene
 
-			var node = _replace_node(i, scene)
+			# Disable node if previously enabled
+			if psyche_last_index != -1 and get_proceeding_neighbors(psyche_last_index, model.layout).has(i):
+					#node = _replace_node(i, scenario_scene)
+					var node = node_views[i]
+					if node.has_method("disable") and node != null:
+						node.disable()
+						deactivated.append(i)
+			else:
+				# Enable interaction if new active scenario node
+				var node = _replace_node(i, scene)
+				if scene == scenario_scene and not node.is_connected("interacted", Callable(self, "_on_node_interacted")):
+					node.connect("interacted", Callable(self, "_on_node_interacted"))
 
-			# Only active scenario nodes get interaction
-			if scene == scenario_scene and not node.is_connected("interacted", Callable(self, "_on_node_interacted")):
-				node.connect("interacted", Callable(self, "_on_node_interacted"))
+			# end of for loop
 			
-			# Disable previously enabled nodes
-			if psyche_last_index != -1:
-				if get_proceeding_neighbors(psyche_last_index, model.layout).has(i):
-						node = _replace_node(i, scenario_scene)
-						if node.has_method("disable") and node != null:
-							node.disable()
-							deactivated.append(i)
-		
-		# end of for loop
 		psyche_last_index = model.current_index
 		
 		# Mark the current node as visited
