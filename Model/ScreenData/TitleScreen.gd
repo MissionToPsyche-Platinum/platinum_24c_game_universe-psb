@@ -5,10 +5,13 @@ extends Control
 @export var aboutLabel : Label
 @export var creditsLabel : Label
 @export var backLabel : Label
+@export var backAboutLabel : Label
 
 @export var menuHoverSound : AudioStreamPlayer2D
 
 @export var creditsAnimationPlayer : AnimationPlayer
+
+@export var aboutAnimationPlayer : AnimationPlayer
 
 #plays the leadup + loop
 @export var mainMenuMusicIntroPlayer : AudioStreamPlayer
@@ -151,3 +154,19 @@ func _on_credits_button_pressed() -> void:
 
 func _on_intro_music_player_finished() -> void:
 	mainMenuMusicLoopPlayer.play()
+
+
+func _on_about_back_button_pressed() -> void:
+	aboutAnimationPlayer.play_backwards("showAbout")
+
+func _on_about_back_button_mouse_entered() -> void:
+	backAboutLabel.label_settings.font_color = Color('#f89f00')
+	menuHoverSound.play()
+
+
+func _on_about_back_button_mouse_exited() -> void:
+	backAboutLabel.label_settings.font_color = Color('#fff')
+
+
+func _on_about_button_pressed() -> void:
+	aboutAnimationPlayer.play("showAbout")

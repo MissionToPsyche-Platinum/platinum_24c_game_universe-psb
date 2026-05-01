@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://dho25gjn530im"]
+[gd_scene load_steps=43 format=3 uid="uid://dho25gjn530im"]
 
 [ext_resource type="Script" uid="uid://dym0s2hrn6ltf" path="res://Model/ScreenData/TitleScreen.gd" id="1_fxcce"]
 [ext_resource type="Texture2D" uid="uid://dt1rmcvr41bkn" path="res://View/Assets/Title Screen/Title Screen.png" id="2_1ecxf"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://c0j0eijqm6joc" path="res://View/Assets/Title Screen/psyche_asteroid 1.png" id="11_uuaxp"]
 [ext_resource type="AudioStream" uid="uid://c47u6qkeec46k" path="res://View/Assets/Music/PATU Main Theme (Full Song).wav" id="12_35spm"]
 [ext_resource type="AudioStream" uid="uid://jdwhke2l0s2o" path="res://View/Assets/Music/PATU Main Theme (Loop).wav" id="13_c3nkw"]
+[ext_resource type="Script" uid="uid://dh15qjnunth0s" path="res://Model/ScreenData/about.gd" id="14_mc46l"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bm6xk"]
 font = ExtResource("4_mutsb")
@@ -236,7 +237,85 @@ _data = {
 &"RESET": SubResource("Animation_c3nkw")
 }
 
-[node name="Control" type="Control" node_paths=PackedStringArray("startGameLabel", "tutorialLabel", "aboutLabel", "creditsLabel", "backLabel", "menuHoverSound", "creditsAnimationPlayer", "mainMenuMusicIntroPlayer", "mainMenuMusicLoopPlayer")]
+[sub_resource type="Theme" id="Theme_c3nkw"]
+default_font = ExtResource("4_mutsb")
+default_font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_ium8y"]
+font = ExtResource("4_mutsb")
+font_size = 60
+font_color = Color(0.9372549, 0.34901962, 0.39607844, 1)
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xsamw"]
+font = ExtResource("4_mutsb")
+font_size = 25
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_75cn2"]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 700)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../MainMenu:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_2s87g"]
+resource_name = "showAbout"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 700), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../MainMenu:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -775)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rm1dd"]
+_data = {
+&"RESET": SubResource("Animation_75cn2"),
+&"showAbout": SubResource("Animation_2s87g")
+}
+
+[node name="Control" type="Control" node_paths=PackedStringArray("startGameLabel", "tutorialLabel", "aboutLabel", "creditsLabel", "backLabel", "backAboutLabel", "menuHoverSound", "creditsAnimationPlayer", "aboutAnimationPlayer", "mainMenuMusicIntroPlayer", "mainMenuMusicLoopPlayer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -249,8 +328,10 @@ tutorialLabel = NodePath("MainMenu/TutorialLabel")
 aboutLabel = NodePath("MainMenu/AboutLabel")
 creditsLabel = NodePath("MainMenu/CreditsLabel")
 backLabel = NodePath("Credits/Back")
+backAboutLabel = NodePath("About/About Back")
 menuHoverSound = NodePath("MainMenu/AudioStreamPlayer2D")
 creditsAnimationPlayer = NodePath("Credits/CreditsPlayer")
+aboutAnimationPlayer = NodePath("About/AboutPlayer")
 mainMenuMusicIntroPlayer = NodePath("IntroMusicPlayer")
 mainMenuMusicLoopPlayer = NodePath("LoopMusicPlayer")
 
@@ -271,7 +352,7 @@ texture = ExtResource("3_bm6xk")
 
 [node name="MainMenu" type="Control" parent="."]
 anchors_preset = 0
-offset_right = 40.000366
+offset_right = 40.00061
 offset_bottom = 40.0
 
 [node name="Title" type="Control" parent="MainMenu"]
@@ -679,6 +760,119 @@ bus = &"Music"
 stream = ExtResource("13_c3nkw")
 bus = &"Music"
 
+[node name="About" type="Control" parent="."]
+anchors_preset = 0
+offset_top = 700.0
+offset_right = 40.0
+offset_bottom = 740.0
+script = ExtResource("14_mc46l")
+
+[node name="NASA Psyche Mission Link" type="LinkButton" parent="About"]
+z_index = 1
+layout_mode = 0
+offset_left = 97.0
+offset_top = 168.0
+offset_right = 319.0
+offset_bottom = 201.0
+theme = SubResource("Theme_c3nkw")
+theme_override_colors/font_color = Color(0.29411766, 0.49411765, 0.8235294, 1)
+theme_override_colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_constants/outline_size = 15
+theme_override_constants/underline_spacing = 1
+text = "NASA Psyche Mission"
+
+[node name="Card Game Link" type="LinkButton" parent="About"]
+z_index = 1
+layout_mode = 0
+offset_left = 648.0
+offset_top = 372.0
+offset_right = 1071.0
+offset_bottom = 405.0
+theme = SubResource("Theme_c3nkw")
+theme_override_colors/font_color = Color(0.29411766, 0.49411765, 0.8235294, 1)
+theme_override_colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_constants/outline_size = 15
+theme_override_constants/underline_spacing = 1
+text = "Psyche Against the Universe card game"
+
+[node name="Capstone Portal Link" type="LinkButton" parent="About"]
+z_index = 1
+layout_mode = 0
+offset_left = 512.0
+offset_top = 547.0
+offset_right = 787.0
+offset_bottom = 580.0
+theme = SubResource("Theme_c3nkw")
+theme_override_colors/font_color = Color(0.29411766, 0.49411765, 0.8235294, 1)
+theme_override_colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_constants/outline_size = 15
+theme_override_constants/underline_spacing = 1
+text = "Psyche capstone program"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="About"]
+layout_mode = 1
+offset_left = 53.0
+offset_right = 1098.0
+offset_bottom = 648.0
+mouse_filter = 2
+alignment = 1
+
+[node name="About Title" type="Label" parent="About/VBoxContainer"]
+layout_mode = 2
+text = "About"
+label_settings = SubResource("LabelSettings_ium8y")
+horizontal_alignment = 1
+
+[node name="Psyche mission paragraph" type="Label" parent="About/VBoxContainer"]
+layout_mode = 2
+text = "
+The NASA Psyche mission is a space mission being led by Arizona State University to visit the 
+metal-rich Psyche asteroid, which is inside the main asteroid belt between Mars and Jupiter.
+The Psyche spacecraft is equipped with several instruments that will collect data and send it 
+back to Earth, allowing NASA scientists to gain an understanding of the Psyche asteroid’s 
+origins and makeup. The spacecraft was launched in 2023 and will reach orbit in 2029, with the 
+mission expected to conclude in 2031."
+label_settings = SubResource("LabelSettings_xsamw")
+
+[node name="Card game paragraph" type="Label" parent="About/VBoxContainer"]
+layout_mode = 2
+text = "
+\"Psyche Against The Universe\" is an adaptation of the Psyche Against the Universe card game 
+created by Psyche Inspired intern Nidhi Shah in 2025. The card game is inspired by Apples to 
+Apples and involves fictional humorous situations that the Psyche spacecraft might encounter 
+on its journey."
+label_settings = SubResource("LabelSettings_xsamw")
+
+[node name="Capstone paragraph" type="Label" parent="About/VBoxContainer"]
+layout_mode = 2
+text = "
+This game was created by 4 seniors at Penn State Behrend for their senior design capstone 
+project, proposed by ASU as a part of the Psyche capstone program."
+label_settings = SubResource("LabelSettings_xsamw")
+
+[node name="AboutPlayer" type="AnimationPlayer" parent="About"]
+libraries = {
+&"": SubResource("AnimationLibrary_rm1dd")
+}
+
+[node name="About Back" type="Label" parent="About"]
+layout_mode = 0
+offset_left = 1030.0
+offset_top = 58.0
+offset_right = 1110.0
+offset_bottom = 143.0
+text = "Back
+"
+label_settings = SubResource("LabelSettings_kk3hr")
+
+[node name="About Back Button" type="Button" parent="About/About Back"]
+layout_mode = 0
+offset_left = -5.0
+offset_top = 2.0
+offset_right = 84.0
+offset_bottom = 40.0
+flat = true
+
 [connection signal="focus_exited" from="MainMenu/StartGameLabel" to="." method="_on_start_game_label_focus_exited"]
 [connection signal="mouse_entered" from="MainMenu/StartGameLabel" to="." method="_on_start_game_label_mouse_entered"]
 [connection signal="mouse_exited" from="MainMenu/StartGameLabel" to="." method="_on_start_game_label_mouse_exited"]
@@ -699,6 +893,7 @@ bus = &"Music"
 [connection signal="mouse_exited" from="MainMenu/AboutLabel" to="." method="_on_about_label_mouse_exited"]
 [connection signal="mouse_entered" from="MainMenu/AboutLabel/AboutButton" to="." method="_on_about_button_mouse_entered"]
 [connection signal="mouse_exited" from="MainMenu/AboutLabel/AboutButton" to="." method="_on_about_button_mouse_exited"]
+[connection signal="pressed" from="MainMenu/AboutLabel/AboutButton" to="." method="_on_about_button_pressed"]
 [connection signal="focus_entered" from="MainMenu/CreditsLabel" to="." method="_on_credits_label_focus_entered"]
 [connection signal="focus_exited" from="MainMenu/CreditsLabel" to="." method="_on_credits_label_focus_exited"]
 [connection signal="mouse_entered" from="MainMenu/CreditsLabel" to="." method="_on_credits_label_mouse_entered"]
@@ -710,3 +905,9 @@ bus = &"Music"
 [connection signal="mouse_exited" from="Credits/Back/back button" to="." method="_on_back_button_mouse_exited"]
 [connection signal="pressed" from="Credits/Back/back button" to="." method="_on_back_button_pressed"]
 [connection signal="finished" from="IntroMusicPlayer" to="." method="_on_intro_music_player_finished"]
+[connection signal="pressed" from="About/NASA Psyche Mission Link" to="About" method="_on_nasa_psyche_mission_link_pressed"]
+[connection signal="pressed" from="About/Card Game Link" to="About" method="_on_card_game_link_pressed"]
+[connection signal="pressed" from="About/Capstone Portal Link" to="About" method="_on_capstone_portal_link_pressed"]
+[connection signal="mouse_entered" from="About/About Back/About Back Button" to="." method="_on_about_back_button_mouse_entered"]
+[connection signal="mouse_exited" from="About/About Back/About Back Button" to="." method="_on_about_back_button_mouse_exited"]
+[connection signal="pressed" from="About/About Back/About Back Button" to="." method="_on_about_back_button_pressed"]
