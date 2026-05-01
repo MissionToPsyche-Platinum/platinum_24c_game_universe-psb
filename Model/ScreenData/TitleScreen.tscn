@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://dho25gjn530im"]
+[gd_scene load_steps=44 format=3 uid="uid://dho25gjn530im"]
 
 [ext_resource type="Script" uid="uid://dym0s2hrn6ltf" path="res://Model/ScreenData/TitleScreen.gd" id="1_fxcce"]
 [ext_resource type="Texture2D" uid="uid://dt1rmcvr41bkn" path="res://View/Assets/Title Screen/Title Screen.png" id="2_1ecxf"]
@@ -250,7 +250,13 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_xsamw"]
 font = ExtResource("4_mutsb")
-font_size = 25
+font_size = 24
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_75cn2"]
+font = ExtResource("4_mutsb")
+font_size = 18
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
@@ -770,47 +776,65 @@ script = ExtResource("14_mc46l")
 [node name="NASA Psyche Mission Link" type="LinkButton" parent="About"]
 z_index = 1
 layout_mode = 0
-offset_left = 97.0
-offset_top = 168.0
-offset_right = 319.0
-offset_bottom = 201.0
+offset_left = 95.0
+offset_top = 72.0
+offset_right = 317.0
+offset_bottom = 105.0
 theme = SubResource("Theme_c3nkw")
 theme_override_colors/font_color = Color(0.29411766, 0.49411765, 0.8235294, 1)
 theme_override_colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
 theme_override_constants/outline_size = 15
 theme_override_constants/underline_spacing = 1
+theme_override_font_sizes/font_size = 24
 text = "NASA Psyche Mission"
 
 [node name="Card Game Link" type="LinkButton" parent="About"]
 z_index = 1
 layout_mode = 0
-offset_left = 648.0
-offset_top = 372.0
-offset_right = 1071.0
-offset_bottom = 405.0
+offset_left = 627.0
+offset_top = 269.0
+offset_right = 1050.0
+offset_bottom = 302.0
 theme = SubResource("Theme_c3nkw")
 theme_override_colors/font_color = Color(0.29411766, 0.49411765, 0.8235294, 1)
 theme_override_colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
 theme_override_constants/outline_size = 15
 theme_override_constants/underline_spacing = 1
+theme_override_font_sizes/font_size = 24
 text = "Psyche Against the Universe card game"
 
 [node name="Capstone Portal Link" type="LinkButton" parent="About"]
 z_index = 1
 layout_mode = 0
-offset_left = 512.0
-offset_top = 547.0
-offset_right = 787.0
-offset_bottom = 580.0
+offset_left = 496.0
+offset_top = 438.0
+offset_right = 771.0
+offset_bottom = 471.0
 theme = SubResource("Theme_c3nkw")
 theme_override_colors/font_color = Color(0.29411766, 0.49411765, 0.8235294, 1)
 theme_override_colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
 theme_override_constants/outline_size = 15
 theme_override_constants/underline_spacing = 1
+theme_override_font_sizes/font_size = 24
 text = "Psyche capstone program"
 
+[node name="Disclaimer Link" type="LinkButton" parent="About"]
+z_index = 1
+layout_mode = 0
+offset_left = 62.0
+offset_top = 533.0
+offset_right = 337.0
+offset_bottom = 566.0
+theme = SubResource("Theme_c3nkw")
+theme_override_colors/font_color = Color(0.29411766, 0.49411765, 0.8235294, 1)
+theme_override_colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_constants/outline_size = 15
+theme_override_constants/underline_spacing = 1
+theme_override_font_sizes/font_size = 18
+text = "https://psyche.ssl.berkeley.edu"
+
 [node name="VBoxContainer" type="VBoxContainer" parent="About"]
-layout_mode = 1
+layout_mode = 0
 offset_left = 53.0
 offset_right = 1098.0
 offset_bottom = 648.0
@@ -819,14 +843,13 @@ alignment = 1
 
 [node name="About Title" type="Label" parent="About/VBoxContainer"]
 layout_mode = 2
-text = "About"
+text = "About & Disclaimer"
 label_settings = SubResource("LabelSettings_ium8y")
 horizontal_alignment = 1
 
 [node name="Psyche mission paragraph" type="Label" parent="About/VBoxContainer"]
 layout_mode = 2
-text = "
-The NASA Psyche mission is a space mission being led by Arizona State University to visit the 
+text = "The NASA Psyche Mission is a space mission being led by Arizona State University to visit the 
 metal-rich Psyche asteroid, which is inside the main asteroid belt between Mars and Jupiter.
 The Psyche spacecraft is equipped with several instruments that will collect data and send it 
 back to Earth, allowing NASA scientists to gain an understanding of the Psyche asteroid’s 
@@ -850,6 +873,18 @@ This game was created by 4 seniors at Penn State Behrend for their senior design
 project, proposed by ASU as a part of the Psyche capstone program."
 label_settings = SubResource("LabelSettings_xsamw")
 
+[node name="Disclaimer" type="Label" parent="About/VBoxContainer"]
+layout_mode = 2
+text = "
+This work was created in partial fulfillment of Pennsylvania State University Erie, The Behrend College Capstone Course 
+CMPSC485w/SWENG481. The work is a result of the Psyche Student Collaborations component of NASA’s Psyche Mission 
+(https://psyche.ssl.berkeley.edu). “Psyche: A Journey to a Metal World” [Contract number NNM16AA09C] is part of the NASA 
+Discovery Program mission to solar system targets. Trade names and trademarks of ASU and NASA are used in this work for 
+identification only. Their usage does not constitute an official endorsement, either expressed or implied, by Arizona State 
+University or National Aeronautics and Space Administration. The content is solely the responsibility of the authors and does 
+not necessarily represent the official views of ASU or NASA."
+label_settings = SubResource("LabelSettings_75cn2")
+
 [node name="AboutPlayer" type="AnimationPlayer" parent="About"]
 libraries = {
 &"": SubResource("AnimationLibrary_rm1dd")
@@ -858,9 +893,9 @@ libraries = {
 [node name="About Back" type="Label" parent="About"]
 layout_mode = 0
 offset_left = 1030.0
-offset_top = 58.0
+offset_top = 24.0
 offset_right = 1110.0
-offset_bottom = 143.0
+offset_bottom = 109.0
 text = "Back
 "
 label_settings = SubResource("LabelSettings_kk3hr")
@@ -908,6 +943,7 @@ flat = true
 [connection signal="pressed" from="About/NASA Psyche Mission Link" to="About" method="_on_nasa_psyche_mission_link_pressed"]
 [connection signal="pressed" from="About/Card Game Link" to="About" method="_on_card_game_link_pressed"]
 [connection signal="pressed" from="About/Capstone Portal Link" to="About" method="_on_capstone_portal_link_pressed"]
+[connection signal="pressed" from="About/Disclaimer Link" to="About" method="_on_disclaimer_link_pressed"]
 [connection signal="mouse_entered" from="About/About Back/About Back Button" to="." method="_on_about_back_button_mouse_entered"]
 [connection signal="mouse_exited" from="About/About Back/About Back Button" to="." method="_on_about_back_button_mouse_exited"]
 [connection signal="pressed" from="About/About Back/About Back Button" to="." method="_on_about_back_button_pressed"]
