@@ -19,6 +19,7 @@ metadata/_custom_type_script = "uid://jvo5d8np0a4x"
 
 [node name="Control" instance=ExtResource("1_dnvr1")]
 cardName = "Solar Panel Origami"
+cardSprite = ExtResource("5_b3w5k")
 cardDescription = "Fold and reshape the solar arrays into giant paper cranes. Not useful, but a nice way to pass the time in deep space."
 cardBehavior = Array[Resource]([SubResource("Resource_p4x2b")])
 cardUseHeader = "You find yourself feeling inspired by the strange beauty of the massive solar panel cranes."

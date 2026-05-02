@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dryl4bum6djn3"]
+[gd_scene load_steps=6 format=3 uid="uid://dryl4bum6djn3"]
 
 [ext_resource type="PackedScene" uid="uid://7wpt2pr8jwaa" path="res://Model/CardData/BaseCardData/protocol_card_base.tscn" id="1_pp06g"]
-[ext_resource type="Script" uid="uid://csm0y40wfj4uj" path="res://Model/CardData/CardBehaviorData/AttackBehavior.gd" id="2_4qet0"]
+[ext_resource type="Script" path="res://Model/CardData/CardBehaviorData/AttackBehavior.gd" id="2_4qet0"]
+[ext_resource type="Texture2D" uid="uid://vvrtfkk1nxgy" path="res://View/Assets/Sprites/Card Sprites/SolarPoweredShockTrap.png" id="2_vyxe8"]
 [ext_resource type="Texture2D" uid="uid://d3kgx105pqijg" path="res://View/Assets/Sprites/Card Sprites/NebulousCard.png" id="3_vyxe8"]
 
 [sub_resource type="Resource" id="Resource_30f4k"]
@@ -12,6 +13,7 @@ metadata/_custom_type_script = "uid://csm0y40wfj4uj"
 
 [node name="Control" instance=ExtResource("1_pp06g")]
 cardName = "Solar-Powered Shock Trap"
+cardSprite = ExtResource("2_vyxe8")
 cardDescription = "Psyche's solar arrays generate up to 21 kilowatts of power- plenty for running instruments, charging systems... and, if necessary, giving an intruder the world's first deep-space zap."
 cardBehavior = Array[Resource]([SubResource("Resource_30f4k")])
 cardUseHeader = "Psyche channels the energy from its solar arrays into a powerful disorienting shock! If only all of the sensitive electronic instruments didn't need recalibrated afterward..."

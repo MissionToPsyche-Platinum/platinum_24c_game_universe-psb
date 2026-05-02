@@ -18,6 +18,7 @@ metadata/_custom_type_script = "uid://jvo5d8np0a4x"
 
 [node name="Control" instance=ExtResource("1_uvwvx")]
 cardName = "Suspiciously Helpful AI"
+cardSprite = ExtResource("5_3hg7p")
 cardDescription = "Claims it doesn't want to take over the ship. Probably lying."
 cardBehavior = Array[Resource]([SubResource("Resource_ds67v")])
 cardUseHeader = "Seems like it refactored the code for *something*... Hopefully one of the engineers double checks that."
